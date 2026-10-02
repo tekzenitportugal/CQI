@@ -1,0 +1,65 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  // Above the verification rings that fade into this section.
+  position: relative;
+  z-index: 1;
+  @include section-space(0, 200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-bottom: 200px;
+  }
+}
+
+// Figma: 465px copy column and 829px list, pushed to the edges
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+
+  @include respond-to(lg) {
+    flex: 0 1 465px;
+  }
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include heading-h3;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}
+
+.table {
+  @include respond-to(lg) {
+    flex: 0 1 829px;
+  }
+}

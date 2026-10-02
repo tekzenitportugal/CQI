@@ -1,0 +1,97 @@
+@use '@/styles/mixins' as *;
+
+// Figma Frame 1000003315: milestones row ends ~300px above this section's centred heading.
+.section {
+  @include section-space(300px, 0);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  max-width: 587px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include heading-h3;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  margin-top: fluid-space(100px);
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(2, minmax(0, 587px));
+    justify-content: center;
+  }
+}
+
+// The tag sits on the card's top border, same pattern as BrokenPromiseSection's panels.
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-top: 14px;
+}
+
+.tag {
+  position: absolute;
+  top: 0;
+  left: 33px;
+  z-index: 1;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  border-radius: 20px;
+}
+
+.problem {
+  .cardBody {
+    border: 1px solid #ff99a8;
+    background: rgba(255, 237, 240, 0.15);
+  }
+}
+
+.answer {
+  .cardBody {
+    border: 1px solid var(--color-blue-200);
+    background: #edf2ff;
+  }
+}
+
+.quote {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(20px, 1.61vw, 24px);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-antracite-400);
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}

@@ -1,0 +1,102 @@
+@use '@/styles/mixins' as *;
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 140px;
+  padding: 8px 20px 8px 8px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  // Figma's angle depends on the card's proportions (245.6° compact, 235.4° split).
+  background: linear-gradient(
+    var(--stat-card-gradient-angle, 245.612deg),
+    var(--color-light-blue-75) 1.429%,
+    #f5f5f5 100%
+  );
+
+  // Fixed height can clip a 3-line label at narrow widths; let it grow instead.
+  // Figma's mobile "CARDS %" frame (374×140) uses its own gradient angle,
+  // distinct from the desktop compact/split proportions above.
+  @media (max-width: 1023.98px) {
+    height: auto;
+    min-height: 140px;
+    --stat-card-gradient-angle: 249.966deg;
+  }
+}
+
+.split {
+  --stat-card-gradient-angle: 235.402deg;
+}
+
+.valueBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  border-radius: 12px;
+  background: var(--color-blue-75);
+}
+
+.compact .valueBox {
+  // Figma's mobile "CARDS %" card is 374px wide with a 162px value box
+  // (43.32% of the card) — clamp so narrower phones don't shrink below that,
+  // and wider tablet widths ease toward the desktop width below instead of
+  // growing unbounded.
+  width: clamp(162px, 43.32vw, 214px);
+
+  @include respond-to(lg) {
+    width: clamp(150px, 14vw, 214px);
+  }
+}
+
+.split .valueBox {
+  width: clamp(120px, 30vw, 214px);
+
+  @include respond-to(md) {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+  }
+}
+
+.value {
+  font-family: var(--font-heading);
+  font-size: clamp(44px, 4.17vw, 64px);
+  font-weight: 300;
+  line-height: 1.2;
+  color: var(--color-white);
+  text-align: center;
+  white-space: nowrap;
+
+  @media (max-width: 1023.98px) {
+    font-size: 48px;
+  }
+}
+
+.copy {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  min-width: 0;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--color-light-blue-500);
+}
+
+.source {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-antracite-200);
+}

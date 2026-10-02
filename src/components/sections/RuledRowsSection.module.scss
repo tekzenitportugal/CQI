@@ -1,0 +1,58 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  // Consistent 100px inter-section rhythm on mobile/tablet. Overrides the inline
+  // fluidSpace() padding the component sets via style= (spaceTop/spaceBottom props).
+  @media (max-width: 1023.98px) {
+    padding-top: 200px !important;
+    padding-bottom: 200px !important;
+  }
+
+  // Next section shares this one's background (same band wrapper).
+  &.grouped {
+    @media (max-width: 1023.98px) {
+      padding-bottom: 0 !important;
+    }
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ruled-heading-gap, 10px);
+  flex-shrink: 0;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include heading-h3;
+  white-space: nowrap;
+}
+
+// Figma: 829px list; labels are Poppins 20 with line-height 1.5
+.list {
+  --ruled-label-line-height: 1.5;
+
+  width: 100%;
+
+  @include respond-to(lg) {
+    width: 829px;
+    flex-shrink: 1;
+  }
+}

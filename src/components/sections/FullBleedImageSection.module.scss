@@ -1,0 +1,18 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  @include section-space(271px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 0;
+  }
+}
+
+.image {
+  // Figma mobile (374×209.78) is a wide ~16:9 card, not square.
+  @media (max-width: 1023.98px) {
+    --fpo-aspect-ratio: 16 / 9 !important;
+  }
+}

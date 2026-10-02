@@ -1,0 +1,182 @@
+@use '@/styles/mixins' as *;
+
+// Figma Group 981 (6079:38445) at 1536px width: 200px after the hero photo, and the
+// requirements band below owns the next 200px.
+.section {
+  @include section-space(200px, 0);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.heading {
+  --section-heading-title-max-width: 708px;
+  margin-bottom: fluid-space(100px);
+}
+
+.phasesRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 30px;
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+}
+
+.phaseCol {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.phaseDescription {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}
+
+.timeline {
+  position: relative;
+}
+
+// Full-bleed faint rail (Figma "Line 17"), same technique as
+// IndustryThreeThingsSection's .lineTrack: bleeds past the container to the
+// page edges, sitting at the vertical centre of the 42px step markers.
+.lineTrack {
+  position: absolute;
+  z-index: 0;
+  top: 21px;
+  left: calc(-1 * var(--container-padding));
+  right: calc(-1 * var(--container-padding));
+  height: 1px;
+  background: var(--color-antracite-75);
+  pointer-events: none;
+}
+
+// The 3-colour progress segments (Figma Rectangle 102/100/101) sit on top of
+// the faint rail, inset to the container width with gaps revealing it.
+.rail {
+  position: absolute;
+  z-index: 1;
+  top: 18.5px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 20px;
+  height: 5px;
+  pointer-events: none;
+}
+
+.segment {
+  flex: 1;
+  height: 100%;
+  border-radius: 40px;
+}
+
+.grid {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    gap: 60px;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include respond-to(lg) {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.itemCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.marker {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+}
+
+.markerOuterWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  transform: rotate(-90deg);
+}
+
+.markerOuter {
+  display: block;
+  width: 42px;
+  height: 42px;
+}
+
+.markerInnerWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.markerNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-heading);
+  font-size: 13.176px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-white);
+}
+
+.itemTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+}
+
+.itemDescription {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}

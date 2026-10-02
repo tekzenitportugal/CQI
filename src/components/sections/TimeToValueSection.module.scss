@@ -1,0 +1,10 @@
+@use '@/styles/mixins' as *;
+
+// Figma: "TIME TO VALUE" eyebrow sits 10px above the heading rendered by
+// IndustryThreeThingsSection below. That component has no eyebrow slot, so this small
+// amount of top space stands in for the gap between the hero and this block.
+.eyebrow {
+  @include eyebrow;
+  margin: 0;
+  padding-top: fluid-space(150px);
+}

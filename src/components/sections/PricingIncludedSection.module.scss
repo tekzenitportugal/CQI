@@ -1,0 +1,37 @@
+@use '@/styles/mixins' as *;
+
+// Figma: "Total cost of ownership" ends at 3850, this section starts at 4050 (200px gap).
+// Its own bottom (200px) plus the shared FaqSection's fixed 200px top makes up the 400px
+// gap before "Pricing questions" below.
+.section {
+  @include section-space(200px, 200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.heading {
+  margin: 0 auto fluid-space(100px);
+  max-width: 950px;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 950px;
+  margin: 0 auto;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.list {
+  flex: 1 1 0;
+  min-width: 0;
+}

@@ -1,0 +1,67 @@
+@use '@/styles/mixins' as *;
+
+// Figma "Frame 1038": rows separated by 1px dashed B75 lines (4px dash / 4px gap),
+// with a line above the first row and below the last.
+@mixin dashed-rule {
+  content: '';
+  display: block;
+  height: 1px;
+  background: repeating-linear-gradient(90deg, var(--color-blue-75) 0 4px, transparent 4px 8px);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+
+  &::after {
+    @include dashed-rule;
+  }
+}
+
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-block: 16px;
+
+  &::before {
+    @include dashed-rule;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}
+
+.label {
+  flex-shrink: 0;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: var(--ruled-label-line-height, 1.35);
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+
+  @include respond-to(lg) {
+    width: 202px;
+  }
+}
+
+.description {
+  flex: 1;
+  margin-top: var(--ruled-description-offset, 0);
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 500;
+  // Figma: 1.4 of 17.5px, rounded to whole 24px lines
+  line-height: 24px;
+  color: var(--color-antracite-300);
+}

@@ -1,0 +1,132 @@
+@use '@/styles/mixins' as *;
+
+// Figma (6079:38457): full-bleed band, 200px padding top/bottom baked into the band itself
+.section {
+  @include soft-blue-band(78.177deg);
+  @include section-space(200px, 200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+.title {
+  @include heading-h3;
+  max-width: 576px;
+}
+
+.description {
+  @include body-lg;
+  color: var(--color-antracite-300);
+  max-width: 587px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: fluid-space(100px);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+// Same visual language as CarouselCard's dark gradient cards.
+.card {
+  --card-gradient-angle: 43.107deg;
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 24px;
+  border-radius: 20px;
+  background:
+    linear-gradient(var(--card-gradient-angle), rgba(63, 68, 83, 0.2) 0.25%, rgba(178, 199, 255, 0.2) 62.06%),
+    var(--color-card-dark);
+  color: var(--color-white);
+}
+
+// Figma: the CQI card is solid navy, group anchored to the bottom.
+.cardHighlight {
+  justify-content: flex-end;
+  background: var(--color-light-blue-500);
+
+  .tag {
+    color: var(--color-blue-200);
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--color-light-blue-75);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-400);
+  white-space: nowrap;
+}
+
+.cardCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.cardTitle {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 539px;
+}
+
+.note {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+}

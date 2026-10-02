@@ -1,0 +1,95 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  // Figma "Frame 1000003484" (the gradient wrapper itself): pt-200/pb-226 read directly off
+  // get_design_context, not derived from frame(x,y) subtraction.
+  @include section-space(200px, 226px);
+  background: linear-gradient(83deg, #edf2ff -147.05%, #f5f5f5 100%);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  // Figma: 26px between the title and the description/button row.
+  gap: fluid-space(26px);
+  // Figma "Frame 1000003483": 100px between the header row and the cards row.
+  margin-bottom: fluid-space(100px);
+}
+
+.title {
+  margin: 0;
+  @include heading-h3;
+  max-width: 708px;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+  }
+}
+
+.description {
+  @include body-lg;
+  margin: 0;
+  max-width: 708px;
+  color: var(--color-antracite-300);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border-radius: 20px;
+  background:
+    linear-gradient(33.3532deg, rgba(63, 68, 83, 0.2) 0.2517%, rgba(178, 199, 255, 0.2) 62.057%),
+    var(--color-card-dark);
+  color: var(--color-white);
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.3;
+}

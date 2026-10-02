@@ -1,0 +1,54 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/solutions/spacing' as solutions;
+
+.section {
+  @include solutions.solutions-research-space;
+
+  &.solutions {
+    @include solutions.solutions-band-background;
+  }
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 0px;
+  }
+}
+
+.eyebrow {
+  margin: 0 0 10px; // Figma: 10px below eyebrow before title block
+  font-family: var(--font-noto-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: #686868;
+}
+
+.heading {
+  --section-heading-title-max-width: 584px;
+  margin-bottom: fluid-space(100px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-bottom: 32px;
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(2, minmax(0, 707.5px));
+    grid-template-rows: repeat(2, minmax(140px, auto));
+    gap: 20px;
+    min-height: 300px;
+  }
+}
+
+.footnote {
+  margin: 32px 0 0;
+  font-family: var(--font-noto-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #888;
+}

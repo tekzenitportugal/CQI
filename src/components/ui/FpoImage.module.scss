@@ -1,0 +1,43 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  aspect-ratio: var(--fpo-aspect-ratio, auto);
+}
+
+.fillContainer {
+  height: 100%;
+}
+
+.imageBox {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  pointer-events: none;
+}
+
+.fpoLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 6.25vw, 96px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-white);
+  opacity: 0.5;
+  pointer-events: none;
+}

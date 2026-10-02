@@ -1,0 +1,133 @@
+@use '@/styles/mixins' as *;
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  background: var(--color-white);
+  width: 100%;
+
+  @include respond-to(md) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  flex-shrink: 0;
+
+  @include respond-to(md) {
+    display: flex;
+    flex-direction: column;
+    width: 185px;
+  }
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 12px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--color-light-blue-100);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--color-antracite-400);
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tabLabel {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.tab:hover:not(.tabActive) {
+  box-shadow: inset 0 0 0 1px var(--color-blue-300);
+}
+
+.tabActive {
+  box-shadow: inset 0 0 0 1px var(--color-antracite-75);
+}
+
+.tabImage {
+  min-width: 0;
+  // FpoImage's fillContainer mode sizes itself with height:100%, which only
+  // resolves against a containing block with a definite height — min-height
+  // alone doesn't count, so the image collapses to 0 height without this.
+  height: 240px;
+  min-height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+
+  @include respond-to(md) {
+    flex: 1;
+    height: 448px;
+    min-height: 448px;
+  }
+}
+
+.variantIndustry {
+  .tabs {
+    @media (max-width: 767.98px) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+  }
+
+  .tab {
+    height: 44px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 767.98px) {
+      flex: 0 0 calc(25% - 3.75px);
+      padding: 0 5px;
+      justify-content: center;
+      text-align: center;
+
+      &:nth-child(n + 5) {
+        flex: 0 0 calc(50% - 2.5px);
+        width: auto;
+      }
+    }
+  }
+
+  .tabActive {
+    background: linear-gradient(61.126deg, #668fff -147.03%, #f4f5f9 89.677%);
+  }
+
+  .tabImage {
+    @include respond-to(lg) {
+      height: 304px;
+      min-height: 304px;
+    }
+  }
+}
+
+.variantRole {
+  .tab {
+    align-items: flex-start;
+    padding: 14px 12px;
+    min-height: 44px;
+    white-space: normal;
+  }
+
+  .tabActive {
+    background: linear-gradient(75.226deg, #668fff -147.03%, #f4f5f9 89.677%);
+  }
+}

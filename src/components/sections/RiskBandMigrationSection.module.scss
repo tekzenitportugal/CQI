@@ -1,0 +1,93 @@
+@use '@/styles/mixins' as *;
+
+// Figma Rectangle 97 (6079:29210): a 1040px-tall soft blue-grey band, content inset
+// 255px from the top and 235px from the bottom.
+.section {
+  @include section-space(255px, 235px);
+  @include soft-blue-band(79.16deg);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+// Figma Group 959: image on the left, copy on the right (mirrored from the usual
+// friction-section layout, which puts the image on the right).
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: fluid-space(64px);
+  align-items: center;
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 587px) minmax(0, 587px);
+    gap: 107px;
+  }
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  max-width: 587px;
+  aspect-ratio: 587 / 550;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.copyMain {
+  display: flex;
+  flex-direction: column;
+  gap: fluid-space(48px);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 400;
+  font-size: clamp(28px, 2.34375vw, 36px);
+  line-height: 1.2;
+  color: var(--color-antracite-400);
+}
+
+.titleHighlight {
+  color: var(--color-blue-200);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 519px;
+}
+
+.eyebrow {
+  @include eyebrow;
+  margin: 0;
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  color: var(--color-antracite-300);
+}
+
+.footnote {
+  margin: 0;
+  max-width: 532px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+}

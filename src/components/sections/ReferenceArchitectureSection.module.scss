@@ -1,0 +1,150 @@
+@use '@/styles/mixins' as *;
+
+// Figma Frame 1000003491: full-bleed band, content inset 195px top / 217px bottom
+.section {
+  @include soft-blue-band(77.015deg);
+  @include section-space(195px, 217px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-bottom: fluid-space(96px);
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @include respond-to(lg) {
+    flex: 0 1 465px;
+  }
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include heading-h3;
+}
+
+.description {
+  @include body-lg;
+  color: var(--color-antracite-300);
+
+  @include respond-to(lg) {
+    flex: 0 1 587px;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: fluid-space(60px);
+  list-style: none;
+  margin: 0 0 fluid-space(36px);
+  padding: 0;
+}
+
+// Figma: each tier is permanently open, fronted by a fanned stack of narrow "peek"
+// tabs — one per tier that follows it — each 20px shorter and 20px narrower per side
+// than the one below it.
+.tierBlock {
+  --peek-unit: #{fluid-space(20px)};
+
+  display: flex;
+  flex-direction: column;
+}
+
+.peek {
+  flex-shrink: 0;
+  height: var(--peek-unit);
+  width: calc(100% - (var(--peek-unit) * 2 * var(--peek-index, 1)));
+  margin-inline: auto;
+  border-radius: 12px 12px 0 0;
+}
+
+.tierCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 32px 50px;
+  border-radius: 12px;
+}
+
+.tierTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(22px, 2.083vw, 32px);
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.tierCard.dark .tierTitle {
+  color: var(--color-antracite-400);
+}
+
+.tierCard.light .tierTitle {
+  color: var(--color-white);
+}
+
+.tierBody {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.tierDescription {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.tierCard.dark .tierDescription {
+  color: var(--color-antracite-300);
+}
+
+.tierCard.light .tierDescription {
+  color: var(--color-white);
+}
+
+.tierTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.footnote {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+}

@@ -1,0 +1,90 @@
+@use '@/styles/mixins' as *;
+
+// Figma (6079:30627): hero box bottom (856) → 1056
+.section {
+  @include section-space(200px, 0);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+// Figma: 587 + 141 + 466 = 1194px, centred in the 1436px container
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: fluid-space(141px);
+  }
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  @include respond-to(lg) {
+    flex: 0 1 587px;
+  }
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.title {
+  @include heading-h3;
+}
+
+.purpose {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 519px;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.lead {
+  @include body-lg;
+  color: var(--color-antracite-300);
+}
+
+.support {
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-300);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.right {
+  width: 100%;
+
+  @include respond-to(lg) {
+    flex: 0 1 466px;
+  }
+}

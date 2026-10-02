@@ -1,0 +1,112 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  @include section-space(200px, 150px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.heading {
+  --section-heading-title-max-width: 465px;
+  margin-bottom: fluid-space(100px);
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: stretch;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 40px;
+  width: 100%;
+
+  @include respond-to(lg) {
+    width: 465px;
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-400);
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: linear-gradient(76.23deg, rgba(102, 143, 255, 0.85) -117.36%, rgba(245, 245, 245, 0.85) 100%);
+  // rgba(102,143,255) = --color-blue-75 (#668fff) at 85% alpha
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-400);
+  white-space: nowrap;
+}
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-antracite-400);
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.85;
+  }
+}
+
+.exploreLinkIcon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.tabsPanel {
+  width: 100%;
+
+  @include respond-to(lg) {
+    width: 829px;
+    flex-shrink: 0;
+  }
+}

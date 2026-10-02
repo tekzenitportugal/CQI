@@ -1,0 +1,24 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  overflow-x: clip;
+
+  // Consistent 100px inter-section rhythm on mobile/tablet. Overrides the inline
+  // fluidSpace() padding the component sets via style= (spaceTop/spaceBottom props).
+  @media (max-width: 1023.98px) {
+    padding-top: 200px !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+.carousel {
+  margin-top: fluid-space(100px);
+
+  @media (max-width: 1023.98px) {
+    margin-top: 64px;
+  }
+}
+
+.card {
+  min-height: var(--capability-card-min-height, 0);
+}

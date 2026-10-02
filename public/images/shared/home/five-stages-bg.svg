@@ -1,0 +1,26 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="755" height="320" viewBox="0 0 755 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Mask group">
+<mask id="mask0_0_187" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="755" height="320">
+<rect id="Rectangle 79" width="755" height="320" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_0_187)">
+<circle id="Ellipse 10" cx="377" cy="377.001" r="324.5" fill="url(#paint0_radial_0_187)" stroke="url(#paint1_linear_0_187)"/>
+<circle id="Ellipse 7" cx="377.569" cy="379.378" r="375" transform="rotate(-90 377.569 379.378)" stroke="url(#paint2_linear_0_187)" stroke-linecap="round" stroke-dasharray="4 4"/>
+</g>
+</g>
+<defs>
+<radialGradient id="paint0_radial_0_187" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(377 343.501) rotate(-90) scale(267 3463.58)">
+<stop stop-color="#FEFEFE" stop-opacity="0"/>
+<stop offset="0.411128" stop-color="#D8E3FF" stop-opacity="0.5"/>
+<stop offset="1" stop-color="#B2C7FF"/>
+</radialGradient>
+<linearGradient id="paint1_linear_0_187" x1="377" y1="52.0013" x2="377" y2="324.501" gradientUnits="userSpaceOnUse">
+<stop stop-color="#B2C7FF"/>
+<stop offset="1" stop-color="#FEFEFE"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_187" x1="752.569" y1="379.378" x2="349.444" y2="379.81" gradientUnits="userSpaceOnUse">
+<stop stop-color="#AFAFAF"/>
+<stop offset="1" stop-color="#FEFEFE"/>
+</linearGradient>
+</defs>
+</svg>

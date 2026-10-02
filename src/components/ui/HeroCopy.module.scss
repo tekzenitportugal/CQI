@@ -1,0 +1,53 @@
+@use '@/styles/mixins' as *;
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: fluid-space(60px);
+  width: 100%;
+  max-width: var(--hero-copy-max-width, 587px);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: fluid-space(48px);
+  width: 100%;
+}
+
+.title {
+  width: 100%;
+  font-family: var(--font-heading);
+  font-size: clamp(34px, 3.125vw, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-antracite-400);
+
+  // Figma title boxes can be wider than the 587px column
+  @include respond-to(lg) {
+    width: var(--hero-title-width, 100%);
+    max-width: none;
+  }
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+
+  @include respond-to(lg) {
+    width: var(--hero-description-width, 100%);
+  }
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.description {
+  @include body-lg;
+  font-size: clamp(18px, 1.5625vw, 24px);
+  color: var(--color-antracite-500);
+}

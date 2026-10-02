@@ -1,0 +1,36 @@
+@use '@/styles/mixins' as *;
+
+// Figma: 200px after the pager band; the CTA below owns the next 200px.
+.section {
+  @include section-space(200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet. padding-top uses
+  // !important to override the inline fluidSpace() style= the spaceTop prop sets.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px !important;
+    padding-bottom: 200px;
+  }
+
+  // Next section shares this one's background (same band wrapper as the CTA).
+  &.grouped {
+    @media (max-width: 1023.98px) {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: fluid-space(100px);
+}
+
+.heading {
+  --section-heading-title-max-width: 947px;
+}
+
+.accordion {
+  width: 100%;
+  max-width: 1194px;
+}

@@ -1,0 +1,29 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  @include section-space(200px, 100px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px 32px;
+  margin: 0;
+  margin-top: fluid-space(100px);
+  padding: 0;
+  list-style: none;
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.item {
+  display: flex;
+}

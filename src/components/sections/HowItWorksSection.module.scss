@@ -1,0 +1,174 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  @include section-space(250px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 0;
+  }
+}
+
+.heading {
+  // Figma mobile eyebrow is 12px (the shared SectionHeading default is 14px);
+  // the eyebrow renders as the heading's first paragraph when present.
+  @media (max-width: 1023.98px) {
+    p:first-child {
+      font-size: 12px;
+    }
+  }
+}
+
+// Tall enough to hold the sticky frame in place for the whole step sequence (scroll
+// is intercepted and re-rendered as discrete steps, see HowItWorksSection.tsx) plus a
+// little runway so release-scrolling past stage 5 (or back above stage 1) feels normal.
+.scrollTrack {
+  position: relative;
+  height: 150svh;
+
+  @media (max-width: 1023.98px) {
+    height: auto;
+  }
+}
+
+.stickyFrame {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 1023.98px) {
+    height: 50svh;
+    align-items: flex-start;
+  }
+}
+
+// Canvas matches the dome/arc geometry exactly: shared centre (390, 495),
+// dome r325, arc r375, 40deg between dots — see fiveStagesCore.ts.
+.diagram {
+  position: relative;
+  width: 100%;
+  max-width: 780px;
+  aspect-ratio: 780 / 440;
+  margin: fluid-space(112px) auto 0;
+  container-type: inline-size;
+  --u: calc(100cqw / 780);
+  --text-boost: 1;
+
+  @container (max-width: 480px) {
+    --text-boost: 1.15;
+  }
+}
+
+.art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.arc {
+  fill: none;
+  stroke: url(#howItWorksArcStroke);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+}
+
+.dome {
+  fill: url(#howItWorksDomeFill);
+}
+
+.domeStroke {
+  fill: none;
+  stroke: url(#howItWorksDomeStroke);
+  stroke-width: 1;
+}
+
+.line {
+  stroke: var(--color-antracite-100);
+  stroke-width: 1;
+  stroke-linecap: round;
+}
+
+.ring {
+  fill: var(--color-white);
+  stroke: var(--color-antracite-100);
+  stroke-width: 1;
+}
+
+.core {
+  stroke: none;
+}
+
+.num {
+  fill: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+.itemsList {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  pointer-events: none;
+}
+
+.item {
+  position: absolute;
+  inset: 0;
+  will-change: opacity, transform;
+}
+
+.label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(205 * var(--u));
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: calc(20 * var(--u) * var(--text-boost));
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+}
+
+.icon {
+  position: absolute;
+  left: 50%;
+  top: calc(244 * var(--u));
+  width: calc(216 * var(--u));
+  height: calc(75 * var(--u));
+  transform: translateX(-50%);
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.description {
+  position: absolute;
+  left: 50%;
+  top: calc(352 * var(--u));
+  transform: translateX(-50%);
+  margin: 0;
+  width: max-content;
+  max-width: calc(361 * var(--u));
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: calc(20 * var(--u) * var(--text-boost));
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}

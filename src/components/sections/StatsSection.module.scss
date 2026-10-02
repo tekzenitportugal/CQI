@@ -1,0 +1,42 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  // 236 + 392 content + 236 = the 864px Figma band at 1536px
+  @include section-space(236px, 236px);
+  @include soft-blue-band(77.015deg);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.title {
+  @include heading-h3;
+  max-width: 730px;
+  margin-bottom: fluid-space(100px);
+
+  @media (max-width: 1023.98px) {
+    margin-bottom: 60px;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.footnote {
+  margin-top: 32px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+}

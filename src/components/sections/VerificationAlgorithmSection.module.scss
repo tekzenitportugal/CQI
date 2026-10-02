@@ -1,0 +1,255 @@
+@use 'sass:math';
+@use '@/styles/mixins' as *;
+
+// Figma (6079:38423) positions, in page px on the 1536 frame. The container's content box
+// (1436px at 1536) is the query container; d() scales a design px with it (exact at 1536+).
+$content-left: 50;
+$content-top: 1098; // intro title
+$section-top: 856; // hero box bottom
+$section-bottom: 2402; // root cause starts
+
+@function d($px) {
+  @return math.div($px, 1436) * 100cqw;
+}
+
+// Position relative to the container's top-left, from Figma page coordinates.
+@mixin at($x, $y, $w) {
+  left: d($x - $content-left);
+  top: d($y - $content-top);
+  width: d($w);
+}
+
+.section {
+  @include section-space(242px);
+  overflow-x: clip;
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+  }
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  container-type: inline-size;
+
+  // At xl everything is placed on the Figma canvas; this spacer gives the section its height
+  // (a pseudo-element, so cqw resolves against .inner).
+  @include respond-to(xl) {
+    display: block;
+
+    &::after {
+      content: '';
+      display: block;
+      height: d($section-bottom - $content-top);
+    }
+  }
+}
+
+// Behind everything on the page (rings fade into the root cause area below).
+.decoration {
+  display: none;
+
+  @include respond-to(xl) {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    top: calc(-1 * #{fluid-space(242px)});
+    left: 0;
+    width: d(2572);
+    height: calc(#{fluid-space(242px)} + #{d(2849 - $content-top)});
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  img {
+    position: absolute;
+    max-width: none;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}
+
+// Ring tops relative to the decoration box, which starts at the section top.
+.ringOuter {
+  left: 0;
+  top: calc(#{fluid-space(242px)} + #{d(277 - $content-top)});
+  width: d(2572);
+}
+
+.ringMiddle {
+  left: d(1336 - 1004 - $content-left);
+  top: calc(#{fluid-space(242px)} + #{d(552 - $content-top)});
+  width: d(2008);
+}
+
+.ringInner {
+  left: d(1336 - 721 - $content-left);
+  top: calc(#{fluid-space(242px)} + #{d(843 - $content-top)});
+  width: d(1442);
+}
+
+.orb {
+  left: d(900 - $content-left);
+  top: calc(#{fluid-space(242px)} + #{d(1270 - $content-top)});
+  width: d(586);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  @include respond-to(xl) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.introTitle {
+  @include heading-h3;
+
+  @include respond-to(lg) {
+    flex: 0 1 586px;
+  }
+}
+
+.introAside {
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+
+  @include respond-to(lg) {
+    flex: 0 1 586px;
+  }
+}
+
+.layers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 40px;
+  list-style: none;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to(xl) {
+    display: block;
+  }
+}
+
+.layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+
+  @include respond-to(xl) {
+    position: absolute;
+
+    &:nth-child(1) {
+      @include at(66, 1456, 250);
+    }
+
+    &:nth-child(2) {
+      @include at(349, 1456, 250);
+    }
+
+    &:nth-child(3) {
+      @include at(633, 1456, 250);
+    }
+
+    &:nth-child(4) {
+      @include at(1068, 1443, 250);
+    }
+  }
+}
+
+.layerBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+}
+
+.layerIcon {
+  width: 48px;
+  height: 48px;
+}
+
+.layerCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  line-height: 1.3;
+}
+
+.layerTitle {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-antracite-400);
+}
+
+.layerDescription {
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}
+
+// Sits on the orb; below xl it gets its own orb-coloured panel.
+.layerVerification {
+  padding: 32px 24px;
+  border-radius: 20px;
+  background: #80a1ff;
+
+  @include respond-to(xl) {
+    padding: 0;
+    background: none;
+  }
+
+  .layerTitle,
+  .layerDescription {
+    color: var(--color-white);
+  }
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  list-style: none;
+}
+
+.tag {
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--color-light-blue-75);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-blue-200);
+  white-space: nowrap;
+}

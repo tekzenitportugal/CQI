@@ -1,0 +1,35 @@
+@use '@/styles/mixins' as *;
+
+// Figma: eyebrow → title 10px, title → description 24px
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.left {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.center {
+  text-align: center;
+  align-items: center;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include heading-h3;
+  max-width: var(--section-heading-title-max-width, 900px);
+}
+
+.description {
+  @include body-md;
+  margin-top: var(--section-heading-description-margin-top, 14px);
+  font-weight: var(--section-heading-description-weight, 400);
+  color: var(--color-antracite-300);
+  max-width: var(--section-heading-description-max-width, 720px);
+}

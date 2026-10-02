@@ -1,0 +1,40 @@
+@use '@/styles/mixins' as *;
+
+// Figma: 200px below the hero, 103px above the connective-tissue band
+.section {
+  @include section-space(200px, 103px);
+  overflow-x: clip;
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  max-width: 708px;
+}
+
+.sectionHeading {
+  --section-heading-title-max-width: 708px;
+}
+
+.introDescription {
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-300);
+}
+
+// Figma: heading → arrows 64px, arrows → cards 24px
+.carousel {
+  --carousel-row-gap: 24px;
+  --card-gradient-angle: 49.911deg;
+
+  margin-top: fluid-space(64px);
+}

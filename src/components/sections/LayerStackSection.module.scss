@@ -1,0 +1,219 @@
+@use '@/styles/mixins' as *;
+
+// Figma: 200px after the capabilities carousel, 200px before the fade band.
+.section {
+  @include section-space(200px, 200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: fluid-space(100px);
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  max-width: 587px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include heading-h3;
+}
+
+.description {
+  @include body-lg;
+  font-size: clamp(18px, 1.5625vw, 24px);
+  color: var(--color-antracite-300);
+}
+
+// Figma: the button sits 97px down, level with the description
+.cta {
+  @include respond-to(lg) {
+    margin-top: 97px;
+  }
+}
+
+// Figma mobile ("CARDS - PRODUCT OVERVIEW - mobile", 6225:43874): same peeking
+// deck as desktop, just shallower — front card in normal flow (sets the
+// stack's height), back layers absolutely peek 12px/depth above it.
+.stack {
+  position: relative;
+
+  // padding (not the front layer's own margin) carries the 48px offset, so it
+  // can't collapse through into the front layer's margin — the front layer's
+  // normal-flow box needs to actually start 48px down, not just visually.
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    padding-top: 48px;
+  }
+
+  @include respond-to(lg) {
+    height: 227.25px;
+  }
+}
+
+.layer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 32px 50px;
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    top 0.35s ease,
+    left 0.35s ease,
+    right 0.35s ease,
+    background-color 0.35s ease;
+
+  // Figma: front card sits 48px down; each deeper layer peeks 12px higher and 12px in per side.
+  // Back layers are clamped short so their own (longer) content can never poke out past the
+  // front layer's bottom edge — only the small sliver above the front card should ever show.
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    padding: 24px;
+    border-radius: 20px;
+    position: absolute;
+    top: calc(48px - var(--depth) * 12px);
+    left: calc(var(--depth) * 12px);
+    right: calc(var(--depth) * 12px);
+    width: auto;
+    max-height: 96px;
+    overflow: hidden;
+    z-index: calc(10 - var(--depth));
+  }
+
+  // Figma: front card bottom-aligned; each deeper layer 20.3px higher and 20px in per side
+  @include respond-to(lg) {
+    position: absolute;
+    top: calc(86.5px - var(--depth) * 20.3px);
+    left: calc(var(--depth) * 20px);
+    right: calc(var(--depth) * 20px);
+    width: auto;
+    z-index: calc(10 - var(--depth));
+  }
+}
+
+.front {
+  cursor: default;
+
+  // The front layer sets the stack's height instead of peeking off its top —
+  // back to normal flow (the stack's own padding-top carries the 48px offset).
+  @media (max-width: #{$breakpoint-lg - 1px}) {
+    position: relative;
+    top: auto;
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+.layerTitle {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 2.08vw, 32px);
+  font-weight: 300;
+  line-height: 1.3;
+}
+
+.layerRow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.layerDescription {
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  line-height: 1.4;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--color-light-blue-75);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-400);
+  white-space: nowrap;
+}
+
+// Figma layer colours
+.b200,
+.b100,
+.b75 {
+  color: var(--color-white);
+}
+
+.b200 {
+  background: var(--color-blue-200);
+}
+
+.b100 {
+  background: var(--color-blue-100);
+}
+
+.b75 {
+  background: var(--color-blue-75);
+}
+
+.l100 {
+  background: var(--color-light-blue-100);
+  color: var(--color-antracite-400);
+
+  .layerDescription {
+    color: var(--color-antracite-300);
+  }
+
+  .tag {
+    color: var(--color-blue-200);
+  }
+}
+
+.b50 {
+  background: var(--color-blue-50);
+  color: var(--color-antracite-400);
+
+  .layerDescription {
+    color: var(--color-antracite-300);
+  }
+}

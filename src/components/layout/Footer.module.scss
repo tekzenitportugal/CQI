@@ -1,0 +1,226 @@
+@use '@/styles/mixins' as *;
+
+// Figma footer (6079:26165): 575px tall at 1536px.
+.footer {
+  background: var(--color-footer-bg);
+  padding-block: 80px 50px;
+
+  @include respond-to(lg) {
+    padding-block: 115px 57px;
+  }
+
+  @media (max-width: 1023.98px) {
+    padding-block: 125px 20px;
+  }
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 1fr) 344px;
+    column-gap: 48px;
+    row-gap: 0;
+    align-items: start;
+  }
+
+  // Figma mobile reorders the CTA button right after the POC copy (ahead of
+  // the address block) and uses per-item spacing instead of a uniform gap.
+  @media (max-width: 1023.98px) {
+    gap: 0;
+
+    .headline {
+      order: 1;
+      margin-bottom: 48px;
+    }
+
+    .poc {
+      order: 2;
+      margin-bottom: 32px;
+    }
+
+    .cta {
+      order: 3;
+      margin-bottom: 100px;
+    }
+
+    .contact {
+      order: 4;
+      margin-bottom: 64px;
+    }
+
+    .copyright {
+      order: 5;
+      margin-bottom: 20px;
+    }
+
+    .legal {
+      order: 6;
+    }
+  }
+}
+
+.headline {
+  font-family: var(--font-heading);
+  font-size: clamp(56px, 6.25vw, 96px);
+  font-weight: 300;
+  line-height: 1.04;
+  color: var(--color-blue-75);
+
+  @include respond-to(lg) {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: 521px;
+    margin-top: 12px;
+    line-height: 100px;
+  }
+
+  @media (max-width: 1023.98px) {
+    font-size: 64px;
+    line-height: 1.2;
+  }
+}
+
+.poc {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: var(--color-light-blue-75);
+
+  @include respond-to(lg) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+.pocTitle {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+
+  @media (max-width: 1023.98px) {
+    font-size: 20px;
+    line-height: normal;
+  }
+}
+
+.pocDescription {
+  max-width: 311px;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+    max-width: none;
+  }
+}
+
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px;
+
+  @include respond-to(lg) {
+    grid-column: 1;
+    grid-row: 2;
+    gap: 60px;
+    margin-top: 74px;
+  }
+}
+
+.address,
+.email {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-antracite-100);
+}
+
+.email:hover {
+  color: var(--color-white);
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-block: 4px;
+
+  a {
+    display: flex;
+    width: 16px;
+    height: 16px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.linkedin {
+  opacity: 0.73;
+}
+
+.cta {
+  justify-self: start;
+
+  @include respond-to(lg) {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 63px;
+  }
+}
+
+.copyright {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: var(--color-antracite-200);
+
+  @include respond-to(lg) {
+    grid-column: 1;
+    grid-row: 3;
+    margin-top: 51px;
+  }
+}
+
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+
+  @include respond-to(lg) {
+    grid-column: 2;
+    grid-row: 3;
+    margin-top: 51px;
+  }
+
+  // Figma mobile spreads the 4 links evenly across one row instead of wrapping.
+  @media (max-width: 1023.98px) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  a {
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--color-antracite-200);
+    text-decoration: underline;
+    text-underline-position: from-font;
+
+    &:hover {
+      color: var(--color-white);
+    }
+  }
+}

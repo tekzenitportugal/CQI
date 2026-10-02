@@ -1,0 +1,194 @@
+@use '@/styles/mixins' as *;
+
+// Figma (6079:38458): gap from previous section (Hero's photo box) is a clean 200px,
+// and Rectangle 97's band starts exactly 200px after this section's content ends.
+.section {
+  @include section-space(200px, 200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+// Figma: eyebrow+title block to diagram gap is 100px.
+.heading {
+  margin-bottom: fluid-space(100px);
+}
+
+// Figma "Frame 1000003330": 1169×589 box the whole diagram is designed against.
+.diagram {
+  position: relative;
+  width: 100%;
+}
+
+.nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  list-style: none;
+
+  @include respond-to(lg) {
+    position: relative;
+    aspect-ratio: 1169 / 589;
+    display: block;
+  }
+}
+
+// Mobile/tablet: a plain stacked card (no circle art, no connectors) — the diagram's
+// zigzag only reads correctly once there's room for it, so it collapses to a simple list.
+.node {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 24px;
+  background: var(--color-antracite-50);
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+
+  @include respond-to(lg) {
+    position: absolute;
+    display: block;
+    padding: 0;
+    background: none;
+    border: none;
+    border-radius: 0;
+    width: 25.662%;
+    height: 50.934%;
+  }
+}
+
+// Figma Group 731/732/733/734 positions, as % of the 1169×589 diagram box.
+.node[data-index='0'] {
+  @include respond-to(lg) {
+    left: 0%;
+    top: 5.263%;
+  }
+}
+
+.node[data-index='1'] {
+  @include respond-to(lg) {
+    left: 24.892%;
+    top: 43.633%;
+  }
+}
+
+.node[data-index='2'] {
+  @include respond-to(lg) {
+    left: 49.615%;
+    top: 5.263%;
+  }
+}
+
+.node[data-index='3'] {
+  @include respond-to(lg) {
+    left: 74.338%;
+    top: 43.633%;
+  }
+}
+
+.nodeBg {
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.nodeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @include respond-to(lg) {
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px 40px;
+  }
+}
+
+.nodeTitle {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-light-blue-500);
+}
+
+.nodeDescription {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}
+
+// Figma Group 440: the dashed connector line + dot markers threading the circles.
+// Hidden below `lg`, where the nodes fall back to a plain stacked list.
+.connectors {
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+}
+
+.connectorMain,
+.connectorAccent {
+  position: absolute;
+  left: 13.06%;
+  top: 1.53%;
+  transform: rotate(180deg) scaleX(-1);
+}
+
+.connectorMain {
+  width: 74.73%;
+  height: 96.92%;
+}
+
+.connectorAccent {
+  width: 14.69%;
+  height: 59.04%;
+}
+
+.dotBlue,
+.dotGray1,
+.dotGray2,
+.dotGray3 {
+  position: absolute;
+  width: 1.539%;
+  height: 3.056%;
+}
+
+.dotBlue {
+  left: 12.062%;
+  top: 0%;
+}
+
+.dotGray1 {
+  left: 36.99%;
+  top: 96.95%;
+}
+
+.dotGray2 {
+  left: 61.71%;
+  top: 0%;
+}
+
+.dotGray3 {
+  left: 86.42%;
+  top: 96.74%;
+}

@@ -1,0 +1,35 @@
+@use '@/styles/mixins' as *;
+
+// Figma: "Three steps" row ends at 1487, this section starts at 1983 (496px gap);
+// its own bottom sits flush with the "Total cost of ownership" section's top spacing.
+.section {
+  @include section-space(496px, 0);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.heading {
+  margin-bottom: fluid-space(100px);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.card {
+  --card-gradient-angle: 38.031deg;
+  flex: 1 1 0;
+  max-width: none;
+  min-height: 183px;
+}

@@ -1,0 +1,53 @@
+@use '@/styles/mixins' as *;
+
+// Figma Frame 1000003295: 234px gap above (from the outcome-scope card) and below
+// (before the second "How the KPI curve typically moves" block).
+.section {
+  @include section-space(84px, 150px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+// Figma: 392px title/button column and 708px ruled list, pushed to the edges
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  align-items: flex-start;
+
+  @include respond-to(lg) {
+    flex: 0 1 392px;
+  }
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-antracite-400);
+}
+
+.table {
+  @include respond-to(lg) {
+    flex: 0 1 708px;
+  }
+}

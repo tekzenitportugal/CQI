@@ -1,0 +1,148 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  @include section-space(150px, 200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: flex-start;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-blue-100);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-antracite-400);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  width: 100%;
+
+  @include respond-to(lg) {
+    max-width: 708px;
+  }
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldRow {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include respond-to(sm) {
+    flex-direction: row;
+
+    .field {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-antracite-400);
+}
+
+.input,
+.select {
+  height: 45px;
+  padding: 16px;
+  border: 1px solid var(--color-antracite-100);
+  border-radius: 14px;
+  background: var(--color-white);
+  box-shadow: 0 1px 2px rgba(18, 18, 23, 0.05);
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--color-antracite-400);
+}
+
+.selectWrapper {
+  position: relative;
+  display: flex;
+}
+
+.select {
+  width: 100%;
+  padding: 0 44px 0 16px;
+  line-height: 43px;
+  color: var(--color-antracite-300);
+  appearance: none;
+  cursor: pointer;
+
+  &:invalid {
+    color: #a0a2a6;
+  }
+
+  option {
+    color: var(--color-antracite-300);
+  }
+}
+
+.selectIcon {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%) scaleY(-1);
+  pointer-events: none;
+}
+
+.submit {
+  align-self: flex-start;
+  height: 50px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 14px;
+  background: var(--color-blue-200);
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-white);
+  cursor: pointer;
+}

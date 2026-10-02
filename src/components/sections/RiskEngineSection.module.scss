@@ -1,0 +1,56 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  @include section-space(200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+// Figma: 465px title and 587px copy, pushed to the edges
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 40px;
+  }
+}
+
+.title {
+  @include heading-h3;
+
+  @include respond-to(lg) {
+    flex: 0 1 465px;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1.4;
+
+  @include respond-to(lg) {
+    flex: 0 1 587px;
+  }
+}
+
+.paragraph {
+  font-size: 17.5px;
+  color: var(--color-antracite-300);
+}
+
+.footnote {
+  font-size: 12px;
+  color: var(--color-antracite-200);
+}

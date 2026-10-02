@@ -1,0 +1,140 @@
+@use '@/styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 25px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: transparent;
+  will-change: transform;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.headerHidden {
+  transform: translateY(calc(-100% - 25px));
+}
+
+.inner {
+  display: grid;
+  // Mobile: logo | nav (invisible spacer, absorbs the extra space) | cta | toggle
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  height: 50px;
+
+  // Figma: logo + menu share a 999px group, so the pill ends 437px from the right edge
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 437px);
+    column-gap: 0;
+  }
+}
+
+// Capability pages: logo, pill and button spread with equal gaps (justify-between in Figma)
+.innerCompact {
+  @include respond-to(lg) {
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+  }
+}
+
+.logo {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+}
+
+.menuToggle {
+  // Pinned to the last mobile column so it stays put at the far right
+  // regardless of whether the CTA button next to it is hidden.
+  grid-column: 4;
+  justify-self: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: var(--color-antracite-50);
+  border-radius: 12px;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.menuBar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-antracite-400);
+  transition:
+    transform 0.25s ease,
+    opacity 0.2s ease;
+}
+
+// Morph the hamburger into a close (X) icon while the mobile menu is open.
+.menuToggle[aria-expanded='true'] {
+  .menuBar:nth-child(2) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menuBar:nth-child(3) {
+    opacity: 0;
+  }
+
+  .menuBar:nth-child(4) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+.navSlot {
+  justify-self: center;
+}
+
+.actions {
+  // Figma mobile header ("MENU - mobile") shows only the logo + toggle; the
+  // CTAs live inside the full-screen menu instead of next to the hamburger.
+  // Matches the same lg breakpoint the hamburger toggle and nav shell switch on.
+  display: none;
+  justify-self: end;
+  align-items: center;
+  gap: 16px;
+
+  @include respond-to(lg) {
+    display: flex;
+  }
+}
+
+// The fullscreen mobile menu should show only the logo and the close icon at
+// the top — the CTA button is hidden while it's open (desktop is unaffected;
+// the toggle that drives menuOpen doesn't exist there).
+.actionsHidden {
+  display: none;
+
+  @include respond-to(lg) {
+    display: flex;
+  }
+}
+
+.hiddenCta {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+// Shrunk to fit between the logo and the menu toggle on mobile; restored to full size at lg.
+.actions .ctaButton {
+  height: 36px;
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 10px;
+
+  @include respond-to(lg) {
+    height: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 14px;
+  }
+}

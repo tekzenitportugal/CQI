@@ -1,0 +1,57 @@
+@use '@/styles/mixins' as *;
+
+// Figma Rectangle 154 is a plain gradient (see GradientHero's "inset" variant), with an
+// extra .actions row (this page's hero has two buttons under the copy).
+.banner {
+  position: relative;
+  padding: 8px 8px 0;
+}
+
+.heroBox {
+  position: absolute;
+  inset: 8px 8px 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--hero-gradient);
+
+  @include respond-to(lg) {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: clamp(560px, 55.21vw, 848px);
+  }
+}
+
+.contentWrap {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+
+  @include respond-to(lg) {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+// Figma: title at y=308 of the page; copy → 60px → buttons row.
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: fluid-space(60px);
+  padding-top: calc(var(--header-offset-top) + var(--header-height) + 120px);
+  padding-bottom: 48px;
+  pointer-events: auto;
+
+  @include respond-to(lg) {
+    padding-top: 308px;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  pointer-events: auto;
+}

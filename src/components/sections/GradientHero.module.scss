@@ -1,0 +1,111 @@
+@use '@/styles/mixins' as *;
+
+// Figma: copy is vertically centred between the header (ends at 75px) and the 864px band edge.
+.section {
+  position: relative;
+  padding-top: calc(var(--header-offset-top) + var(--header-height));
+}
+
+// Same treatment as HeroSection's homepage graphic: a right-anchored product
+// cutout layered over the full-bleed gradient band, independent of the
+// Container so it isn't clipped to the 1536px content width.
+.graphic {
+  display: none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+
+  @include respond-to(lg) {
+    display: block;
+  }
+}
+
+.graphicImage {
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+// Figma mobile: the same cutout stacked below the copy, inside the card's
+// own flow — hidden once the desktop absolute cutout takes over.
+.mobileGraphicWrap {
+  margin-top: 32px;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.mobileGraphicBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 989 / 848;
+}
+
+.mobileGraphicImage {
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  padding-block: 64px 80px;
+
+  @include respond-to(lg) {
+    min-height: calc(var(--hero-min-height) - var(--header-offset-top) - var(--header-height));
+    padding-block: 0;
+  }
+}
+
+// Figma Rectangle 85 — matches PageHeroBanner shell (1520×848, 8px page inset).
+.insetBanner {
+  position: relative;
+  padding: 8px 8px 0;
+}
+
+.heroBox {
+  position: absolute;
+  inset: 8px 8px 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--hero-gradient);
+
+  @include respond-to(lg) {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: clamp(560px, 55.21vw, 848px);
+  }
+}
+
+// Figma: the device mockup is a transparent-background cutout, right-anchored
+// over the full-bleed gradient — never stretched/cropped to cover the box.
+.heroBoxImage {
+  object-fit: contain;
+  object-position: right bottom;
+}
+
+.insetContentWrap {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+
+  @include respond-to(lg) {
+    position: absolute;
+    inset: 8px 8px 0;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.insetContent {
+  pointer-events: auto;
+  padding-top: calc(var(--header-offset-top) + var(--header-height) + 64px);
+  padding-bottom: 48px;
+
+  @include respond-to(lg) {
+    padding-top: calc(var(--header-offset-top) + var(--header-height));
+    padding-bottom: 80px;
+  }
+}

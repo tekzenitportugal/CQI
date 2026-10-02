@@ -1,0 +1,137 @@
+@use '@/styles/mixins' as *;
+
+// Figma Rectangle 105 (6079:31684): a soft blue-grey band with 200px of padding
+// before/after the card content, ending flush with the footer.
+.section {
+  padding-block: fluid-space(200px);
+  @include soft-blue-band(82.958deg);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet. Bottom stays flush
+  // with the footer, as above.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.coverageCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  background: var(--color-white);
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.coverageTitle {
+  flex-shrink: 0;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-antracite-400);
+}
+
+.coverageList {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+
+  @include respond-to(lg) {
+    // 708px (DemoFormSection's .form max-width) minus this card's own 32px padding + 1px border,
+    // so the list's left edge lines up with the form's left edge above it.
+    max-width: 675px;
+  }
+}
+
+.coverageItem {
+  padding-block: 16px;
+  border-bottom: 1px dashed var(--color-antracite-100);
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+
+  &:first-child {
+    padding-top: 0;
+  }
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include respond-to(md) {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+
+.option {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 32px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  background: var(--color-white);
+}
+
+.optionHighlight {
+  border-color: var(--color-blue-200);
+  background: var(--color-blue-50);
+}
+
+.optionCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.optionTitle {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-antracite-400);
+}
+
+.optionDescription {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}
+
+.optionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-blue-200);
+}

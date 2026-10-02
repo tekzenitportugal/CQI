@@ -1,0 +1,65 @@
+@use '@/styles/mixins' as *;
+
+// Figma (6079:29190): band bottom (3284) → section top is 209px. Section content (Group 957)
+// bottom is 3939 → CTA (6079:29121) starts at 4148, a 209px gap; CTA's own 200px top padding
+// covers only part of that, so this section needs 9px of its own bottom padding to make up the rest.
+.section {
+  @include section-space(209px, 9px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 587px;
+}
+
+.title {
+  @include heading-h3;
+}
+
+.sub {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 519px;
+}
+
+.label {
+  @include eyebrow;
+}
+
+.description {
+  @include body-lg;
+  color: var(--color-antracite-300);
+}
+
+// Figma: the list is aligned to the "Auditability" sub-block, not the title, ~134px lower.
+.list {
+  width: 100%;
+
+  @include respond-to(lg) {
+    width: 587px;
+    flex-shrink: 0;
+    margin-top: fluid-space(134px);
+  }
+}

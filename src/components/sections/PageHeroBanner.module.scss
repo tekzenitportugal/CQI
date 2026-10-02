@@ -1,0 +1,91 @@
+@use '@/styles/mixins' as *;
+
+// Figma Rectangle 85: a 1520×848 rounded box inset 8px from the page edges.
+.banner {
+  position: relative;
+  padding: 8px 8px 0;
+}
+
+// Below lg the box sits behind the copy and grows with it; from lg it has Figma's fixed height.
+.heroBox {
+  position: absolute;
+  inset: 8px 8px 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--color-white);
+
+  @include respond-to(lg) {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: clamp(560px, 55.21vw, 848px);
+  }
+}
+
+// Figma: the hero rectangle is mirrored horizontally; the photo is full width,
+// 119.51% tall, starting 8.55% in from the left and 16.24% above the top.
+.imageWrap {
+  position: absolute;
+  top: -16.24%;
+  left: 0;
+  width: 100%;
+  height: 119.51%;
+  transform: scaleX(-1);
+}
+
+.unmirrored {
+  transform: none;
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+// Figma radial overlay (fading from the bottom-left corner), exported from 6079:28651 and mirrored.
+.overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  // Small screens: the copy covers the photo, so a stronger wash keeps it readable.
+  background: linear-gradient(180deg, rgba(223, 232, 254, 0.96) 0%, rgba(223, 232, 254, 0.88) 70%, rgba(223, 232, 254, 0.6) 100%);
+
+  @include respond-to(lg) {
+    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(103.45 -60.65 -92.866 -158.4 0 848)'><stop stop-color='rgba(223,232,254,1)' offset='0.35645'/><stop stop-color='rgba(245,248,255,0.5)' offset='0.7565'/><stop stop-color='rgba(254,254,254,0)' offset='1'/></radialGradient></defs></svg>")
+      center / 100% 100% no-repeat;
+  }
+}
+
+// Non-mirrored counterpart (Figma 6079:30662, gradient object 6079:30664). Figma's own gradient
+// handles are rotated/skewed, not axis-aligned, so a plain CSS radial-gradient() (which can only
+// scale on x/y, not rotate) collapses it into a vertical fade — the SVG gradientTransform matrix
+// is required to reproduce the true diagonal wash. Figma renders this layer flipped horizontally
+// (rotate-180 + scaleY(-1), net scaleX(-1)) over the box; scaleX(-1) here replicates that.
+.overlayUnmirrored {
+  @include respond-to(lg) {
+    transform: scaleX(-1);
+    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23g2)' opacity='1'/><defs><radialGradient id='g2' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(-147.2 -69.4 106.26 -225.39 1520 848)'><stop stop-color='rgba(223,232,254,1)' offset='0.42521'/><stop stop-color='rgba(245,248,255,0.5)' offset='0.7565'/><stop stop-color='rgba(254,254,254,0)' offset='1'/></radialGradient></defs></svg>")
+      center / 100% 100% no-repeat;
+  }
+}
+
+.contentWrap {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+
+  @include respond-to(lg) {
+    position: absolute;
+    inset: 0;
+  }
+}
+
+// Figma: title at y=308 of the page
+.content {
+  padding-top: calc(var(--header-offset-top) + var(--header-height) + 120px);
+  padding-bottom: 48px;
+  pointer-events: auto;
+
+  @include respond-to(lg) {
+    padding-top: 308px;
+  }
+}

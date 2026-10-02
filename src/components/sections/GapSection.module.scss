@@ -1,0 +1,68 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  @include section-space(232px, 232px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+
+  @include respond-to(lg) {
+    grid-template-columns: 587px 1fr;
+    gap: 141px;
+    align-items: center;
+  }
+
+  @media (max-width: 1023.98px) {
+    gap: 120px;
+  }
+}
+
+.media {
+  max-width: 587px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 587px;
+}
+
+.title {
+  @include heading-h3;
+}
+
+.gapBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 519px;
+}
+
+.eyebrow {
+  @include eyebrow;
+
+  @media (max-width: 1023.98px) {
+    font-size: 12px;
+  }
+}
+
+.description {
+  @include body-lg;
+  color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 20px;
+    line-height: normal;
+  }
+}

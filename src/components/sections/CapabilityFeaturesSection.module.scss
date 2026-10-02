@@ -1,0 +1,92 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  // Consistent 100px inter-section rhythm on mobile/tablet. Overrides the inline
+  // fluidSpace() padding the component sets via style= (spaceTop/spaceBottom props).
+  @media (max-width: 1023.98px) {
+    padding-top: 200px !important;
+    padding-bottom: 200px !important;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include respond-to(xl) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: fluid-space(100px);
+  width: 100%;
+
+  @include respond-to(xl) {
+    width: auto;
+    flex-shrink: 0;
+  }
+}
+
+.heading {
+  width: 100%;
+
+  @include respond-to(xl) {
+    width: var(--section-heading-title-max-width);
+  }
+}
+
+// Figma: 344×228 cards in two columns, 20px apart
+.cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 344px));
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  background: var(--color-antracite-50);
+
+  @include respond-to(md) {
+    height: 228px;
+  }
+}
+
+.cardTitle {
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-light-blue-500);
+}
+
+.cardDescription {
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-400);
+}
+
+.media {
+  width: 100%;
+  max-width: 587px;
+
+  @include respond-to(xl) {
+    flex-shrink: 0;
+  }
+}

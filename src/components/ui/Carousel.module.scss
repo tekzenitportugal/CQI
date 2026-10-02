@@ -1,0 +1,84 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--carousel-row-gap, 32px);
+  width: 100%;
+}
+
+.controlRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+}
+
+.controlRowWithHeader {
+  justify-content: space-between;
+}
+
+.controls {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 16px;
+}
+
+.controlBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 12px;
+  transition: background-color 0.2s ease;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.controlActive {
+  background: var(--color-blue-200);
+}
+
+.controlInactive {
+  background: var(--color-blue-50);
+}
+
+.controlIconFlipped {
+  transform: rotate(180deg);
+}
+
+// Bleeds to the viewport edges; the spacers keep the first/last card on the container grid.
+.viewport {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  overflow: hidden;
+}
+
+.track {
+  --carousel-edge-inset: var(--container-padding);
+
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// The track gap already separates the spacers from the cards.
+.spacer {
+  flex: 0 0 max(0px, calc(var(--carousel-edge-inset) - 20px));
+}
+
+.spacerEnd {
+  flex-basis: max(0px, calc(var(--carousel-edge-inset-right, var(--carousel-edge-inset)) - 20px));
+}

@@ -1,0 +1,69 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/solutions/spacing' as solutions;
+
+.section {
+  @include solutions.solutions-neutral-band-background;
+  @include section-space(150px, 150px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.heading {
+  --section-heading-title-max-width: 508px;
+  --section-heading-description-max-width: 508px;
+  margin-inline: auto;
+  margin-bottom: fluid-space(64px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: stretch;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 32px;
+  padding: 24px;
+  border-radius: 20px;
+  background:
+    linear-gradient(41.36deg, rgba(63, 68, 83, 0.2) 0.25%, rgba(178, 199, 255, 0.2) 62.06%),
+    #3f4453;
+  color: var(--color-white);
+
+  @include respond-to(lg) {
+    &.cardBottom {
+      justify-content: flex-end;
+    }
+  }
+}
+
+.cardTitle {
+  margin: 0 0 12px;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.cardDescription {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+}

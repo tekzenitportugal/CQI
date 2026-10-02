@@ -1,0 +1,46 @@
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: var(--font-noto-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.default {
+  background: linear-gradient(
+    76.23deg,
+    rgba(102, 143, 255, 0.85) 117.36%,
+    rgba(245, 245, 245, 0.85) 100%
+  );
+  color: var(--color-antracite-400);
+}
+
+.invisible {
+  background: var(--color-coral-50);
+  color: var(--color-coral-400);
+}
+
+.signals {
+  background: var(--color-light-blue-75);
+  color: var(--color-antracite-400);
+}
+
+.highlight {
+  background: var(--color-light-blue-100);
+  color: var(--color-antracite-400);
+}
+
+.goals {
+  background: var(--color-light-blue-75);
+  color: var(--color-blue-200);
+}
+
+.white {
+  background: var(--color-white);
+  color: var(--color-blue-200);
+}

@@ -1,0 +1,84 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/solutions/spacing' as solutions;
+
+.section {
+  @include solutions.solutions-outcome-space;
+
+  &.solutions {
+    @include solutions.solutions-band-background;
+  }
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 0px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  margin-bottom: fluid-space(100px);
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+.sectionHeading {
+  --section-heading-title-max-width: 603px;
+  flex: 1;
+  min-width: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-noto-sans);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: #686868;
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @include respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, minmax(0, 344px));
+    justify-content: space-between;
+  }
+}
+
+.metricsCols3 {
+  @include respond-to(lg) {
+    grid-template-columns: repeat(3, minmax(0, 465px));
+    justify-content: space-between;
+  }
+}
+
+.footnote {
+  margin: 32px 0 0;
+  font-family: var(--font-noto-sans);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #888;
+}

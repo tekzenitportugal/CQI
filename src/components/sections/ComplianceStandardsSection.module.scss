@@ -1,0 +1,43 @@
+@use '@/styles/mixins' as *;
+
+// Figma (6079:38449): full-bleed band, linear-gradient(80.843deg, #edf2ff -147.05%, #f5f5f5 100%)
+// (the >100% Figma stop means the true first stop is -147.05%, per the site's gradient-sign rule).
+.section {
+  @include soft-blue-band($angle: 80.843deg);
+  @include section-space(200px, 200px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+  }
+}
+
+// Figma: 36px Poppins Regular, 465px wide, with a highlighted phrase
+.title {
+  @include heading-h3;
+  flex-shrink: 0;
+  max-width: 465px;
+}
+
+.list {
+  width: 100%;
+
+  @include respond-to(lg) {
+    width: 829px;
+    flex-shrink: 1;
+  }
+}

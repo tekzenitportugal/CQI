@@ -1,0 +1,13 @@
+@use '@/styles/mixins' as *;
+
+// Figma Rectangle 46 (6079:28740): one band behind blind spots + broken promise.
+.band {
+  @include section-space(200px, 216px);
+  @include soft-blue-band(84.83deg);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}

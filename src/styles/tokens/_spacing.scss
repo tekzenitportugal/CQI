@@ -1,0 +1,25 @@
+:root {
+  --container-max: 1536px;
+  --container-padding: 50px;
+  --header-offset-top: 25px;
+  --header-height: 50px;
+  --hero-nav-gap: 120px;
+  --hero-min-height: 864px;
+  /* Figma Rectangle 85 (6079:28557, rotated 180°) — light grey left → soft blue right */
+  --hero-gradient: linear-gradient(257.015deg, #668fff -147.05%, #f5f5f5 100%);
+  /* Figma Rectangle 105 (6079:28555) — band behind industries → CTA */
+  --fade-band-gradient: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
+}
+
+/* Mobile/tablet band (desktop starts at 1024px): tighter side gutters below it */
+@media (max-width: 1023.98px) {
+  :root {
+    --container-padding: 32px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  :root {
+    --container-padding: 20px;
+  }
+}

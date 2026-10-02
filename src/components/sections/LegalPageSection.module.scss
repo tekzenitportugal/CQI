@@ -1,0 +1,151 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  padding-top: calc(var(--header-offset-top) + var(--header-height) + fluid-space(100px));
+  padding-bottom: fluid-space(200px);
+}
+
+.layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: fluid-space(100px);
+  flex: 1 1 899px;
+  min-width: 0;
+  max-width: 799px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-blue-100);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-antracite-400);
+}
+
+.introText {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-500);
+}
+
+.effectiveDate {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  line-height: 1.4;
+  color: var(--color-antracite-400);
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.sectionBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-margin-top: calc(var(--header-offset-top) + var(--header-height) + 24px);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+}
+
+.sectionBody {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-300);
+}
+
+.emailLink {
+  color: var(--color-blue-200);
+}
+
+.footnote {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-antracite-200);
+}
+
+.toc {
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+    flex: 0 0 637px;
+    position: sticky;
+    top: calc(var(--header-offset-top) + var(--header-height) + 24px);
+  }
+}
+
+.tocCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 32px;
+  border-radius: 12px;
+  background: linear-gradient(83deg, #edf2ff -47.05%, #f5f5f5 100%);
+}
+
+.tocLink {
+  padding: 10px 16px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+  border-left: 2px solid transparent;
+}
+
+.tocIndicator {
+  position: absolute;
+  left: 32px;
+  width: 2px;
+  background: var(--color-blue-200);
+  transition: top 0.25s ease, height 0.25s ease;
+}

@@ -1,0 +1,126 @@
+@use '@/styles/mixins' as *;
+
+// Figma (6079:38437): 1409 → 1684, ends 2221; band starts 2501
+.section {
+  @include section-space(275px, 280px);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  max-width: 950px;
+  margin-inline: auto;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 81px;
+  }
+}
+
+.stage {
+  position: relative;
+  flex-shrink: 0;
+  width: min(525px, 100%);
+  aspect-ratio: 1;
+}
+
+.ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+
+  &[data-ring='0'] {
+    width: 100.19%;
+    height: 100.19%;
+  }
+
+  &[data-ring='1'] {
+    width: 81.14%;
+    height: 81.14%;
+  }
+
+  &[data-ring='2'] {
+    width: 62.1%;
+    height: 62.1%;
+  }
+
+  &[data-ring='3'] {
+    width: 43.05%;
+    height: 43.05%;
+  }
+
+  &[data-ring='4'] {
+    width: 24%;
+    height: 24%;
+  }
+}
+
+.logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+
+  img {
+    display: block;
+    width: min(84px, 16vw);
+    height: auto;
+  }
+}
+
+.tags {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tagItem {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-blue-200);
+  flex-shrink: 0;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+  max-width: 344px;
+}
+
+.paragraph {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+}

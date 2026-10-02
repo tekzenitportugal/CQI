@@ -1,0 +1,98 @@
+@use '@/styles/mixins' as *;
+
+// Figma Group 961: hero photo box (848px) ends ~230px above this section's header (y=1086);
+// the header block (75px) sits 100px above the dashed milestone row (y=1261).
+.section {
+  @include section-space(230px, 0);
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: fluid-space(100px);
+
+  @include respond-to(lg) {
+    max-width: 587px;
+  }
+}
+
+.eyebrow {
+  @include eyebrow;
+}
+
+.title {
+  @include heading-h3;
+}
+
+.row {
+  position: relative;
+}
+
+.lineTrack {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: calc(-1 * var(--container-padding));
+  right: calc(-1 * var(--container-padding));
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+  background-image: url('/images/company/history/milestones-line.svg');
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+}
+
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  list-style: none;
+  margin: 0;
+  padding-top: fluid-space(32px);
+
+  @include respond-to(lg) {
+    grid-template-columns: repeat(5, minmax(0, 239px));
+    gap: fluid-space(60px);
+    justify-content: space-between;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.itemCopy {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.itemTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+}
+
+.itemDescription {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}

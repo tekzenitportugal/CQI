@@ -1,0 +1,42 @@
+@use '@/styles/mixins' as *;
+
+// Figma Rectangle 49 (6079:30033) — industry mid-page band
+@mixin solutions-band-background {
+  background-color: #edf2ff;
+  background-image: linear-gradient(83.81deg, #edf2ff 147.05%, #f5f5f5 100%);
+}
+
+// Figma Rectangle 105 (SOLUTIONS 6079:30127, NOT LISTED 6079:30172) — neutral white-to-grey band
+@mixin solutions-neutral-band-background {
+  background: linear-gradient(0deg, #fff 0.04%, #f5f5f5 99.95%);
+}
+
+// Vertical rhythm from Figma TELECOM frame (6079:30024) at 1536px width.
+@mixin solutions-friction-space {
+  @include section-space(200px, 213px);
+}
+
+@mixin solutions-three-things-space {
+  @include section-space(232px, 136px);
+}
+
+@mixin solutions-scenarios-space {
+  @include section-space(100px, 281px);
+}
+
+@mixin solutions-outcome-space {
+  @include section-space(150px, 0);
+}
+
+@mixin solutions-research-space {
+  @include section-space(150px, 0);
+}
+
+@mixin solutions-plug-in-space {
+  padding-top: fluid-space(292px);
+  padding-bottom: fluid-space(292px);
+}
+
+@mixin solutions-cta-space {
+  @include section-space(200px, 100px);
+}

@@ -1,0 +1,75 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/solutions/spacing' as solutions;
+
+.section {
+  @include section-space(292px);
+
+  &.solutions {
+    @include solutions.solutions-band-background;
+    @include solutions.solutions-plug-in-space;
+  }
+
+  // Consistent 100px inter-section rhythm on mobile/tablet.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 0;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: fluid-space(60px);
+}
+
+.heading {
+  --section-heading-title-max-width: 947px;
+  --section-heading-description-max-width: 947px;
+  --section-heading-description-weight: 500;
+
+  // Figma mobile eyebrow is 12px (the shared SectionHeading default is 14px);
+  // the eyebrow renders as the heading's first paragraph when present.
+  @media (max-width: 1023.98px) {
+    p:first-child {
+      font-size: 12px;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+  }
+
+  // Figma mobile already pairs the two CTAs side by side, not stacked.
+  @media (max-width: 1023.98px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: auto;
+  }
+}
+
+.actions > a,
+.actions > button {
+  width: 100%;
+
+  @include respond-to(lg) {
+    width: auto;
+  }
+
+  @media (max-width: 1023.98px) {
+    width: auto;
+  }
+}
