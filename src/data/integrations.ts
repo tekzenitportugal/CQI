@@ -5,14 +5,12 @@ export type IntegrationsPartnerCard = {
   tag: string;
   /** Reuses the shared TagPill variants: 'goals' = blue text pill, 'signals' = grey text pill. */
   tagVariant: 'goals' | 'signals';
-  logo?: string;
-  logoAlt?: string;
-  logoWidth?: number;
-  logoHeight?: number;
-  /** Figma: some cards show a text title instead of a partner logo (e.g. "Field dispatch & workforce"). */
-  title?: string;
   description: string;
-};
+} & (
+  | { logo: string; logoAlt?: string; logoWidth: number; logoHeight: number; title?: never }
+  /** Figma: some cards show a text title instead of a partner logo (e.g. "Field dispatch & workforce"). */
+  | { logo?: never; logoAlt?: never; logoWidth?: never; logoHeight?: never; title?: string }
+);
 
 export type IntegrationsPartnerCategory = {
   id: string;
