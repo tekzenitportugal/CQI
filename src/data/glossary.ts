@@ -11,7 +11,8 @@ export const glossaryData = {
     eyebrow: 'Glossary',
     description:
       'Verified CX introduces terms that overlap with, but do not mean the same as, the standard CX lexicon. These are the definitions used across this site and in CQI deployments.',
-    image: '/images/resources/blogs/articles-hero.jpg',
+    image: '/images/resources/glossary/hero.png',
+    mobileImage: '/images/resources/glossary/hero-mobile.png',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

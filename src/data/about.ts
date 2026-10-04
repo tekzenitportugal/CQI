@@ -52,8 +52,9 @@ export const aboutData = {
     description:
       'CQI exists to close the gap between what customers experience and what enterprises can see. CQI Sense is the verification and action layer of the CX stack, deployed with enterprise operators worldwide.',
     image: '/images/company/about/hero.png',
-    imageWidth: 1600,
-    imageHeight: 1067,
+    mobileImage: '/images/company/about/hero-mobile.png',
+    imageWidth: 1520,
+    imageHeight: 848,
   } satisfies PageHeroData,
 
   purpose: {

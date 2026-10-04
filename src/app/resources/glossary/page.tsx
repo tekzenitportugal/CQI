@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function GlossaryPage() {
   return (
     <>
-      <PageHeroBanner data={glossaryData.hero} mirror={false} />
+      <PageHeroBanner data={glossaryData.hero} />
       <GlossarySection data={glossaryData.terms} />
       <CtaBannerSection data={glossaryData.conversationCta} />
     </>

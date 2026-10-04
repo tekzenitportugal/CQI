@@ -31,6 +31,8 @@ export const consumerElectronicsSolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
+  heroImage: '/images/solutions/consumer-electronics/hero.png',
+  heroImageMobile: '/images/solutions/consumer-electronics/hero-mobile.png',
   friction: mapFriction({
     title: 'In consumer electronics, friction rarely starts with a return.',
     titleHighlight: ['rarely starts with a return.'],

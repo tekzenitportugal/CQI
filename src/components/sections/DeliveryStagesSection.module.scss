@@ -80,3 +80,18 @@
 .controlIconFlipped {
   transform: scaleX(-1);
 }
+
+.viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.track {
+  display: flex;
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.slide {
+  flex-shrink: 0;
+  box-sizing: border-box;
+}

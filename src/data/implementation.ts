@@ -36,7 +36,7 @@ export type DeliveryStage = {
   imageHeight: number;
   linkLabel: string;
   linkHref: string;
-  /** True for the three stages Figma only exposes as an unreachable pager variant (see report). */
+  /** True to render a labeled FPO placeholder instead of the real image. */
   fpo?: boolean;
 };
 
@@ -182,17 +182,16 @@ export const implementationData = {
     eyebrow: 'Delivery',
     title: 'Four stages from proof to scale',
     titleHighlight: ['proof to scale'],
-    // Figma node 6079:27224 ("CQI IMPLEMENTATION") exposes all 4 card variants via
-    // get_design_context (not just the default "Proof of concept" one) — verbatim copy below.
-    // All 4 cards share the same source photo (sincerely-media-pchdAMl695s-unsplash).
+    // Figma node 6225:35762 ("CQI IMPLEMENTATION") exposes all 4 card variants via
+    // get_design_context — verbatim copy below. Each card has its own CQI product screenshot.
     stages: [
       {
         title: 'Proof of concept',
         description:
           'Roughly four weeks from data receipt. One month of interaction data across the chosen journeys, a friction map, and a go/no-go decision. CQI-native visualisation, no integration required.',
         image: '/images/product/implementation/delivery-poc.jpg',
-        imageWidth: 800,
-        imageHeight: 1205,
+        imageWidth: 1973,
+        imageHeight: 1115,
         linkLabel: 'The five steps',
         linkHref: '/products/poc-approach',
       },
@@ -200,9 +199,9 @@ export const implementationData = {
         title: 'Land build',
         description:
           'First-horizon screens, the data model, RBAC and PII handling, and user acceptance testing. Visualisation can move to your own design language during this stage.',
-        image: '/images/product/implementation/delivery-poc.jpg',
-        imageWidth: 800,
-        imageHeight: 1205,
+        image: '/images/product/implementation/delivery-land-build.jpg',
+        imageWidth: 1920,
+        imageHeight: 2261,
         linkLabel: 'The five steps',
         linkHref: '/products/poc-approach',
       },
@@ -210,9 +209,9 @@ export const implementationData = {
         title: 'Go live',
         description:
           'The CX health dashboard and trend detection with root cause analysis, live for the agreed journeys, with training and adoption support.',
-        image: '/images/product/implementation/delivery-poc.jpg',
-        imageWidth: 800,
-        imageHeight: 1205,
+        image: '/images/product/implementation/delivery-go-live.jpg',
+        imageWidth: 1920,
+        imageHeight: 1352,
         linkLabel: 'The five steps',
         linkHref: '/products/poc-approach',
       },
@@ -220,9 +219,9 @@ export const implementationData = {
         title: 'Expand',
         description:
           'Additional connectors, journeys and screens by horizon. Customer-level and task-level scoring, service recovery workflow, then simulation and innovation sandbox.',
-        image: '/images/product/implementation/delivery-poc.jpg',
-        imageWidth: 800,
-        imageHeight: 1205,
+        image: '/images/product/implementation/delivery-expand.jpg',
+        imageWidth: 1920,
+        imageHeight: 1115,
         linkLabel: 'The five steps',
         linkHref: '/products/poc-approach',
       },
@@ -294,6 +293,7 @@ export const implementationData = {
     image: '/images/product/implementation/cta-architects.jpg',
     imageWidth: 579,
     imageHeight: 289,
+    imagePosition: 'center 44.13%',
     buttons: [
       { label: 'Talk to our team', href: '/contact', variant: 'primary' as const },
       { label: 'Security & trust', href: '/products/security-trust', variant: 'secondary' as const },

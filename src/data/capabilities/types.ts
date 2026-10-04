@@ -11,8 +11,14 @@ export type CapabilityPageData = {
   metaTitle: string;
   metaDescription: string;
   hero: HeroCopyData;
-  /** Product mockup/photo composited over the hero gradient band (Figma: image inside Rectangle 85). */
+  /** Hero banner image: a full-bleed photo (PageHeroBanner) unless `heroMockup` is set. */
   heroImage?: string;
+  /** Dedicated mobile crop of `heroImage`, used when it's a full-bleed photo. */
+  heroImageMobile?: string;
+  /** Natural aspect ratio ("w / h") of `heroImage`, used to size it when stacked below the copy on mobile. */
+  heroImageAspectRatio?: string;
+  /** Set for pages still using the right-anchored product mockup cutout over the plain gradient, instead of a full-bleed photo. */
+  heroMockup?: boolean;
   features: CapabilityFeaturesData;
   howItWorks: RuledRowsSectionData & { descriptionOffset?: number };
   /**

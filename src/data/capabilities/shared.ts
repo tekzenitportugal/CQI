@@ -19,14 +19,14 @@ export const capabilityPagerLinks: LinkItem[] = [
 
 /** Capability-page CTA (Figma CTA instance on the capability frames). */
 export const capabilityCta: CtaBannerData = {
-  title: 'See this working on\nyour own interactions',
-  titleHighlight: ['your own interactions'],
+  title: 'See this working on your own\ninteractions',
+  titleHighlight: ['your own', 'interactions'],
   description: 'A two-week non-intrusive proof of value, with your own baseline and your own friction map.',
   image: '/images/product/capabilities/cta-headset.jpg',
   imageWidth: 579,
   imageHeight: 289,
-  // Figma crop: 300.48% tall, -39.04% from the top
-  imagePosition: 'center 19.47%',
+  // Figma crop (node 6225:42153): 300.48% tall, -94.19% from the top
+  imagePosition: 'center 46.99%',
   buttons: [
     { label: 'Request a demo', href: '/request-a-demo', variant: 'primary' },
     { label: 'PoC approach', href: '/products/poc-approach', variant: 'secondary' },

@@ -47,8 +47,8 @@ export function CustomerPulseHowSection({ data }: CustomerPulseHowSectionProps) 
             alt=""
             width={data.imageWidth}
             height={data.imageHeight}
-            inset={data.imageInset}
-            label
+            overlay={false}
+            borderRadius={8}
             className={styles.media}
           />
         </div>

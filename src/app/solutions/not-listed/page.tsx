@@ -4,6 +4,7 @@ import { AdjacentSectorsSection } from '@/components/sections/AdjacentSectorsSec
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
 import { GradientHero } from '@/components/sections/GradientHero';
 import { IndustryThreeThingsSection } from '@/components/sections/IndustryThreeThingsSection';
+import { PageHeroBanner } from '@/components/sections/PageHeroBanner';
 
 export const metadata: Metadata = {
   title: notListedPageData.metaTitle,
@@ -13,7 +14,17 @@ export const metadata: Metadata = {
 export default function NotListedPage() {
   return (
     <>
-      <GradientHero data={notListedPageData.hero} variant="inset" />
+      {notListedPageData.heroImage ? (
+        <PageHeroBanner
+          data={{
+            ...notListedPageData.hero,
+            image: notListedPageData.heroImage,
+            mobileImage: notListedPageData.heroImageMobile,
+          }}
+        />
+      ) : (
+        <GradientHero data={notListedPageData.hero} variant="inset" />
+      )}
       <IndustryThreeThingsSection data={notListedPageData.threeQuestions} />
       <AdjacentSectorsSection data={notListedPageData.adjacentSectors} />
       <CtaBannerSection data={notListedPageData.cta} />

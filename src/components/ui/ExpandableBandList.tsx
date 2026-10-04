@@ -31,33 +31,36 @@ export function ExpandableBandList({ items, colors, defaultOpen = 0, className }
 
         return (
           <div key={item.title} className={styles.item} style={{ background }}>
-            {isOpen ? (
-              <div className={styles.panel} id={panelId}>
-                <p className={styles.title}>{item.title}</p>
-                {item.rows ? (
-                  <RuledRowsList rows={item.rows} className={styles.rows} />
-                ) : (
-                  item.description && (
-                    <div className={styles.descriptionWrap}>
-                      <p className={styles.description}>{item.description}</p>
-                      {item.link && (
-                        <Button label={item.link.label} href={item.link.href} variant="text" showArrow />
-                      )}
-                    </div>
-                  )
-                )}
+            <button
+              type="button"
+              className={styles.header}
+              aria-expanded={isOpen}
+              aria-controls={panelId}
+              onClick={() => setOpenIndex(index)}
+            >
+              {item.title}
+            </button>
+            <div
+              id={panelId}
+              className={[styles.collapse, isOpen ? styles.open : ''].filter(Boolean).join(' ')}
+            >
+              <div className={styles.collapseInner}>
+                <div className={styles.panel}>
+                  {item.rows ? (
+                    <RuledRowsList rows={item.rows} className={styles.rows} />
+                  ) : (
+                    item.description && (
+                      <div className={styles.descriptionWrap}>
+                        <p className={styles.description}>{item.description}</p>
+                        {item.link && (
+                          <Button label={item.link.label} href={item.link.href} variant="text" showArrow />
+                        )}
+                      </div>
+                    )
+                  )}
+                </div>
               </div>
-            ) : (
-              <button
-                type="button"
-                className={styles.trigger}
-                aria-expanded={false}
-                aria-controls={panelId}
-                onClick={() => setOpenIndex(index)}
-              >
-                {item.title}
-              </button>
-            )}
+            </div>
           </div>
         );
       })}

@@ -76,10 +76,21 @@
   margin-bottom: 8px;
   border-bottom: 1px dashed var(--color-antracite-75);
 
+  // Matches the gap below the dashed rule (margin-bottom + topList's gap) so the
+  // first item sits as far from the list's own top rule as every other item
+  // sits from the one above it.
+  &:first-child {
+    padding-top: 12px;
+  }
+
   @include respond-to(lg) {
     padding-bottom: 0;
     margin-bottom: 0;
     border-bottom: none;
+
+    &:first-child {
+      padding-top: 0;
+    }
   }
 }
 

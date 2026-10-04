@@ -27,13 +27,17 @@
   z-index: 2;
   pointer-events: none;
 
+  // Desktop: start below the floating nav and vertically centre the copy in
+  // the remaining box height, so the gap above the title matches the gap
+  // below the buttons row instead of pinning the copy to a fixed y-position.
   @include respond-to(lg) {
     position: absolute;
-    inset: 0;
+    inset: calc(var(--header-offset-top) + var(--header-height)) 0 0;
+    display: flex;
+    align-items: center;
   }
 }
 
-// Figma: title at y=308 of the page; copy → 60px → buttons row.
 .content {
   display: flex;
   flex-direction: column;
@@ -44,7 +48,8 @@
   pointer-events: auto;
 
   @include respond-to(lg) {
-    padding-top: 308px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 

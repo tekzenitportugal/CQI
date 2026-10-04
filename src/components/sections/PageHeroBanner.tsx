@@ -6,18 +6,45 @@ import styles from './PageHeroBanner.module.scss';
 
 type PageHeroBannerProps = {
   data: PageHeroData;
-  /** Most photos are prepped mirrored per Figma; set false when the source image reads correctly as-is. */
+  /** Legacy path only (no `data.mobileImage`): most of those photos are prepped mirrored per Figma; set false when the source image reads correctly as-is. */
   mirror?: boolean;
 };
 
 export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
+  const hasDedicatedMobile = Boolean(data.mobileImage);
+
   return (
     <section className={styles.banner}>
       <div className={styles.heroBox} aria-hidden="true">
-        <div className={`${styles.imageWrap} ${mirror ? '' : styles.unmirrored}`.trim()}>
-          <Image src={data.image} alt="" fill priority className={styles.heroImage} sizes="100vw" />
-        </div>
-        <div className={`${styles.overlay} ${mirror ? '' : styles.overlayUnmirrored}`.trim()} />
+        {hasDedicatedMobile ? (
+          <>
+            {/* Flat full-bleed photo — no crop/mirror tricks; the wash is a separate overlay layer below. */}
+            <Image
+              src={data.image}
+              alt=""
+              fill
+              priority
+              className={`${styles.heroImage} ${styles.desktopOnly}`}
+              sizes="100vw"
+            />
+            <Image
+              src={data.mobileImage!}
+              alt=""
+              fill
+              priority
+              className={`${styles.heroImage} ${styles.mobileOnly}`}
+              sizes="100vw"
+            />
+            <div className={styles.overlayFlat} />
+          </>
+        ) : (
+          <>
+            <div className={`${styles.imageWrap} ${mirror ? '' : styles.unmirrored}`.trim()}>
+              <Image src={data.image} alt="" fill priority className={styles.heroImage} sizes="100vw" />
+            </div>
+            <div className={`${styles.overlay} ${mirror ? '' : styles.overlayUnmirrored}`.trim()} />
+          </>
+        )}
       </div>
 
       <Container className={styles.contentWrap}>
@@ -27,7 +54,9 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
           eyebrow={data.eyebrow}
           description={data.description}
           titleMaxWidth={data.titleMaxWidth}
+          descriptionMaxWidth={data.descriptionMaxWidth}
           copyMaxWidth={data.copyMaxWidth}
+          cta={data.cta}
           className={styles.content}
         />
       </Container>

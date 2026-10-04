@@ -12,7 +12,8 @@ export const requestADemoData = {
     eyebrow: 'Request a demo',
     description:
       'A 45-minute session on your operation: where friction is likely hiding, what verification would expose, and how a two-week non-intrusive proof of value would run.',
-    image: '/images/shared/request-a-demo/hero.jpg',
+    image: '/images/shared/request-a-demo/hero.png',
+    mobileImage: '/images/shared/request-a-demo/hero-mobile.png',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

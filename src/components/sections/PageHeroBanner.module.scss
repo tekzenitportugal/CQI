@@ -4,6 +4,11 @@
 .banner {
   position: relative;
   padding: 8px 8px 0;
+  min-height: 880px;
+
+  @include respond-to(lg) {
+    min-height: 0;
+  }
 }
 
 // Below lg the box sits behind the copy and grows with it; from lg it has Figma's fixed height.
@@ -41,6 +46,50 @@
   object-fit: cover;
 }
 
+// Flat full-bleed path (dedicated mobile crop supplied): plain cover photo, art-directed
+// per breakpoint, no crop-percentage/mirror hacks — the wash is .overlayFlat below.
+.desktopOnly {
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+  }
+}
+
+.mobileOnly {
+  display: block;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+// Flat CSS gradient on its own layer above the photo (never baked into the image itself),
+// so the banner always reads full-bleed. Strongest over the copy — left on desktop,
+// top on mobile where the text stacks above the photo — fading out to reveal it.
+.overlayFlat {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(223, 232, 254, 0.97) 0%,
+    rgba(223, 232, 254, 0.94) 38%,
+    rgba(223, 232, 254, 0.55) 70%,
+    rgba(223, 232, 254, 0) 100%
+  );
+
+  @include respond-to(lg) {
+    background: linear-gradient(
+      90deg,
+      rgba(223, 232, 254, 0.96) 0%,
+      rgba(223, 232, 254, 0.92) 28%,
+      rgba(223, 232, 254, 0.3) 50%,
+      rgba(223, 232, 254, 0) 65%
+    );
+  }
+}
+
 // Figma radial overlay (fading from the bottom-left corner), exported from 6079:28651 and mirrored.
 .overlay {
   position: absolute;
@@ -72,20 +121,30 @@
   position: relative;
   z-index: 2;
   pointer-events: none;
+  padding-inline: 12px;
 
+  // Desktop: start below the floating nav and vertically centre the copy in
+  // the remaining box height, so the gap above the title matches the gap
+  // below the CTA instead of pinning the copy to a fixed Figma y-position.
   @include respond-to(lg) {
     position: absolute;
-    inset: 0;
+    inset: calc(var(--header-offset-top) + var(--header-height)) 0 0;
+    display: flex;
+    align-items: center;
+    padding-inline: var(--container-padding);
   }
 }
 
-// Figma: title at y=308 of the page
 .content {
-  padding-top: calc(var(--header-offset-top) + var(--header-height) + 120px);
-  padding-bottom: 48px;
+  padding-top: calc(var(--header-offset-top) + var(--header-height) + 20px);
+  // Below lg the box height just tracks the copy, so this is also the only thing
+  // that keeps the photo visible beneath the text instead of the card ending flush
+  // with the last line — the copy stays pinned to the top, photo reveals below it.
+  padding-bottom: 200px;
   pointer-events: auto;
 
   @include respond-to(lg) {
-    padding-top: 308px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }

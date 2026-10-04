@@ -2,7 +2,7 @@
 
 // Figma: 200px below the hero, 103px above the connective-tissue band
 .section {
-  @include section-space(200px, 103px);
+  @include section-space(200px, 184px);
   overflow-x: clip;
 
   // Consistent 100px inter-section rhythm on mobile/tablet.

@@ -7,10 +7,12 @@ import styles from './DeliveryStageCard.module.scss';
 type DeliveryStageCardProps = {
   stage: DeliveryStage;
   className?: string;
+  /** Skip lazy-loading so the image is already cached before its slide comes into view. */
+  priority?: boolean;
 };
 
 /** Figma "CQI IMPLEMENTATION" delivery card: dark gradient card, photo bleeding off the top-right, copy bottom-left. */
-export function DeliveryStageCard({ stage, className }: DeliveryStageCardProps) {
+export function DeliveryStageCard({ stage, className, priority }: DeliveryStageCardProps) {
   return (
     <article className={[styles.card, className].filter(Boolean).join(' ')}>
       <div className={styles.media}>
@@ -29,6 +31,7 @@ export function DeliveryStageCard({ stage, className }: DeliveryStageCardProps) 
             src={stage.image}
             alt=""
             fill
+            priority={priority}
             className={styles.photo}
             sizes="(max-width: 992px) 100vw, 708px"
           />

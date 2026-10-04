@@ -17,14 +17,7 @@ export default function CoreFunctionalitiesPage() {
       <GradientHero data={coreFunctionalitiesData.hero} variant="inset" />
       <ModulesCarouselSection data={coreFunctionalitiesData.modules} />
       <div className="fade-band">
-        {/* Figma: starts 281px into the fade band; the CTA below owns the next 200px */}
-        <RuledRowsSection
-          data={coreFunctionalitiesData.connectiveTissue}
-          spaceTop={281}
-          descriptionOffset={3}
-          headingGap={14}
-          variant="grouped"
-        />
+        <RuledRowsSection data={coreFunctionalitiesData.connectiveTissue} variant="grouped" />
         <CtaBannerSection data={coreFunctionalitiesData.cta} />
       </div>
     </>

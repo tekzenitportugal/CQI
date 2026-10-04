@@ -31,6 +31,8 @@ export const utilitiesEnergySolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
+  heroImage: '/images/solutions/utilities-energy/hero.png',
+  heroImageMobile: '/images/solutions/utilities-energy/hero-mobile.png',
   friction: mapFriction({
     title: 'In retail energy, friction rarely starts in the contact centre.',
     titleHighlight: ['rarely', 'starts in the contact centre.'],

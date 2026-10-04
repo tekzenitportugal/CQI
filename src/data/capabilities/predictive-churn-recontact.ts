@@ -17,6 +17,8 @@ export const predictiveChurnRecontact: CapabilityPageData = {
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
   heroImage: '/images/product/capabilities/predictive-churn-recontact/hero.png',
+  heroImageMobile: '/images/product/capabilities/predictive-churn-recontact/hero-mobile.png',
+  heroImageAspectRatio: '1520 / 849',
   features: {
     eyebrow: 'What it does',
     title: 'The dangerous churn is the churn nobody reported. Most measurement systems are built to miss it.',
@@ -103,9 +105,5 @@ export const predictiveChurnRecontact: CapabilityPageData = {
     ],
   },
   // Same copy as the shared capability CTA, but Figma uses the tablet photo (uncropped cover) here.
-  cta: {
-    ...capabilityCta,
-    image: '/images/product/capabilities/predictive-churn-recontact/cta-tablet.jpg',
-    imagePosition: undefined,
-  },
+  cta: capabilityCta,
 };

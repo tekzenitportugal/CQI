@@ -51,7 +51,6 @@ function StageControl({
 export function DeliveryStagesSection({ data }: DeliveryStagesSectionProps) {
   const total = data.stages.length;
   const [index, setIndex] = useState(0);
-  const stage = data.stages[index];
 
   return (
     <section className={styles.section}>
@@ -85,7 +84,27 @@ export function DeliveryStagesSection({ data }: DeliveryStagesSectionProps) {
             </div>
           </div>
 
-          <DeliveryStageCard stage={stage} />
+          <div className={styles.viewport}>
+            <div
+              className={styles.track}
+              style={{
+                width: `${total * 100}%`,
+                transform: `translateX(-${index * (100 / total)}%)`,
+              }}
+            >
+              {data.stages.map((item, i) => (
+                <div
+                  key={item.title}
+                  className={styles.slide}
+                  style={{ width: `${100 / total}%` }}
+                  aria-hidden={i !== index}
+                  inert={i !== index}
+                >
+                  <DeliveryStageCard stage={item} priority />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </Container>
     </section>

@@ -12,7 +12,7 @@
   color: var(--color-white);
 
   @media (min-width: 768px) {
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: center;
     height: clamp(320px, 27.08vw, 416px);
   }
@@ -25,17 +25,17 @@
   flex-shrink: 0;
 
   @media (min-width: 768px) {
-    width: 49.3%;
-    height: calc(100% - 8px);
-    margin-top: 8px;
-    margin-right: 0;
-    border-radius: 12px 0 0 12px;
+    width: calc(50% - 8px);
+    height: calc(100% - 16px);
+    margin: 8px 8px 8px 0;
+    border-radius: 12px;
     overflow: hidden;
   }
 }
 
 .photo {
   object-fit: cover;
+  object-position: top;
 }
 
 .mediaFill {

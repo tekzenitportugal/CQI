@@ -16,6 +16,8 @@ export const endToEndOrchestration: CapabilityPageData = {
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
   heroImage: '/images/product/capabilities/end-to-end-orchestration/hero.png',
+  heroImageMobile: '/images/product/capabilities/end-to-end-orchestration/hero-mobile.png',
+  heroImageAspectRatio: '1520 / 849',
   features: {
     eyebrow: 'What it does',
     title: 'An insight that does not change what happens next is a cost, not an asset.',
@@ -101,9 +103,5 @@ export const endToEndOrchestration: CapabilityPageData = {
     ],
   },
   // Same copy as the shared capability CTA, but this frame uses the tablet photo (uncropped).
-  cta: {
-    ...capabilityCta,
-    image: '/images/product/capabilities/end-to-end-orchestration/cta-tablet.jpg',
-    imagePosition: undefined,
-  },
+  cta: capabilityCta,
 };

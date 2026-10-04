@@ -93,16 +93,11 @@ export type CtaBannerData = {
   buttons: CtaLink[];
 };
 
-export type PageHeroData = {
-  title: string;
-  titleHighlight?: string[];
-  /** Figma title box width when it differs from the default 587px. */
-  titleMaxWidth?: number;
-  /** Figma hero copy column width when it differs from the default 587px. */
-  copyMaxWidth?: number;
-  eyebrow: string;
-  description: string;
+/** Full-bleed photo hero (PageHeroBanner): HeroCopy's fields plus the banner photo(s). */
+export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   image: string;
+  /** Dedicated portrait crop for below lg; falls back to `image` (CSS-cropped) when omitted. */
+  mobileImage?: string;
   imageWidth?: number;
   imageHeight?: number;
 };
@@ -305,6 +300,9 @@ export type NotListedPageData = {
   metaTitle: string;
   metaDescription: string;
   hero: import('@/components/ui/HeroCopy').HeroCopyData;
+  /** Full-bleed hero photo (PageHeroBanner); omit to keep the plain gradient card. */
+  heroImage?: string;
+  heroImageMobile?: string;
   threeQuestions: IndustryThreeThingsData;
   adjacentSectors: AdjacentSectorsData;
   cta: CtaBannerData;
@@ -324,6 +322,9 @@ export type IndustrySolutionData = {
   metaTitle: string;
   metaDescription: string;
   hero: import('@/components/ui/HeroCopy').HeroCopyData;
+  /** Full-bleed hero photo (PageHeroBanner); omit to keep the plain gradient card (e.g. sectors without a shot yet). */
+  heroImage?: string;
+  heroImageMobile?: string;
   friction: IndustryFrictionData;
   threeThings: IndustryThreeThingsData;
   scenarios: IndustryScenariosData;

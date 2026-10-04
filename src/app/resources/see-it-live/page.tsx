@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function SeeItLivePage() {
   return (
     <>
-      <PageHeroBanner data={seeItLiveData.hero} mirror={false} />
+      <PageHeroBanner data={seeItLiveData.hero} />
       <SeeItLiveStagesSection data={seeItLiveData.stages} />
       <LiveSessionCoverageSection data={seeItLiveData.liveSessionCoverage} />
       <CtaBannerSection data={seeItLiveData.conversationCta} />

@@ -9,7 +9,13 @@
   }
 
   // Next section shares this one's background (same band wrapper).
+  // Fixed spacing (not fluid): this variant is only used once, on Core functionalities.
   &.grouped {
+    --ruled-description-offset: 3px;
+    --ruled-heading-gap: 14px;
+    padding-top: 200px;
+    padding-bottom: 0;
+
     @media (max-width: 1023.98px) {
       padding-bottom: 0 !important;
     }

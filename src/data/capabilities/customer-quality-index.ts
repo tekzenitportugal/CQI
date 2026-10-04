@@ -1,4 +1,4 @@
-import { capabilityPagerLinks, capabilityRoutes } from './shared';
+import { capabilityCta, capabilityPagerLinks, capabilityRoutes } from './shared';
 import type { CapabilityPageData } from './types';
 
 // Figma 6079:31932 "Customer Quality index - CQI"
@@ -18,6 +18,8 @@ export const customerQualityIndex: CapabilityPageData = {
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
   heroImage: '/images/product/capabilities/customer-quality-index/hero.png',
+  heroImageAspectRatio: '2409 / 2544',
+  heroMockup: true,
   features: {
     eyebrow: 'What it does',
     title:
@@ -103,17 +105,5 @@ export const customerQualityIndex: CapabilityPageData = {
       },
     ],
   },
-  // Same copy as the other capability pages, but Figma uses the tablet photo, centred.
-  cta: {
-    title: 'See this working on\nyour own interactions',
-    titleHighlight: ['your own interactions'],
-    description: 'A two-week non-intrusive proof of value, with your own baseline and your own friction map.',
-    image: '/images/product/capabilities/customer-quality-index/cta-tablet.jpg',
-    imageWidth: 579,
-    imageHeight: 289,
-    buttons: [
-      { label: 'Request a demo', href: '/request-a-demo', variant: 'primary' },
-      { label: 'PoC approach', href: '/products/poc-approach', variant: 'secondary' },
-    ],
-  },
+  cta: capabilityCta,
 };

@@ -8,6 +8,7 @@ export const whoIsItForData = {
     description:
       'CQI is bought by CX and customer success leadership, validated by IT and data, and used every day by operations and the front line. Each of them needs a different thing from the same verified view.',
     image: '/images/product/who-is-it-for/hero.png',
+    mobileImage: '/images/product/who-is-it-for/hero-mobile.png',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,
@@ -168,9 +169,11 @@ export const whoIsItForData = {
     title: 'Bring your buying committee',
     titleHighlight: ['buying committee'],
     description: 'One session covering the executive view, the operating model and the architecture.',
-    image: '/images/product/who-is-it-for/cta-buying-committee.jpg',
+    image: '/images/product/capabilities/cta-headset.jpg',
     imageWidth: 579,
     imageHeight: 289,
+    // Figma crop (node 6225:42153): 300.48% tall, -94.19% from the top
+    imagePosition: 'center 46.99%',
     buttons: [
       { label: 'Request a demo', href: '/request-a-demo', variant: 'primary' },
       { label: 'Security & trust', href: '/products/security-trust', variant: 'secondary' },

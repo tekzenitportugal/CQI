@@ -31,6 +31,8 @@ export const bankingSolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
+  heroImage: '/images/solutions/banking/hero.png',
+  heroImageMobile: '/images/solutions/banking/hero-mobile.png',
   friction: mapFriction({
     title: 'Friction rarely begins in the branch or the app.',
     titleHighlight: ['rarely', 'begins in the branch'],

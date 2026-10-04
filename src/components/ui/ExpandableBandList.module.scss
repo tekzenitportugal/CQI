@@ -16,10 +16,12 @@
   transition: background-color 0.2s ease;
 }
 
-.trigger {
+.header {
   display: flex;
   width: 100%;
-  padding: 50px;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 50px var(--container-padding);
   border: none;
   background: transparent;
   cursor: pointer;
@@ -31,20 +33,31 @@
   color: var(--color-antracite-400);
 }
 
+// Grid-rows trick animates height without measuring the content: the track
+// goes 0fr -> 1fr and overflow:hidden on the inner wrapper clips the rest.
+.collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+
+  &.open {
+    grid-template-rows: 1fr;
+  }
+}
+
+.collapseInner {
+  overflow: hidden;
+  min-height: 0;
+}
+
 .panel {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  padding: 50px;
-}
-
-.title {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1.2;
-  color: var(--color-antracite-400);
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding: 0 var(--container-padding) 50px;
 }
 
 .descriptionWrap {

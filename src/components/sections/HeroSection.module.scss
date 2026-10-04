@@ -2,14 +2,19 @@
 
 .section {
   position: relative;
-  padding-top: calc(
-    var(--header-offset-top) + var(--header-height) + var(--hero-nav-gap)
-  );
-  padding-bottom: fluid-space(69px);
+  padding-top: 100px;
+  padding-bottom: 50px;
 
-  @media (max-width: 1023.98px) {
-    padding-top: 100px;
-    padding-bottom: 200px;
+  // Desktop: fill the banner's height (grow past it if the copy needs more)
+  // and vertically centre the copy in the space below the floating nav, so
+  // the gap above the title matches the gap below the CTA.
+  @media (min-width: 1024px) {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: calc(var(--header-offset-top) + var(--header-height));
+    padding-bottom: 0;
   }
 }
 
@@ -42,7 +47,9 @@
 
 .mobileMedia {
   position: relative;
+  width: calc(100% + 2 * var(--container-padding));
   margin-top: 65px;
+  margin-inline: calc(-1 * var(--container-padding));
   border-radius: 20px;
   overflow: hidden;
 

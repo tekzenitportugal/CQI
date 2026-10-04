@@ -132,7 +132,7 @@ export const coreFunctionalitiesData = {
     titleHighlight: ['working together'],
     description:
       'A live walkthrough of the health view, root cause screening and the recovery loop.',
-    image: '/images/product/core-functionalities/cta-tablet.jpg',
+    image: '/images/product/core-functionalities/cta-laptop.jpg',
     imageWidth: 579,
     imageHeight: 289,
     buttons: [

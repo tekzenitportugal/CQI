@@ -15,6 +15,7 @@ export const howWeDoItData = {
     description:
       'CQI’s verification algorithm connects what customers say, how your teams respond, and what your data records, then surfaces the misalignments between them and points at the root cause.',
     image: '/images/product/how-we-do-it/hero.png',
+    mobileImage: '/images/product/how-we-do-it/hero-mobile.png',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,
@@ -138,9 +139,7 @@ export const howWeDoItData = {
       'Next actions run your own playbook first: predefined marketing and customer-success guidance.\nAI recommendations layer on top once the platform has learned what works.',
     image: '/images/product/how-we-do-it/customer-brain.png',
     imageWidth: 587,
-    imageHeight: 540,
-    // Figma: the screenshot sits 55px down inside the dimmed 587×540 frame
-    imageInset: { top: 55, left: 0, width: 587, height: 431 },
+    imageHeight: 341,
   },
 
   riskEngine: {
@@ -224,9 +223,10 @@ export const howWeDoItData = {
     title: 'Action without verification\nis hope',
     titleHighlight: ['hope'],
     description: 'CQI verifies the recovery.\nSee what that looks like on your own interactions.',
-    image: '/images/product/how-we-do-it/cta-tablet.jpg',
+    image: '/images/product/how-we-do-it/cta-photo.png',
     imageWidth: 579,
     imageHeight: 289,
+    imagePosition: '54.57% 31.76%',
     buttons: [
       { label: 'Request a demo', href: '/request-a-demo', variant: 'primary' as const },
       {

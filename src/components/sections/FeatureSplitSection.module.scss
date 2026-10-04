@@ -14,7 +14,7 @@
 .inner {
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  gap: 100px;
 
   @include respond-to(lg) {
     flex-direction: row;
@@ -31,6 +31,10 @@
 
   @include respond-to(lg) {
     flex: 0 1 587px;
+  }
+
+  @media (max-width: 1023.98px) {
+    gap: 64px;
   }
 }
 

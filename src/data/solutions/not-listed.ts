@@ -15,6 +15,8 @@ export const notListedPageData = {
     descriptionMaxWidth: 587,
     copyMaxWidth: 587,
   } satisfies HeroCopyData,
+  heroImage: '/images/solutions/not-listed/hero.png',
+  heroImageMobile: '/images/solutions/not-listed/hero-mobile.png',
 
   threeQuestions: {
     title: 'Three questions that decide whether CQI fits',

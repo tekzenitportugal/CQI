@@ -33,12 +33,16 @@ export function RuledRowsSection({
   headingGap = 10,
   variant = 'default',
 }: RuledRowsSectionProps) {
-  const style = {
-    paddingTop: fluidSpace(spaceTop),
-    paddingBottom: fluidSpace(spaceBottom),
-    '--ruled-description-offset': `${descriptionOffset}px`,
-    '--ruled-heading-gap': `${headingGap}px`,
-  } as CSSProperties;
+  // 'grouped' is a single fixed-spacing instance (Core functionalities); its spacing lives in CSS.
+  const style =
+    variant === 'grouped'
+      ? undefined
+      : ({
+          paddingTop: fluidSpace(spaceTop),
+          paddingBottom: fluidSpace(spaceBottom),
+          '--ruled-description-offset': `${descriptionOffset}px`,
+          '--ruled-heading-gap': `${headingGap}px`,
+        } as CSSProperties);
 
   return (
     <section

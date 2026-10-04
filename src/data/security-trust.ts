@@ -26,6 +26,7 @@ export const securityTrustData = {
     description:
       'CQI operates as a data processor. Data is processed inside CQI’s own cloud and is anonymised before models run.',
     image: '/images/product/security-trust/hero.png',
+    mobileImage: '/images/product/security-trust/hero-mobile.png',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

@@ -16,6 +16,8 @@ export const crossChannelIntegrity: CapabilityPageData = {
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
   heroImage: '/images/product/capabilities/cross-channel-integrity/hero.png',
+  heroImageMobile: '/images/product/capabilities/cross-channel-integrity/hero-mobile.png',
+  heroImageAspectRatio: '1520 / 849',
   features: {
     eyebrow: 'What it does',
     title:
@@ -105,10 +107,5 @@ export const crossChannelIntegrity: CapabilityPageData = {
       },
     ],
   },
-  // Same CTA copy as the other capability pages, but this frame uses the tablet photo (object-cover).
-  cta: {
-    ...capabilityCta,
-    image: '/images/product/capabilities/cross-channel-integrity/cta-tablet.jpg',
-    imagePosition: undefined,
-  },
+  cta: capabilityCta,
 };

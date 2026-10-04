@@ -6,6 +6,7 @@ import { CapabilityPagerSection } from '@/components/sections/CapabilityPagerSec
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
 import { FaqSection } from '@/components/sections/FaqSection';
 import { GradientHero } from '@/components/sections/GradientHero';
+import { PageHeroBanner } from '@/components/sections/PageHeroBanner';
 import { RuledRowsSection } from '@/components/sections/RuledRowsSection';
 
 type CapabilityPageProps = {
@@ -27,7 +28,18 @@ export default async function CapabilityPage({ params }: CapabilityPageProps) {
 
   return (
     <>
-      <GradientHero data={page.hero} variant="inset" image={page.heroImage} />
+      {page.heroMockup ? (
+        <GradientHero
+          data={page.hero}
+          variant="inset"
+          image={page.heroImage}
+          imageAspectRatio={page.heroImageAspectRatio}
+        />
+      ) : (
+        page.heroImage && (
+          <PageHeroBanner data={{ ...page.hero, image: page.heroImage, mobileImage: page.heroImageMobile }} />
+        )
+      )}
       <CapabilityFeaturesSection data={page.features} spaceTop={200} spaceBottom={page.spacing.afterFeatures} />
       <RuledRowsSection
         data={page.howItWorks}

@@ -29,7 +29,8 @@
 // Figma mobile: the same cutout stacked below the copy, inside the card's
 // own flow — hidden once the desktop absolute cutout takes over.
 .mobileGraphicWrap {
-  margin-top: 32px;
+  margin: 0;
+  padding: 0;
 
   @include respond-to(lg) {
     display: none;
@@ -50,15 +51,19 @@
 .inner {
   display: flex;
   align-items: center;
-  padding-block: 64px 80px;
+  padding-block: 64px 0;
+  padding-inline: 12px;
 
   @include respond-to(lg) {
     min-height: calc(var(--hero-min-height) - var(--header-offset-top) - var(--header-height));
     padding-block: 0;
+    padding-inline: var(--container-padding);
   }
 }
 
 // Figma Rectangle 85 — matches PageHeroBanner shell (1520×848, 8px page inset).
+// Just a padding wrapper so the in-flow copy/image share heroBox's 8px inset —
+// no background of its own, so it never bleeds to the viewport edge on mobile.
 .insetBanner {
   position: relative;
   padding: 8px 8px 0;
@@ -81,28 +86,76 @@
 
 // Figma: the device mockup is a transparent-background cutout, right-anchored
 // over the full-bleed gradient — never stretched/cropped to cover the box.
+// Hidden below lg: that absolute full-bleed box is sized to the copy's own
+// height there, so the cutout would sit behind/overlap the text instead of
+// beside it — the mobile-stacked copy below renders it in normal flow instead.
 .heroBoxImage {
+  display: none;
   object-fit: contain;
   object-position: right bottom;
+
+  @include respond-to(lg) {
+    display: block;
+  }
+}
+
+// Same cutout, stacked under the copy — mirrors the "default" variant's
+// mobileGraphicWrap/mobileGraphicBox pattern (see below), sized to this image's
+// own aspect ratio via --hero-mobile-aspect so it doesn't letterbox oddly.
+.insetMobileGraphicWrap {
+  position: relative;
+  padding-inline: 0;
+  padding-bottom: 32px;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.insetMobileGraphicBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--hero-mobile-aspect, 3 / 2);
+}
+
+.insetMobileGraphicImage {
+  object-fit: contain;
+  object-position: center bottom;
 }
 
 .insetContentWrap {
   position: relative;
   z-index: 2;
   pointer-events: none;
+  padding-top: calc(var(--header-offset-top) + var(--header-height) + 64px);
+  padding-inline: 12px;
 
   @include respond-to(lg) {
     position: absolute;
     inset: 8px 8px 0;
     display: flex;
     align-items: center;
+    padding-top: 0;
+    padding-inline: var(--container-padding);
+  }
+}
+
+// Pages with no hero image (e.g. Core Functionalities, Airlines, the Solutions hub):
+// centre the copy in the gradient card below lg too, instead of just sitting under the
+// header — pages with an image keep the copy pinned to the top so it stays visible.
+.insetContentWrapCentered {
+  display: flex;
+  align-items: center;
+  min-height: var(--hero-min-height);
+  padding-top: calc(var(--header-offset-top) + var(--header-height));
+
+  @include respond-to(lg) {
+    min-height: 0;
   }
 }
 
 .insetContent {
   pointer-events: auto;
-  padding-top: calc(var(--header-offset-top) + var(--header-height) + 64px);
-  padding-bottom: 48px;
 
   @include respond-to(lg) {
     padding-top: calc(var(--header-offset-top) + var(--header-height));

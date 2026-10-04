@@ -6,6 +6,7 @@ import { IndustryOutcomeRangeSection } from '@/components/sections/IndustryOutco
 import { IndustryResearchMetricsSection } from '@/components/sections/IndustryResearchMetricsSection';
 import { IndustryScenariosSection } from '@/components/sections/IndustryScenariosSection';
 import { IndustryThreeThingsSection } from '@/components/sections/IndustryThreeThingsSection';
+import { PageHeroBanner } from '@/components/sections/PageHeroBanner';
 import { WhereCqiFitsSection } from '@/components/sections/WhereCqiFitsSection';
 
 type IndustrySolutionViewProps = {
@@ -15,7 +16,11 @@ type IndustrySolutionViewProps = {
 export function IndustrySolutionView({ data }: IndustrySolutionViewProps) {
   return (
     <>
-      <GradientHero data={data.hero} variant="inset" />
+      {data.heroImage ? (
+        <PageHeroBanner data={{ ...data.hero, image: data.heroImage, mobileImage: data.heroImageMobile }} />
+      ) : (
+        <GradientHero data={data.hero} variant="inset" />
+      )}
       <IndustryFrictionSection data={data.friction} />
       <div className="solutions-band">
         <IndustryThreeThingsSection data={data.threeThings} variant="grouped" />
