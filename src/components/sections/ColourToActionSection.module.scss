@@ -30,6 +30,10 @@
   font-weight: 500;
   line-height: 1.4;
   color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
 }
 
 // Figma: 587px card grid + 142px gap + 465px list, vertically centred
@@ -87,6 +91,10 @@
   font-weight: 400;
   line-height: 1.3;
   color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
 
   &::before {
     @include dashed-rule;

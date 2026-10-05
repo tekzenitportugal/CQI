@@ -70,4 +70,8 @@
   color: #2f4c9c;
   flex: 1;
   min-height: 0;
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
 }

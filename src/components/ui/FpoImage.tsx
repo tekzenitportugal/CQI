@@ -55,15 +55,30 @@ export function FpoImage({
     height: `${(inset.height / height) * 100}%`,
   };
 
+  // Some insets sit inside the frame (letterboxed — dead space around the photo, which
+  // we collapse on mobile below). Others deliberately overflow the frame (e.g. a tall
+  // screenshot top-cropped into a short frame) to get a zoomed-in crop; those must keep
+  // the frame's own ratio at every breakpoint or the crop changes.
+  const insetFitsFrame = !!inset && inset.width <= width && inset.height <= height;
+
   return (
     <div
-      className={[styles.wrapper, fillContainer && styles.fillContainer, className]
+      className={[
+        styles.wrapper,
+        insetFitsFrame && styles.insetFitsFrame,
+        fillContainer && styles.fillContainer,
+        className,
+      ]
         .filter(Boolean)
         .join(' ')}
       style={{
         ...(fillContainer
           ? undefined
-          : ({ '--fpo-aspect-ratio': `${width} / ${height}` } as CSSProperties)),
+          : ({
+              '--fpo-aspect-ratio': `${width} / ${height}`,
+              ...(insetFitsFrame &&
+                inset && { '--fpo-aspect-ratio-inset': `${inset.width} / ${inset.height}` }),
+            } as CSSProperties)),
         ...(borderRadius ? { borderRadius: `${borderRadius}px` } : undefined),
       }}
     >

@@ -45,6 +45,10 @@
   line-height: normal;
   color: #2f4c9c;
   white-space: pre-line;
+
+  @media (max-width: 1023.98px) {
+    font-size: 17.5px;
+  }
 }
 
 .source {

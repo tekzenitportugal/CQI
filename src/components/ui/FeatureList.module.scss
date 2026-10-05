@@ -18,6 +18,10 @@
   line-height: 1.35;
   text-transform: uppercase;
   color: var(--color-antracite-400);
+
+  @media (max-width: 1023.98px) {
+    font-size: 17.5px;
+  }
 }
 
 .description {
@@ -27,4 +31,8 @@
   font-weight: 500;
   line-height: 1.4;
   color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
 }

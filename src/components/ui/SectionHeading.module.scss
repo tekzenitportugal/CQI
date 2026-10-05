@@ -19,11 +19,21 @@
 
 .eyebrow {
   @include eyebrow;
+
+  @media (max-width: 1023.98px) {
+    font-size: 12px;
+  }
 }
 
 .title {
   @include heading-h3;
   max-width: var(--section-heading-title-max-width, 900px);
+
+  @media (max-width: 1023.98px) {
+    br {
+      display: none;
+    }
+  }
 }
 
 .description {

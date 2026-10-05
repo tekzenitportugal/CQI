@@ -31,6 +31,10 @@
     line-height: 1;
     letter-spacing: 0;
     color: var(--color-blue-75);
+
+    @media (max-width: 1023.98px) {
+      font-size: 17.5px;
+    }
   }
 
   :where(h2, h3, h4) {

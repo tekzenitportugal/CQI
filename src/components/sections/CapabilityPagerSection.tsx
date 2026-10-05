@@ -26,12 +26,26 @@ export function CapabilityPagerSection({ data }: CapabilityPagerSectionProps) {
 
         <div className={styles.pager}>
           <Link href={data.prev.href} className={styles.pagerLink} rel="prev">
-            <img src="/images/shared/common/arrow-left-lg.svg" alt="" width={40} height={40} aria-hidden="true" />
+            <img
+              src="/images/shared/common/arrow-left-lg.svg"
+              alt=""
+              width={40}
+              height={40}
+              className={styles.pagerIcon}
+              aria-hidden="true"
+            />
             <span>{data.prev.label}</span>
           </Link>
           <Link href={data.next.href} className={`${styles.pagerLink} ${styles.pagerNext}`} rel="next">
             <span>{data.next.label}</span>
-            <img src="/images/shared/common/arrow-right-lg.svg" alt="" width={40} height={40} aria-hidden="true" />
+            <img
+              src="/images/shared/common/arrow-right-lg.svg"
+              alt=""
+              width={40}
+              height={40}
+              className={styles.pagerIcon}
+              aria-hidden="true"
+            />
           </Link>
         </div>
       </div>

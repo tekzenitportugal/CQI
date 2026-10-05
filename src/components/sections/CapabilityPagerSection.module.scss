@@ -7,7 +7,7 @@
   // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {
     padding-top: 200px;
-    padding-bottom: 200px;
+    padding-bottom: 0;
   }
 }
 
@@ -18,6 +18,10 @@
   align-items: flex-end;
   gap: fluid-space(140px);
   padding-block: 50px;
+
+  @media (max-width: 1023.98px) {
+    gap: 100px;
+  }
 }
 
 .links {
@@ -33,6 +37,10 @@
   align-items: flex-start;
   gap: 24px;
   width: 100%;
+
+  @media (max-width: 1023.98px) {
+    gap: 40px;
+  }
 
   @include respond-to(md) {
     flex-direction: row;
@@ -52,6 +60,11 @@
   color: var(--color-antracite-400);
   transition: color 0.2s ease;
 
+  @media (max-width: 1023.98px) {
+    gap: 16px;
+    font-size: 24px;
+  }
+
   img {
     flex-shrink: 0;
   }
@@ -61,8 +74,21 @@
   }
 }
 
+.pagerIcon {
+  @media (max-width: 1023.98px) {
+    width: 32px;
+    height: 32px;
+  }
+}
+
 .pagerNext {
   align-self: flex-end;
+
+  // When the label wraps to two lines on mobile, the link shrinks to the
+  // row's full width; right-align the text so it stays flush against the arrow.
+  @media (max-width: 1023.98px) {
+    text-align: right;
+  }
 
   @include respond-to(md) {
     align-self: auto;

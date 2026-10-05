@@ -6,6 +6,25 @@
   aspect-ratio: var(--fpo-aspect-ratio, auto);
 }
 
+// Only for insets that sit fully inside the frame (letterboxed, dead space around the
+// photo) — on mobile, shrink to the photo's own ratio and let it fill edge-to-edge
+// instead of showing the dimmed frame's empty bands. Insets that deliberately overflow
+// the frame for a zoomed-in crop don't get this class and keep the frame ratio always.
+.insetFitsFrame {
+  @media (max-width: 767.98px) {
+    aspect-ratio: var(--fpo-aspect-ratio-inset, var(--fpo-aspect-ratio, auto));
+  }
+
+  .imageBox {
+    @media (max-width: 767.98px) {
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
+}
+
 .fillContainer {
   height: 100%;
 }

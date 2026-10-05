@@ -8,7 +8,7 @@
   // !important to override the inline fluidSpace() style= the spaceTop prop sets.
   @media (max-width: 1023.98px) {
     padding-top: 200px !important;
-    padding-bottom: 200px;
+    padding-bottom: 0;
   }
 
   // Next section shares this one's background (same band wrapper as the CTA).
@@ -24,6 +24,10 @@
   flex-direction: column;
   align-items: center;
   gap: fluid-space(100px);
+
+  @media (max-width: 1023.98px) {
+    gap: 64px;
+  }
 }
 
 .heading {

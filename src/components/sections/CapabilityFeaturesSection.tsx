@@ -63,6 +63,7 @@ export function CapabilityFeaturesSection({ data, spaceTop = 200, spaceBottom = 
             inset={data.image.inset}
             overlay={false}
             sizes="(max-width: 992px) 100vw, 587px"
+            className={styles.mediaImage}
           />
         </div>
       </Container>

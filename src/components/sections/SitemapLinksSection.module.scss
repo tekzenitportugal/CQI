@@ -48,6 +48,10 @@
   font-weight: 500;
   line-height: 1.35;
   color: var(--color-antracite-400);
+
+  @media (max-width: 1023.98px) {
+    font-size: 17.5px;
+  }
 }
 
 .linkList {
@@ -64,6 +68,10 @@
   font-size: 17.5px;
   line-height: 1.3;
   color: var(--color-blue-200);
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
 }
 
 .footnote {

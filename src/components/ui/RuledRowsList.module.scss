@@ -34,6 +34,11 @@
     right: 0;
   }
 
+  @media (max-width: 1023.98px) {
+    gap: 10px;
+    padding-block: 26px;
+  }
+
   @include respond-to(lg) {
     flex-direction: row;
     align-items: flex-start;
@@ -50,6 +55,10 @@
   text-transform: uppercase;
   color: var(--color-antracite-400);
 
+  @media (max-width: 1023.98px) {
+    font-size: 17.5px;
+  }
+
   @include respond-to(lg) {
     width: 202px;
   }
@@ -64,4 +73,9 @@
   // Figma: 1.4 of 17.5px, rounded to whole 24px lines
   line-height: 24px;
   color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+    line-height: 1.4;
+  }
 }
