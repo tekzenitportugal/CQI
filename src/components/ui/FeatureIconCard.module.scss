@@ -10,6 +10,8 @@
     linear-gradient(48.61deg, rgba(63, 68, 83, 0.2) 0.25%, rgba(178, 199, 255, 0.2) 62.06%),
     var(--color-card-dark);
   color: var(--color-white);
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 // Figma "CARDS" (Icon + Content, Mode=Light): light-blue gradient, blue text throughout.

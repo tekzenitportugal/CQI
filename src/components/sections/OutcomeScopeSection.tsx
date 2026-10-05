@@ -26,10 +26,13 @@ export function OutcomeScopeSection({ data }: OutcomeScopeSectionProps) {
               alt=""
               width={773}
               height={400}
-              overlay
-              label
-              objectPosition="center top"
+              // Figma 6225:34119: portrait is 289.84% of the frame and shifted up
+              // 72.42%, so the frame shows the middle of the photo.
+              inset={{ top: -289.68, left: 0, width: 773, height: 1159.36 }}
+              overlay={false}
+              objectPosition="left top"
               fillContainer
+              sizes="(max-width: 1023.98px) 100vw, 773px"
             />
           </div>
           <div className={styles.content}>

@@ -357,8 +357,8 @@ export const integrationsData = {
     ],
   } satisfies IntegrationsConnectionData,
 
-  // Figma "CARDS EXPAND - INTEGRATIONS" (node 6079:26945): each of the 4 property variants
-  // exposes one band open at a time, so all 4 bodies are readable across the variant set.
+  // Figma "CARDS EXPAND - INTEGRATIONS" (6225:35266). Backgrounds are off-white,
+  // L50, L75, L100 — a step lighter than the PoC bands.
   waysBands: [
     {
       title: 'Direction',

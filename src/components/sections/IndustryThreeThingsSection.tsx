@@ -7,6 +7,9 @@ type IndustryThreeThingsSectionProps = {
   data: IndustryThreeThingsData;
   /** 'grouped' when the next section shares this one's background (no mobile bottom gap). */
   variant?: 'default' | 'grouped';
+  /** Optional label rendered above the title, inside this section. */
+  eyebrow?: string;
+  headingAlign?: 'left' | 'center';
 };
 
 function StepMarker({ step }: { step: number }) {
@@ -29,17 +32,23 @@ function StepMarker({ step }: { step: number }) {
   );
 }
 
-export function IndustryThreeThingsSection({ data, variant = 'default' }: IndustryThreeThingsSectionProps) {
+export function IndustryThreeThingsSection({
+  data,
+  variant = 'default',
+  eyebrow,
+  headingAlign = 'left',
+}: IndustryThreeThingsSectionProps) {
   return (
     <section
       className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''}`.trim()}
     >
       <Container>
         <SectionHeading
+          eyebrow={eyebrow}
           title={data.title}
           titleHighlight={data.titleHighlight}
-          align="left"
-          className={styles.heading}
+          align={headingAlign}
+          className={`${styles.heading} ${headingAlign === 'center' ? styles.headingCenter : ''}`.trim()}
         />
         <div className={styles.timeline}>
           <div className={styles.lineTrack} aria-hidden="true">

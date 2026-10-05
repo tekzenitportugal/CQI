@@ -18,11 +18,15 @@ export function RiskBandMigrationSection({ data }: RiskBandMigrationSectionProps
               src={data.image}
               alt=""
               width={587}
-              height={550}
-              inset={{ top: 27, left: 10, width: 567, height: 496 }}
-              overlay
-              label
-              fillContainer
+              height={341}
+              // Figma 6225:38959: image is 100.18% × 119.46%, anchored to the top,
+              // so the frame clips the bottom of the dashboard screenshot.
+              inset={{ top: 0, left: -0.53, width: 588.06, height: 407.36 }}
+              overlay={false}
+              objectPosition="left top"
+              borderRadius={8}
+              className={styles.mediaFrame}
+              sizes="(max-width: 1023.98px) 100vw, 587px"
             />
           </div>
           <div className={styles.copy}>

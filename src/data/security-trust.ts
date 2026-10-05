@@ -146,6 +146,8 @@ export const securityTrustData = {
     image: '/images/product/security-trust/cta.png',
     imageWidth: 579,
     imageHeight: 289,
+    // Figma node 6225:38813: raw 2731×4096 portrait, 300.48% of the frame tall, top −75%.
+    imagePosition: 'center 37.41%',
     buttons: [
       { label: 'Talk to our team', href: '/contact', variant: 'primary' as const },
       { label: 'CQI implementation', href: '/products/implementation', variant: 'secondary' as const },

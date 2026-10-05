@@ -3,7 +3,6 @@
 import { useId, useState } from 'react';
 import type { ExpandableBandItem } from '@/types/content';
 import { Button } from '@/components/ui/Button';
-import { RuledRowsList } from '@/components/ui/RuledRowsList';
 import styles from './ExpandableBandList.module.scss';
 
 type ExpandableBandListProps = {
@@ -26,6 +25,7 @@ export function ExpandableBandList({ items, colors, defaultOpen = 0, className }
     <div className={[styles.list, className].filter(Boolean).join(' ')}>
       {items.map((item, index) => {
         const isOpen = index === openIndex;
+        const hasBody = Boolean(item.rows?.length || item.description);
         const background = colors[index % colors.length];
         const panelId = `${baseId}-panel-${index}`;
 
@@ -33,7 +33,7 @@ export function ExpandableBandList({ items, colors, defaultOpen = 0, className }
           <div key={item.title} className={styles.item} style={{ background }}>
             <button
               type="button"
-              className={styles.header}
+              className={[styles.header, isOpen && hasBody ? styles.headerOpen : ''].filter(Boolean).join(' ')}
               aria-expanded={isOpen}
               aria-controls={panelId}
               onClick={() => setOpenIndex(index)}
@@ -45,9 +45,22 @@ export function ExpandableBandList({ items, colors, defaultOpen = 0, className }
               className={[styles.collapse, isOpen ? styles.open : ''].filter(Boolean).join(' ')}
             >
               <div className={styles.collapseInner}>
-                <div className={styles.panel}>
+                <div
+                  className={[
+                    styles.panel,
+                    hasBody ? (index === 0 ? styles.panelGap60 : styles.panelGap90) : '',
+                  ]
+                    .filter(Boolean)
+                    .join(' ')}
+                >
                   {item.rows ? (
-                    <RuledRowsList rows={item.rows} className={styles.rows} />
+                    <ul className={styles.rows}>
+                      {item.rows.map((row, rowIndex) => (
+                        <li key={`${rowIndex}-${row.description}`} className={styles.row}>
+                          {row.description}
+                        </li>
+                      ))}
+                    </ul>
                   ) : (
                     item.description && (
                       <div className={styles.descriptionWrap}>

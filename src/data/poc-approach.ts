@@ -94,6 +94,8 @@ export const pocApproachData = {
   } satisfies PocPhasesData,
 
   requirements: {
+    // Figma "CARDS EXPAND - POC APPROACH" (6225:36251). The first band's open
+    // body sits 60px under the title; the other three use 90px.
     items: [
       {
         title: 'What we need from you',
@@ -104,17 +106,25 @@ export const pocApproachData = {
           },
           { description: 'Interaction metadata: channel, agent, customer reference, outcome' },
           { description: 'Aggregated KPI feeds for the journeys in scope, where they exist' },
-          // Figma repeats this row verbatim; kept as-is rather than "fixed".
           { description: 'Aggregated KPI feeds for the journeys in scope, where they exist' },
         ],
       },
       {
         title: 'What you get back',
         rows: [
-          { description: 'A friction map of your own interactions, classified by reason and subreason' },
-          { description: 'Promise-breach and repeat-contact rates, with the root causes behind them' },
+          {
+            description:
+              'A friction map of your own interactions, classified by reason and subreason',
+          },
+          {
+            description:
+              'Promise-breach and repeat-contact rates, with the root causes behind them',
+          },
           { description: 'Live dashboards you can interrogate, not a slide deck of findings' },
-          { description: 'A ranked list of what to fix first, sized by volume, effort and revenue at risk' },
+          {
+            description:
+              'A ranked list of what to fix first, sized by volume, effort and revenue at risk',
+          },
         ],
       },
       {

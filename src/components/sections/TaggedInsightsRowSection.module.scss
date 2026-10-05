@@ -28,7 +28,8 @@
 .lineTrack {
   position: absolute;
   z-index: 0;
-  top: 0;
+  // Figma Group 960: Line 17 sits 14px below the row top, through the pill tags.
+  top: 14px;
   left: calc(-1 * var(--container-padding));
   right: calc(-1 * var(--container-padding));
   height: 1px;
@@ -51,12 +52,12 @@
   gap: 48px;
   list-style: none;
   margin: 0;
-  padding: 32px 0 0;
+  padding: 0;
 
   @include respond-to(lg) {
     grid-template-columns: repeat(3, minmax(0, 344px));
     gap: 151px;
-    padding: 32px 50px 0;
+    padding: 0 50px;
     justify-content: start;
   }
 }

@@ -28,12 +28,14 @@
 }
 
 .media {
-  position: relative;
   width: 100%;
   max-width: 587px;
-  aspect-ratio: 587 / 550;
-  border-radius: 12px;
-  overflow: hidden;
+}
+
+// Figma 6225:38959: 0.5px border, 8px radius, 1px 1px 16px shadow.
+.mediaFrame {
+  border: 0.5px solid var(--color-antracite-75);
+  box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.15);
 }
 
 .copy {

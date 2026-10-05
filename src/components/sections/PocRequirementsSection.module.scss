@@ -1,21 +1,14 @@
 @use '@/styles/mixins' as *;
 
-// 200px after the phases section; the FAQ section below owns its own 200px top.
+// Desktop gap after the phases block. The band list matches integrations:
+// full-bleed, and it owns the 200px mobile rhythm itself.
 .section {
   @include section-space(200px, 0);
 
-  // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
-}
-
-// Full 1536px page width, no side gutter — each band supplies its own 50px padding.
-.wrap {
-  width: 100%;
-  max-width: var(--container-max);
-  margin-inline: auto;
 }
 
 .footnote {

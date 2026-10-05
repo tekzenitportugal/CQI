@@ -23,6 +23,11 @@
   margin-bottom: fluid-space(100px);
 }
 
+.headingCenter {
+  --section-heading-title-max-width: none;
+  width: 100%;
+}
+
 .timeline {
   position: relative;
 }
