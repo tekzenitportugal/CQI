@@ -36,6 +36,7 @@ export const consumerElectronicsSolutionData = {
   friction: mapFriction({
     title: 'In consumer electronics, friction rarely starts with a return.',
     titleHighlight: ['rarely starts with a return.'],
+    titleMaxWidth: 600,
     description:
       'It begins with product inconsistencies, firmware failures, delivery delays, warranty gaps and disconnected support channels. These breakdowns accumulate silently, long before reviews turn negative or customers abandon the brand. By the time it surfaces publicly, loyalty has already shifted.',
     tagGroups: [
@@ -58,7 +59,10 @@ export const consumerElectronicsSolutionData = {
         tags: ['Service network optimisation', 'Proactive maintenance'],
       },
     ],
-  }),
+    imageAspect: '587 / 341',
+    imageOverlay: 0,
+    imageFramed: true,
+  }, '/images/solutions/consumer-electronics/dashboard.png'),
   threeThings: mapThreeThings({
     title: 'Three things the verification layer adds in this sector.',
     titleHighlight: 'the verification layer adds',
@@ -94,7 +98,7 @@ export const consumerElectronicsSolutionData = {
         outcome:
           'Reduces costly emergency repair visits, extends product lifespan and optimises field technician utilisation.',
         image: '/images/solutions/consumer-electronics/scenario-1.jpg',
-        imagePosition: '35% center',
+        imagePosition: 'center bottom',
       },
       {
         title: 'Linking quality to manufacturing',
@@ -133,5 +137,6 @@ export const consumerElectronicsSolutionData = {
     'consumer eletronics friction',
     '/images/solutions/consumer-electronics/cta-photo.jpg',
     'center',
+    { top: -49, left: 0, width: 579, height: 386 },
   ),
 } satisfies IndustrySolutionData;

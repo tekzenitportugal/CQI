@@ -7,7 +7,7 @@ import type {
   WhereCqiFitsData,
 } from '@/types/content';
 
-export const defaultFrictionImage = '/images/solutions/telecom/dashboard.png';
+export const defaultFrictionImage = '/images/solutions/shared/cqi-sense-dashboard.png';
 
 export function mapTagGroups(
   groups: { label: string; tags: string[] }[],

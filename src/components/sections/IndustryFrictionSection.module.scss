@@ -15,7 +15,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: fluid-space(64px);
-  align-items: start;
+  align-items: center;
 
   @include respond-to(lg) {
     grid-template-columns: minmax(0, 708px) minmax(0, 587px);

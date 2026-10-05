@@ -59,7 +59,10 @@ export const utilitiesEnergySolutionData = {
         tags: ['Contact centre optimisation', 'Predictive recontact & churn'],
       },
     ],
-  }),
+    imageAspect: '587 / 341',
+    imageOverlay: 0,
+    imageFramed: true,
+  }, '/images/solutions/utilities-energy/prevent-cx-frictions.png'),
   threeThings: mapThreeThings({
     title: 'Three things the verification layer adds in this sector.',
     titleHighlight: 'the verification layer adds',
@@ -95,7 +98,7 @@ export const utilitiesEnergySolutionData = {
         outcome:
           'Prevents repeat calls, avoids regulatory complaints and protects revenue collection.',
         image: '/images/solutions/utilities-energy/scenario-1.jpg',
-        imagePosition: 'center',
+        imagePosition: 'center bottom',
         imageOverlay: 0.5,
         imageBlend: 'color',
       },
@@ -134,5 +137,6 @@ export const utilitiesEnergySolutionData = {
     'utilities & energy friction',
     '/images/solutions/utilities-energy/cta-photo.jpg',
     'center',
+    { top: -142, left: 0, width: 579, height: 772 },
   ),
 } satisfies IndustrySolutionData;

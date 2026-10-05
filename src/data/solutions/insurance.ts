@@ -58,7 +58,10 @@ export const insuranceSolutionData = {
         tags: ['Claims process optimisation', 'Predictive recontact & churn'],
       },
     ],
-  }),
+    imageAspect: '587 / 341',
+    imageOverlay: 0,
+    imageFramed: true,
+  }, '/images/solutions/insurance/dashboard.png'),
   threeThings: mapThreeThings({
     title: 'Three things the verification layer adds in this sector.',
     titleHighlight: 'the verification layer adds',
@@ -94,7 +97,7 @@ export const insuranceSolutionData = {
         outcome:
           'Prevents revenue leakage, protects underwriting discipline and ensures pricing compliance.',
         image: '/images/solutions/insurance/scenario-1.jpg',
-        imagePosition: 'center',
+        imagePosition: 'center 43.63%',
         imageOverlay: 0.5,
         imageBlend: 'color',
       },
@@ -132,6 +135,6 @@ export const insuranceSolutionData = {
     'insurance friction',
     'insurance friction',
     '/images/solutions/insurance/cta-photo.jpg',
-    'center',
+    'center 64.51%',
   ),
 } satisfies IndustrySolutionData;

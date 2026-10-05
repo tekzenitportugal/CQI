@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { IndustryFrictionData } from '@/types/content';
 import { Container } from '@/components/ui/Container';
 import { FpoImage } from '@/components/ui/FpoImage';
@@ -21,6 +22,13 @@ export function IndustryFrictionSection({ data }: IndustryFrictionSectionProps) 
               description={data.description}
               align="left"
               className={styles.heading}
+              style={
+                data.titleMaxWidth
+                  ? ({
+                      '--section-heading-title-max-width': `${data.titleMaxWidth}px`,
+                    } as CSSProperties)
+                  : undefined
+              }
             />
             <div className={styles.tagGroups}>
               {data.tagGroups.map((group) => (

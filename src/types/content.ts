@@ -174,6 +174,8 @@ export type IndustryTagGroup = {
 export type IndustryFrictionData = {
   title: string;
   titleHighlight?: string[];
+  /** Per-page title column override (Figma: most sectors use the shared 691px default). */
+  titleMaxWidth?: number;
   description: string;
   tagGroups: IndustryTagGroup[];
   image: string;

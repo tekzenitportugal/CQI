@@ -21,7 +21,7 @@ export const bankingSolutionData = {
     titleHighlight: ['was promised', 'was executed'],
     eyebrow: 'banking',
     description:
-      'Across bots, agents, and core systems, CQI closes the gap before the customer feels it.\n\nBanks can prove the transaction. Not the promise.',
+      'Across bots, agents, and core systems, and closes the gap before the customer feels it.\n\nBanks can prove the transaction. Not the promise.',
     titleMaxWidth: 586,
     descriptionMaxWidth: 586,
     copyMaxWidth: 587,
@@ -36,6 +36,7 @@ export const bankingSolutionData = {
   friction: mapFriction({
     title: 'Friction rarely begins in the branch or the app.',
     titleHighlight: ['rarely', 'begins in the branch'],
+    titleMaxWidth: 430,
     description:
       'It originates in underwriting inconsistencies, delayed approvals, broken handoffs and unresolved service commitments. These operational gaps accumulate quietly, long before customers close accounts or escalate publicly. By the time churn is measured, the relationship has already deteriorated.',
     tagGroups: [
@@ -57,6 +58,9 @@ export const bankingSolutionData = {
         tags: ['Contact centre optimisation', 'Predictive recontact & churn'],
       },
     ],
+    imageAspect: '587 / 341',
+    imageOverlay: 0,
+    imageFramed: true,
   }),
   threeThings: mapThreeThings({
     title: 'Three things the verification layer adds in this sector.',
@@ -129,6 +133,6 @@ export const bankingSolutionData = {
     'banking friction',
     'banking friction',
     '/images/solutions/banking/cta-photo.jpg',
-    'center',
+    'center 67.75%',
   ),
 } satisfies IndustrySolutionData;
