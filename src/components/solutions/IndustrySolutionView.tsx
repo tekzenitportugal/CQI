@@ -16,7 +16,14 @@ type IndustrySolutionViewProps = {
 export function IndustrySolutionView({ data }: IndustrySolutionViewProps) {
   return (
     <>
-      {data.heroImage ? (
+      {data.heroMockup && data.heroImage ? (
+        <GradientHero
+          data={data.hero}
+          variant="inset"
+          image={data.heroImage}
+          imageAspectRatio={data.heroImageAspectRatio}
+        />
+      ) : data.heroImage ? (
         <PageHeroBanner data={{ ...data.hero, image: data.heroImage, mobileImage: data.heroImageMobile }} />
       ) : (
         <GradientHero data={data.hero} variant="inset" />
@@ -26,7 +33,7 @@ export function IndustrySolutionView({ data }: IndustrySolutionViewProps) {
         <IndustryThreeThingsSection data={data.threeThings} variant="grouped" />
         <IndustryScenariosSection data={data.scenarios} />
       </div>
-      <div className="solutions-band">
+      <div>
         {data.researchMetrics ? (
           <IndustryResearchMetricsSection data={data.researchMetrics} variant="solutions" />
         ) : (

@@ -23,6 +23,9 @@ export const telecomSolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
+  heroImage: '/images/solutions/telecom/hero.png',
+  heroImageAspectRatio: '2430 / 2544',
+  heroMockup: true,
 
   friction: {
     title:
@@ -30,7 +33,10 @@ export const telecomSolutionData = {
     titleHighlight: ['rarely', 'begins in the contact centre'],
     description:
       'It starts with provisioning delays, SLA gaps, roaming inconsistencies, billing discrepancies and fragmented field operations. These issues compound silently across systems and touchpoints, long before NPS drops or customers escalate. By the time it becomes visible, loyalty has already eroded.',
-    image: '/images/solutions/telecom/dashboard.png',
+    image: '/images/solutions/telecom/prevent-cx-frictions.png',
+    imageAspect: '587 / 341',
+    imageOverlay: 0,
+    imageFramed: true,
     tagGroups: [
       {
         label: 'What stays invisible',
@@ -92,6 +98,7 @@ export const telecomSolutionData = {
           "A customer experiences intermittent internet drops but standard agent troubleshooting reveals no issues. CQI correlates the customer's interaction directly with backend network events, revealing a localised infrastructure fault.",
         outcome:
           'Eliminates repeat troubleshooting calls, increases first contact resolution and prevents technical churn.',
+        image: '/images/solutions/telecom/scenario-1.png',
       },
       {
         title: 'Correcting billing errors',
@@ -124,5 +131,10 @@ export const telecomSolutionData = {
   },
 
   plugIn: industryPlugIn,
-  cta: industryCtaBanner('telecom friction', 'telecom friction'),
+  cta: industryCtaBanner('telecom friction', 'telecom friction', '/images/solutions/telecom/cta-tower.png', 'center', {
+    top: -92,
+    left: 0,
+    width: 579,
+    height: 471,
+  }),
 } satisfies IndustrySolutionData;

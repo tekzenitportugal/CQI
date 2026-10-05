@@ -5,7 +5,7 @@
   @include solutions.solutions-outcome-space;
 
   &.solutions {
-    @include solutions.solutions-band-background;
+    background: transparent;
   }
 
   // Consistent 100px inter-section rhythm on mobile/tablet.

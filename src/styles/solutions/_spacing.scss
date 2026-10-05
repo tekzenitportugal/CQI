@@ -38,5 +38,6 @@
 }
 
 @mixin solutions-cta-space {
-  @include section-space(200px, 100px);
+  // All solution pages: the section above already has 292px of bottom padding.
+  @include section-space(0px, 100px);
 }

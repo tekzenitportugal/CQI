@@ -82,8 +82,9 @@ export const industryPlugIn = {
 export function industryCtaBanner(
   sectorLabel: string,
   titleHighlight: string,
-  image: string = '/images/solutions/telecom/cta-photo.png',
+  image: string = '/images/solutions/telecom/cta-tower.png',
   imagePosition: string = 'center top',
+  imageInset?: CtaBannerData['imageInset'],
 ): CtaBannerData {
   return {
     title: `See ${sectorLabel} on your own data`,
@@ -94,6 +95,7 @@ export function industryCtaBanner(
     imageWidth: 579,
     imageHeight: 289,
     imagePosition,
+    imageInset,
     buttons: [
       { label: 'Request a demo', href: '/request-a-demo', variant: 'primary' },
       { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },

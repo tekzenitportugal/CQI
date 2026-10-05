@@ -75,3 +75,11 @@
     justify-self: end;
   }
 }
+
+// Figma product screenshot: 587×341, 8px radius, hairline border, soft shadow. No dim.
+.mediaFramed {
+  border-radius: 8px;
+  background: #fff;
+  border: 0.5px solid #e1e1e1;
+  box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.15);
+}

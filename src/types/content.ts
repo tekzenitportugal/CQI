@@ -177,6 +177,13 @@ export type IndustryFrictionData = {
   description: string;
   tagGroups: IndustryTagGroup[];
   image: string;
+  /** Frame aspect ("w / h"). Figma industry screenshots are 587×341, not the square placeholder. */
+  imageAspect?: string;
+  /** Black dim over the screenshot. Omit to keep the shared 50% placeholder dim. */
+  imageOverlay?: number;
+  imagePosition?: string;
+  /** Bordered product screenshot (Figma: 8px radius, hairline border, soft shadow). */
+  imageFramed?: boolean;
 };
 
 export type IndustryThreeThingsItem = {
@@ -322,9 +329,13 @@ export type IndustrySolutionData = {
   metaTitle: string;
   metaDescription: string;
   hero: import('@/components/ui/HeroCopy').HeroCopyData;
-  /** Full-bleed hero photo (PageHeroBanner); omit to keep the plain gradient card (e.g. sectors without a shot yet). */
+  /** Hero art: a full-bleed photo (PageHeroBanner) unless `heroMockup` is set. Omit to keep the plain gradient card. */
   heroImage?: string;
   heroImageMobile?: string;
+  /** Natural aspect ratio ("w / h") of a mockup cutout, used to size it when stacked below the copy on mobile. */
+  heroImageAspectRatio?: string;
+  /** Right-anchored product cutout on the gradient hero (same treatment as the homepage), instead of a full-bleed photo. */
+  heroMockup?: boolean;
   friction: IndustryFrictionData;
   threeThings: IndustryThreeThingsData;
   scenarios: IndustryScenariosData;

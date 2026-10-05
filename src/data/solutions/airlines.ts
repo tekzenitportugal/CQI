@@ -28,6 +28,9 @@ export const airlinesSolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
+  heroImage: '/images/solutions/airlines/hero.png',
+  heroImageAspectRatio: '2433 / 2544',
+  heroMockup: true,
   friction: mapFriction({
     title: 'Airlines manage CX on the opinion of a small, late-responding minority.',
     titleHighlight: ['manage CX', 'late-responding minority.'],
@@ -61,6 +64,10 @@ export const airlinesSolutionData = {
         tags: ['Passenger lifecycle score', 'Service recovery orchestration'],
       },
     ],
+    imageAspect: '587 / 340',
+    imageOverlay: 0,
+    imagePosition: 'center top',
+    imageFramed: true,
   }, '/images/solutions/airlines/dashboard.png'),
   threeThings: mapThreeThings({
     title: 'Three things the verification layer adds in this sector.',

@@ -35,14 +35,18 @@ export function IndustryFrictionSection({ data }: IndustryFrictionSectionProps) 
               ))}
             </div>
           </div>
-          <div className={styles.media}>
+          <div
+            className={`${styles.media} ${data.imageFramed ? styles.mediaFramed : ''}`.trim()}
+            style={data.imageAspect ? { aspectRatio: data.imageAspect } : undefined}
+          >
             <FpoImage
               src={data.image}
               alt=""
-              width={495}
-              height={507}
-              overlay={0.5}
-              objectPosition="center"
+              width={587}
+              height={341}
+              overlay={data.imageOverlay ?? 0.5}
+              objectPosition={data.imagePosition ?? 'center'}
+              borderRadius={data.imageFramed ? 8 : undefined}
               fillContainer
             />
           </div>

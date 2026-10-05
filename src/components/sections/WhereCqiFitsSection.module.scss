@@ -5,14 +5,19 @@
   @include section-space(292px);
 
   &.solutions {
-    @include solutions.solutions-band-background;
+    background: transparent;
     @include solutions.solutions-plug-in-space;
   }
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
+  // Solution pages keep the 292px bottom padding that replaces the CTA's top padding.
   @media (max-width: 1023.98px) {
     padding-top: 200px;
     padding-bottom: 0;
+
+    &.solutions {
+      padding-bottom: fluid-space(292px);
+    }
   }
 }
 
