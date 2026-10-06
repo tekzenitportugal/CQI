@@ -46,6 +46,31 @@
   }
 }
 
+// Figma mobile (6225:42967): 12px SemiBold Noto eyebrow (B100), 28px Regular title, 10px gap, 20px card titles.
+@media (max-width: 1023.98px) {
+  .heading {
+    gap: 10px;
+
+    p:first-child {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 1.3;
+      text-transform: uppercase;
+      color: var(--color-blue-100);
+    }
+
+    :where(h2, h3, h4) {
+      font-weight: 400;
+      font-size: 28px;
+    }
+  }
+
+  .grid h3 {
+    font-size: 20px;
+  }
+}
+
 // Figma: 3 × 384.67px cards, 20px gaps, 1194px wide
 .grid {
   display: grid;

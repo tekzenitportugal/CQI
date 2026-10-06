@@ -7,16 +7,24 @@ type ResponsibilitiesSectionProps = {
   data: typeof implementationData.responsibilities;
 };
 
-const RACI_PREFIX = /^(CQI: [A-Z](?: · Client: [A-Z])?)(\s*—.*)?$/;
+const RACI_PREFIX = /^(CQI: ([A-Z]))(?:( · )(Client: ([A-Z])))?(\s*—.*)?$/;
 
 function RaciDescription({ description }: { description: string }) {
   const match = description.match(RACI_PREFIX);
   if (!match) return <>{description}</>;
 
-  const [, prefix, rest] = match;
+  const [, cqi, cqiRole, separator, client, clientRole, rest] = match;
   return (
     <>
-      <span className={styles.raciPrefix}>{prefix}</span>
+      <span className={styles.raciPrefix} data-r={cqiRole === 'R' ? '' : undefined}>
+        {cqi}
+      </span>
+      {separator && <span className={styles.raciPrefix}>{separator}</span>}
+      {client && (
+        <span className={styles.raciPrefix} data-r={clientRole === 'R' ? '' : undefined}>
+          {client}
+        </span>
+      )}
       {rest}
     </>
   );

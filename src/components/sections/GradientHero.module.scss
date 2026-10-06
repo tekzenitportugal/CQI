@@ -149,6 +149,10 @@
   min-height: var(--hero-min-height);
   padding-top: calc(var(--header-offset-top) + var(--header-height));
 
+  @media (max-width: 1023.98px) {
+    padding-top: var(--hero-mobile-pad-top, calc(var(--header-offset-top) + var(--header-height)));
+  }
+
   @include respond-to(lg) {
     min-height: 0;
   }

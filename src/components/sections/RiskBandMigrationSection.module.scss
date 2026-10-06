@@ -93,3 +93,24 @@
   line-height: 1.4;
   color: var(--color-antracite-200);
 }
+
+// Figma mobile (6225:43051): 120px between the dashboard image and the copy,
+// 28px/1.2 title, 20px/27px description.
+@media (max-width: 1023.98px) {
+  .layout {
+    gap: 120px;
+  }
+
+  .copyMain {
+    gap: 48px;
+  }
+
+  .intro {
+    gap: 10px;
+  }
+
+  .description {
+    font-size: 20px;
+    line-height: 27px;
+  }
+}

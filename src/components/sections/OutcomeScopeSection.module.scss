@@ -164,3 +164,78 @@
   color: var(--color-antracite-200);
   max-width: 466px;
 }
+
+// Figma mobile "Outcome Range (mobile)" (6225:43065): 8px-inset 220px photo, 20px side
+// padding, 48/40px metrics, 20px labels, 26px below the title, 64px above the card.
+@media (max-width: 1023.98px) {
+  // Figma: the next block's 200px top padding is the whole gap (same background).
+  .section {
+    padding-bottom: 0;
+  }
+
+  .header {
+    gap: 26px;
+    margin-bottom: 64px;
+  }
+
+  .card {
+    min-height: 0;
+    padding: 8px 8px 32px;
+    gap: 32px;
+    background: linear-gradient(85.58deg, #668fff -147.05%, #f5f5f5 100%);
+  }
+
+  .media {
+    height: 220px;
+    min-height: 220px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    // Figma crop: portrait at 244.06% of the frame height, shifted up 60.21%.
+    > div > div {
+      top: -60.21% !important;
+      height: 244.06% !important;
+    }
+  }
+
+  .content {
+    gap: 24px;
+    padding: 0 20px;
+    justify-content: flex-start;
+  }
+
+  .metricsBlock {
+    gap: 16px;
+  }
+
+  .eyebrow {
+    font-size: 14px;
+    line-height: normal;
+  }
+
+  .value {
+    height: auto;
+  }
+
+  .valueNumber {
+    font-size: 48px;
+  }
+
+  .valueSuffix {
+    font-size: 40px;
+  }
+
+  .label {
+    font-size: 20px;
+  }
+
+  .footnote {
+    max-width: none;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .labelHead {
+    display: block;
+  }
+}

@@ -11,6 +11,8 @@ export type TaggedInsightsRowProps = {
   description?: string;
   items: TaggedInsightItem[];
   className?: string;
+  /** Figma Implementation mobile: open 200px section, 64px header gap, no dashed rule. */
+  figmaMobile?: boolean;
 };
 
 /**
@@ -26,9 +28,10 @@ export function TaggedInsightsRow({
   description,
   items,
   className,
+  figmaMobile,
 }: TaggedInsightsRowProps) {
   return (
-    <section className={[styles.section, className].filter(Boolean).join(' ')}>
+    <section className={[styles.section, figmaMobile && styles.figmaMobile, className].filter(Boolean).join(' ')}>
       <Container>
         <div className={styles.header}>
           <div className={styles.heading}>

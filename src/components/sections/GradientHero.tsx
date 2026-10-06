@@ -19,7 +19,15 @@ type GradientHeroProps = {
 export function GradientHero({ data, variant = 'default', image, imageAspectRatio }: GradientHeroProps) {
   if (variant === 'inset') {
     return (
-      <section className={styles.insetBanner}>
+      <section
+        className={styles.insetBanner}
+        style={
+          {
+            ...(data.mobileMinHeight && { '--hero-min-height': `${data.mobileMinHeight}px` }),
+            ...(data.mobilePaddingTop && { '--hero-mobile-pad-top': `${data.mobilePaddingTop}px` }),
+          } as CSSProperties
+        }
+      >
         <div className={styles.heroBox} aria-hidden="true">
           {image && (
             <Image src={image} alt="" fill priority className={styles.heroBoxImage} sizes="100vw" />

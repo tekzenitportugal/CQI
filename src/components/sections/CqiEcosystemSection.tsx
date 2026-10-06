@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { implementationData } from '@/data/implementation';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
@@ -37,7 +38,21 @@ export function CqiEcosystemSection({ data }: CqiEcosystemSectionProps) {
 
             <ul className={styles.tags}>
               {data.tags.map((tag) => (
-                <li key={tag.label} className={styles.tagItem} style={{ top: tag.top, left: tag.left }}>
+                <li
+                  key={tag.label}
+                  className={styles.tagItem}
+                  style={
+                    {
+                      '--top': tag.top,
+                      '--left': tag.left,
+                      ...(tag.mobile && {
+                        '--m-top': tag.mobile.top,
+                        '--m-left': tag.mobile.left,
+                        ...(tag.mobile.gap && { '--m-gap': tag.mobile.gap }),
+                      }),
+                    } as CSSProperties
+                  }
+                >
                   <span className={styles.dot} aria-hidden="true" />
                   <TagPill label={tag.label} variant="signals" />
                 </li>

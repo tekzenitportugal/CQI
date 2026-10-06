@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type CSSProperties } from 'react';
+import { useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
 import type { implementationData } from '@/data/implementation';
 import { Container } from '@/components/ui/Container';
 import { TagPill } from '@/components/ui/TagPill';
@@ -18,6 +18,20 @@ type ReferenceArchitectureSectionProps = {
  */
 export function ReferenceArchitectureSection({ data }: ReferenceArchitectureSectionProps) {
   const [frontIndex, setFrontIndex] = useState(0);
+  const stackRef = useRef<HTMLDivElement>(null);
+  const frontRef = useRef<HTMLButtonElement>(null);
+
+  // Mobile: the front card is in an absolute deck, so grow the deck to fit a tall tier's copy
+  // instead of letting it spill over the footnote (desktop ignores --stack-height).
+  useLayoutEffect(() => {
+    const stack = stackRef.current;
+    const front = frontRef.current;
+    if (!stack || !front) return;
+    const sync = () => stack.style.setProperty('--stack-height', `${60 + front.scrollHeight}px`);
+    sync();
+    window.addEventListener('resize', sync);
+    return () => window.removeEventListener('resize', sync);
+  }, [frontIndex]);
 
   // Depth 0 = front. The chosen tier comes forward; the rest keep tier order among
   // themselves (tier 1 always nearest the front, tier 6 always farthest/topmost) so the
@@ -36,7 +50,7 @@ export function ReferenceArchitectureSection({ data }: ReferenceArchitectureSect
           <p className={styles.description}>{data.description}</p>
         </div>
 
-        <div className={styles.stack}>
+        <div ref={stackRef} className={styles.stack}>
           {data.tiers.map((tier, index) => {
             const depth = depthOf(index);
             const isFront = depth === 0;
@@ -44,6 +58,7 @@ export function ReferenceArchitectureSection({ data }: ReferenceArchitectureSect
             return (
               <button
                 key={tier.index}
+                ref={isFront ? frontRef : undefined}
                 type="button"
                 className={`${styles.tierCard} ${tier.text === 'light' ? styles.light : styles.dark} ${isFront ? styles.front : ''}`.trim()}
                 style={{ background: tier.background, '--depth': depth } as CSSProperties}

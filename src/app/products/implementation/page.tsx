@@ -24,6 +24,7 @@ export default function ImplementationPage() {
       <ReferenceArchitectureSection data={implementationData.referenceArchitecture} />
       <DeliveryStagesSection data={implementationData.delivery} />
       <TaggedInsightsRow
+        figmaMobile
         eyebrow={implementationData.timeToValue.eyebrow}
         title={implementationData.timeToValue.title}
         titleHighlight={implementationData.timeToValue.titleHighlight}

@@ -5,21 +5,32 @@
   @include section-space(200px, 0);
   overflow-x: clip;
 
-  // Consistent 100px inter-section rhythm on mobile/tablet.
+  // Figma mobile: 200px between sections.
   @media (max-width: 1023.98px) {
     padding-top: 200px;
-    padding-bottom: 200px;
+    padding-bottom: 0;
   }
 }
 
 .headingRow {
   margin-bottom: fluid-space(64px);
+
+  @media (max-width: 1023.98px) {
+    margin-bottom: 64px;
+  }
 }
 
 .heading {
   --section-heading-title-max-width: 947px;
   max-width: 947px;
   margin-inline: auto;
+
+  // Figma mobile: the highlighted phrase drops to its own line.
+  @media (max-width: 1023.98px) {
+    h2 :global(.text-highlight) {
+      display: block;
+    }
+  }
 }
 
 // Contained single-card pager: stays within the page's content column, no viewport bleed

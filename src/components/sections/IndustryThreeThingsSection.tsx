@@ -10,6 +10,8 @@ type IndustryThreeThingsSectionProps = {
   /** Optional label rendered above the title, inside this section. */
   eyebrow?: string;
   headingAlign?: 'left' | 'center';
+  /** Figma mobile variant without the connecting line: fixed-height steps, wider copy. */
+  plainMobile?: boolean;
 };
 
 function StepMarker({ step }: { step: number }) {
@@ -37,10 +39,11 @@ export function IndustryThreeThingsSection({
   variant = 'default',
   eyebrow,
   headingAlign = 'left',
+  plainMobile = false,
 }: IndustryThreeThingsSectionProps) {
   return (
     <section
-      className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''}`.trim()}
+      className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''} ${plainMobile ? styles.plainMobile : ''}`.trim()}
     >
       <Container>
         <SectionHeading

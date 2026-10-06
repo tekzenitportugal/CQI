@@ -20,7 +20,7 @@
   width: 100%;
 
   @media (max-width: 1023.98px) {
-    gap: 60px;
+    gap: var(--hero-mobile-text-gap, 60px);
   }
 }
 
@@ -44,6 +44,14 @@
   }
 }
 
+.titleBlockHighlight {
+  @media (max-width: 1023.98px) {
+    :global(.text-highlight) {
+      display: block;
+    }
+  }
+}
+
 .intro {
   display: flex;
   flex-direction: column;
@@ -52,7 +60,7 @@
 
   // Figma mobile: 20px between the eyebrow and the description.
   @media (max-width: 1023.98px) {
-    gap: 20px;
+    gap: var(--hero-mobile-intro-gap, 20px);
   }
 
   @include respond-to(lg) {

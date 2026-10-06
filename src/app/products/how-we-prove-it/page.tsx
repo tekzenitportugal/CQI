@@ -7,6 +7,7 @@ import { RiskBandMigrationSection } from '@/components/sections/RiskBandMigratio
 import { TaggedInsightsRowSection } from '@/components/sections/TaggedInsightsRowSection';
 import { TimeToValueSection } from '@/components/sections/TimeToValueSection';
 import { WhereRangesApplySection } from '@/components/sections/WhereRangesApplySection';
+import styles from './page.module.scss';
 
 export const metadata: Metadata = {
   title: 'How We Prove It — CQI Verified CX',
@@ -17,7 +18,9 @@ export const metadata: Metadata = {
 export default function HowWeProveItPage() {
   return (
     <>
-      <GradientHero data={howWeProveItData.hero} variant="inset" />
+      <div className={styles.hero}>
+        <GradientHero data={howWeProveItData.hero} variant="inset" />
+      </div>
       <TimeToValueSection
         eyebrow={howWeProveItData.timeToValueEyebrow}
         data={howWeProveItData.threeThings}
@@ -26,7 +29,7 @@ export default function HowWeProveItPage() {
       <OutcomeScopeSection data={howWeProveItData.outcomeScope} />
       <WhereRangesApplySection data={howWeProveItData.whereRangesApply} />
       <TaggedInsightsRowSection data={howWeProveItData.kpiMovement} />
-      <CtaBannerSection data={howWeProveItData.cta} />
+      <CtaBannerSection data={howWeProveItData.cta} variant="flushTop" />
     </>
   );
 }

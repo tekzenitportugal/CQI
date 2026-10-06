@@ -4,10 +4,11 @@
   align-items: stretch;
   width: 100%;
 
-  // Consistent 100px inter-section rhythm on mobile/tablet.
+  // Figma mobile: bands sit flush under the connection section (which owns 200px of bottom
+  // padding) and the FAQ below owns its own 200px top.
   @media (max-width: 1023.98px) {
-    padding-top: 200px;
-    padding-bottom: 200px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }
 
@@ -31,6 +32,12 @@
   line-height: normal;
   text-align: left;
   color: var(--color-antracite-400);
+
+  // Figma mobile: 40px padding all round, 28px title.
+  @media (max-width: 767.98px) {
+    padding: 40px 120px 40px 40px;
+    font-size: 28px;
+  }
 }
 
 // Open bands put the 60/90px title-to-body gap on the panel,
@@ -64,6 +71,10 @@
   max-width: var(--container-max);
   margin-inline: auto;
   padding: 0 var(--container-padding) 50px;
+
+  @media (max-width: 767.98px) {
+    padding: 0 40px 40px;
+  }
 }
 
 // Figma open card 1 uses 60px between the title and the ruled list; cards 2–4 use 90px.
@@ -73,6 +84,10 @@
 
 .panelGap90 {
   padding-top: 90px;
+
+  @media (max-width: 767.98px) {
+    padding-top: 60px;
+  }
 }
 
 .descriptionWrap {
@@ -82,6 +97,11 @@
   gap: 48px;
   margin-left: auto;
   max-width: 465px;
+
+  @media (max-width: 767.98px) {
+    max-width: none;
+    margin-left: 0;
+  }
 }
 
 .description {
@@ -92,6 +112,11 @@
   line-height: 31px;
   color: var(--color-antracite-300);
   text-align: left;
+
+  @media (max-width: 767.98px) {
+    font-size: 20px;
+    line-height: normal;
+  }
 }
 
 // Figma Line 71: 1px #3369FF, 4px dash / 4px gap, above the first row and below the last.

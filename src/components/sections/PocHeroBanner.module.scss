@@ -60,3 +60,25 @@
   gap: 16px;
   pointer-events: auto;
 }
+
+// Figma mobile (POC APPROACH): title at y216, 48px title → eyebrow, 10px eyebrow →
+// description, 60px description → buttons, 180px below the buttons.
+@media (max-width: 1023.98px) {
+  .content {
+    gap: 60px;
+    padding-top: 208px;
+    padding-bottom: 180px;
+  }
+
+  .copy {
+    gap: 0;
+
+    > div {
+      gap: 48px;
+
+      > div {
+        gap: 10px;
+      }
+    }
+  }
+}

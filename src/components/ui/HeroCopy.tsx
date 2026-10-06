@@ -15,6 +15,15 @@ export type HeroCopyData = {
   /** Figma hero column width (e.g. 708px on industry pages). */
   copyMaxWidth?: number;
   cta?: CtaLink;
+  /** Figma mobile overrides (px): title → intro gap and eyebrow → description gap. */
+  mobileTextGap?: number;
+  mobileIntroGap?: number;
+  /** Mobile only: the highlighted title phrase starts its own line. */
+  mobileHighlightBlock?: boolean;
+  /** Figma mobile hero box height (px) when it differs from the 864px default (inset variant). */
+  mobileMinHeight?: number;
+  /** Figma mobile top padding (px) above the vertically centred copy (inset variant, no image). */
+  mobilePaddingTop?: number;
 };
 
 type HeroCopyProps = HeroCopyData & {
@@ -31,18 +40,23 @@ export function HeroCopy({
   descriptionMaxWidth,
   copyMaxWidth,
   cta,
+  mobileTextGap,
+  mobileIntroGap,
+  mobileHighlightBlock,
   className,
 }: HeroCopyProps) {
   const style = {
     ...(titleMaxWidth ? { '--hero-title-width': `${titleMaxWidth}px` } : {}),
     ...(descriptionMaxWidth ? { '--hero-description-width': `${descriptionMaxWidth}px` } : {}),
     ...(copyMaxWidth ? { '--hero-copy-max-width': `${copyMaxWidth}px` } : {}),
+    ...(mobileTextGap ? { '--hero-mobile-text-gap': `${mobileTextGap}px` } : {}),
+    ...(mobileIntroGap ? { '--hero-mobile-intro-gap': `${mobileIntroGap}px` } : {}),
   } as CSSProperties;
 
   return (
     <div className={[styles.copy, className].filter(Boolean).join(' ')} style={style}>
       <div className={styles.text}>
-        <h1 className={styles.title}>{highlightText(title, titleHighlight)}</h1>
+        <h1 className={mobileHighlightBlock ? `${styles.title} ${styles.titleBlockHighlight}` : styles.title}>{highlightText(title, titleHighlight)}</h1>
         <div className={styles.intro}>
           <p className={styles.eyebrow}>{eyebrow}</p>
           <p className={styles.description}>{highlightText(description)}</p>

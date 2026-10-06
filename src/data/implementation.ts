@@ -11,6 +11,8 @@ export type EcosystemTag = {
   /** Percentage position of the tag's dot within the 525×525 circle. */
   top: string;
   left: string;
+  /** Figma mobile (374px circle) position and dot-to-tag gap, when it differs. */
+  mobile?: { top: string; left: string; gap?: string };
 };
 
 export type ImplementationTierTag = {
@@ -58,6 +60,11 @@ export const implementationData = {
     eyebrow: 'CQI implementation',
     description:
       'CQI is designed to work alongside the CX, CRM, contact-centre and operational platforms you already run — verifying signals across them and orchestrating action inside existing workflows.',
+    mobileTextGap: 48,
+    mobileIntroGap: 10,
+    mobileHighlightBlock: true,
+    mobileMinHeight: 880,
+    mobilePaddingTop: 56,
   } satisfies HeroCopyData,
 
   dataSources: {
@@ -87,13 +94,13 @@ export const implementationData = {
 
   ecosystem: {
     tags: [
-      { label: 'CDC & Bulk', top: '7.05%', left: '32.67%' },
-      { label: 'TM Forum Open API', top: '21.90%', left: '72.67%' },
-      { label: 'Open APIs', top: '30.86%', left: '30.76%' },
-      { label: 'CTI / WebSocket', top: '48.76%', left: '85.81%' },
-      { label: 'File transfer & SFTP', top: '59.24%', left: '16.29%' },
-      { label: 'Webhooks & Events', top: '71.43%', left: '62.76%' },
-      { label: 'Streaming', top: '94.10%', left: '50.38%' },
+      { label: 'CDC & Bulk', top: '7.05%', left: '32.67%', mobile: { top: '10.03%', left: '26.07%' } },
+      { label: 'TM Forum Open API', top: '21.90%', left: '72.67%', mobile: { top: '17.25%', left: '68.98%' } },
+      { label: 'Open APIs', top: '30.86%', left: '30.76%', mobile: { top: '36.23%', left: '27.27%' } },
+      { label: 'CTI / WebSocket', top: '48.76%', left: '85.81%', mobile: { top: '47.19%', left: '85.70%' } },
+      { label: 'File transfer & SFTP', top: '59.24%', left: '16.29%', mobile: { top: '60.56%', left: '16.98%' } },
+      { label: 'Webhooks & Events', top: '71.43%', left: '62.76%', mobile: { top: '73.13%', left: '59.76%' } },
+      { label: 'Streaming', top: '94.10%', left: '50.38%', mobile: { top: '94.25%', left: '50.27%', gap: '4px' } },
     ] satisfies EcosystemTag[],
     paragraph:
       'Outbound connectors close the loop into SMS, push, email, IVR, service management and network assurance, so a verified insight becomes an action in the system that owns it.',
@@ -257,7 +264,7 @@ export const implementationData = {
     eyebrow: 'Responsibilities',
     title: 'Who does what',
     description:
-      'A working split from live CQI engagements.\nR = responsible, C = contributes or consulted. A full RACI is agreed at contracting.',
+      'A working split from live CQI engagements.\nR = responsible, C = contributes or consulted.\nA full RACI is agreed at contracting.',
     rows: [
       {
         label: 'Platform provisioning & hosting',

@@ -104,6 +104,11 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   mobileImage?: string;
   imageWidth?: number;
   imageHeight?: number;
+  /** Below lg only: top padding (px) of the copy, measured from the banner's content edge. */
+  mobilePaddingTop?: number;
+  /** Below lg only: title→intro and eyebrow→description gaps (px) when Figma differs from the default 60/20. */
+  mobileTextGap?: number;
+  mobileIntroGap?: number;
 };
 
 export type IconFeatureCard = {

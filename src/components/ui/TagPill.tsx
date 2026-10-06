@@ -1,8 +1,9 @@
+import type { ReactNode } from 'react';
 import type { IndustryTagGroup } from '@/types/content';
 import styles from './TagPill.module.scss';
 
 type TagPillProps = {
-  label: string;
+  label: ReactNode;
   variant: IndustryTagGroup['variant'];
 };
 

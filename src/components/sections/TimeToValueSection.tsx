@@ -11,5 +11,5 @@ type TimeToValueSectionProps = {
  * sitting just above the title, inside IndustryThreeThingsSection.
  */
 export function TimeToValueSection({ eyebrow, data }: TimeToValueSectionProps) {
-  return <IndustryThreeThingsSection data={data} eyebrow={eyebrow} headingAlign="center" />;
+  return <IndustryThreeThingsSection data={data} eyebrow={eyebrow} headingAlign="center" plainMobile />;
 }

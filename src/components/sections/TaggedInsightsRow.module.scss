@@ -55,6 +55,54 @@
   position: relative;
 }
 
+// Figma Implementation mobile (6225:42840).
+.figmaMobile {
+  @media (max-width: 1023.98px) {
+    padding-bottom: 0;
+
+    .header {
+      gap: 26px;
+      margin-bottom: 64px;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+    }
+
+    // Break after the highlighted phrase: "How the KPI curve / typically moves".
+    .title :global(.text-highlight)::after {
+      content: '\A';
+      white-space: pre;
+    }
+
+    .description {
+      font-size: 20px;
+      line-height: normal;
+    }
+
+    .lineTrack {
+      display: none;
+    }
+
+    .grid {
+      padding-top: 0;
+    }
+
+    .item {
+      align-items: flex-start;
+      gap: 24px;
+    }
+
+    .itemTitle {
+      line-height: 1.35;
+    }
+
+    .itemDescription {
+      max-width: none;
+    }
+  }
+}
+
 .lineTrack {
   position: absolute;
   z-index: 0;

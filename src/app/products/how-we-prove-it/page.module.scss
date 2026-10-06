@@ -1,0 +1,16 @@
+// Figma mobile (6225:43034): hero band is 880px tall with 48px between the title and
+// the intro and 10px between the eyebrow and the description.
+@media (max-width: 1023.98px) {
+  .hero {
+    --hero-min-height: 880px;
+    --hero-mobile-text-gap: 48px;
+    --hero-mobile-intro-gap: 10px;
+  }
+}
+
+// Figma: title sits 301px from the top of the page (centred copy, nudged up 10px).
+@media (max-width: 1023.98px) {
+  .hero > section > div:nth-of-type(2) {
+    padding-bottom: 20px;
+  }
+}

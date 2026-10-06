@@ -192,3 +192,125 @@
     font-size: 15px;
   }
 }
+
+// Figma mobile (POC APPROACH, 414px): phases sit in a left column beside a vertical
+// five-step timeline. Everything below only applies under the lg breakpoint.
+.tagPart {
+  display: inline;
+}
+
+.tagSeparator {
+  display: inline;
+}
+
+@media (max-width: 1023.98px) {
+  .heading {
+    margin-bottom: 85px;
+  }
+
+  .body {
+    position: relative;
+  }
+
+  // Phase tags + one-liners, pinned beside the step that opens each phase.
+  .phasesRow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 125px;
+    margin: 0;
+  }
+
+  .phaseCol {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    gap: 12px;
+
+    &:nth-child(1) {
+      top: 0;
+    }
+
+    &:nth-child(2) {
+      top: 329px;
+    }
+
+    &:nth-child(3) {
+      top: 657px;
+    }
+
+    > span {
+      flex-direction: column;
+      padding: 5px 12px;
+      text-align: center;
+    }
+  }
+
+  .tagPart {
+    display: block;
+  }
+
+  .tagSeparator {
+    display: none;
+  }
+
+  .timeline {
+    padding-left: 140px;
+  }
+
+  .lineTrack {
+    top: 0;
+    bottom: 0;
+    left: 161px;
+    right: auto;
+    width: 1px;
+    height: auto;
+  }
+
+  .rail {
+    top: 0;
+    bottom: 0;
+    left: 159px;
+    right: auto;
+    width: 5px;
+    height: auto;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .segment {
+    width: 100%;
+    height: auto;
+  }
+
+  .grid {
+    gap: 48px;
+  }
+
+  .item {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    min-height: 148px;
+
+    &:nth-child(even) {
+      min-height: 167px;
+    }
+
+    &:nth-child(n + 3) {
+      padding-left: 8px;
+    }
+  }
+
+  .itemCopy {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .itemDescription {
+    line-height: 19px;
+  }
+}

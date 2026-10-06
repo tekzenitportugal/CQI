@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import Image from 'next/image';
 import type { PageHeroData } from '@/types/content';
 import { Container } from '@/components/ui/Container';
@@ -11,10 +12,18 @@ type PageHeroBannerProps = {
 };
 
 export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
+  const mobileVars = {
+    ...(data.mobilePaddingTop ? { '--hero-mobile-pad-top': `${data.mobilePaddingTop}px` } : {}),
+    ...(data.mobileTextGap ? { '--hero-mobile-text-gap': `${data.mobileTextGap}px` } : {}),
+    ...(data.mobileIntroGap ? { '--hero-mobile-intro-gap': `${data.mobileIntroGap}px` } : {}),
+  } as CSSProperties;
   const hasDedicatedMobile = Boolean(data.mobileImage);
 
   return (
-    <section className={styles.banner}>
+    <section
+      className={styles.banner}
+      style={mobileVars}
+    >
       <div className={styles.heroBox} aria-hidden="true">
         {hasDedicatedMobile ? (
           <>

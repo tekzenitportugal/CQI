@@ -8,6 +8,19 @@ type PocPhasesSectionProps = {
   data: PocPhasesData;
 };
 
+// "Preparation | ~1 week": one line on desktop, stacked on mobile (Figma mobile tag).
+function PhaseTagLabel({ tag }: { tag: string }) {
+  const [name, duration] = tag.split(' | ');
+  if (!duration) return <>{tag}</>;
+  return (
+    <>
+      <span className={styles.tagPart}>{name}</span>
+      <span className={styles.tagSeparator}>{' | '}</span>
+      <span className={styles.tagPart}>{duration}</span>
+    </>
+  );
+}
+
 function StepMarker({ step }: { step: number }) {
   return (
     <div className={styles.marker} aria-hidden="true">
@@ -46,10 +59,11 @@ export function PocPhasesSection({ data }: PocPhasesSectionProps) {
           className={styles.heading}
         />
 
+        <div className={styles.body}>
         <div className={styles.phasesRow}>
           {data.phases.map((phase) => (
             <div className={styles.phaseCol} key={phase.tag}>
-              <TagPill label={phase.tag} variant="signals" />
+              <TagPill label={<PhaseTagLabel tag={phase.tag} />} variant="signals" />
               <p className={styles.phaseDescription}>{phase.description}</p>
             </div>
           ))}
@@ -73,6 +87,7 @@ export function PocPhasesSection({ data }: PocPhasesSectionProps) {
               </li>
             ))}
           </ul>
+        </div>
         </div>
       </Container>
     </section>

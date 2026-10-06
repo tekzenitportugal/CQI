@@ -47,7 +47,11 @@ export function OutcomeScopeSection({ data }: OutcomeScopeSectionProps) {
                         <span className={styles.valueSuffix}>{metric.suffix}</span>
                       )}
                     </p>
-                    <p className={styles.label}>{metric.label}</p>
+                    <p className={styles.label}>
+                      {/* Figma mobile breaks the label after its first word. */}
+                      <span className={styles.labelHead}>{metric.label.split(' ')[0]}</span>{' '}
+                      <span>{metric.label.split(' ').slice(1).join(' ')}</span>
+                    </p>
                   </article>
                 ))}
               </div>

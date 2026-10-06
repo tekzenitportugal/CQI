@@ -24,6 +24,7 @@ export function PocHeroBanner({ data }: PocHeroBannerProps) {
       <Container className={styles.contentWrap}>
         <div className={styles.content}>
           <HeroCopy
+            className={styles.copy}
             title={data.title}
             titleHighlight={data.titleHighlight}
             eyebrow={data.eyebrow}

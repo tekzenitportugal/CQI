@@ -9,7 +9,8 @@
   // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {
     padding-top: 200px;
-    padding-bottom: 200px;
+    // CtaBannerSection brings its own 200px top padding (Figma: 200px between list and CTA).
+    padding-bottom: 0;
   }
 }
 
@@ -17,6 +18,10 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  @media (max-width: 1023.98px) {
+    gap: 64px;
+  }
 
   @include respond-to(lg) {
     flex-direction: row;
@@ -51,6 +56,11 @@
 .description {
   @include body-lg;
   color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 20px;
+    line-height: normal;
+  }
 }
 
 // Figma: the list is aligned to the "Auditability" sub-block, not the title, ~134px lower.
@@ -61,5 +71,17 @@
     width: 587px;
     flex-shrink: 0;
     margin-top: fluid-space(134px);
+  }
+}
+
+// Figma mobile: label-less rows, 16px above/below a 15px Regular line at 1.3.
+@media (max-width: 1023.98px) {
+  .list > li {
+    padding-block: 16px;
+  }
+
+  .list li > p {
+    font-weight: 400;
+    line-height: 1.3;
   }
 }

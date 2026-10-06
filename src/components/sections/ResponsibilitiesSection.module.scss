@@ -4,10 +4,10 @@
 .section {
   @include section-space(275px, 0);
 
-  // Consistent 100px inter-section rhythm on mobile/tablet.
+  // Figma mobile: 200px between sections.
   @media (max-width: 1023.98px) {
     padding-top: 200px;
-    padding-bottom: 200px;
+    padding-bottom: 0;
   }
 }
 
@@ -15,6 +15,18 @@
   max-width: 950px;
   margin-inline: auto;
   margin-bottom: 100px;
+
+  @media (max-width: 1023.98px) {
+    margin-bottom: 64px;
+
+    // Figma mobile: description is centred, 15px / 1.4, broken at the data's line breaks.
+    p:last-child {
+      margin-top: 12px;
+      font-size: 15px;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+  }
   --section-heading-title-max-width: 950px;
   --section-heading-description-max-width: 827px;
   --section-heading-description-weight: 500;
@@ -35,6 +47,11 @@
   flex-direction: column;
   gap: 12px;
   padding: 24px;
+
+  @media (max-width: 1023.98px) {
+    gap: 24px;
+  }
+
   border-radius: 20px;
   background: var(--color-antracite-50);
   border: 1px solid var(--color-antracite-75);
@@ -71,9 +88,21 @@
   font-weight: 400;
   line-height: 1.3;
   color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
 }
 
 .raciPrefix {
   font-weight: 500;
   color: var(--color-blue-75);
+}
+
+// Figma mobile: only the responsible (R) party is highlighted, not the whole "CQI: C · Client: R".
+@media (max-width: 1023.98px) {
+  .raciPrefix:not([data-r]) {
+    font-weight: inherit;
+    color: inherit;
+  }
 }
