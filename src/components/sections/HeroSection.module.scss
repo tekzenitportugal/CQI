@@ -45,6 +45,19 @@
   object-position: right bottom;
 }
 
+// 1024–1599px: keep the cutout in the right half so it never runs under the copy.
+@media (min-width: 1024px) and (max-width: 1599.98px) {
+  .graphic {
+    left: auto;
+    width: 50%;
+  }
+
+  .content,
+  .body {
+    max-width: 50%;
+  }
+}
+
 .mobileMedia {
   position: relative;
   width: calc(100% + 2 * var(--container-padding));

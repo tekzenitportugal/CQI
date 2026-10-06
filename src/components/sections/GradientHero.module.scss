@@ -26,6 +26,14 @@
   object-position: right bottom;
 }
 
+// 1024–1599px: keep the cutout in the right half so it never runs under the copy.
+@media (min-width: 1024px) and (max-width: 1599.98px) {
+  .graphic {
+    left: auto;
+    width: 50%;
+  }
+}
+
 // Figma mobile: the same cutout stacked below the copy, inside the card's
 // own flow — hidden once the desktop absolute cutout takes over.
 .mobileGraphicWrap {
@@ -96,6 +104,12 @@
 
   @include respond-to(lg) {
     display: block;
+  }
+
+  // 1024–1599px: confine the cutout to the right half so it never runs under the copy.
+  @media (min-width: 1024px) and (max-width: 1599.98px) {
+    left: auto !important;
+    width: 50% !important;
   }
 }
 

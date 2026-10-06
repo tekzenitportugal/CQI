@@ -90,10 +90,6 @@ export const megaMenus: MegaMenuConfig[] = [
     href: '/resources/articles',
     columns: [
       {
-        title: 'Library',
-        links: [{ label: 'Articles & Blogs', href: '/resources/articles' }],
-      },
-      {
         title: 'Reference',
         links: [
           { label: 'Glossary', href: '/resources/glossary' },
