@@ -14,7 +14,8 @@
     padding-top: 200px;
     padding-bottom: 100px;
 
-    &.solutions {
+    &.solutions,
+    &.flushTop {
       padding-top: 0;
     }
   }
@@ -47,6 +48,14 @@
     width: 42.02%;
     max-width: 579px;
     height: 289px;
+  }
+}
+
+// Mobile crop zoom set per page via data.imageMobileZoom (Figma mobile crops tighter).
+@media (max-width: 1023.98px) {
+  .media img {
+    transform: scale(var(--cta-mobile-zoom, 1));
+    transform-origin: 46% 45%;
   }
 }
 

@@ -52,9 +52,17 @@
 }
 
 .split .valueBox {
-  width: clamp(120px, 30vw, 214px);
+  width: clamp(140px, 36vw, 214px);
+  padding-inline: 12px;
+
+  @media (max-width: 767.98px) {
+    .value {
+      font-size: clamp(32px, 10vw, 48px);
+    }
+  }
 
   @include respond-to(md) {
+    padding-inline: 0;
     flex: 1 1 0;
     width: auto;
     min-width: 0;

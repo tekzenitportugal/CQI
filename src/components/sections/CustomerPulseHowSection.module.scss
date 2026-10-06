@@ -147,3 +147,34 @@
     flex: 0 1 587px;
   }
 }
+
+// Figma mobile (6225:43454): five 64px states on one row, 24px between features, 64px to the image.
+@media (max-width: 1023.98px) {
+  .top {
+    gap: 64px;
+    margin-bottom: 120px;
+  }
+
+  .sentimentRow {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 14px;
+    width: 100%;
+  }
+
+  .sentimentLabel {
+    white-space: nowrap;
+  }
+
+  .split {
+    gap: 64px;
+  }
+
+  .features {
+    gap: 32px;
+
+    dl {
+      gap: 24px;
+    }
+  }
+}

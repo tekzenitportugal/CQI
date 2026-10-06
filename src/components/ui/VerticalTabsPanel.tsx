@@ -7,6 +7,7 @@ import styles from './VerticalTabsPanel.module.scss';
 export type VerticalTabItem = {
   id: string;
   label: string;
+  mobileLabel?: string;
   image?: string;
   imageObjectPosition?: string;
   imageFlipX?: boolean;
@@ -21,6 +22,15 @@ type VerticalTabsPanelProps<T extends VerticalTabItem> = {
   imageAlt: string;
   className?: string;
 };
+
+function TabLabelLines({ id, text }: { id: string; text: string }) {
+  return text.split('\n').map((line, index, lines) => (
+    <Fragment key={`${id}-${line}`}>
+      {line}
+      {index < lines.length - 1 && <br />}
+    </Fragment>
+  ));
+}
 
 export function VerticalTabsPanel<T extends VerticalTabItem>({
   tabs,
@@ -48,12 +58,14 @@ export function VerticalTabsPanel<T extends VerticalTabItem>({
               onClick={() => onTabChange(tab)}
             >
               <span className={styles.tabLabel}>
-                {tab.label.split('\n').map((line, index, lines) => (
-                  <Fragment key={`${tab.id}-${line}`}>
-                    {line}
-                    {index < lines.length - 1 && <br />}
-                  </Fragment>
-                ))}
+                <span className={tab.mobileLabel ? styles.labelDesktop : undefined}>
+                  <TabLabelLines id={tab.id} text={tab.label} />
+                </span>
+                {tab.mobileLabel && (
+                  <span className={styles.labelMobile}>
+                    <TabLabelLines id={tab.id} text={tab.mobileLabel} />
+                  </span>
+                )}
               </span>
             </button>
           );

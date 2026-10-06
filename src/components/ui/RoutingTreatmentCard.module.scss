@@ -75,3 +75,16 @@
     font-size: 15px;
   }
 }
+
+// Figma mobile (CARDS - mobile): full-width, height follows the copy, 20px title.
+@media (max-width: 1023.98px) {
+  .card {
+    max-width: none;
+    height: auto;
+    background: linear-gradient(248.805deg, #ccdaff 1.429%, #f5f5f5 100%);
+  }
+
+  .title {
+    font-size: 20px;
+  }
+}

@@ -180,8 +180,8 @@ export const howWeDoItData = {
   },
 
   colourToAction: {
-    title: 'From colour to action,\ninside your contact centre',
-    titleHighlight: ['colour to action'],
+    title: 'From color to action,\ninside your contact centre',
+    titleHighlight: ['color to action'],
     description:
       'Routing moves beyond static criteria: treatment is driven by customer state,\nwith a built-in control group so every intervention is measurable.',
     routingCards: [
@@ -227,6 +227,7 @@ export const howWeDoItData = {
     imageWidth: 579,
     imageHeight: 289,
     imagePosition: '54.57% 31.76%',
+    imageMobileZoom: 1.4,
     buttons: [
       { label: 'Request a demo', href: '/request-a-demo', variant: 'primary' as const },
       {

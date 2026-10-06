@@ -14,7 +14,7 @@
 .inner {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 48px;
+  gap: 120px;
   align-items: center;
 
   @include respond-to(lg) {
@@ -69,8 +69,15 @@
 
 .sentimentRow {
   display: flex;
-  flex-wrap: wrap;
-  gap: 32px;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  gap: 12px;
+
+  @include respond-to(lg) {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 32px;
+  }
 }
 
 .sentimentItem {
@@ -78,6 +85,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  min-width: 0;
 }
 
 .sentimentRing {

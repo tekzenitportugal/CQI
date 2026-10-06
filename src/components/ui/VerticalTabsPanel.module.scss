@@ -131,3 +131,39 @@
     background: linear-gradient(75.226deg, #668fff -147.03%, #f4f5f9 89.677%);
   }
 }
+
+// Phones only: role tabs use their short labels as chips that wrap and fill each row.
+.labelMobile {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .variantRole {
+    .labelDesktop {
+      display: none;
+    }
+
+    .labelMobile {
+      display: inline;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tab {
+      flex: 1 1 auto;
+      align-items: center;
+      width: auto;
+      padding-inline: 11px;
+      white-space: nowrap;
+    }
+
+    .tabImage {
+      height: 304px;
+      min-height: 304px;
+    }
+  }
+}

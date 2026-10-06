@@ -124,3 +124,27 @@
     flex-shrink: 0;
   }
 }
+
+// Figma mobile (6225:43736): 28px title, 64px to the copy, 20px subheading, 80px to the tabs.
+@media (max-width: 1023.98px) {
+  .section {
+    padding-bottom: 175px;
+  }
+
+  .heading {
+    margin-bottom: 64px;
+
+    h2 {
+      font-size: 28px;
+    }
+  }
+
+  .layout {
+    gap: 80px;
+  }
+
+  .subheading {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}

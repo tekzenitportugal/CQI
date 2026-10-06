@@ -100,3 +100,19 @@
     @include dashed-rule;
   }
 }
+
+// Figma mobile: full-width routing cards, 64px between intro, cards and list.
+@media (max-width: 1023.98px) {
+  .intro {
+    margin-bottom: 64px;
+  }
+
+  .grid {
+    align-items: stretch;
+    gap: 64px;
+  }
+
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

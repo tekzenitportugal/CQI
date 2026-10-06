@@ -22,3 +22,22 @@
   line-height: 31px;
   color: var(--color-antracite-400);
 }
+
+// Figma mobile: no heading, just the arrows (right-aligned) 24px above the cards.
+@media (max-width: 1023.98px) {
+  .section {
+    padding-top: 64px;
+  }
+
+  .carousel {
+    --carousel-row-gap: 24px;
+
+    > div:first-child {
+      justify-content: flex-end;
+    }
+  }
+
+  .title {
+    display: none;
+  }
+}

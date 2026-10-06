@@ -43,6 +43,8 @@ export type IndustryTab = {
 export type TeamRoleTab = {
   id: string;
   label: string;
+  /** Shorter label (\n = line break) used on phones, where tabs become wrapping chips. */
+  mobileLabel?: string;
   subheading: string;
   subheadingHighlight?: string[];
   description: string;
@@ -90,6 +92,8 @@ export type CtaBannerData = {
   imagePosition?: string;
   /** For crops zoomed/offset beyond what object-position can express (Figma: image larger than its frame). */
   imageInset?: { top: number; left: number; width: number; height: number };
+  /** Mobile-only zoom of the photo inside its frame (Figma mobile crops tighter than desktop). */
+  imageMobileZoom?: number;
   buttons: CtaLink[];
 };
 

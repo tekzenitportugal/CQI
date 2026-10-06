@@ -24,7 +24,7 @@ export default function FixBeforeFailurePage() {
         <BrokenPromiseSection data={fixBeforeFailureData.brokenPromise} />
       </div>
       <ResearchStatsSection data={fixBeforeFailureData.research} />
-      <CtaBannerSection data={fixBeforeFailureData.cta} />
+      <CtaBannerSection data={fixBeforeFailureData.cta} variant="flushTop" />
     </>
   );
 }

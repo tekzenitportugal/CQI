@@ -20,7 +20,7 @@ export default function WhoIsItForPage() {
         <TeamNeedsSection data={whoIsItForData.teamNeeds} />
         <WhereCqiBelongsSection data={whoIsItForData.whereBelongs} />
       </div>
-      <CtaBannerSection data={whoIsItForData.cta} />
+      <CtaBannerSection data={whoIsItForData.cta} variant="flushTop" />
     </>
   );
 }

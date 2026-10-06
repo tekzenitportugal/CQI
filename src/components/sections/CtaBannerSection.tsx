@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { ButtonVariant, CtaBannerData } from '@/types/content';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
@@ -7,7 +8,7 @@ import styles from './CtaBannerSection.module.scss';
 
 type CtaBannerSectionProps = {
   data: CtaBannerData;
-  variant?: 'default' | 'solutions';
+  variant?: 'default' | 'solutions' | 'flushTop';
 };
 
 /** The banner sits on blue, so primary/secondary render as the light button pair. */
@@ -19,11 +20,14 @@ const BANNER_VARIANT: Partial<Record<ButtonVariant, ButtonVariant>> = {
 export function CtaBannerSection({ data, variant = 'default' }: CtaBannerSectionProps) {
   return (
     <section
-      className={`${styles.section} ${variant === 'solutions' ? styles.solutions : ''}`.trim()}
+      className={`${styles.section} ${variant === 'solutions' ? styles.solutions : ''} ${variant === 'flushTop' ? styles.flushTop : ''}`.trim()}
     >
       <Container>
         <div className={styles.banner}>
-          <div className={styles.media}>
+          <div
+            className={styles.media}
+            style={data.imageMobileZoom ? ({ '--cta-mobile-zoom': data.imageMobileZoom } as CSSProperties) : undefined}
+          >
             <FpoImage
               src={data.image}
               alt=""

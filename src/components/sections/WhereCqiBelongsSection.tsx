@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import type { whoIsItForData } from '@/data/who-is-it-for';
 import { Button } from '@/components/ui/Button';
@@ -22,7 +23,7 @@ export function WhereCqiBelongsSection({ data }: WhereCqiBelongsSectionProps) {
               <li
                 key={item.label}
                 className={styles.dot}
-                style={{ top: item.dot.top, left: item.dot.left }}
+                style={{ '--top': item.dot.top, '--left': item.dot.left } as CSSProperties}
               >
                 <span className={styles.dotCore} />
               </li>
@@ -45,7 +46,7 @@ export function WhereCqiBelongsSection({ data }: WhereCqiBelongsSectionProps) {
               <li
                 key={item.label}
                 className={styles.tagItem}
-                style={{ top: item.top, left: item.left }}
+                style={{ '--top': item.top, '--left': item.left } as CSSProperties}
               >
                 <Link
                   href={item.href}

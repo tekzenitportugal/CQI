@@ -21,6 +21,7 @@ export const whoIsItForData = {
       {
         id: 'cx-leadership',
         label: 'C-level & VP:\nCX, Customer Success, Operations, Digital, Strategy',
+        mobileLabel: 'C-level & VP',
         subheading: 'A defensible read on CX health, continuously',
         subheadingHighlight: ['defensible read'],
         description:
@@ -35,6 +36,7 @@ export const whoIsItForData = {
       {
         id: 'it-data',
         label: 'IT & Data leadership',
+        mobileLabel: 'IT & Data leadership',
         subheading: "Architecture that doesn't force\na replacement",
         subheadingHighlight: ["doesn't force\na replacement"],
         description:
@@ -49,6 +51,7 @@ export const whoIsItForData = {
       {
         id: 'contact-ops',
         label: 'Contact centre & operations management',
+        mobileLabel: 'Contact centre\n& operations management',
         subheading: 'Root cause, owner, and a clock',
         subheadingHighlight: ['Root cause', 'owner'],
         description:
@@ -59,6 +62,7 @@ export const whoIsItForData = {
       {
         id: 'quality-workforce',
         label: 'Quality & workforce teams',
+        mobileLabel: 'Quality &\nworkforce teams',
         subheading: 'Promise-keeping as a measurable skill',
         subheadingHighlight: ['measurable skill'],
         description:
@@ -70,6 +74,7 @@ export const whoIsItForData = {
       {
         id: 'front-line',
         label: 'Front line:\nagents, crew, field, branch',
+        mobileLabel: 'Front line: agents, crew,\nfield, branch',
         subheading: 'Context before the conversation starts',
         subheadingHighlight: ['before the conversation starts'],
         description:
@@ -80,6 +85,7 @@ export const whoIsItForData = {
       {
         id: 'partners',
         label: 'Partners & systems integrators',
+        mobileLabel: 'Partners &\nsystems integrators',
         subheading: 'A verified intelligence layer\nfor existing offerings',
         subheadingHighlight: ['verified intelligence layer'],
         description:

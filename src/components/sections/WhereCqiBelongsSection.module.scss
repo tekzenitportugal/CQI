@@ -84,6 +84,8 @@
 
 .dot {
   position: absolute;
+  top: var(--top);
+  left: var(--left);
   transform: translate(-50%, -50%);
   width: 3.6923%;
   aspect-ratio: 1;
@@ -113,6 +115,8 @@
 
 .tagItem {
   position: absolute;
+  top: var(--top);
+  left: var(--left);
   transform: translate(-50%, -50%);
   pointer-events: auto;
 }
@@ -143,4 +147,105 @@
 
 .tagMuted {
   color: var(--color-antracite-400);
+}
+
+// Figma mobile (Group 986): a 389×310 orbit with the title inside the circle, tags and dots
+// placed by hand around it, and the description + button 64px below. u = 100cqw / 389.
+@media (max-width: 1023.98px) {
+  .section {
+    padding-top: 225px;
+    padding-bottom: 200px;
+  }
+
+  .stage {
+    display: flex;
+    flex-direction: column;
+    width: min(389px, 100%);
+    aspect-ratio: auto;
+    container-type: inline-size;
+
+    // Reserves the orbit's own 389×310 area above the description.
+    &::before {
+      content: '';
+      display: block;
+      aspect-ratio: 389 / 310;
+    }
+  }
+
+  .orbitOuter {
+    inset: auto;
+    top: calc(42 * 100cqw / 389);
+    left: calc(76 * 100cqw / 389);
+    width: calc(225 * 100cqw / 389);
+    aspect-ratio: 1;
+  }
+
+  .orbitInner {
+    top: calc(154.5 * 100cqw / 389);
+    left: calc(188.5 * 100cqw / 389);
+    width: calc(182.14 * 100cqw / 389);
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .dots,
+  .tags {
+    inset: 0 0 auto 0;
+    aspect-ratio: 389 / 310;
+  }
+
+  .dot {
+    width: 4.04%;
+  }
+
+  .tag {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .dots > li:nth-child(1) { top: 14.71%; left: 48.33%; }
+  .dots > li:nth-child(2) { top: 27.1%; left: 26.48%; }
+  .dots > li:nth-child(3) { top: 50.9%; left: 19.54%; }
+  .dots > li:nth-child(4) { top: 74.39%; left: 26.48%; }
+  .dots > li:nth-child(5) { top: 27.1%; left: 70.69%; }
+  .dots > li:nth-child(6) { top: 50.84%; left: 77.38%; }
+  .dots > li:nth-child(7) { top: 74.39%; left: 70.69%; }
+  .dots > li:nth-child(8) { top: 87.1%; left: 48.33%; }
+
+  .tags > li:nth-child(1) { top: 4.35%; left: 48.33%; }
+  .tags > li:nth-child(2) { top: 25.97%; left: 11.18%; }
+  .tags > li:nth-child(3) { top: 49.84%; left: 8.1%; }
+  .tags > li:nth-child(4) { top: 73.55%; left: 11.31%; max-width: 22.1%; }
+  .tags > li:nth-child(5) { top: 25.97%; left: 83.34%; }
+  .tags > li:nth-child(6) { top: 49.84%; left: 90.74%; }
+  .tags > li:nth-child(7) { top: 73.71%; left: 85.35%; }
+  .tags > li:nth-child(8) { top: 95.65%; left: 48.46%; }
+
+  .core {
+    position: static;
+    transform: none;
+    gap: 26px;
+    width: 100%;
+    margin-top: 64px;
+  }
+
+  // The title sits in the circle; the description stays in the flow below.
+  .heading {
+    display: contents;
+
+    h2 {
+      position: absolute;
+      top: calc(120 * 100cqw / 389);
+      left: 50%;
+      width: calc(200 * 100cqw / 389);
+      transform: translateX(-50%);
+      font-size: 28px;
+      text-align: center;
+    }
+
+    p:last-of-type {
+      margin-top: 0;
+      text-align: center;
+    }
+  }
 }

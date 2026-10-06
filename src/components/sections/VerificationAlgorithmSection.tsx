@@ -36,6 +36,31 @@ export function VerificationAlgorithmSection({ data }: VerificationAlgorithmSect
               width={1442}
               height={1442}
             />
+            {/* Figma mobile arcs: separate ellipses, shown below lg only */}
+            <img
+              className={styles.ringOuterMobile}
+              src="/images/product/how-we-do-it/ellipse-outer-mobile.png"
+              alt=""
+              width={1649}
+              height={1649}
+              loading="lazy"
+            />
+            <img
+              className={styles.ringMiddleMobile}
+              src="/images/product/how-we-do-it/ellipse-middle-mobile.png"
+              alt=""
+              width={1287}
+              height={1287}
+              loading="lazy"
+            />
+            <img
+              className={styles.ringInnerMobile}
+              src="/images/product/how-we-do-it/ellipse-inner-mobile.png"
+              alt=""
+              width={925}
+              height={925}
+              loading="lazy"
+            />
             <img
               className={styles.orb}
               src="/images/product/how-we-do-it/ellipse-verification.svg"

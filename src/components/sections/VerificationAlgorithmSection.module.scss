@@ -92,6 +92,12 @@ $section-bottom: 2402; // root cause starts
   width: d(1442);
 }
 
+.ringOuterMobile,
+.ringMiddleMobile,
+.ringInnerMobile {
+  display: none;
+}
+
 .orb {
   left: d(900 - $content-left);
   top: calc(#{fluid-space(242px)} + #{d(1270 - $content-top)});
@@ -260,4 +266,104 @@ $section-bottom: 2402; // root cause starts
   line-height: 1.4;
   color: var(--color-blue-200);
   white-space: nowrap;
+}
+
+// Figma mobile (6225:43448): intro, then three 250px centred layers on concentric arcs,
+// then the verification orb as a full-width circle. Mobile/tablet only; desktop untouched.
+@media (max-width: 1023.98px) {
+  .section {
+    padding-bottom: 200px;
+  }
+
+  .inner {
+    gap: 140px;
+  }
+
+  .decoration {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    height: auto;
+    transform: translateX(-50%);
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  // Desktop rings are hidden; the Figma mobile arcs are centred on the page, tops measured
+  // from the intro title.
+  .ringOuter,
+  .ringMiddle,
+  .ringInner,
+  .orb {
+    display: none;
+  }
+
+  .ringOuterMobile,
+  .ringMiddleMobile,
+  .ringInnerMobile {
+    display: block;
+    left: 50%;
+    // Figma rotates these exports 90deg: the blue wash on their left edge ends up on top.
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .ringOuterMobile {
+    top: 342px;
+    width: 1649px;
+  }
+
+  .ringMiddleMobile {
+    top: 587px;
+    width: 1287px;
+  }
+
+  .ringInnerMobile {
+    top: 831px;
+    width: 925px;
+  }
+
+  .layers {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 73px;
+  }
+
+  .layer {
+    width: 100%;
+    max-width: 250px;
+    margin-inline: auto;
+  }
+
+  .layerBody {
+    gap: 24px;
+  }
+
+  .layerCopy {
+    gap: 10px;
+  }
+
+  .layerTitle {
+    font-size: 17.5px;
+    text-transform: uppercase;
+  }
+
+  .layerVerification {
+    max-width: none;
+    justify-content: center;
+    aspect-ratio: 1;
+    padding: 0 62px;
+    border-radius: 50%;
+
+    .layerBody {
+      max-width: 250px;
+    }
+
+    .layerTitle {
+      font-size: 20px;
+      text-transform: none;
+    }
+  }
 }

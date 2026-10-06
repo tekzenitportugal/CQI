@@ -67,3 +67,10 @@
     flex: 0 1 829px;
   }
 }
+
+// Figma mobile: 64px between the intro copy and the ruled list.
+@media (max-width: 1023.98px) {
+  .inner {
+    gap: 64px;
+  }
+}

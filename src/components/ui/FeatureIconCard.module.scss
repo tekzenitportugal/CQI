@@ -12,6 +12,12 @@
   color: var(--color-white);
   flex-wrap: wrap;
   justify-content: space-between;
+
+  @media (max-width: 1023.98px) {
+    gap: 32px;
+    min-height: 0;
+    justify-content: flex-start;
+  }
 }
 
 // Figma "CARDS" (Icon + Content, Mode=Light): light-blue gradient, blue text throughout.
@@ -29,6 +35,11 @@
   flex-shrink: 0;
   width: 72px;
   height: 72px;
+
+  @media (max-width: 1023.98px) {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 .copy {

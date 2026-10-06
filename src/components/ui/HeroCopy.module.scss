@@ -50,6 +50,11 @@
   gap: 10px;
   width: 100%;
 
+  // Figma mobile: 20px between the eyebrow and the description.
+  @media (max-width: 1023.98px) {
+    gap: 20px;
+  }
+
   @include respond-to(lg) {
     width: var(--hero-description-width, 100%);
   }

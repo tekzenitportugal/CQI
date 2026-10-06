@@ -4,9 +4,13 @@
 .inner {
   display: flex;
   flex-direction: column;
-  gap: fluid-space(86px);
+  gap: 64px;
   max-width: 1195px;
   margin-inline: auto;
+
+  @include respond-to(lg) {
+    gap: fluid-space(86px);
+  }
 }
 
 .header {
