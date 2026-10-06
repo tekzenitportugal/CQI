@@ -264,7 +264,7 @@ export const homepageData = {
     poc: {
       title: 'Start with a 2-week,\nnon-intrusive Proof\nof Concept.',
       description:
-        "No integration required. Your data, our platform and verified insight into friction you can't see today.",
+        "No integration required. Your data,\nour platform and verified insight into friction you can't see today.",
     },
     cta: { label: 'Talk to our team', href: '/contact' },
     address: 'Calle Juan de Mena, 10 - 1º- Izda\nC.P. 28014 Madrid, Spain',

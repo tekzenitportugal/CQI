@@ -15,11 +15,27 @@
 
 .carousel {
   --carousel-row-gap: 64px;
+
+  @media (max-width: 1023.98px) {
+    --carousel-row-gap: 32px;
+  }
 }
 
 .heading {
   --section-heading-title-max-width: 587px;
   --section-heading-description-max-width: 483px;
+
+  // Figma mobile: centred eyebrow + title, no description.
+  @media (max-width: 1023.98px) {
+    &.heading {
+      align-items: center;
+      text-align: center;
+    }
+
+    > h2 ~ p {
+      display: none;
+    }
+  }
 }
 
 .card {
@@ -33,6 +49,16 @@
   border: 1px solid var(--color-antracite-75);
   border-radius: 20px;
   background: linear-gradient(73.09deg, var(--color-blue-75) -147.05%, #f5f5f5 100%);
+
+  // Figma mobile: stacked card, 200px photo over the copy, full container width.
+  @media (max-width: 1023.98px) {
+    flex: 0 0 calc(100vw - 2 * var(--container-padding));
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    padding: 8px 8px 20px;
+    background: linear-gradient(81.64deg, var(--color-blue-75) -147.05%, #f5f5f5 100%);
+  }
 }
 
 .cardMedia {
@@ -41,6 +67,11 @@
   height: 100%;
   border-radius: 12px;
   overflow: hidden;
+
+  @media (max-width: 1023.98px) {
+    width: 100%;
+    height: 200px;
+  }
 }
 
 .cardCopy {
@@ -49,6 +80,10 @@
   gap: 16px;
   min-width: 0;
   color: var(--color-light-blue-500);
+
+  @media (max-width: 1023.98px) {
+    padding: 0 5px;
+  }
 }
 
 .cardTitle {
@@ -57,6 +92,10 @@
   font-size: 24px;
   font-weight: 500;
   line-height: 1.3;
+
+  @media (max-width: 1023.98px) {
+    font-size: 20px;
+  }
 }
 
 .cardDescription {

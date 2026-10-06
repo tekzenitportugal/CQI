@@ -52,6 +52,14 @@
   }
 }
 
+.titleInlineMobile {
+  @media (max-width: 1023.98px) {
+    br {
+      display: none;
+    }
+  }
+}
+
 .intro {
   display: flex;
   flex-direction: column;

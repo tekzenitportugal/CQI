@@ -22,6 +22,12 @@
   gap: 32px;
   margin-bottom: fluid-space(100px);
 
+  // Figma mobile: 48px title → button, 64px before the metrics.
+  @media (max-width: 1023.98px) {
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+
   @include respond-to(lg) {
     flex-direction: row;
     align-items: flex-end;
@@ -81,4 +87,9 @@
   font-weight: 500;
   line-height: 1.4;
   color: #888;
+
+  // Figma mobile: 32px below the cards (the body gap already adds 25px).
+  @media (max-width: 1023.98px) {
+    margin-top: 7px;
+  }
 }

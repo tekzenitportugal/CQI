@@ -12,6 +12,8 @@ type IndustryThreeThingsSectionProps = {
   headingAlign?: 'left' | 'center';
   /** Figma mobile variant without the connecting line: fixed-height steps, wider copy. */
   plainMobile?: boolean;
+  /** Figma mobile (Solutions · industry pages): no connecting line, 24px marker gap, copy wraps the full column. */
+  industryMobile?: boolean;
 };
 
 function StepMarker({ step }: { step: number }) {
@@ -40,10 +42,11 @@ export function IndustryThreeThingsSection({
   eyebrow,
   headingAlign = 'left',
   plainMobile = false,
+  industryMobile = false,
 }: IndustryThreeThingsSectionProps) {
   return (
     <section
-      className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''} ${plainMobile ? styles.plainMobile : ''}`.trim()}
+      className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''} ${plainMobile ? styles.plainMobile : ''} ${industryMobile ? styles.industryMobile : ''} ${data.roomyFirstStep ? styles.roomyFirstStep : ''}`.trim()}
     >
       <Container>
         <SectionHeading

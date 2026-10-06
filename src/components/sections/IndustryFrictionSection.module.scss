@@ -17,6 +17,11 @@
   gap: fluid-space(64px);
   align-items: center;
 
+  // Figma mobile: 120px between the tag groups and the product screenshot.
+  @media (max-width: 1023.98px) {
+    gap: 120px;
+  }
+
   @include respond-to(lg) {
     grid-template-columns: minmax(0, 708px) minmax(0, 587px);
     gap: 141px;
@@ -28,12 +33,22 @@
   --section-heading-description-max-width: 708px;
   --section-heading-description-weight: 500;
   --section-heading-description-margin-top: 26px;
+
+  // Figma mobile: 26px from the title to the intro (the heading's own 10px gap is part of it).
+  @media (max-width: 1023.98px) {
+    --section-heading-description-margin-top: 16px;
+  }
 }
 
 .copy {
   display: flex;
   flex-direction: column;
   gap: fluid-space(64px);
+
+  // Figma mobile: 64px between the intro and the tag groups.
+  @media (max-width: 1023.98px) {
+    gap: 64px;
+  }
 }
 
 .tagGroups {
@@ -41,6 +56,11 @@
   flex-direction: column;
   gap: 32px;
   max-width: 587px;
+
+  // Figma mobile: 24px between tag groups.
+  @media (max-width: 1023.98px) {
+    gap: 24px;
+  }
 }
 
 .tagGroupLabel {
@@ -52,6 +72,11 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #4d4d4d;
+
+  // Figma mobile: 16px line box.
+  @media (max-width: 1023.98px) {
+    line-height: 16px;
+  }
 }
 
 .tags {

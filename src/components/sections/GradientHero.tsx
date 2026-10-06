@@ -13,14 +13,22 @@ type GradientHeroProps = {
   image?: string;
   /** Natural aspect ratio ("w / h") of `image`, used to size the mobile-stacked copy below lg. */
   imageAspectRatio?: string;
+  /** Figma mobile cutout (inset variant): a wide mockup pinned to the bottom-left of the hero card, cropped by it. */
+  mobileImage?: string;
 };
 
 /** Text-only hero on the 864px gradient band; copy is centred in the space below the header. */
-export function GradientHero({ data, variant = 'default', image, imageAspectRatio }: GradientHeroProps) {
+export function GradientHero({
+  data,
+  variant = 'default',
+  image,
+  imageAspectRatio,
+  mobileImage,
+}: GradientHeroProps) {
   if (variant === 'inset') {
     return (
       <section
-        className={styles.insetBanner}
+        className={`${styles.insetBanner} ${mobileImage ? styles.insetBannerCutout : ''}`.trim()}
         style={
           {
             ...(data.mobileMinHeight && { '--hero-min-height': `${data.mobileMinHeight}px` }),
@@ -42,7 +50,19 @@ export function GradientHero({ data, variant = 'default', image, imageAspectRati
         {/* Below lg the device mockup has no room to sit behind the copy without
             covering it, so — same pattern as the "default" variant's mobile stack —
             it drops into normal flow under the text instead of overlapping it. */}
-        {image && (
+        {mobileImage && (
+          <div className={styles.insetMobileCutout} aria-hidden="true">
+            <Image
+              src={mobileImage}
+              alt=""
+              width={3000}
+              height={2000}
+              className={styles.insetMobileCutoutImage}
+              sizes="590px"
+            />
+          </div>
+        )}
+        {image && !mobileImage && (
           <Container className={styles.insetMobileGraphicWrap}>
             <div
               className={styles.insetMobileGraphicBox}

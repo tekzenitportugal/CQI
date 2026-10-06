@@ -8,7 +8,12 @@ function withLineBreaks(text: string, keyPrefix: string): ReactNode {
   return lines.map((line, index) => (
     <Fragment key={`${keyPrefix}-${index}`}>
       {line}
-      {index < lines.length - 1 && <br />}
+      {index < lines.length - 1 && (
+        <>
+          {' '}
+          <br />
+        </>
+      )}
     </Fragment>
   ));
 }

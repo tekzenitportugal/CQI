@@ -114,9 +114,16 @@
   font-weight: 500;
   line-height: 1.4;
 
+  // Figma mobile: 15px, 311px column, forced break after "Your data,".
   @media (max-width: 1023.98px) {
     font-size: 15px;
-    max-width: none;
+    max-width: 311px;
+  }
+
+  @include respond-to(lg) {
+    br {
+      display: none;
+    }
   }
 }
 
@@ -132,6 +139,12 @@
     gap: 60px;
     margin-top: 74px;
   }
+
+  // Figma mobile: address, email and social icons stack in one column.
+  @media (max-width: 1023.98px) {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
 }
 
 .address,
@@ -141,6 +154,10 @@
   font-weight: 400;
   line-height: 1.4;
   color: var(--color-antracite-100);
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
 }
 
 .email:hover {
@@ -185,6 +202,10 @@
   line-height: 22px;
   color: var(--color-antracite-200);
 
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
+
   @include respond-to(lg) {
     grid-column: 1;
     grid-row: 3;
@@ -217,6 +238,11 @@
     line-height: 1.4;
     color: var(--color-antracite-200);
     text-decoration: underline;
+
+    @media (max-width: 1023.98px) {
+      font-size: 15px;
+    }
+
     text-underline-position: from-font;
 
     &:hover {

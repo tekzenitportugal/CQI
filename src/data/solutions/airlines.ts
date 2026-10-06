@@ -19,6 +19,8 @@ export const airlinesSolutionData = {
     eyebrow: 'airlines',
     description:
       "Airlines manage CX on the opinion of a small, late-responding minority. CQI scores every passenger's lifecycle from operational events, live, and routes recovery before the next booking decision.",
+    mobileInlineTitle: true,
+    mobileIntroGap: 10,
     titleMaxWidth: 708,
     descriptionMaxWidth: 653,
     copyMaxWidth: 708,
@@ -29,11 +31,13 @@ export const airlinesSolutionData = {
     },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/airlines/hero.png',
+  heroImageMobile: '/images/solutions/airlines/hero-mobile.png',
   heroImageAspectRatio: '2433 / 2544',
   heroMockup: true,
   friction: mapFriction({
-    title: 'Airlines manage CX on the opinion of a small, late-responding minority.',
-    titleHighlight: ['manage CX', 'late-responding minority.'],
+    // U+2060 after the hyphen keeps "late-responding" on one line when the title wraps (Figma mobile).
+    title: 'Airlines manage CX on the opinion of a small, late-\u2060responding minority.',
+    titleHighlight: ['manage CX', 'late-\u2060responding minority.'],
     description:
       'Every day, high-value passengers have experiences across multiple touchpoints that your teams never see, cannot connect to and cannot act on. CQI delivers personal, actionable intelligence for 100% of passengers, live, from operations, not surveys.',
     tagGroups: [
@@ -103,7 +107,7 @@ export const airlinesSolutionData = {
           'A passenger is refused the lounge, sits through a 60-minute delay, finds the Wi-Fi down and misses a connection, and files nothing. CQI scores the lifecycle from operational events, flags the erosion and routes a tailored recovery action to the right person.',
         outcome:
           'Retention recovered before the next booking decision, with the action verified in billing or loyalty rather than assumed.',
-        image: '/images/solutions/airlines/scenario-1.jpg',
+        image: '/images/solutions/airlines/scenario-1.png',
       },
       {
         title: 'Turn on the light at the handoff',
@@ -111,6 +115,7 @@ export const airlinesSolutionData = {
           'A delay, a downgrade or a lost bag on leg one never travels with the passenger onto leg two, even inside the same alliance. The second carrier sees a confirmed seat and treats a frustrated flyer as new.',
         outcome:
           'Only the derived signal is shared, never raw data, so each carrier keeps its own systems and commercial independence.',
+        image: '/images/solutions/airlines/scenario-2.png',
       },
     ],
   }),
@@ -121,7 +126,7 @@ export const airlinesSolutionData = {
     metrics: [
       {
         value: '85%',
-        label: 'of passengers with a problem, never complain during travel',
+        label: 'of passengers with\na problem, never complain during travel',
         source: 'Sources: caa 2023',
       },
       {

@@ -155,6 +155,39 @@
   }
 }
 
+// Figma mobile (Solutions · Telecom 6225:44411): title sits 64px above the steps, steps are
+// 48px apart with a 24px marker gap and unbroken one-line titles, no connecting line.
+@media (max-width: 1023.98px) {
+  .industryMobile {
+    .heading {
+      --section-heading-title-max-width: none;
+      margin-bottom: 64px;
+    }
+
+    .lineTrack {
+      display: none;
+    }
+
+    .item {
+      gap: 24px;
+    }
+
+    .itemTitle {
+      white-space: normal;
+      line-height: 24px;
+    }
+
+    &.roomyFirstStep .item:first-child {
+      gap: 32px;
+    }
+
+    .itemDescription {
+      max-width: none;
+      line-height: 19px;
+    }
+  }
+}
+
 // Figma mobile (How we prove it, 6225:43034): no connecting line, 176px steps with a
 // 24px marker gap, copy runs the full 374px column, 222px above / 242px below.
 @media (max-width: 1023.98px) {

@@ -18,6 +18,11 @@
     &.flushTop {
       padding-top: 0;
     }
+
+    // Figma mobile (Solutions · industry pages): 100px between the banner and the footer.
+    &.solutions {
+      padding-bottom: 100px;
+    }
   }
 }
 
@@ -87,6 +92,14 @@
   @media (max-width: 1023.98px) {
     font-size: 40px;
     line-height: 1.1;
+  }
+}
+
+// Industry pages pass line breaks in the copy that only apply on mobile (Figma wraps the copy by hand there).
+@include respond-to(lg) {
+  .title br,
+  .description br {
+    display: none;
   }
 }
 

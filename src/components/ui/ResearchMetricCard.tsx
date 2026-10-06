@@ -1,4 +1,5 @@
 import type { ResearchMetricCard as ResearchMetricCardData } from '@/types/content';
+import { highlightText } from '@/utils/highlightText';
 import styles from './ResearchMetricCard.module.scss';
 
 type ResearchMetricCardProps = {
@@ -12,7 +13,7 @@ export function ResearchMetricCard({ data }: ResearchMetricCardProps) {
         <p className={styles.value}>{data.value}</p>
       </div>
       <div className={styles.copy}>
-        <p className={styles.label}>{data.label}</p>
+        <p className={styles.label}>{highlightText(data.label)}</p>
         {data.source && <p className={styles.source}>{data.source}</p>}
       </div>
     </article>

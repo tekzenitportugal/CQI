@@ -43,6 +43,8 @@ type CarouselProps = {
   itemLabel: string;
   /** Optional content on the left of the arrow row (the arrows sit on the right). */
   header?: ReactNode;
+  /** Below 1024px, stack the header above the arrows (arrows stay right-aligned) instead of side by side. */
+  stackHeaderOnMobile?: boolean;
   className?: string;
   children: ReactNode;
 };
@@ -51,7 +53,7 @@ type CarouselProps = {
  * Horizontal card carousel: cards start on the container grid and bleed to the viewport edge.
  * Cards are the direct children; spacing between rows is set by the parent via `--carousel-row-gap`.
  */
-export function Carousel({ itemLabel, header, className, children }: CarouselProps) {
+export function Carousel({ itemLabel, header, stackHeaderOnMobile, className, children }: CarouselProps) {
   const blockRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
@@ -112,7 +114,7 @@ export function Carousel({ itemLabel, header, className, children }: CarouselPro
 
   return (
     <div ref={blockRef} className={[styles.block, className].filter(Boolean).join(' ')}>
-      <div className={`${styles.controlRow} ${header ? styles.controlRowWithHeader : ''}`.trim()}>
+      <div className={`${styles.controlRow} ${header ? styles.controlRowWithHeader : ''} ${stackHeaderOnMobile ? styles.controlRowStacked : ''}`.trim()}>
         {header}
         <div className={styles.controls}>
           <CarouselControl direction="prev" enabled={canPrev} itemLabel={itemLabel} onClick={() => scroll('prev')} />

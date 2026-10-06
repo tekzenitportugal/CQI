@@ -19,6 +19,7 @@ export const notListedPageData = {
   heroImageMobile: '/images/solutions/not-listed/hero-mobile.png',
 
   threeQuestions: {
+    roomyFirstStep: true,
     title: 'Three questions that decide whether CQI fits',
     titleHighlight: ['Three questions', 'CQI fits'],
     items: [
@@ -54,7 +55,7 @@ export const notListedPageData = {
         title: 'Healthcare & health insurance',
         description:
           'Appointment commitments, referral handoffs, claim and authorisation delays, and care instructions that never reach the right system.',
-        image: '/images/solutions/not-listed/adjacent-sector.jpg',
+        image: '/images/solutions/not-listed/adjacent-healthcare.jpg',
       },
       {
         title: 'Retail & e-commerce',

@@ -25,7 +25,7 @@ export default function NotListedPage() {
       ) : (
         <GradientHero data={notListedPageData.hero} variant="inset" />
       )}
-      <IndustryThreeThingsSection data={notListedPageData.threeQuestions} />
+      <IndustryThreeThingsSection data={notListedPageData.threeQuestions} industryMobile />
       <AdjacentSectorsSection data={notListedPageData.adjacentSectors} />
       <CtaBannerSection data={notListedPageData.cta} />
     </>

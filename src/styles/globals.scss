@@ -79,6 +79,11 @@ ul {
 /* Figma industry pages — light blue → off-white band (6079:30033) */
 .solutions-band {
   @include solutions.solutions-band-background;
+
+  // Figma mobile: the band reads as flat #f5f5f5 (its blue stop sits past the right edge).
+  @media (max-width: 1023.98px) {
+    background: #f5f5f5;
+  }
 }
 
 .text-highlight {

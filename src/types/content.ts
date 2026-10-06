@@ -207,6 +207,8 @@ export type IndustryThreeThingsData = {
   title: string;
   titleHighlight?: string[];
   items: IndustryThreeThingsItem[];
+  /** Figma mobile (banking, insurance, utilities, consumer electronics): step 1 has a 32px marker gap instead of 24px. */
+  roomyFirstStep?: boolean;
 };
 
 export type IndustryScenario = {

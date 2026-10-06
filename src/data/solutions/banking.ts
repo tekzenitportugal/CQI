@@ -63,6 +63,7 @@ export const bankingSolutionData = {
     imageFramed: true,
   }),
   threeThings: mapThreeThings({
+    roomyFirstStep: true,
     title: 'Three things the verification layer adds in this sector.',
     titleHighlight: 'the verification layer adds',
     items: [
@@ -106,7 +107,7 @@ export const bankingSolutionData = {
         outcome:
           'Increased wallet share, higher product penetration and improved CLV profitability.',
         image: '/images/solutions/banking/scenario-2.jpg',
-        imagePosition: 'center',
+        imagePosition: 'center 43.7%',
       },
     ],
   }),

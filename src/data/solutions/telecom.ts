@@ -14,6 +14,8 @@ export const telecomSolutionData = {
     eyebrow: 'telecom',
     description:
       'CQI connects call and chat content with provisioning, billing and network events, so the friction that never becomes a ticket is visible while it is still cheap to fix.',
+    mobileInlineTitle: true,
+    mobileIntroGap: 10,
     titleMaxWidth: 702,
     descriptionMaxWidth: 653,
     copyMaxWidth: 708,
@@ -24,6 +26,7 @@ export const telecomSolutionData = {
     },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/telecom/hero.png',
+  heroImageMobile: '/images/solutions/telecom/hero-mobile.png',
   heroImageAspectRatio: '2430 / 2544',
   heroMockup: true,
 
@@ -106,6 +109,7 @@ export const telecomSolutionData = {
           'Discrepancies in billing generate high call volumes and severe friction. CQI detects misalignment between what customers report and what billing systems show, orchestrating real-time alerts to the operations team to fix the underlying data error.',
         outcome:
           'Lowers operational expenditure, reduces overall call volumes and restores customer confidence quickly.',
+        image: '/images/solutions/telecom/scenario-2.png',
       },
     ],
   },
@@ -121,20 +125,29 @@ export const telecomSolutionData = {
     },
     eyebrow: 'Get up to',
     metrics: [
-      { value: '30%', label: 'OPEX reduction' },
-      { value: '30%', label: 'FCR increase' },
-      { value: '25%', label: 'Churn reduction' },
-      { value: '15%', label: 'AHT reduction' },
+      { value: '30%', label: 'OPEX\nreduction' },
+      { value: '30%', label: 'FCR\nincrease' },
+      { value: '25%', label: 'Churn\nreduction' },
+      { value: '15%', label: 'AHT\nreduction' },
     ],
     footnote:
       'Ceilings from CQI programme material for this sector, not averages, and not portable between sectors.',
   },
 
   plugIn: industryPlugIn,
-  cta: industryCtaBanner('telecom friction', 'telecom friction', '/images/solutions/telecom/cta-tower.png', 'center', {
-    top: -92,
-    left: 0,
-    width: 579,
-    height: 471,
-  }),
+  cta: (() => {
+    const cta = industryCtaBanner('telecom friction', 'telecom friction', '/images/solutions/telecom/cta-tower.png', 'center', {
+      top: -92,
+      left: 0,
+      width: 579,
+      height: 471,
+    });
+    // Figma mobile breaks the copy by hand.
+    return {
+      ...cta,
+      title: 'See telecom friction\non your own data',
+      description:
+        'A two-week non-intrusive proof\nof value, with your baseline, your\njourneys and your friction map.',
+    };
+  })(),
 } satisfies IndustrySolutionData;

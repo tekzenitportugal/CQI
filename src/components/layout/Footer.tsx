@@ -22,7 +22,7 @@ export function Footer({ data }: FooterProps) {
 
         <div className={styles.poc}>
           <h3 className={styles.pocTitle}>{highlightText(data.poc.title)}</h3>
-          <p className={styles.pocDescription}>{data.poc.description}</p>
+          <p className={styles.pocDescription}>{highlightText(data.poc.description)}</p>
         </div>
 
         <div className={styles.contact}>

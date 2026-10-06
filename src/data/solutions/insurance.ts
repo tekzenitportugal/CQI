@@ -63,6 +63,7 @@ export const insuranceSolutionData = {
     imageFramed: true,
   }, '/images/solutions/insurance/dashboard.png'),
   threeThings: mapThreeThings({
+    roomyFirstStep: true,
     title: 'Three things the verification layer adds in this sector.',
     titleHighlight: 'the verification layer adds',
     items: [
@@ -107,7 +108,7 @@ export const insuranceSolutionData = {
           'Coverage explanations during sales calls often differ from policy terms. CQI detects mis-selling signals in conversations and verifies promises against policy conditions.',
         outcome:
           'Reduces complaints and regulatory exposure, protects customer trust and improves sales quality.',
-        image: '/images/solutions/insurance/scenario-2.jpg',
+        image: '/images/solutions/insurance/scenario-2.png',
         imagePosition: 'center',
       },
     ],

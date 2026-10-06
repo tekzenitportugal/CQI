@@ -20,6 +20,8 @@ export type HeroCopyData = {
   mobileIntroGap?: number;
   /** Mobile only: the highlighted title phrase starts its own line. */
   mobileHighlightBlock?: boolean;
+  /** Mobile only: ignore the desktop line breaks in the title and let it wrap naturally. */
+  mobileInlineTitle?: boolean;
   /** Figma mobile hero box height (px) when it differs from the 864px default (inset variant). */
   mobileMinHeight?: number;
   /** Figma mobile top padding (px) above the vertically centred copy (inset variant, no image). */
@@ -43,6 +45,7 @@ export function HeroCopy({
   mobileTextGap,
   mobileIntroGap,
   mobileHighlightBlock,
+  mobileInlineTitle,
   className,
 }: HeroCopyProps) {
   const style = {
@@ -56,7 +59,15 @@ export function HeroCopy({
   return (
     <div className={[styles.copy, className].filter(Boolean).join(' ')} style={style}>
       <div className={styles.text}>
-        <h1 className={mobileHighlightBlock ? `${styles.title} ${styles.titleBlockHighlight}` : styles.title}>{highlightText(title, titleHighlight)}</h1>
+        <h1
+          className={[
+            styles.title,
+            mobileHighlightBlock && styles.titleBlockHighlight,
+            mobileInlineTitle && styles.titleInlineMobile,
+          ]
+            .filter(Boolean)
+            .join(' ')}
+        >{highlightText(title, titleHighlight)}</h1>
         <div className={styles.intro}>
           <p className={styles.eyebrow}>{eyebrow}</p>
           <p className={styles.description}>{highlightText(description)}</p>

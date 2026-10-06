@@ -28,6 +28,7 @@ export function mapThreeThings(raw: {
   title: string;
   titleHighlight: string | string[];
   items: IndustryThreeThingsData['items'];
+  roomyFirstStep?: boolean;
 }): IndustryThreeThingsData {
   const highlights = Array.isArray(raw.titleHighlight)
     ? raw.titleHighlight
@@ -36,6 +37,7 @@ export function mapThreeThings(raw: {
     title: raw.title,
     titleHighlight: highlights,
     items: raw.items,
+    roomyFirstStep: raw.roomyFirstStep,
   };
 }
 
@@ -69,7 +71,7 @@ export function mapFriction(
 
 export const industryPlugIn = {
   eyebrow: 'where it plugs in',
-  title: 'Enrichment, not rip-and-replace.',
+  title: 'Enrichment,\nnot rip-and-replace.',
   description:
     'CQI verifies across the platforms already in place and pushes action back into them.',
   ctas: [
@@ -90,7 +92,7 @@ export function industryCtaBanner(
     title: `See ${sectorLabel} on your own data`,
     titleHighlight: [titleHighlight],
     description:
-      'A two-week non-intrusive proof of value, with your baseline, your journeys and your friction map.',
+      'A two-week non-intrusive proof\nof value, with your baseline, your journeys and your friction map.',
     image,
     imageWidth: 579,
     imageHeight: 289,

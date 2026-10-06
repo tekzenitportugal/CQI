@@ -30,6 +30,9 @@
   max-width: var(--section-heading-title-max-width, 900px);
 
   @media (max-width: 1023.98px) {
+    // Figma mobile line boxes are 34px at 28px type.
+    line-height: 1.214;
+
     br {
       display: none;
     }

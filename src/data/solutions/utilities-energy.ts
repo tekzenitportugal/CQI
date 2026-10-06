@@ -64,6 +64,7 @@ export const utilitiesEnergySolutionData = {
     imageFramed: true,
   }, '/images/solutions/utilities-energy/prevent-cx-frictions.png'),
   threeThings: mapThreeThings({
+    roomyFirstStep: true,
     title: 'Three things the verification layer adds in this sector.',
     titleHighlight: 'the verification layer adds',
     items: [
@@ -97,7 +98,7 @@ export const utilitiesEnergySolutionData = {
           'A customer questions a bill significantly higher than normal. The agent promises a comparison report and a payment plan, but these are never executed in the system. CQI detects this unfulfilled commitment immediately and alerts operations to act.',
         outcome:
           'Prevents repeat calls, avoids regulatory complaints and protects revenue collection.',
-        image: '/images/solutions/utilities-energy/scenario-1.jpg',
+        image: '/images/solutions/utilities-energy/scenario-1.png',
         imagePosition: 'center bottom',
         imageOverlay: 0.5,
         imageBlend: 'color',
@@ -108,8 +109,8 @@ export const utilitiesEnergySolutionData = {
           'Customers experience ongoing uncoordinated field operations and outages without clear communication. CQI correlates interaction signals with network events to surface systemic friction, allowing teams to proactively inform customers and fix the grid.',
         outcome:
           'Reduces reputational risk, strengthens consumer trust and lowers overall cost-to-serve.',
-        image: '/images/solutions/utilities-energy/scenario-2.jpg',
-        imagePosition: 'center',
+        image: '/images/solutions/utilities-energy/scenario-2.png',
+        imagePosition: 'center 72%',
       },
     ],
   }),

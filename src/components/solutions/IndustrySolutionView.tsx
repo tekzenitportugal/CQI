@@ -22,6 +22,7 @@ export function IndustrySolutionView({ data }: IndustrySolutionViewProps) {
           variant="inset"
           image={data.heroImage}
           imageAspectRatio={data.heroImageAspectRatio}
+          mobileImage={data.heroImageMobile}
         />
       ) : data.heroImage ? (
         <PageHeroBanner data={{ ...data.hero, image: data.heroImage, mobileImage: data.heroImageMobile }} />
@@ -30,7 +31,7 @@ export function IndustrySolutionView({ data }: IndustrySolutionViewProps) {
       )}
       <IndustryFrictionSection data={data.friction} />
       <div className="solutions-band">
-        <IndustryThreeThingsSection data={data.threeThings} variant="grouped" />
+        <IndustryThreeThingsSection data={data.threeThings} variant="grouped" industryMobile />
         <IndustryScenariosSection data={data.scenarios} />
       </div>
       <div>

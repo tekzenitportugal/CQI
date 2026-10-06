@@ -16,7 +16,7 @@ export default function SolutionsHubPage() {
       <GradientHero data={solutionsHubData.hero} variant="inset" />
       <SolutionsIndustryTabsSection data={solutionsHubData.sixSectors} />
       <CrossSectorPatternsSection data={solutionsHubData.crossSectorPatterns} />
-      <CtaBannerSection data={solutionsHubData.cta} />
+      <CtaBannerSection data={solutionsHubData.cta} variant="flushTop" />
     </>
   );
 }

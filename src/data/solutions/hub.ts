@@ -12,6 +12,9 @@ export const solutionsHubData = {
     description:
       'CQI works where the promise and its delivery depend on operations: telecom, airlines, banking, insurance, utilities and consumer electronics. Each sector hides friction in a different place, and each exposes it through different data.',
     copyMaxWidth: 708,
+    mobileMinHeight: 880,
+    mobileIntroGap: 10,
+    mobilePaddingTop: 46,
   } satisfies HeroCopyData,
 
   sixSectors: {

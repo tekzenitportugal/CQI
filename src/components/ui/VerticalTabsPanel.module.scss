@@ -84,7 +84,7 @@
     @media (max-width: 767.98px) {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
+      gap: 8px;
     }
   }
 
@@ -95,13 +95,14 @@
     text-overflow: ellipsis;
 
     @media (max-width: 767.98px) {
-      flex: 0 0 calc(25% - 3.75px);
-      padding: 0 5px;
+      flex: 1 1 auto;
+      width: auto;
+      padding: 0 10px;
       justify-content: center;
       text-align: center;
 
       &:nth-child(n + 5) {
-        flex: 0 0 calc(50% - 2.5px);
+        flex: 0 0 calc(50% - 4px);
         width: auto;
       }
     }
@@ -112,6 +113,11 @@
   }
 
   .tabImage {
+    @media (max-width: 767.98px) {
+      height: 304px;
+      min-height: 304px;
+    }
+
     @include respond-to(lg) {
       height: 304px;
       min-height: 304px;

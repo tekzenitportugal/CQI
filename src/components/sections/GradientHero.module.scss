@@ -123,6 +123,40 @@
   object-position: center bottom;
 }
 
+// Figma mobile (Solutions · Telecom/Airlines): 880px card, copy starts 118px below the card top,
+// and the 588px mockup sits 564px down, 5px in from the left, cropped by the card.
+.insetBannerCutout {
+  @media (max-width: 1023.98px) {
+    min-height: 888px;
+
+    .insetContentWrap {
+      padding-top: 118px;
+    }
+  }
+}
+
+.insetMobileCutout {
+  position: absolute;
+  inset: 8px 8px 0;
+  z-index: 1;
+  overflow: hidden;
+  border-radius: 20px;
+  pointer-events: none;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.insetMobileCutoutImage {
+  position: absolute;
+  top: 564px;
+  left: 5px;
+  width: 588px;
+  max-width: none;
+  height: auto;
+}
+
 .insetContentWrap {
   position: relative;
   z-index: 2;

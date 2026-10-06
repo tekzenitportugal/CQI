@@ -64,6 +64,7 @@ export const consumerElectronicsSolutionData = {
     imageFramed: true,
   }, '/images/solutions/consumer-electronics/dashboard.png'),
   threeThings: mapThreeThings({
+    roomyFirstStep: true,
     title: 'Three things the verification layer adds in this sector.',
     titleHighlight: 'the verification layer adds',
     items: [
@@ -97,7 +98,7 @@ export const consumerElectronicsSolutionData = {
           'Smart appliances trigger minor error codes that the customer ignores until a major breakdown occurs. CQI uses this IoT telemetry to anticipate the technical failure and schedule proactive maintenance before the appliance completely fails.',
         outcome:
           'Reduces costly emergency repair visits, extends product lifespan and optimises field technician utilisation.',
-        image: '/images/solutions/consumer-electronics/scenario-1.jpg',
+        image: '/images/solutions/consumer-electronics/scenario-1.png',
         imagePosition: 'center bottom',
       },
       {
@@ -106,7 +107,7 @@ export const consumerElectronicsSolutionData = {
           'A specific appliance model shows a high field failure rate. CQI correlates these service requests and IoT error codes with specific manufacturing batches, allowing operations to instantly correct the defect on the production line.',
         outcome:
           'Decreases warranty costs per unit, improves overall equipment effectiveness and protects brand reputation.',
-        image: '/images/solutions/consumer-electronics/scenario-2.jpg',
+        image: '/images/solutions/consumer-electronics/scenario-2.png',
         imagePosition: 'center',
         imageOverlay: 0.6,
         imageBlend: 'color',

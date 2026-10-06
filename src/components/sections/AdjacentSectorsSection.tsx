@@ -15,6 +15,7 @@ export function AdjacentSectorsSection({ data }: AdjacentSectorsSectionProps) {
       <Container>
         <Carousel
           itemLabel="sector"
+          stackHeaderOnMobile
           className={styles.carousel}
           header={
             <SectionHeading

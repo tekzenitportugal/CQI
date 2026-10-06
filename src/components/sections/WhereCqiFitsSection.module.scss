@@ -15,8 +15,10 @@
     padding-top: 200px;
     padding-bottom: 0;
 
+    // Figma mobile (Solutions · industry pages): 200px between the plug-in block and the CTA.
     &.solutions {
-      padding-bottom: fluid-space(292px);
+      padding-top: 200px;
+      padding-bottom: 200px;
     }
   }
 }
@@ -39,6 +41,37 @@
     p:first-child {
       font-size: 12px;
     }
+  }
+}
+
+// Solutions pages only: the title breaks after the comma on mobile,
+// with 26px between the title and the intro and 64px before the buttons.
+.solutions {
+  @media (max-width: 1023.98px) {
+    .inner {
+      gap: 64px;
+    }
+
+    .heading {
+      --section-heading-description-margin-top: 16px;
+      --section-heading-description-weight: 500;
+      --section-heading-description-max-width: none;
+
+      h2 br {
+        display: block;
+      }
+
+      p:last-child {
+        font-size: 15px;
+        line-height: 1.4;
+      }
+    }
+  }
+}
+
+@include respond-to(lg) {
+  .heading h2 br {
+    display: none;
   }
 }
 
