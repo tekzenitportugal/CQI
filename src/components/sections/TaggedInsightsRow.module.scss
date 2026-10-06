@@ -103,6 +103,27 @@
   }
 }
 
+.inlineMobileTitle {
+  @media (max-width: 1023.98px) {
+    .title :global(.text-highlight)::after {
+      content: none;
+    }
+  }
+}
+
+.largeMobileTags {
+  @media (max-width: 1023.98px) {
+    padding-bottom: 200px;
+
+    .item > :first-child {
+      min-width: 87px;
+      height: 27px;
+      padding-block: 0;
+      text-transform: uppercase;
+    }
+  }
+}
+
 .lineTrack {
   position: absolute;
   z-index: 0;
@@ -171,5 +192,13 @@
 
   @media (max-width: 1023.98px) {
     font-size: 15px;
+  }
+}
+
+.largeMobileTags {
+  @media (max-width: 1023.98px) {
+    .itemDescription {
+      line-height: 19px;
+    }
   }
 }

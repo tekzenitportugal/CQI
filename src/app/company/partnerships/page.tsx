@@ -21,7 +21,7 @@ export default function PartnershipsPage() {
       <PartnershipTypesSection data={partnershipsData.partnershipTypes} />
       <PartnershipWhyChooseSection data={partnershipsData.whyChoose} />
       <PartnershipAllianceSection data={partnershipsData.alliance} />
-      <CtaBannerSection data={partnershipsData.cta} />
+      <CtaBannerSection data={partnershipsData.cta} variant="flushTop" />
     </>
   );
 }

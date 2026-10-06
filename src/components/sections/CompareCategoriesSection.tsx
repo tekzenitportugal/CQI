@@ -8,6 +8,9 @@ export type CompareCategoryCard = {
   /** `\n` breaks the two-line uppercase heading, as in Figma. */
   title: string;
   description: string;
+  /** Figma mobile copy, where it differs from the desktop frame (line break / wording). */
+  mobileTitle?: string;
+  mobileDescription?: string;
   tags: string[];
   /** Desktop width (px) of the tag row, from Figma — controls where the tags wrap. */
   tagsWidth?: number;
@@ -37,6 +40,12 @@ export function CompareCategoriesSection({ data }: CompareCategoriesSectionProps
           <div className={styles.ellipse3} />
           <div className={styles.ellipse4} />
         </div>
+        <div className={styles.mobileBackground} aria-hidden="true">
+          <img className={styles.mEllipse1} src="/images/resources/compare-cqi/ellipse-1.webp" alt="" />
+          <img className={styles.mEllipse2} src="/images/resources/compare-cqi/ellipse-2-mobile.png" alt="" />
+          <img className={styles.mEllipse3} src="/images/resources/compare-cqi/ellipse-3.webp" alt="" />
+          <img className={styles.mEllipse4} src="/images/resources/compare-cqi/ellipse-4.webp" alt="" />
+        </div>
 
         <div className={styles.heading}>
           <h2 className={styles.title}>{highlightText(data.title, data.titleHighlight)}</h2>
@@ -51,10 +60,23 @@ export function CompareCategoriesSection({ data }: CompareCategoriesSectionProps
             <li key={category.title} className={styles.card}>
               <div className={styles.copy}>
                 <div className={styles.textGroup}>
-                  <p className={styles.cardTitle} style={{ whiteSpace: 'pre-line' }}>
+                  <p
+                    className={`${styles.cardTitle} ${category.mobileTitle ? styles.desktopOnly : ''}`.trim()}
+                    style={{ whiteSpace: 'pre-line' }}
+                  >
                     {category.title}
                   </p>
-                  <p className={styles.cardDescription}>{category.description}</p>
+                  {category.mobileTitle && (
+                    <p className={`${styles.cardTitle} ${styles.mobileOnly}`} style={{ whiteSpace: 'pre-line' }}>
+                      {category.mobileTitle}
+                    </p>
+                  )}
+                  <p className={`${styles.cardDescription} ${category.mobileDescription ? styles.desktopOnly : ''}`.trim()}>
+                    {category.description}
+                  </p>
+                  {category.mobileDescription && (
+                    <p className={`${styles.cardDescription} ${styles.mobileOnly}`}>{category.mobileDescription}</p>
+                  )}
                 </div>
                 <div
                   className={styles.tags}

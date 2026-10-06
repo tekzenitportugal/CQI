@@ -281,3 +281,96 @@
   line-height: 1.3;
   color: var(--color-antracite-200);
 }
+
+// Figma mobile (414px): 12px field copy, 14px bar copy, 12px breakdown table, 20px side padding.
+@media (max-width: 1023.98px) {
+  .fieldLabel,
+  .fieldHelper,
+  .totalLabel,
+  .breakdownLine,
+  .breakdownBasis,
+  .breakdownValue,
+  .footnote {
+    font-size: 12px;
+  }
+
+  .field {
+    gap: 6px;
+  }
+
+  .results {
+    gap: 50px;
+    padding: 30px 20px;
+  }
+
+  .resultsEyebrow {
+    margin: 0 0 -15px;
+    font-size: 14px;
+  }
+
+  .totalValue {
+    font-size: 25px;
+    line-height: 29px;
+  }
+
+  .barHeading {
+    align-items: flex-start;
+    gap: 80px;
+  }
+
+  .barLabel,
+  .barValue {
+    font-size: 14px;
+  }
+
+  .breakdown {
+    grid-template-columns: 107px 1fr 62px;
+    column-gap: 20px;
+  }
+
+  .breakdownHeaderCell {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .breakdownValue {
+    white-space: normal;
+  }
+}
+
+// Figma mobile: rows are at least 45px of copy tall; table → footnote gap is 30px (not the 50px block gap).
+@media (max-width: 1023.98px) {
+  .breakdownBasis {
+    min-height: 75px;
+    box-sizing: border-box;
+  }
+
+  .footnote {
+    margin-top: -20px;
+  }
+}
+
+// Figma mobile rows have fixed copy heights (48 / 63 / 48 / 45 / 45px) and per-row "Line" column widths.
+@media (max-width: 1023.98px) {
+  .breakdownBasis {
+    min-height: 0;
+  }
+
+  .breakdown > :nth-child(5) { min-height: 78px; }
+  .breakdown > :nth-child(8) { min-height: 93px; }
+  .breakdown > :nth-child(11) { min-height: 78px; }
+  .breakdown > :nth-child(14),
+  .breakdown > :nth-child(17) { min-height: 75px; }
+
+  .breakdown > :nth-child(4) { padding-right: 27px; }
+  .breakdown > :nth-child(13) { padding-right: 37px; }
+  .breakdown > :nth-child(16) { padding-right: 22px; }
+}
+
+// Figma mobile: 56px of white card between the inputs and the results panel.
+@media (max-width: 1023.98px) {
+  .calculator {
+    gap: 56px;
+  }
+}

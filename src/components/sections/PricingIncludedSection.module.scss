@@ -16,6 +16,10 @@
 .heading {
   margin: 0 auto 100px;
   max-width: 950px;
+
+  @media (max-width: 1023.98px) {
+    margin-bottom: 64px;
+  }
 }
 
 .columns {
@@ -34,4 +38,25 @@
 .list {
   flex: 1 1 0;
   min-width: 0;
+}
+
+// Figma Pricing mobile (6225:43430): 15px regular copy, 16px above/below each row, a single
+// rule between the two stacked lists.
+@media (max-width: 1023.98px) {
+  .list li {
+    padding-block: 16px;
+  }
+
+  .list li p {
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .columns {
+    gap: 0;
+  }
+
+  .list + .list li:first-child::before {
+    display: none;
+  }
 }

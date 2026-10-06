@@ -9,6 +9,8 @@ export const glossaryData = {
     title: 'The CQI vocabulary',
     titleHighlight: ['CQI vocabulary'],
     eyebrow: 'Glossary',
+    mobilePaddingTop: 108,
+    mobileIntroGap: 10,
     description:
       'Verified CX introduces terms that overlap with, but do not mean the same as, the standard CX lexicon. These are the definitions used across this site and in CQI deployments.',
     image: '/images/resources/glossary/hero.png',
@@ -154,8 +156,7 @@ export const glossaryData = {
     title: 'See these terms on live data',
     titleHighlight: ['live data'],
     description: 'A walkthrough uses your own interactions, so the vocabulary attaches to something real.',
-    // TODO: placeholder — swap for the real photo when available.
-    image: '/images/shared/common/fpo.svg',
+    image: '/images/resources/glossary/cta-live-data.jpg',
     imageWidth: 579,
     imageHeight: 289,
     buttons: [

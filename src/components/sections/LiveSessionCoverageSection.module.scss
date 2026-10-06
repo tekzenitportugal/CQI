@@ -7,7 +7,9 @@
   // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {
     padding-top: 200px;
-    padding-bottom: 200px;
+    padding-bottom: 0;
+    // Figma: cards end 190px above the CTA banner (shared CTA adds its own 200px).
+    margin-bottom: -10px;
   }
 }
 
@@ -16,6 +18,7 @@
   flex-direction: column;
   gap: 24px;
   max-width: 587px;
+
 }
 
 .heading {
@@ -26,10 +29,19 @@
 
 .eyebrow {
   @include eyebrow;
+
+  @media (max-width: 1023.98px) {
+    font-size: 12px;
+  }
 }
 
 .title {
   @include heading-h3;
+
+  @media (max-width: 1023.98px) {
+    font-size: 28px;
+    line-height: 1.2;
+  }
 }
 
 .description {
@@ -52,6 +64,10 @@
   gap: 20px;
   margin-top: 100px;
 
+  @media (max-width: 1023.98px) {
+    margin-top: 64px;
+  }
+
   @include respond-to(lg) {
     flex-direction: row;
     align-items: stretch;
@@ -64,4 +80,15 @@
   max-width: none;
   min-height: 154px;
   justify-content: flex-end;
+
+  @media (max-width: 1023.98px) {
+    min-height: 0;
+  }
+}
+
+// Figma mobile: card body copy is 16px (the shared card drops to 15px below lg).
+@media (max-width: 1023.98px) {
+  .card [class*='description'] {
+    font-size: 16px;
+  }
 }

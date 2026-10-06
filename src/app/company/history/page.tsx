@@ -26,7 +26,7 @@ export default function HistoryPage() {
         title={historyData.whyItExists.title}
         cards={historyData.whyItExists.cards}
       />
-      <CtaBannerSection data={historyData.cta} />
+      <CtaBannerSection data={historyData.cta} variant="flushTop" />
     </>
   );
 }

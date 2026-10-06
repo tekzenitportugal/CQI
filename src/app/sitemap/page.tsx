@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function SitemapPage() {
   return (
     <>
-      <GradientHero data={sitemapData.hero} variant="inset" />
+      <GradientHero data={sitemapData.hero} variant="inset" gradient={sitemapData.heroGradient} />
       <SitemapLinksSection data={sitemapData.links} />
     </>
   );

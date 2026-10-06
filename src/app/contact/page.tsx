@@ -15,7 +15,7 @@ export default function ContactPage() {
     <>
       <PageHeroBanner data={contactData.hero} />
       <ContactChannelsSection data={contactData.channels} />
-      <CtaBannerSection data={contactData.cta} />
+      <CtaBannerSection data={contactData.cta} variant="flushTop" />
     </>
   );
 }

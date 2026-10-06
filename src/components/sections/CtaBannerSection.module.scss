@@ -168,3 +168,24 @@
     width: auto;
   }
 }
+
+// Optional dedicated mobile photo (data.mobileImage): swaps with the desktop one at lg.
+.mobileMedia {
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.desktopMedia {
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
+}
+
+.titleInlineMobile {
+  @media (max-width: 1023.98px) {
+    br {
+      display: none;
+    }
+  }
+}

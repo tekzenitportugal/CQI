@@ -17,7 +17,7 @@
   inset: 8px 8px 0;
   border-radius: 20px;
   overflow: hidden;
-  background: var(--color-white);
+  background: var(--hero-mobile-box-bg, var(--color-white));
 
   @include respond-to(lg) {
     position: relative;
@@ -67,6 +67,7 @@
 
 .mobileOnly {
   display: block;
+  top: calc(-1 * var(--hero-mobile-img-shift, 0px)) !important;
 
   @include respond-to(lg) {
     display: none;
@@ -80,12 +81,15 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    rgba(223, 232, 254, 0.97) 0%,
-    rgba(223, 232, 254, 0.94) 38%,
-    rgba(223, 232, 254, 0.55) 70%,
-    rgba(223, 232, 254, 0) 100%
+  background: var(
+    --hero-mobile-overlay,
+    linear-gradient(
+      180deg,
+      rgba(223, 232, 254, 0.97) 0%,
+      rgba(223, 232, 254, 0.94) 38%,
+      rgba(223, 232, 254, 0.55) 70%,
+      rgba(223, 232, 254, 0) 100%
+    )
   );
 
   @include respond-to(lg) {

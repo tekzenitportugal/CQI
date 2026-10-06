@@ -118,3 +118,31 @@
     font-size: 17.5px;
   }
 }
+
+// Figma mobile (6225:44883): 28px heading, 64px to the list, 26px around each divider, 10px label → copy.
+@media (max-width: 1023.98px) {
+  .layout {
+    gap: 64px;
+  }
+
+  .heading {
+    gap: 14px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .row {
+    gap: 10px;
+    padding-block: 26px;
+  }
+
+  .label {
+    white-space: normal;
+  }
+}

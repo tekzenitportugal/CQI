@@ -28,11 +28,22 @@
   @media (max-width: 1023.98px) {
     padding-top: 200px;
     padding-bottom: 200px;
+    // Figma 6225:43295 mobile band.
+    background: linear-gradient(87.374deg, #edf2ff -147.05%, #f5f5f5 100%);
   }
 }
 
 .heading {
   margin-bottom: 100px;
+
+  // Figma mobile: "Four variables, / no hidden ones" over two lines, 64px above the cards.
+  @media (max-width: 1023.98px) {
+    margin-bottom: 64px;
+
+    h2 {
+      max-width: 220px;
+    }
+  }
 }
 
 .cards {
@@ -51,4 +62,22 @@
   flex: 1 1 0;
   max-width: none;
   min-height: 183px;
+
+  // Figma mobile cards hug their copy and honour the line breaks in the descriptions.
+  @media (max-width: 1023.98px) {
+    --card-gradient-angle: 29.343deg;
+    min-height: 0;
+    justify-content: flex-end;
+
+    p {
+      white-space: pre-line;
+    }
+  }
+}
+
+// Figma rounds the 15px copy to 19px lines.
+@media (max-width: 1023.98px) {
+  .card p {
+    line-height: 19px;
+  }
 }

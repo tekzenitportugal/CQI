@@ -14,7 +14,7 @@ export default function ArticlesPage() {
     <>
       <PageHeroBanner data={articlesData.hero} mirror={false} />
       <PublishedPiecesSection data={articlesData.published} />
-      <CtaBannerSection data={articlesData.conversationCta} />
+      <CtaBannerSection data={articlesData.conversationCta} variant="flushTop" />
     </>
   );
 }

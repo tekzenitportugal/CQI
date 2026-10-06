@@ -48,10 +48,16 @@ export function DistinctionTableSection({ data }: DistinctionTableSectionProps) 
               <p className={`${styles.category} ${row.highlight ? styles.categoryHighlight : ''}`.trim()}>
                 {row.category}
               </p>
-              <p className={styles.cell}>{row.question}</p>
-              <p className={styles.cell} style={{ whiteSpace: 'pre-line' }}>
-                {row.blindSpot}
-              </p>
+              <div className={styles.cellWrap}>
+                <span className={styles.cellLabel}>{data.headers.question}</span>
+                <p className={styles.cell}>{row.question}</p>
+              </div>
+              <div className={styles.cellWrap}>
+                <span className={styles.cellLabel}>{data.headers.blindSpot}</span>
+                <p className={styles.cell} style={{ whiteSpace: 'pre-line' }}>
+                  {row.blindSpot}
+                </p>
+              </div>
             </div>
           ))}
         </div>

@@ -15,7 +15,7 @@ export type ArticleCardData = {
 export function ArticleCard({ image, tags, title, description, readTime, href }: ArticleCardData) {
   return (
     <Link href={href} className={styles.card}>
-      <div className={styles.media}>
+      <div className={`${styles.media} ${image ? '' : styles.mediaEmpty}`.trim()}>
         <FpoImage
           src={image}
           alt=""

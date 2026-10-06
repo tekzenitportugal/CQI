@@ -14,7 +14,7 @@ export default function GlossaryPage() {
     <>
       <PageHeroBanner data={glossaryData.hero} />
       <GlossarySection data={glossaryData.terms} />
-      <CtaBannerSection data={glossaryData.conversationCta} />
+      <CtaBannerSection data={glossaryData.conversationCta} variant="flushTop" />
     </>
   );
 }

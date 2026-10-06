@@ -4,7 +4,7 @@
 .section {
   @include section-space(200px, 0);
 
-  // Consistent 100px inter-section rhythm on mobile/tablet.
+  // Figma mobile (6225:45786): 200px below the gradient band (whose own bottom padding is inside it).
   @media (max-width: 1023.98px) {
     padding-top: 200px;
     padding-bottom: 200px;

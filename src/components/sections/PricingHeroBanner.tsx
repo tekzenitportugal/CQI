@@ -28,6 +28,7 @@ export function PricingHeroBanner({ data }: PricingHeroBannerProps) {
             eyebrow={data.eyebrow}
             description={data.description}
             titleMaxWidth={data.titleMaxWidth}
+            mobileIntroGap={10}
           />
           <div className={styles.actions}>
             {data.buttons.map((button) => (

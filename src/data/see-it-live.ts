@@ -16,6 +16,10 @@ export const seeItLiveData = {
       'A self-guided walkthrough of what CQI does with a single verified misalignment: a tariff reduction promised on 412 calls and executed on none of them. Click through the stages in order.',
     image: '/images/resources/see-it-live/hero.png',
     mobileImage: '/images/resources/see-it-live/hero-mobile.png',
+    mobileIntroGap: 10,
+    mobileImageShift: 70,
+    mobileOverlay:
+      'linear-gradient(180deg, #ccdaff 0%, #ccdaff 47%, rgba(237, 242, 255, 0.5) 69.5%, rgba(237, 242, 255, 0) 92%)',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

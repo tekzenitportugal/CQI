@@ -15,7 +15,7 @@ export default function CareersPage() {
     <>
       <PageHeroBanner data={careersData.hero} />
       <CareersDisciplinesSection data={careersData.disciplines} />
-      <CtaBannerSection data={careersData.cta} />
+      <CtaBannerSection data={careersData.cta} variant="flushTop" />
     </>
   );
 }

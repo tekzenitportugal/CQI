@@ -9,6 +9,8 @@ export const articlesData = {
     title: 'Verified CX, in practice',
     titleHighlight: ['Verified CX,'],
     eyebrow: 'Articles & blogs',
+    mobilePaddingTop: 328,
+    mobileIntroGap: 10,
     description:
       'Point of view and practitioner pieces on measuring what customers actually experience, and acting on it while it still matters.',
   } satisfies PageHeroData,
@@ -46,11 +48,10 @@ export const articlesData = {
   } satisfies PublishedPiecesSectionData,
 
   conversationCta: {
-    title: 'Prefer a conversation\nto a blog post?',
+    title: 'Prefer a conversation to a blog post?',
     titleHighlight: ['conversation'],
     description: 'We will bring the sector view instead of the reading list.',
-    // TODO: placeholder — swap for the real photo when available.
-    image: '/images/shared/common/fpo.svg',
+    image: '/images/resources/articles/cta-conversation.jpg',
     imageWidth: 579,
     imageHeight: 289,
     buttons: [

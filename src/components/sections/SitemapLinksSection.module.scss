@@ -87,3 +87,52 @@
 .footnoteLink {
   color: var(--color-blue-200);
 }
+
+// Figma mobile (6225:44946): 28px title, one 344px-wide column per group, 12px footnote.
+@media (max-width: 1023.98px) {
+  .section {
+    padding-bottom: 200px;
+  }
+
+  .title {
+    margin-bottom: 64px;
+    font-size: 28px;
+  }
+
+  .grid {
+    gap: 48px;
+    max-width: 344px;
+  }
+
+  .column {
+    gap: 20px;
+  }
+
+  .columnTitle {
+    font-size: 17.5px;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .link {
+    display: block;
+    line-height: 19px;
+  }
+
+  .footnote {
+    margin-top: 32px;
+    font-size: 12px;
+  }
+}
+
+.desktopOnly {
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
+}
+
+.mobileOnly {
+  @include respond-to(lg) {
+    display: none;
+  }
+}

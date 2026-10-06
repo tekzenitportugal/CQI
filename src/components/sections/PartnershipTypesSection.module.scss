@@ -9,7 +9,7 @@
   background: linear-gradient(83.667deg, #edf2ff -147.05%, #f5f5f5 100%);
   @include section-space(200px, 200px);
 
-  // Consistent 100px inter-section rhythm on mobile/tablet.
+  // Figma mobile (6225:45727): the band has 200px padding top and bottom.
   @media (max-width: 1023.98px) {
     padding-top: 200px;
     padding-bottom: 200px;
@@ -20,7 +20,11 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 100px;
+  margin-bottom: 64px;
+
+  @include respond-to(lg) {
+    margin-bottom: 100px;
+  }
 
   // Figma: the whole block is 1194px wide (587 + 20 + 587), centred in the container.
   @include respond-to(lg) {

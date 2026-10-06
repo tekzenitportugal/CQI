@@ -27,6 +27,11 @@
   flex-direction: column;
   gap: 32px;
 
+  // Figma mobile: 26px between a rule and its question.
+  @media (max-width: 1023.98px) {
+    gap: 26px;
+  }
+
   & + &::before {
     @include dashed-rule;
   }

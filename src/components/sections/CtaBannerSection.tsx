@@ -29,6 +29,7 @@ export function CtaBannerSection({ data, variant = 'default' }: CtaBannerSection
             style={data.imageMobileZoom ? ({ '--cta-mobile-zoom': data.imageMobileZoom } as CSSProperties) : undefined}
           >
             <FpoImage
+              className={data.mobileImage ? styles.desktopMedia : undefined}
               src={data.image}
               alt=""
               width={data.imageWidth ?? 579}
@@ -39,10 +40,22 @@ export function CtaBannerSection({ data, variant = 'default' }: CtaBannerSection
               sizes="(max-width: 992px) 100vw, 579px"
               fillContainer
             />
+            {data.mobileImage && (
+              <FpoImage
+                className={styles.mobileMedia}
+                src={data.mobileImage}
+                alt=""
+                width={716}
+                height={440}
+                overlay={false}
+                sizes="100vw"
+                fillContainer
+              />
+            )}
           </div>
 
           <div className={styles.content}>
-            <h2 className={styles.title}>
+            <h2 className={`${styles.title} ${data.mobileInlineTitle ? styles.titleInlineMobile : ''}`.trim()}>
               {highlightText(data.title, data.titleHighlight, styles.titleHighlight)}
             </h2>
 

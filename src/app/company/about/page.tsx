@@ -19,7 +19,7 @@ export default function AboutPage() {
       <AboutPurposeSection data={aboutData.purpose} />
       <CategoryFrontierSection data={aboutData.categoryFrontier} />
       <ValuesInPracticeSection data={aboutData.valuesInPractice} />
-      <CtaBannerSection data={aboutData.cta} />
+      <CtaBannerSection data={aboutData.cta} variant="flushTop" />
     </>
   );
 }

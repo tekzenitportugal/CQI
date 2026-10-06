@@ -27,8 +27,14 @@ export function PricingComparisonTable({ headers, rows, className }: PricingComp
         {rows.map((row) => (
           <div className={styles.row} key={row.factor}>
             <p className={styles.factor}>{row.factor}</p>
-            <p className={styles.question}>{row.question}</p>
-            <p className={styles.withCqi}>{row.withCqi}</p>
+            <p className={styles.question}>
+              <span className={styles.mobileLabel}>{headers[1]}</span>
+              {row.question}
+            </p>
+            <p className={styles.withCqi}>
+              <span className={`${styles.mobileLabel} ${styles.mobileLabelCqi}`}>{headers[2]}</span>
+              {row.withCqi}
+            </p>
           </div>
         ))}
       </div>

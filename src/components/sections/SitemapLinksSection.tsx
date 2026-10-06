@@ -17,6 +17,8 @@ export type SitemapLinksSectionData = {
   title: string;
   titleHighlight?: string[];
   columns: SitemapColumn[];
+  /** Figma mobile groups the links differently from desktop; replaces `columns` below lg. */
+  mobileColumns?: SitemapColumn[];
   footnote: {
     before: string;
     linkLabel: string;
@@ -31,27 +33,32 @@ type SitemapLinksSectionProps = {
 
 /** Figma "Every section, every page" (6079:31086): 8 link columns + integrations footnote. */
 export function SitemapLinksSection({ data }: SitemapLinksSectionProps) {
+  const renderColumns = (columns: SitemapColumn[], className: string) => (
+    <div className={`${styles.grid} ${className}`}>
+      {columns.map((column) => (
+        <div key={column.title} className={styles.column}>
+          <p className={styles.columnTitle}>{column.title}</p>
+          <ul className={styles.linkList}>
+            {column.links.map((link) => (
+              <li key={link.label}>
+                <Link href={link.href} className={styles.link}>
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+
   return (
     <section className={styles.section}>
       <Container>
         <h2 className={styles.title}>{highlightText(data.title, data.titleHighlight)}</h2>
 
-        <div className={styles.grid}>
-          {data.columns.map((column) => (
-            <div key={column.title} className={styles.column}>
-              <p className={styles.columnTitle}>{column.title}</p>
-              <ul className={styles.linkList}>
-                {column.links.map((link) => (
-                  <li key={link.label}>
-                    <Link href={link.href} className={styles.link}>
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+        {renderColumns(data.columns, data.mobileColumns ? styles.desktopOnly : '')}
+        {data.mobileColumns && renderColumns(data.mobileColumns, styles.mobileOnly)}
 
         <p className={styles.footnote}>
           {data.footnote.before}

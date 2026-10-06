@@ -20,6 +20,9 @@ export default function PricingPage() {
     <>
       <PricingHeroBanner data={pricingData.hero} />
       <TaggedInsightsRow
+        figmaMobile
+        inlineMobileTitle
+        largeMobileTags
         eyebrow={pricingData.steps.eyebrow}
         title={pricingData.steps.title}
         titleHighlight={pricingData.steps.titleHighlight}

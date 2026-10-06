@@ -17,7 +17,7 @@ export default function TeamPage() {
       <PageHeroBanner data={teamData.hero} />
       <TeamGroupsSection data={teamData.groups} />
       <WorkingAtCqiSection data={teamData.culture} />
-      <CtaBannerSection data={teamData.cta} />
+      <CtaBannerSection data={teamData.cta} variant="flushTop" />
     </>
   );
 }

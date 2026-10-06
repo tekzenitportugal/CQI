@@ -11,6 +11,9 @@ export const roiCalculatorData = {
     title: 'Model the range on your\nown numbers',
     titleHighlight: ['Model the range'],
     eyebrow: 'ROI Calculator',
+    mobileInlineTitle: true,
+    mobilePaddingTop: 288,
+    mobileIntroGap: 10,
     description:
       'Enter your contact-centre and customer-base figures. The calculator applies the outcome ceilings from CQI programme material and shows a conservative case alongside them, so you can see the shape of the business case before anyone builds one for you.',
   } satisfies PageHeroData,

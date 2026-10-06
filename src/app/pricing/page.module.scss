@@ -4,3 +4,17 @@
 .grayBand {
   background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
 }
+
+// Figma Pricing mobile: accordion questions wrap inside a ~240px column, leaving room beside the chevron.
+@media (max-width: 1023.98px) {
+  .grayBand h3 button > span:first-child {
+    max-width: 240px;
+  }
+}
+
+// Figma Pricing mobile (6225:43305): the band is a flat blue-grey wash, not the desktop fade to white.
+@media (max-width: 1023.98px) {
+  .grayBand {
+    background: linear-gradient(88.216deg, #edf2ff -147.05%, #f5f5f5 100%);
+  }
+}

@@ -14,7 +14,11 @@
 .heading {
   max-width: 950px;
   margin-inline: auto;
-  margin-bottom: 100px;
+  margin-bottom: 64px;
+
+  @include respond-to(lg) {
+    margin-bottom: 100px;
+  }
 }
 
 .list {

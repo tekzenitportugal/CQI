@@ -116,12 +116,12 @@ export const pricingData = {
       {
         title: 'Channels ingested',
         description:
-          'Which interaction sources are read: voice, chat, bot, email, app, survey, and the operational feeds behind them.',
+          'Which interaction sources are read: voice, chat, bot, email, app, survey,\nand the operational feeds behind them.',
       },
       {
         title: 'Interaction volume',
         description:
-          'Annual interactions processed. Volume scales the platform, not the headcount needed to run it.',
+          'Annual interactions processed. Volume scales the platform, not the headcount needed\nto run it.',
       },
       {
         title: 'Users',

@@ -15,8 +15,7 @@ type PartnershipEngagementSectionProps = {
  * from the design (relative to the 1169×589 diagram box), so the desktop rendering is a
  * faithful reproduction rather than a hand-drawn approximation. Below `lg`, where the
  * absolute zigzag no longer reads well, this simplifies to a plain stacked card list —
- * the same "faithful desktop, simplified mobile" tradeoff CqiEcosystemSection/
- * ReferenceArchitectureSection made for their own bespoke diagrams.
+ * on mobile (Figma 6225:45799) the circles zigzag vertically with their own connector art.
  */
 export function PartnershipEngagementSection({ data }: PartnershipEngagementSectionProps) {
   const [n1, n2, n3, n4] = data.nodes;
@@ -32,6 +31,21 @@ export function PartnershipEngagementSection({ data }: PartnershipEngagementSect
         />
 
         <div className={styles.diagram}>
+          <svg className={styles.mConnectors} viewBox="0 0 303 1242" fill="none" aria-hidden="true">
+            <g strokeLinecap="round" strokeDasharray="4 4">
+              <path d="M151 315C234.4 315 302 246.5 302 162C302 77.5 234.4 9 151 9" stroke="#4D4D4D" />
+              <path d="M151 315C67.6 315 0 383.5 0 468C0 552.5 67.6 621 151 621" stroke="#AFAFAF" />
+              <path d="M151 621C234.4 621 302 689.5 302 774C302 858.5 234.4 927 151 927" stroke="#AFAFAF" />
+              <path d="M151 927C67.6 927 0 995.5 0 1080C0 1164.5 67.6 1233 151 1233" stroke="#AFAFAF" />
+            </g>
+            <circle cx="151" cy="9" r="9" fill="#0044FF" />
+            <g fill="#AFAFAF">
+              <circle cx="151" cy="315" r="9" />
+              <circle cx="151" cy="621" r="9" />
+              <circle cx="151" cy="927" r="9" />
+              <circle cx="151" cy="1233" r="9" />
+            </g>
+          </svg>
           <div className={styles.connectors} aria-hidden="true">
             <img src="/images/company/partnerships/connector-main.svg" alt="" className={styles.connectorMain} />
             <img
@@ -60,10 +74,13 @@ export function PartnershipEngagementSection({ data }: PartnershipEngagementSect
 function EngagementNodeItem({ node, index }: { node: EngagementNode; index: number }) {
   return (
     <li className={styles.node} data-index={index}>
-      <img src="/images/company/partnerships/node-circle.svg" alt="" className={styles.nodeBg} aria-hidden="true" />
-      <div className={styles.nodeContent}>
-        <p className={styles.nodeTitle}>{highlightText(node.title)}</p>
-        <p className={styles.nodeDescription}>{node.description}</p>
+      <div className={styles.nodeBox}>
+        <img src="/images/company/partnerships/m-circle.svg" alt="" className={styles.mCircle} aria-hidden="true" />
+        <img src="/images/company/partnerships/node-circle.svg" alt="" className={styles.nodeBg} aria-hidden="true" />
+        <div className={styles.nodeContent}>
+          <p className={styles.nodeTitle}>{highlightText(node.title)}</p>
+          <p className={styles.nodeDescription}>{node.description}</p>
+        </div>
       </div>
     </li>
   );

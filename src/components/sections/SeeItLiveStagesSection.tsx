@@ -9,6 +9,7 @@ export type SeeItLiveStage = {
   subtitle: string;
   description: string;
   image: string;
+  mobileImage?: string;
   imageWidth: number;
   imageHeight: number;
 };
@@ -57,9 +58,19 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
                     alt=""
                     width={stage.imageWidth}
                     height={stage.imageHeight}
-                    className={styles.image}
+                    className={`${styles.image} ${stage.mobileImage ? styles.desktopImage : ''}`.trim()}
                     sizes="(max-width: 992px) 100vw, 466px"
                   />
+                  {stage.mobileImage && (
+                    <Image
+                      src={stage.mobileImage}
+                      alt=""
+                      width={stage.imageWidth}
+                      height={stage.imageHeight}
+                      className={`${styles.image} ${styles.mobileImage}`}
+                      sizes="100vw"
+                    />
+                  )}
                 </div>
               </div>
             ))}

@@ -16,6 +16,8 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     ...(data.mobilePaddingTop ? { '--hero-mobile-pad-top': `${data.mobilePaddingTop}px` } : {}),
     ...(data.mobileTextGap ? { '--hero-mobile-text-gap': `${data.mobileTextGap}px` } : {}),
     ...(data.mobileIntroGap ? { '--hero-mobile-intro-gap': `${data.mobileIntroGap}px` } : {}),
+    ...(data.mobileImageShift ? { '--hero-mobile-img-shift': `${data.mobileImageShift}px`, '--hero-mobile-box-bg': '#050505' } : {}),
+    ...(data.mobileOverlay ? { '--hero-mobile-overlay': data.mobileOverlay } : {}),
   } as CSSProperties;
   const hasDedicatedMobile = Boolean(data.mobileImage);
 
@@ -68,6 +70,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
           descriptionMaxWidth={data.descriptionMaxWidth}
           copyMaxWidth={data.copyMaxWidth}
           cta={data.cta}
+          mobileInlineTitle={data.mobileInlineTitle}
           className={styles.content}
         />
       </Container>

@@ -5,6 +5,11 @@
 .banner {
   position: relative;
   padding: 8px 8px 0;
+
+  // Figma mobile: 880px card (page y 8–888).
+  @media (max-width: 991.98px) {
+    min-height: 888px;
+  }
 }
 
 .heroBox {
@@ -35,6 +40,7 @@
   position: relative;
   z-index: 2;
   pointer-events: none;
+  padding-inline: 12px;
 
   // Desktop: start below the floating nav and vertically centre the copy in
   // the remaining box height, so the gap above the title matches the gap
@@ -44,6 +50,7 @@
     inset: calc(var(--header-offset-top) + var(--header-height)) 0 0;
     display: flex;
     align-items: center;
+    padding-inline: var(--container-padding);
   }
 }
 
@@ -55,6 +62,12 @@
   padding-top: calc(var(--header-offset-top) + var(--header-height) + 120px);
   padding-bottom: 48px;
   pointer-events: auto;
+
+  // Figma mobile: title starts at page y 236; 60px between the copy and the buttons.
+  @media (max-width: 991.98px) {
+    gap: 60px;
+    padding-top: 228px;
+  }
 
   @include respond-to(lg) {
     padding-top: 0;

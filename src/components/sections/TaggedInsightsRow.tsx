@@ -13,6 +13,10 @@ export type TaggedInsightsRowProps = {
   className?: string;
   /** Figma Implementation mobile: open 200px section, 64px header gap, no dashed rule. */
   figmaMobile?: boolean;
+  /** With `figmaMobile`: keep the title on one line instead of breaking after the highlighted phrase. */
+  inlineMobileTitle?: boolean;
+  /** With `figmaMobile`: uppercase, fixed-size tag pills with a 200px bottom gap (Figma Pricing mobile). */
+  largeMobileTags?: boolean;
 };
 
 /**
@@ -29,9 +33,17 @@ export function TaggedInsightsRow({
   items,
   className,
   figmaMobile,
+  inlineMobileTitle,
+  largeMobileTags,
 }: TaggedInsightsRowProps) {
   return (
-    <section className={[styles.section, figmaMobile && styles.figmaMobile, className].filter(Boolean).join(' ')}>
+    <section className={[
+        styles.section,
+        figmaMobile && styles.figmaMobile,
+        inlineMobileTitle && styles.inlineMobileTitle,
+        largeMobileTags && styles.largeMobileTags,
+        className,
+      ].filter(Boolean).join(' ')}>
       <Container>
         <div className={styles.header}>
           <div className={styles.heading}>

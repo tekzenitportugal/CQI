@@ -94,6 +94,10 @@ export type CtaBannerData = {
   imageInset?: { top: number; left: number; width: number; height: number };
   /** Mobile-only zoom of the photo inside its frame (Figma mobile crops tighter than desktop). */
   imageMobileZoom?: number;
+  /** Below lg only: a separate photo (Figma mobile uses a different, pre-cropped image). */
+  mobileImage?: string;
+  /** Below lg only: ignore the desktop line breaks in the title and let it wrap naturally. */
+  mobileInlineTitle?: boolean;
   buttons: CtaLink[];
 };
 
@@ -110,6 +114,10 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   /** Below lg only: title→intro and eyebrow→description gaps (px) when Figma differs from the default 60/20. */
   mobileTextGap?: number;
   mobileIntroGap?: number;
+  /** Below lg only (dedicated mobile image): shifts the photo up by this many px (Figma crops it taller than the card). */
+  mobileImageShift?: number;
+  /** Below lg only (dedicated mobile image): CSS `background` for the wash layer over the photo. */
+  mobileOverlay?: string;
 };
 
 export type IconFeatureCard = {

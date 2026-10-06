@@ -11,6 +11,9 @@ export const compareCqiData = {
     title: 'Where CQI sits in a stack\nyou have already bought',
     titleHighlight: ['Where CQI sits'],
     copyMaxWidth: 708,
+    mobileInlineTitle: true,
+    mobileMinHeight: 880,
+    mobilePaddingTop: 57,
     eyebrow: 'Compare CQI',
     description:
       'CQI is not an alternative to your contact centre, your analytics platform or your VoC programme. It is the layer above them. These pages set out what each category does well, where it stops, and what verification adds.',
@@ -31,6 +34,8 @@ export const compareCqiData = {
       {
         title: 'CQI vs CCaaS &\ncontact centre reporting',
         description: 'CCaaS platforms optimise how interactions are handled.',
+        mobileTitle: 'CQI vs CCaaS\n& contact centre reporting',
+        mobileDescription: 'What your customers speak. Calls, chats, bot sessions, emails and feedback, read in full, not sampled.',
         tags: ['NICE', 'Genesys', 'Amazon Connect', 'Five9'],
         tagsWidth: 237,
         href: '#',
@@ -38,6 +43,7 @@ export const compareCqiData = {
       {
         title: 'CQI vs Interaction &\nspeech analytics',
         description: 'Interaction analytics explains what happens during interactions.',
+        mobileTitle: 'CQI vs Interaction\n& speech analytics',
         tags: ['Verint', 'CallMiner', 'Observe.AI', 'Quantum Metric'],
         tagsWidth: 217,
         href: '#',
@@ -45,6 +51,7 @@ export const compareCqiData = {
       {
         title: 'CQI vs VoC &\nCXM platforms',
         description: 'VoC platforms measure how customers feel about experiences.',
+        mobileTitle: 'CQI vs VoC\n& CXM platforms',
         tags: ['Qualtrics', 'Medallia', 'InMoment', 'Forsta'],
         tagsWidth: 181,
         href: '#',
@@ -52,6 +59,7 @@ export const compareCqiData = {
       {
         title: 'CQI vs QA &\nquality management',
         description: 'QA programmes assure how well interactions were handled.',
+        mobileTitle: 'CQI vs QA &\nquality management',
         tags: ['Sample scorecards', 'Speech-driven auto-QA', 'Workforce optimisation suites'],
         tagsWidth: 310,
         href: '#',
@@ -102,6 +110,8 @@ export const compareCqiData = {
     titleHighlight: ['current stack'],
     description: 'We will map where CQI sits relative to what you already run, and where it should not go.',
     image: '/images/resources/compare-cqi/cta-photo.jpg',
+    mobileImage: '/images/resources/compare-cqi/cta-photo-mobile.jpg',
+    mobileInlineTitle: true,
     imageWidth: 579,
     imageHeight: 289,
     buttons: [

@@ -17,7 +17,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  margin-bottom: 100px;
+  margin-bottom: 64px;
+
+  @include respond-to(lg) {
+    margin-bottom: 100px;
+  }
 
   // Figma: the 71px heading block sits at y=1056, the 50px button at y=1068 (12px below its top).
   @include respond-to(lg) {
