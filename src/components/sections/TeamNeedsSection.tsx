@@ -60,7 +60,7 @@ export function TeamNeedsSection({ data }: TeamNeedsSectionProps) {
             )}
           </div>
 
-          <VerticalTabsPanel
+          <VerticalTabsPanel<TeamRoleTab>
             tabs={data.roles}
             activeTab={activeRole}
             onTabChange={setActiveRole}
