@@ -46,10 +46,10 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
                 </div>
 
                 {index === 0 && <div className={styles.lineCapTop} aria-hidden="true" />}
-                <div className={styles.dot} aria-hidden="true" />
-                {index === data.stages.length - 1 && (
-                  <div className={styles.lineCapBottom} aria-hidden="true" />
-                )}
+                <div
+                  className={index === 0 ? `${styles.dot} ${styles.dotActive}` : styles.dot}
+                  aria-hidden="true"
+                />
 
                 <div className={styles.media}>
                   <Image
@@ -58,7 +58,7 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
                     width={stage.imageWidth}
                     height={stage.imageHeight}
                     className={styles.image}
-                    sizes="(max-width: 992px) 100vw, 525px"
+                    sizes="(max-width: 992px) 100vw, 466px"
                   />
                 </div>
               </div>

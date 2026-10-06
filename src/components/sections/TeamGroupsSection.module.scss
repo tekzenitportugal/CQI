@@ -19,7 +19,7 @@
 
 .heading {
   --section-heading-title-max-width: 708px;
-  margin-bottom: fluid-space(100px);
+  margin-bottom: 100px;
 }
 
 .grid {
@@ -63,6 +63,13 @@
   font-weight: 500;
   line-height: 1.3;
   color: var(--color-light-blue-500);
+
+  // Figma: the title sits in a fixed 75px box, bottom-aligned (cards are 279px tall).
+  @include respond-to(lg) {
+    display: flex;
+    align-items: flex-end;
+    min-height: 75px;
+  }
 }
 
 .cardDescription {

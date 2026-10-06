@@ -19,8 +19,8 @@
 }
 
 @mixin section-space($top, $bottom: 0) {
-  padding-top: fluid-space($top);
-  padding-bottom: fluid-space($bottom);
+  padding-top: $top;
+  padding-bottom: $bottom;
 }
 
 // Figma's soft blue-grey section band. The angle varies with each band's proportions.

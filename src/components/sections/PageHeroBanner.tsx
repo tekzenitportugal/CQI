@@ -25,11 +25,13 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
       style={mobileVars}
     >
       <div className={styles.heroBox} aria-hidden="true">
-        {hasDedicatedMobile ? (
+        {!data.image ? (
+          <div className={styles.gradientOnly} />
+        ) : hasDedicatedMobile ? (
           <>
             {/* Flat full-bleed photo — no crop/mirror tricks; the wash is a separate overlay layer below. */}
             <Image
-              src={data.image}
+              src={data.image!}
               alt=""
               fill
               priority
@@ -49,7 +51,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
         ) : (
           <>
             <div className={`${styles.imageWrap} ${mirror ? '' : styles.unmirrored}`.trim()}>
-              <Image src={data.image} alt="" fill priority className={styles.heroImage} sizes="100vw" />
+              <Image src={data.image!} alt="" fill priority className={styles.heroImage} sizes="100vw" />
             </div>
             <div className={`${styles.overlay} ${mirror ? '' : styles.overlayUnmirrored}`.trim()} />
           </>

@@ -1,7 +1,6 @@
 import type { CtaBannerData } from '@/types/content';
 import type { CompareCategoriesSectionData } from '@/components/sections/CompareCategoriesSection';
 import type { DistinctionTableSectionData } from '@/components/sections/DistinctionTableSection';
-import type { FaqSectionData } from '@/components/sections/FaqSection';
 import type { HeroCopyData } from '@/components/ui/HeroCopy';
 
 export const compareCqiData = {
@@ -17,6 +16,10 @@ export const compareCqiData = {
       'CQI is not an alternative to your contact centre, your analytics platform or your VoC programme. It is the layer above them. These pages set out what each category does well, where it stops, and what verification adds.',
   } satisfies HeroCopyData,
 
+  // Figma 6225:40836: linear-gradient(76.91deg, #668fff 147.05%, #edf2ff 100%) rendered flipped
+  // horizontally → 283.09deg; first stop is -147.05% per the site's gradient-sign rule.
+  heroGradient: 'linear-gradient(283.09deg, #668fff -147.05%, #edf2ff 100%)',
+
   categories: {
     title: 'Four categories, four different jobs',
     titleHighlight: ['Four categories'],
@@ -29,24 +32,28 @@ export const compareCqiData = {
         title: 'CQI vs CCaaS &\ncontact centre reporting',
         description: 'CCaaS platforms optimise how interactions are handled.',
         tags: ['NICE', 'Genesys', 'Amazon Connect', 'Five9'],
+        tagsWidth: 237,
         href: '#',
       },
       {
         title: 'CQI vs Interaction &\nspeech analytics',
         description: 'Interaction analytics explains what happens during interactions.',
         tags: ['Verint', 'CallMiner', 'Observe.AI', 'Quantum Metric'],
+        tagsWidth: 217,
         href: '#',
       },
       {
         title: 'CQI vs VoC &\nCXM platforms',
         description: 'VoC platforms measure how customers feel about experiences.',
         tags: ['Qualtrics', 'Medallia', 'InMoment', 'Forsta'],
+        tagsWidth: 181,
         href: '#',
       },
       {
         title: 'CQI vs QA &\nquality management',
         description: 'QA programmes assure how well interactions were handled.',
         tags: ['Sample scorecards', 'Speech-driven auto-QA', 'Workforce optimisation suites'],
+        tagsWidth: 310,
         href: '#',
       },
     ],
@@ -67,8 +74,7 @@ export const compareCqiData = {
         blindSpot: 'Whether the commitment inside it was executed',
       },
       {
-        // "Interactio" is a typo baked into the Figma text itself — kept verbatim.
-        category: 'Interactio Analytics',
+        category: 'Interaction Analytics',
         question: 'What happened during the conversation?',
         blindSpot: 'What the systems did afterwards',
       },
@@ -90,27 +96,6 @@ export const compareCqiData = {
       },
     ],
   } satisfies DistinctionTableSectionData,
-
-  faq: {
-    eyebrow: 'Frequently asked',
-    title: 'About this calculator',
-    items: [
-      {
-        question: 'Where do the percentages come from?',
-        answer:
-          'They are the outcome ceilings published in CQI programme material: up to 30% cost-to-serve reduction, up to 30% FCR improvement, up to 15% AHT reduction and up to 25% churn reduction. They are ceilings for programmes where friction is identified and resolved before it compounds — not averages, and not portable between sectors.',
-        link: { label: 'How we prove it', href: '/products/how-we-prove-it' },
-      },
-      {
-        question: 'Is this a quote?',
-        answer: 'Answer to follow.',
-      },
-      {
-        question: 'How would we validate these numbers?',
-        answer: 'Answer to follow.',
-      },
-    ],
-  } satisfies FaqSectionData,
 
   conversationCta: {
     title: 'Bring your current stack\nto the conversation',

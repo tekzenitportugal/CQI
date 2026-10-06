@@ -51,6 +51,7 @@ export const aboutData = {
     eyebrow: 'ABOUT US',
     description:
       'CQI exists to close the gap between what customers experience and what enterprises can see. CQI Sense is the verification and action layer of the CX stack, deployed with enterprise operators worldwide.',
+    titleMaxWidth: 767,
     image: '/images/company/about/hero.png',
     mobileImage: '/images/company/about/hero-mobile.png',
     imageWidth: 1520,
@@ -159,9 +160,11 @@ export const aboutData = {
     title: 'Work with us',
     titleHighlight: ['Work'],
     description: 'Whether you are buying, partnering or joining, the conversation starts the same way.',
-    image: '/images/company/about/cta.png',
-    imageWidth: 1200,
-    imageHeight: 800,
+    image: '/images/company/about/cta-work-with-us.png',
+    imageWidth: 579,
+    imageHeight: 289,
+    // Figma: tall portrait photo, 868px tall inside the 289px frame, top-cropped by 256px
+    imageInset: { top: -256, left: 0, width: 579, height: 868 },
     buttons: [
       { label: 'Talk to our team', href: '/contact', variant: 'primary' as const },
       { label: 'Partnerships', href: '/company/partnerships', variant: 'secondary' as const },

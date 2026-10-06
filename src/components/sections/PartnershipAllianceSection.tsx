@@ -19,10 +19,12 @@ export function PartnershipAllianceSection({ data }: PartnershipAllianceSectionP
     <section className={styles.section}>
       <Container className={styles.inner}>
         <div className={styles.copy}>
-          <h2 className={styles.title}>{highlightText(data.title, data.titleHighlight)}</h2>
-          <div className={styles.sub}>
-            <p className={styles.label}>{data.subLabel}</p>
-            <p className={styles.description}>{data.subDescription}</p>
+          <div className={styles.text}>
+            <h2 className={styles.title}>{highlightText(data.title, data.titleHighlight)}</h2>
+            <div className={styles.sub}>
+              <p className={styles.label}>{data.subLabel}</p>
+              <p className={styles.description}>{data.subDescription}</p>
+            </div>
           </div>
           <Button label={data.button.label} href={data.button.href} variant={data.button.variant} />
         </div>

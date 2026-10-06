@@ -69,8 +69,9 @@
   }
 }
 
+// Figma "Active" letter (6004:129) has no fill — only the text colour.
 .letterActive {
-  background: var(--color-light-blue-75);
+  background: none;
 }
 
 .content {
@@ -182,6 +183,11 @@
   gap: 12px;
   padding-block: 24px;
   border-bottom: 1px dashed var(--color-antracite-100);
+
+  // Figma: 40px between each dashed divider and the row text.
+  @include respond-to(lg) {
+    padding-block: 40px;
+  }
 
   @include respond-to(md) {
     flex-direction: row;

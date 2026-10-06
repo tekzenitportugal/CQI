@@ -11,9 +11,6 @@ export const articlesData = {
     eyebrow: 'Articles & blogs',
     description:
       'Point of view and practitioner pieces on measuring what customers actually experience, and acting on it while it still matters.',
-    image: '/images/resources/blogs/articles-hero.jpg',
-    imageWidth: 1520,
-    imageHeight: 848,
   } satisfies PageHeroData,
 
   published: {
@@ -34,7 +31,7 @@ export const articlesData = {
         // Same description text as the first card — as given; flag if that was meant to differ.
         description:
           'The gap between survey response rates and lifecycle reality, and what closes it',
-        readTime: '5 min read',
+        readTime: '7 min read',
         href: '#',
       },
       {
@@ -42,7 +39,7 @@ export const articlesData = {
         title: 'From PoC to horizon three',
         description:
           'Sequencing a CX intelligence programme without a big-bang replacement.',
-        readTime: '6 min read',
+        readTime: '2 min read',
         href: '#',
       },
     ],

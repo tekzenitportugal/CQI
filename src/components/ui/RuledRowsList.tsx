@@ -1,6 +1,8 @@
 import type { RuledRow } from '@/types/content';
 import styles from './RuledRowsList.module.scss';
 
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 type RuledRowsListProps = {
   rows: RuledRow[];
   className?: string;
@@ -24,7 +26,15 @@ export function RuledRowsList({ rows, className }: RuledRowsListProps) {
                 ))}
               </p>
             )}
-            <p className={styles.description}>{row.description}</p>
+            <p className={styles.description}>
+              {EMAIL_PATTERN.test(row.description) ? (
+                <a href={`mailto:${row.description}`} className={styles.link}>
+                  {row.description}
+                </a>
+              ) : (
+                row.description
+              )}
+            </p>
           </li>
         );
       })}

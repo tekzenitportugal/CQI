@@ -14,6 +14,8 @@ type CarouselCardProps = {
   linkLabel?: string;
   /** Figma sets a few titles in Regular instead of Medium. */
   titleWeight?: 400 | 500;
+  /** Desktop description at 16px instead of 17.5px (Figma "See it live" coverage cards). */
+  smallDescription?: boolean;
   className?: string;
 };
 
@@ -29,6 +31,7 @@ export function CarouselCard({
   href,
   linkLabel = 'Explore',
   titleWeight,
+  smallDescription,
   className,
 }: CarouselCardProps) {
   const copy = (
@@ -36,7 +39,9 @@ export function CarouselCard({
       <h3 className={styles.title} style={titleWeight ? { fontWeight: titleWeight } : undefined}>
         {title}
       </h3>
-      <p className={styles.description}>{description}</p>
+      <p className={[styles.description, smallDescription && styles.descriptionSmall].filter(Boolean).join(' ')}>
+        {description}
+      </p>
     </div>
   );
 

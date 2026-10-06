@@ -24,7 +24,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-block: 40px;
+  padding-block: var(--ruled-item-padding, 40px);
 
   &::before {
     @include dashed-rule;
@@ -60,7 +60,7 @@
   }
 
   @include respond-to(lg) {
-    width: 202px;
+    width: var(--ruled-label-width, 202px);
   }
 }
 
@@ -69,13 +69,18 @@
   margin-top: var(--ruled-description-offset, 0);
   font-family: var(--font-body);
   font-size: 17.5px;
-  font-weight: 500;
+  font-weight: var(--ruled-description-weight, 500);
   // Figma: 1.4 of 17.5px, rounded to whole 24px lines
-  line-height: 24px;
+  line-height: var(--ruled-description-line-height, 24px);
   color: var(--color-antracite-300);
 
   @media (max-width: 1023.98px) {
     font-size: 15px;
     line-height: 1.4;
   }
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
 }

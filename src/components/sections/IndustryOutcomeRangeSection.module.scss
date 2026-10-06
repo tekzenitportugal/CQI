@@ -20,7 +20,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  margin-bottom: fluid-space(100px);
+  margin-bottom: 100px;
 
   // Figma mobile: 48px title → button, 64px before the metrics.
   @media (max-width: 1023.98px) {

@@ -158,7 +158,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 64px 32px;
-  margin: 50px 0 0;
+  margin: 16px 0 0;
   padding: 0;
   list-style: none;
 
@@ -190,20 +190,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 26px;
+  gap: 32px;
 }
 
 .textGroup {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .cardTitle {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
   line-height: 1.35;
   text-transform: uppercase;
@@ -213,7 +213,7 @@
 .cardDescription {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.3;
   color: var(--color-antracite-300);
@@ -222,17 +222,16 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   gap: 8px;
-}
 
-// Figma's 4th card (6079:31247) is the one card whose tag row is wider than the 294px
-// column (its two longest tags don't both fit on one line at 294px) — its tag frame bleeds
-// 8px past the card on each side there. Negative margins on this width:auto row reproduce
-// that 310px bleed without widening the card itself or its title/description above.
-.card:last-child .tags {
-  margin-inline: -8px;
+  // Figma gives each card's tag row its own fixed width (237/217/181/310px), which sets where
+  // the tags wrap; the 4th is wider than the 294px column and bleeds 8px past it, centred.
+  @include respond-to(lg) {
+    width: var(--tags-width, auto);
+    max-width: none;
+  }
 }
 
 .tag {

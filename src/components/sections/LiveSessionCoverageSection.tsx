@@ -39,6 +39,7 @@ export function LiveSessionCoverageSection({ data }: LiveSessionCoverageSectionP
               key={card.title}
               title={card.title}
               description={card.description}
+              smallDescription
               className={styles.card}
             />
           ))}

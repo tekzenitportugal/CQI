@@ -18,7 +18,7 @@ export const teamData = {
     eyebrow: 'cqi team',
     description:
       'The team pairs people who have run contact centres and operations with the data and AI engineers who instrument them. That combination is why the product talks about promises and root causes rather than sentiment scores.',
-    image: '/images/company/team/hero.png',
+    image: '/images/company/team/hero-figma.webp',
     mobileImage: '/images/company/team/hero-mobile.png',
     imageWidth: 1520,
     imageHeight: 848,
@@ -80,9 +80,11 @@ export const teamData = {
     title: 'Talk to the people who would run your programme',
     titleHighlight: ['Talk to the people'],
     description: 'A named account manager drives every proof of concept end to end.',
-    image: '/images/company/team/cta.jpg',
+    image: '/images/company/team/cta-talk-to-the-people.jpg',
     imageWidth: 579,
     imageHeight: 289,
+    // Figma: tall portrait photo, 868px tall inside the 289px frame, top-cropped by 217px
+    imageInset: { top: -217, left: 0, width: 579, height: 868 },
     buttons: [
       { label: 'Talk to our team', href: '/contact', variant: 'primary' as const },
       { label: 'PoC approach', href: '/products/poc-approach', variant: 'secondary' as const },

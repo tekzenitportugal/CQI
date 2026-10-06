@@ -55,19 +55,19 @@ export const notListedPageData = {
         title: 'Healthcare & health insurance',
         description:
           'Appointment commitments, referral handoffs, claim and authorisation delays, and care instructions that never reach the right system.',
-        image: '/images/solutions/not-listed/adjacent-healthcare.jpg',
+        image: '/images/solutions/not-listed/adjacent-healthcare-insurance.jpg',
       },
       {
         title: 'Retail & e-commerce',
         description:
           'Delivery windows, returns and refunds promised in chat, and stock or pricing inconsistencies that generate repeat contact.',
-        image: '/images/solutions/not-listed/adjacent-sector.jpg',
+        image: '/images/solutions/not-listed/adjacent-retail-ecommerce.jpg',
       },
       {
         title: 'Transport & logistics',
         description:
           'Collection and delivery slots, claims for damage or loss, and multi-party handoffs where context does not travel.',
-        image: '/images/solutions/not-listed/adjacent-sector.jpg',
+        image: '/images/solutions/not-listed/adjacent-transport-logistics.jpg',
       },
     ],
   },

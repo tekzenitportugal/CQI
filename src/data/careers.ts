@@ -19,14 +19,13 @@ export type CareersPageData = {
   cta: CtaBannerData;
 };
 
-// The Figma "CARDS - CAREERS" instance reuses the same placeholder photo on all four cards.
-const DISCIPLINE_IMAGE = '/images/company/careers/discipline-card.jpg';
-
 export const careersData: CareersPageData = {
   hero: {
     title: 'Build the layer that stops failure before it lands',
     titleHighlight: ['stops failure before it lands'],
     eyebrow: 'Careers',
+    // Figma title text box is 737px wide (2 lines), wider than the 587px column.
+    titleMaxWidth: 737,
     description:
       'CQI is an enterprise software company solving a problem most of its market has not yet named. The work is close to real operations, and the feedback loop is a client’s own data.',
     image: '/images/company/careers/hero.png',
@@ -44,25 +43,25 @@ export const careersData: CareersPageData = {
         title: 'Data & AI engineering',
         description:
           'Ingestion pipelines, classification, root cause analytics, explainable risk modelling and multilingual NLP.',
-        image: DISCIPLINE_IMAGE,
+        image: '/images/company/careers/discipline-data-ai-engineering.jpg',
       },
       {
         title: 'CX delivery & consulting',
         description:
           'Running proofs of concept, building the operating model with clients, and turning a friction map into adoption.',
-        image: DISCIPLINE_IMAGE,
+        image: '/images/company/careers/discipline-cx-delivery-consulting.jpg',
       },
       {
         title: 'Enterprise sales',
         description:
           'Complex service industries, long buying committees, and a category that has to be explained before it is sold.',
-        image: DISCIPLINE_IMAGE,
+        image: '/images/company/careers/discipline-enterprise-sales.jpg',
       },
       {
         title: 'Product & design',
         description:
           'Making verification legible: health views, worklists, ledgers and workflows that an operator can own.',
-        image: DISCIPLINE_IMAGE,
+        image: '/images/company/careers/discipline-product-design.jpg',
       },
     ],
   },

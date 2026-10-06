@@ -8,9 +8,6 @@ export type PricingHeroData = {
   titleHighlight?: string[];
   titleMaxWidth?: number;
   description: string;
-  image: string;
-  imageWidth?: number;
-  imageHeight?: number;
   buttons: CtaLink[];
 };
 
@@ -72,13 +69,6 @@ export const pricingData = {
     titleMaxWidth: 642,
     description:
       'CQI is an enterprise SaaS platform priced against the journeys, channels and interaction volumes in scope. Every engagement starts with a proof of concept, so the business case is built on your data rather than a benchmark.',
-    // Figma's own hero photo box (Rectangle 85) is an off-canvas placeholder with no
-    // reachable image asset (same gradient-only box as "Rectangle 86", both pasted at
-    // x=1536, outside the visible frame). Reusing the same office photo the sibling
-    // PoC Approach page's hero uses for the same PageHeroBanner-style treatment.
-    image: '/images/pricing/product-hero-office.jpg',
-    imageWidth: 1520,
-    imageHeight: 848,
     buttons: [
       { label: 'Get a scoped proposal', href: '/contact', variant: 'primary' as const },
       { label: 'ROI calculator', href: '/resources/roi-calculator', variant: 'secondary' as const },
@@ -185,7 +175,7 @@ export const pricingData = {
       },
     ] satisfies PricingComparisonRow[],
     footnote:
-      'Comparison of operating models. CQI is designed to sit alongside existing QA, VoC and analytics investments rather than replace them.',
+      'Comparison of operating models. CQI is designed to sit alongside existing QA, VoC and analytics investments rather than replace them',
     link: { label: 'See the category comparisons', href: '/resources/compare-cqi' },
   } satisfies PricingComparisonData,
 

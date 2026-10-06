@@ -46,6 +46,15 @@
   object-fit: cover;
 }
 
+// Gradient-only hero (no photo). Figma 6225:40342: linear-gradient(76.91deg, #668fff 147.05%, #edf2ff 100%)
+// rendered flipped horizontally; per the site's gradient-sign rule the true first stop is -147.05%,
+// and the flip turns 76.91deg into 283.09deg.
+.gradientOnly {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(283.09deg, #668fff -147.05%, #edf2ff 100%);
+}
+
 // Flat full-bleed path (dedicated mobile crop supplied): plain cover photo, art-directed
 // per breakpoint, no crop-percentage/mirror hacks — the wash is .overlayFlat below.
 .desktopOnly {

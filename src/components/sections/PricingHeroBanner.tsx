@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import type { PricingHeroData } from '@/data/pricing';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
@@ -10,18 +9,15 @@ type PricingHeroBannerProps = {
 };
 
 /**
- * Same "Rectangle 85" photo-hero treatment as PageHeroBanner, but this page's hero has
- * two CTAs under the copy instead of PageHeroBanner's zero — mirrors the PocHeroBanner
- * pattern (a dedicated local variant) rather than editing the shared PageHeroBanner.
+ * Gradient-only hero box (Figma has no photo here) with two CTAs under the copy —
+ * mirrors the PocHeroBanner pattern (a dedicated local variant) rather than editing
+ * the shared PageHeroBanner.
  */
 export function PricingHeroBanner({ data }: PricingHeroBannerProps) {
   return (
     <section className={styles.banner}>
       <div className={styles.heroBox} aria-hidden="true">
-        <div className={styles.imageWrap}>
-          <Image src={data.image} alt="" fill priority className={styles.heroImage} sizes="100vw" />
-        </div>
-        <div className={styles.overlay} />
+        <div className={styles.gradient} />
       </div>
 
       <Container className={styles.contentWrap}>

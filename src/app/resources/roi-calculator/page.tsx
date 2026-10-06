@@ -17,7 +17,7 @@ export default function RoiCalculatorPage() {
       <PageHeroBanner data={roiCalculatorData.hero} mirror={false} />
       <RoiCalculatorSection data={roiCalculatorData.calculator} />
       <HowModelWorksSection data={roiCalculatorData.howModelWorks} />
-      <FaqSection data={roiCalculatorData.faq} spaceTop={100} />
+      <FaqSection data={roiCalculatorData.faq} spaceTop={150} />
       <CtaBannerSection data={roiCalculatorData.conversationCta} />
     </>
   );

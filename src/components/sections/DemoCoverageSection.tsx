@@ -24,7 +24,8 @@ type DemoCoverageSectionProps = {
 export function DemoCoverageSection({ data }: DemoCoverageSectionProps) {
   return (
     <section className={styles.section}>
-      <Container className={styles.stack}>
+      <Container>
+        <div className={styles.stack}>
         <div className={styles.coverageCard}>
           <p className={styles.coverageTitle}>{data.coverageTitle}</p>
           <ul className={styles.coverageList}>
@@ -52,6 +53,7 @@ export function DemoCoverageSection({ data }: DemoCoverageSectionProps) {
               </Link>
             </div>
           ))}
+        </div>
         </div>
       </Container>
     </section>

@@ -15,6 +15,8 @@ type GradientHeroProps = {
   imageAspectRatio?: string;
   /** Figma mobile cutout (inset variant): a wide mockup pinned to the bottom-left of the hero card, cropped by it. */
   mobileImage?: string;
+  /** Overrides the default `--hero-gradient` band fill (inset variant) when Figma's gradient differs. */
+  gradient?: string;
 };
 
 /** Text-only hero on the 864px gradient band; copy is centred in the space below the header. */
@@ -24,6 +26,7 @@ export function GradientHero({
   image,
   imageAspectRatio,
   mobileImage,
+  gradient,
 }: GradientHeroProps) {
   if (variant === 'inset') {
     return (
@@ -31,6 +34,7 @@ export function GradientHero({
         className={`${styles.insetBanner} ${mobileImage ? styles.insetBannerCutout : ''}`.trim()}
         style={
           {
+            ...(gradient && { '--hero-gradient': gradient }),
             ...(data.mobileMinHeight && { '--hero-min-height': `${data.mobileMinHeight}px` }),
             ...(data.mobilePaddingTop && { '--hero-mobile-pad-top': `${data.mobilePaddingTop}px` }),
           } as CSSProperties

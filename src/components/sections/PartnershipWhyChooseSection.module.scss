@@ -18,11 +18,13 @@
   flex-direction: column;
   gap: 40px;
 
+  // Figma: 587 + 20 + 587 = 1194px, centred in the container.
   @include respond-to(lg) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    gap: 48px;
+    gap: 20px;
+    max-width: calc(1194px + 2 * var(--container-padding));
   }
 }
 
@@ -32,6 +34,13 @@
   align-items: flex-start;
   gap: 60px;
   max-width: 587px;
+}
+
+// Figma: title → sub-block is 48px; the button sits 60px below that block.
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
 }
 
 .title {
@@ -55,7 +64,11 @@
 }
 
 // Figma: the list is vertically centred against the left column, not top-aligned to it.
+// Figma: rows are 16px / text / 16px (55px pitch), Regular 400 at 1.3 line-height.
 .list {
+  --ruled-item-padding: 16px;
+  --ruled-description-weight: 400;
+  --ruled-description-line-height: 1.3;
   width: 100%;
 
   @include respond-to(lg) {

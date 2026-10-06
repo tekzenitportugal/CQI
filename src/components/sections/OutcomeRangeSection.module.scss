@@ -15,7 +15,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 32px;
-  margin-bottom: fluid-space(125px);
+  margin-bottom: 125px;
 
   // Figma: buttons sit 27px below the top of the 86px title
   @include respond-to(lg) {

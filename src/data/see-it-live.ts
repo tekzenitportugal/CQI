@@ -9,7 +9,8 @@ export const seeItLiveData = {
   hero: {
     title: 'Follow one broken promise through all five stages',
     titleHighlight: ['one broken promise', 'five stages'],
-    copyMaxWidth: 700,
+    copyMaxWidth: 708,
+    descriptionMaxWidth: 651,
     eyebrow: 'See it live',
     description:
       'A self-guided walkthrough of what CQI does with a single verified misalignment: a tariff reduction promised on 412 calls and executed on none of them. Click through the stages in order.',
@@ -28,8 +29,8 @@ export const seeItLiveData = {
         description:
           '412 calls this week contained a tariff-reduction promise. CQI classified all of them, extracted the commitment and the agent who made it, and matched each one against billing. None of the adjustments exist. Nobody has complained yet.',
         image: '/images/resources/see-it-live/stage1-detect.png',
-        imageWidth: 650,
-        imageHeight: 424,
+        imageWidth: 932,
+        imageHeight: 866,
       },
       {
         stageLabel: 'Stage 2',
@@ -38,8 +39,8 @@ export const seeItLiveData = {
         description:
           'The pattern is not agent error: the promise was captured correctly on the call and lost at the billing hand-off. CQI classifies it as a data gap, prices the exposure, and shows the exact date the pattern started.',
         image: '/images/resources/see-it-live/stage2-diagnose.png',
-        imageWidth: 660,
-        imageHeight: 494,
+        imageWidth: 932,
+        imageHeight: 1018,
       },
       {
         stageLabel: 'Stage 3',
@@ -48,8 +49,8 @@ export const seeItLiveData = {
         description:
           'The affected customers are ranked by revenue at stake and recoverability. Three of them are already eroding, and one has crossed into imminent risk with €1,140 attached.',
         image: '/images/resources/see-it-live/stage3-decide.png',
-        imageWidth: 651,
-        imageHeight: 426,
+        imageWidth: 932,
+        imageHeight: 1012,
       },
       {
         stageLabel: 'Stage 4',
@@ -58,8 +59,8 @@ export const seeItLiveData = {
         description:
           'A rule routes the case to billing operations with the SLA clock attached, loads the context onto the agent desktop, and holds ten per cent of matched customers as a control group.',
         image: '/images/resources/see-it-live/stage4-act.png',
-        imageWidth: 653,
-        imageHeight: 449,
+        imageWidth: 932,
+        imageHeight: 898,
       },
       {
         stageLabel: 'Stage 5',
@@ -68,8 +69,8 @@ export const seeItLiveData = {
         description:
           'The case closes when the adjustment is evidenced in billing and no recontact occurs within seven days. The commitment ledger records it as strictly met, not as met but late.',
         image: '/images/resources/see-it-live/stage5-verify.png',
-        imageWidth: 655,
-        imageHeight: 484,
+        imageWidth: 932,
+        imageHeight: 1294,
       },
     ],
     disclaimer: 'Illustrative scenario and example figures drawn from CQI programme material, not a client result.',

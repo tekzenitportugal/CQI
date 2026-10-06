@@ -1,6 +1,6 @@
 @use '@/styles/mixins' as *;
 
-// Same "Rectangle 85" photo box treatment as PageHeroBanner.module.scss, with an
+// "Rectangle 85" box as in PageHeroBanner.module.scss (gradient only), with an
 // extra .actions row (this page's hero has two buttons under the copy).
 .banner {
   position: relative;
@@ -22,29 +22,13 @@
   }
 }
 
-.imageWrap {
-  position: absolute;
-  top: -16.24%;
-  left: 0;
-  width: 100%;
-  height: 119.51%;
-  transform: scaleX(-1);
-}
-
-.heroImage {
-  object-fit: cover;
-}
-
-.overlay {
+// Figma 6225:42239: linear-gradient(76.91deg, #668fff 147.05%, #edf2ff 100%) rendered flipped
+// horizontally; per the site's gradient-sign rule the true first stop is -147.05%, and the
+// flip turns 76.91deg into 283.09deg.
+.gradient {
   position: absolute;
   inset: 0;
-  pointer-events: none;
-  background: linear-gradient(180deg, rgba(223, 232, 254, 0.96) 0%, rgba(223, 232, 254, 0.88) 70%, rgba(223, 232, 254, 0.6) 100%);
-
-  @include respond-to(lg) {
-    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(103.45 -60.65 -92.866 -158.4 0 848)'><stop stop-color='rgba(223,232,254,1)' offset='0.35645'/><stop stop-color='rgba(245,248,255,0.5)' offset='0.7565'/><stop stop-color='rgba(254,254,254,0)' offset='1'/></radialGradient></defs></svg>")
-      center / 100% 100% no-repeat;
-  }
+  background: linear-gradient(283.09deg, #668fff -147.05%, #edf2ff 100%);
 }
 
 .contentWrap {

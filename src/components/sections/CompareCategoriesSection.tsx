@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
 import { highlightText } from '@/utils/highlightText';
@@ -8,6 +9,8 @@ export type CompareCategoryCard = {
   title: string;
   description: string;
   tags: string[];
+  /** Desktop width (px) of the tag row, from Figma — controls where the tags wrap. */
+  tagsWidth?: number;
   href: string;
 };
 
@@ -53,7 +56,10 @@ export function CompareCategoriesSection({ data }: CompareCategoriesSectionProps
                   </p>
                   <p className={styles.cardDescription}>{category.description}</p>
                 </div>
-                <div className={styles.tags}>
+                <div
+                  className={styles.tags}
+                  style={category.tagsWidth ? ({ '--tags-width': `${category.tagsWidth}px` } as CSSProperties) : undefined}
+                >
                   {category.tags.map((tag) => (
                     <span key={tag} className={styles.tag}>
                       {tag}

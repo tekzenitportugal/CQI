@@ -13,9 +13,6 @@ export const roiCalculatorData = {
     eyebrow: 'ROI Calculator',
     description:
       'Enter your contact-centre and customer-base figures. The calculator applies the outcome ceilings from CQI programme material and shows a conservative case alongside them, so you can see the shape of the business case before anyone builds one for you.',
-    image: '/images/resources/blogs/articles-hero.jpg',
-    imageWidth: 1520,
-    imageHeight: 848,
   } satisfies PageHeroData,
 
   calculator: {

@@ -99,7 +99,8 @@ export type CtaBannerData = {
 
 /** Full-bleed photo hero (PageHeroBanner): HeroCopy's fields plus the banner photo(s). */
 export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
-  image: string;
+  /** Omit for a gradient-only hero (no photo in Figma). */
+  image?: string;
   /** Dedicated portrait crop for below lg; falls back to `image` (CSS-cropped) when omitted. */
   mobileImage?: string;
   imageWidth?: number;

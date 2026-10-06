@@ -4,6 +4,25 @@
 // its own bottom sits flush with the "Total cost of ownership" section's top spacing.
 .section {
   @include section-space(496px, 0);
+  position: relative;
+  isolation: isolate;
+
+  // Figma 6225:42253: full-width 864px band (y 1728–2592) behind this section, starting 241px
+  // below the steps row's bottom (1487) and running past the cards. Rotated 180deg, so
+  // 77.015deg becomes 257.015deg; per the site's gradient-sign rule the true first stop is -147.05%.
+  @include respond-to(lg) {
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: 241px;
+      left: 0;
+      right: 0;
+      height: 864px;
+      pointer-events: none;
+      background: linear-gradient(257.015deg, #edf2ff -147.05%, #f5f5f5 100%);
+    }
+  }
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {
@@ -13,7 +32,7 @@
 }
 
 .heading {
-  margin-bottom: fluid-space(100px);
+  margin-bottom: 100px;
 }
 
 .cards {

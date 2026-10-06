@@ -3,7 +3,7 @@
 // Figma Rectangle 105 (6079:31684): a soft blue-grey band with 200px of padding
 // before/after the card content, ending flush with the footer.
 .section {
-  padding-block: fluid-space(200px);
+  padding-block: 200px;
   @include soft-blue-band(82.958deg);
 
   // Consistent 100px inter-section rhythm on mobile/tablet. Bottom stays flush
@@ -13,10 +13,13 @@
   }
 }
 
+// Figma 6225:41651: the cards sit in a 1194px band centred in the 1536px page.
 .stack {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-inline: auto;
+  max-width: 1194px;
 }
 
 .coverageCard {
@@ -40,9 +43,11 @@
   font-family: var(--font-body);
   font-size: 24px;
   font-weight: 500;
+  line-height: 1.3;
   color: var(--color-antracite-400);
 }
 
+// Figma: 554px list, a dashed #668fff rule above every item and one closing the list.
 .coverageList {
   display: flex;
   flex-direction: column;
@@ -50,17 +55,16 @@
   padding: 0;
   list-style: none;
   width: 100%;
+  border-top: 1px dashed var(--color-blue-75);
 
   @include respond-to(lg) {
-    // 708px (DemoFormSection's .form max-width) minus this card's own 32px padding + 1px border,
-    // so the list's left edge lines up with the form's left edge above it.
-    max-width: 675px;
+    max-width: 554px;
   }
 }
 
 .coverageItem {
   padding-block: 16px;
-  border-bottom: 1px dashed var(--color-antracite-100);
+  border-bottom: 1px dashed var(--color-blue-75);
   font-family: var(--font-body);
   font-size: 17.5px;
   line-height: 1.3;
@@ -68,15 +72,6 @@
 
   @media (max-width: 1023.98px) {
     font-size: 15px;
-  }
-
-  &:first-child {
-    padding-top: 0;
-  }
-
-  &:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
   }
 }
 
@@ -104,8 +99,9 @@
 }
 
 .optionHighlight {
+  gap: 48px;
   border-color: var(--color-blue-200);
-  background: var(--color-blue-50);
+  background: #edf2ff;
 }
 
 .optionCopy {
@@ -119,6 +115,7 @@
   font-family: var(--font-body);
   font-size: 24px;
   font-weight: 500;
+  line-height: 1.3;
   color: var(--color-antracite-400);
 }
 

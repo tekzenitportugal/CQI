@@ -65,6 +65,8 @@ export const partnershipsData = {
   hero: {
     title: 'A selective partner ecosystem, built on shared outcomes',
     titleHighlight: ['shared outcomes'],
+    // Figma title text box is 737px wide (2 lines), wider than the 587px column.
+    titleMaxWidth: 737,
     eyebrow: 'Partnerships',
     description:
       'CQI operates a focused, outcome-led partner model. Partners add a verified, outcome-driven intelligence layer to their existing CX, CRM and contact-centre offerings.',
@@ -103,7 +105,7 @@ export const partnershipsData = {
 
   partnershipTypes: {
     eyebrow: 'Partnership types',
-    title: 'Growth partners and value partners',
+    title: 'Growth partners\nand value partners',
     titleHighlight: ['Growth', 'value'],
     description:
       'Two tracks, depending on whether you are extending your reach or building a practice on the platform.',
@@ -149,7 +151,7 @@ export const partnershipsData = {
   } satisfies WhyChooseData,
 
   alliance: {
-    title: 'Opt-in infrastructure, not a vendor relationship',
+    title: 'Opt-in infrastructure,\nnot a vendor relationship',
     titleHighlight: ['not a vendor relationship'],
     subLabel: 'Alliances & consortia',
     subDescription:
@@ -164,7 +166,7 @@ export const partnershipsData = {
   cta: {
     title: 'Help your customers move from reactive CX to proactive performance',
     titleHighlight: ['reactive CX to proactive performance'],
-    description: "Let's talk about where CQI fits in your practice.",
+    description: 'Let’s talk about where CQI fits in your practice.',
     image: '/images/company/partnerships/cta.jpg',
     buttons: [
       { label: 'Talk to our team', href: '/contact', variant: 'primary' },

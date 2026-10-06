@@ -2,13 +2,8 @@
 
 // Figma (6079:30627): hero box bottom (856) → 1056
 .section {
-  @include section-space(200px, 0);
-
-  // Consistent 100px inter-section rhythm on mobile/tablet.
-  @media (max-width: 1023.98px) {
-    padding-top: 200px;
-    padding-bottom: 200px;
-  }
+  padding-top: 200px;
+  padding-bottom: 200px;
 }
 
 // Figma: 587 + 141 + 466 = 1194px, centred in the 1436px container
@@ -88,7 +83,12 @@
 .right {
   width: 100%;
 
+  // Figma "Frame 1038": 112px label column, Regular 17.5px / 1.3 descriptions, 3px baseline offset.
   @include respond-to(lg) {
+    --ruled-label-width: 112px;
+    --ruled-description-weight: 400;
+    --ruled-description-line-height: 1.3;
+    --ruled-description-offset: 3px;
     flex: 0 1 466px;
   }
 }

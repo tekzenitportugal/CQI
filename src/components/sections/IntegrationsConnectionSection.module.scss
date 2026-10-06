@@ -19,7 +19,7 @@
   // Figma: 26px between the title and the description/button row.
   gap: fluid-space(26px);
   // Figma "Frame 1000003483": 100px between the header row and the cards row.
-  margin-bottom: fluid-space(100px);
+  margin-bottom: 100px;
 
   // Figma mobile: 26px title → copy, 100px header → cards.
   @media (max-width: 767.98px) {

@@ -1,7 +1,7 @@
 @use '@/styles/mixins' as *;
 
 .section {
-  @include section-space(200px, 250px);
+  @include section-space(200px, 200px);
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {
@@ -33,6 +33,7 @@
   @include respond-to(lg) {
     flex: 0 0 585px;
     width: 585px;
+    padding-right: 30px; // Figma: 20px left, 30px right.
   }
 }
 
@@ -52,7 +53,8 @@
 }
 
 .fieldHelper {
-  margin: 0 0 4px;
+  // Figma: label → helper 10px, helper → input 6px (no helper: label → input 6px).
+  margin: 4px 0 0;
   font-family: var(--font-body);
   font-size: 14px;
   font-weight: 400;
@@ -119,6 +121,7 @@
   font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 500;
+  line-height: 1;
   text-transform: uppercase;
   color: var(--color-antracite-200);
 }
@@ -146,7 +149,7 @@
   font-family: var(--font-heading);
   font-size: 35px;
   font-weight: 500;
-  line-height: 1.35;
+  line-height: 37px; // Figma value text box is 37px tall (card is 115px).
   color: var(--color-blue-200);
 }
 
@@ -212,6 +215,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr auto;
   column-gap: 16px;
+
+  // Figma: Line col 313px, Basis starts at x=332, Annual value right-aligned.
+  @include respond-to(lg) {
+    grid-template-columns: 313px 1fr auto;
+    column-gap: 19px;
+  }
 }
 
 .breakdownHeaderCell {
@@ -220,6 +229,7 @@
   font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 500;
+  line-height: 1.35;
   text-transform: uppercase;
   color: var(--color-antracite-200);
 
@@ -232,7 +242,7 @@
 .breakdownBasis,
 .breakdownValue {
   margin: 0;
-  padding-block: 16px;
+  padding-block: 15px;
   border-bottom: 1px dashed var(--color-antracite-100);
 }
 
@@ -244,6 +254,7 @@
   font-family: var(--font-heading);
   font-size: 16px;
   font-weight: 500;
+  line-height: 1.35;
   color: var(--color-antracite-400);
 }
 

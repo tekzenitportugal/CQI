@@ -1,7 +1,8 @@
 @use '@/styles/mixins' as *;
 
 .section {
-  @include section-space(200px, 200px);
+  // Figma band: 250px above the heading, 150px below the last divider.
+  @include section-space(250px, 150px);
   background: linear-gradient(0deg, #fff 0.04%, #f5f5f5 99.95%);
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
@@ -18,7 +19,7 @@
 
   @include respond-to(lg) {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start; // Figma: heading and list tops align.
     justify-content: space-between;
     gap: 64px;
   }
@@ -74,6 +75,11 @@
   @include respond-to(md) {
     flex-direction: row;
     gap: 40px;
+  }
+
+  // Figma: 40px between each divider and the row text.
+  @include respond-to(lg) {
+    padding-block: 40px;
   }
 }
 

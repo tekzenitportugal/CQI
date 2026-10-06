@@ -91,9 +91,11 @@ export const historyData = {
     title: 'See where the idea ended up',
     titleHighlight: ['idea'],
     description: 'The same argument, running on a worked example. No form to fill in.',
-    image: '/images/company/history/cta-idea.jpg',
+    image: '/images/company/history/cta-see-where-idea-ended-up.jpg',
     imageWidth: 579,
     imageHeight: 289,
+    // Figma: photo scaled to 777×518, offset -108/-73 inside the 579×289 frame
+    imageInset: { top: -73, left: -108, width: 777, height: 518 },
     buttons: [
       { label: 'See it live', href: '/resources/see-it-live', variant: 'primary' as const },
       { label: 'About us', href: '/company/about', variant: 'secondary' as const },

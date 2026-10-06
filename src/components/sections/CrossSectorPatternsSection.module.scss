@@ -16,7 +16,7 @@
   --section-heading-title-max-width: 100%;
   --section-heading-description-max-width: 508px;
   margin-inline: auto;
-  margin-bottom: fluid-space(64px);
+  margin-bottom: 64px;
 
   // Figma mobile: 26px title → copy, 15px medium copy, 64px to the cards.
   @media (max-width: 1023.98px) {

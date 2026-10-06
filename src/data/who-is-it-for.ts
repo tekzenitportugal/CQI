@@ -31,7 +31,7 @@ export const whoIsItForData = {
           'Prioritisation by impact rather than by loudest complaint',
           'Outcome tracking against a built-in control group',
         ],
-        image: '/images/product/who-is-it-for/role-cx-leadership.png',
+        image: '/images/product/who-is-it-for/role-cx-leadership-figma.jpg',
       },
       {
         id: 'it-data',
@@ -46,7 +46,7 @@ export const whoIsItForData = {
           "Processed in CQI's own cloud; anonymisation before inference",
           'Horizontally scalable; CQI performs the computation',
         ],
-        image: '/images/product/who-is-it-for/role-it-data.png',
+        image: '/images/product/who-is-it-for/role-it-data-figma.jpg',
       },
       {
         id: 'contact-ops',
@@ -57,7 +57,7 @@ export const whoIsItForData = {
         description:
           "Each case arrives with the customer's own words, the exact promise and who made it, the SLA time remaining, system evidence and an assigned root cause, then routes to an owner and closes on verification.",
         bullets: [],
-        image: '/images/product/who-is-it-for/role-contact-ops.png',
+        image: '/images/product/who-is-it-for/role-contact-ops-figma.jpg',
       },
       {
         id: 'quality-workforce',
@@ -68,8 +68,7 @@ export const whoIsItForData = {
         description:
           'Move QA from sampled scorecards to promise-keeping across every interaction: promises made versus pending, strictly met, and met but late, benchmarked per agent, with the root cause pointing at topic, channel, tooling or knowledge.',
         bullets: [],
-        image: '/images/product/who-is-it-for/role-quality-workforce.png',
-        imageObjectPosition: 'center bottom',
+        image: '/images/product/who-is-it-for/role-quality-workforce-figma.jpg',
       },
       {
         id: 'front-line',
@@ -80,7 +79,7 @@ export const whoIsItForData = {
         description:
           'The person in front of the customer sees the state, the reason for it, and the action they are authorised to take, so recovery happens in the moment rather than in a follow-up nobody makes.',
         bullets: [],
-        image: '/images/product/who-is-it-for/role-front-line.png',
+        image: '/images/product/who-is-it-for/role-front-line-figma.jpg',
       },
       {
         id: 'partners',
@@ -92,7 +91,7 @@ export const whoIsItForData = {
           'Add an outcome-driven layer to CX, CRM and contact-centre practices, with fast time-to-value and lightweight integration.',
         bullets: [],
         link: { label: 'Partnership model', href: '/company/partnerships' },
-        image: '/images/product/who-is-it-for/role-partners.png',
+        image: '/images/product/who-is-it-for/role-partners-figma.jpg',
       },
     ] satisfies TeamRoleTab[],
   },

@@ -14,13 +14,19 @@
 
 // Figma: eyebrow+title block to diagram gap is 100px.
 .heading {
-  margin-bottom: fluid-space(100px);
+  margin-bottom: 100px;
 }
 
 // Figma "Frame 1000003330": 1169×589 box the whole diagram is designed against.
 .diagram {
   position: relative;
   width: 100%;
+
+  // Figma: the diagram box is 1169px wide, centred (not stretched to the 1436px container).
+  @include respond-to(lg) {
+    max-width: 1169px;
+    margin-inline: auto;
+  }
 }
 
 .nodes {

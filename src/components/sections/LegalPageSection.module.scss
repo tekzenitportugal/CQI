@@ -1,8 +1,8 @@
 @use '@/styles/mixins' as *;
 
 .section {
-  padding-top: calc(var(--header-offset-top) + var(--header-height) + fluid-space(100px));
-  padding-bottom: fluid-space(200px);
+  padding-top: calc(var(--header-offset-top) + var(--header-height) + 100px);
+  padding-bottom: 200px;
 }
 
 .layout {

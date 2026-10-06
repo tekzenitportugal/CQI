@@ -12,7 +12,7 @@
 
 .title {
   max-width: 485px;
-  margin: 0 0 fluid-space(100px);
+  margin: 0 0 100px;
   font-family: var(--font-heading);
   font-size: 36px;
   font-weight: 400;
@@ -75,7 +75,7 @@
 }
 
 .footnote {
-  margin: fluid-space(100px) 0 0;
+  margin: 100px 0 0;
   max-width: 832px;
   font-family: var(--font-body);
   font-size: 16px;

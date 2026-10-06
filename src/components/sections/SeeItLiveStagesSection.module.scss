@@ -1,7 +1,8 @@
 @use '@/styles/mixins' as *;
 
 .section {
-  @include section-space(200px, 200px);
+  // Figma: 200px above the first stage; 100px below the CTA button (+100px coverage top = 200px).
+  @include section-space(200px, 100px);
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {
@@ -18,57 +19,52 @@
   display: flex;
   flex-direction: column;
   gap: 80px;
+
+  // Figma: 1196px stage band (466px text + 466px card), 200px between stages.
+  @include respond-to(lg) {
+    gap: 200px;
+    max-width: 1196px;
+    margin-inline: auto;
+  }
 }
 
-// Figma's line is dashed (Line 17); the per-gap circular markers (Group 8/12/897) are
-// simplified to one consistent ring+fill dot per row.
+// Figma Line 17: 1px dashed (4 4) #afafaf line down the centre from just below the first dot,
+// fading to white over its last ~30%. lineCapTop is Rectangle 25: the 2px white→#afafaf
+// fade-in above the first dot.
 .line {
   display: none;
 
   @include respond-to(lg) {
     display: block;
     position: absolute;
-    top: 0;
-    bottom: 0;
+    top: 326px;
+    bottom: 124px;
     left: 50%;
-    width: 0;
-    border-left: 1px dashed var(--color-antracite-100);
-    // Fades the dashes themselves at both ends — without this, the solid caps only
-    // overlay on top and the dashes underneath still show at full strength right to the edge.
-    mask-image: linear-gradient(180deg, transparent 0%, black 15%, black 85%, transparent 100%);
+    width: 1px;
+    background: repeating-linear-gradient(
+      180deg,
+      var(--color-antracite-100) 0,
+      var(--color-antracite-100) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+    mask-image: linear-gradient(180deg, black 0%, black 69.5%, transparent 100%);
   }
 }
 
-// Solid fade-in above the first stage's dot and fade-out below the last stage's dot —
-// sized to that row's own top/bottom half so they land exactly on the dot regardless of
-// how tall that row's content is.
 .lineCapTop {
   display: none;
 
   @include respond-to(lg) {
     display: block;
     position: absolute;
-    top: 0;
+    top: -20px;
     left: 50%;
-    width: 1px;
-    height: 50%;
+    width: 2px;
+    height: 320px;
     transform: translateX(-50%);
-    background: linear-gradient(180deg, transparent 0%, var(--color-antracite-100) 100%);
-  }
-}
-
-.lineCapBottom {
-  display: none;
-
-  @include respond-to(lg) {
-    display: block;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1px;
-    height: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(180deg, rgba(175, 175, 175, 0.75) 0%, transparent 100%);
+    border-radius: 80px;
+    background: linear-gradient(180deg, var(--color-white) 0%, var(--color-antracite-100) 100%);
   }
 }
 
@@ -81,7 +77,8 @@
   @include respond-to(lg) {
     flex-direction: row;
     align-items: center;
-    gap: fluid-space(260px);
+    justify-content: space-between;
+    gap: 120px;
   }
 }
 
@@ -91,6 +88,7 @@
   }
 }
 
+// Figma Group 897 / 896: 34px white disc, dashed #afafaf ring, 12px #888 centre.
 .dot {
   display: none;
 
@@ -99,22 +97,37 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 51px;
-    height: 51px;
+    width: 34px;
+    height: 34px;
     transform: translate(-50%, -50%);
     border-radius: 50%;
     background: var(--color-white);
-    border: 1.5px solid var(--color-antracite-100);
+    border: 1px dashed var(--color-antracite-100);
 
     &::before {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 27px;
-      height: 27px;
+      width: 12px;
+      height: 12px;
       transform: translate(-50%, -50%);
       border-radius: 50%;
+      background: var(--color-antracite-200);
+    }
+  }
+}
+
+// Figma Group 8 (first stage): 51px, solid 1.5px ring, 27px blue centre.
+.dotActive {
+  @include respond-to(lg) {
+    width: 51px;
+    height: 51px;
+    border: 1.5px solid var(--color-antracite-100);
+
+    &::before {
+      width: 27px;
+      height: 27px;
       background: var(--color-blue-200);
     }
   }
@@ -126,6 +139,10 @@
   min-width: 0;
   flex-direction: column;
   gap: 20px;
+
+  @include respond-to(lg) {
+    flex: 0 1 466px;
+  }
 }
 
 .stageLabel {
@@ -187,6 +204,10 @@
   flex: 1;
   min-width: 0;
   width: 100%;
+
+  @include respond-to(lg) {
+    flex: 0 1 466px;
+  }
 }
 
 .image {
@@ -196,6 +217,7 @@
   background: var(--color-antracite-50);
 }
 
+// Figma: disclaimer 89px below the last stage, 60px above the button.
 .footer {
   display: flex;
   flex-direction: column;
@@ -203,6 +225,10 @@
   gap: 60px;
   margin-top: 150px;
   text-align: center;
+
+  @include respond-to(lg) {
+    margin-top: 89px;
+  }
 }
 
 .disclaimer {
@@ -210,5 +236,6 @@
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 500;
+  line-height: 1.4;
   color: var(--color-antracite-200);
 }

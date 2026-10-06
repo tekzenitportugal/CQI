@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function CompareCqiPage() {
   return (
     <>
-      <GradientHero data={compareCqiData.hero} variant="inset" />
+      <GradientHero data={compareCqiData.hero} variant="inset" gradient={compareCqiData.heroGradient} />
       <CompareCategoriesSection data={compareCqiData.categories} />
       <DistinctionTableSection data={compareCqiData.distinction} />
       <CtaBannerSection data={compareCqiData.conversationCta} />
