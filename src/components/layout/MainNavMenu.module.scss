@@ -24,7 +24,7 @@
   align-items: stretch;
   background: var(--color-antracite-50);
   // Clears the fixed header row (logo + close icon) that stays visible above this overlay.
-  padding-top: calc(25px + 50px);
+  padding-top: calc(20px + 48px);
 }
 
 .pill {
@@ -44,7 +44,8 @@
   // instead of growing past the viewport and pushing the page itself to scroll.
   min-height: 0;
   border-radius: 0;
-  padding: 24px;
+  // Figma mobile menu: 20px sides, list starts 100px from the top, 40px bottom.
+  padding: 32px 20px 40px;
   background: transparent;
   box-shadow: none;
   overflow-y: auto;
@@ -55,7 +56,7 @@
 .topList {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -72,15 +73,13 @@
 
 .topItem {
   margin: 0;
-  padding-bottom: 8px;
-  margin-bottom: 8px;
+  // Figma mobile: 16px above and below every dashed rule.
+  padding-bottom: 16px;
+  margin-bottom: 16px;
   border-bottom: 1px dashed var(--color-antracite-75);
 
-  // Matches the gap below the dashed rule (margin-bottom + topList's gap) so the
-  // first item sits as far from the list's own top rule as every other item
-  // sits from the one above it.
   &:first-child {
-    padding-top: 12px;
+    padding-top: 16px;
   }
 
   @include respond-to(lg) {
@@ -98,7 +97,8 @@
 .topLink {
   display: inline-flex;
   align-items: center;
-  justify-content: flex-start;
+  // Figma mobile: label left, chevron pinned right.
+  justify-content: space-between;
   gap: 8px;
   width: 100%;
   padding: 5px 8px 7px 0;
@@ -106,11 +106,9 @@
   border-radius: 6px;
   background: transparent;
   font-family: var(--font-body);
-  // Larger than the desktop pill's 14px — this text sits in a full-width mobile
-  // row, so it can afford to read bigger; restored to the Figma desktop size below.
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 1.3;
+  line-height: 0.75;
   text-transform: capitalize;
   color: var(--color-antracite-400);
   white-space: nowrap;
@@ -120,8 +118,7 @@
 
   @include respond-to(lg) {
     width: auto;
-    font-size: 14px;
-    line-height: 0.75;
+    justify-content: flex-start;
     padding-left: 16px;
   }
 
@@ -185,13 +182,11 @@
 .panelMobile {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  margin-top: 20px;
-  // Slightly deeper than the trigger's own 16px left padding, so the submenu
-  // reads as nested under its parent item instead of sitting flush with it.
-  padding: 0 0 8px 24px;
-  background: transparent;
-  border-radius: 0;
+  // Figma mobile: white card, 16px below its trigger row.
+  margin-top: 16px;
+  padding: 32px 20px;
+  background: var(--color-white);
+  border-radius: 20px;
 
   @include respond-to(lg) {
     display: none;
@@ -200,21 +195,34 @@
 
 .panelColumns {
   display: flex;
-  flex-direction: column;
-  gap: 32px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 32px 40px;
+  align-items: flex-start;
 
   @include respond-to(lg) {
-    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 100px;
-    align-items: flex-start;
   }
+}
+
+// Figma mobile: Product's three columns stack instead of wrapping side by side.
+.panelStacked .panelColumns {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 32px;
 }
 
 .column {
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 20px;
   align-items: flex-start;
+  width: var(--column-width, auto);
+
+  @include respond-to(lg) {
+    gap: 26px;
+  }
 }
 
 .columnTitle {
@@ -232,11 +240,15 @@
 .linkList {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
   margin: 0;
   padding: 0;
   list-style: none;
   align-items: flex-start;
+
+  @include respond-to(lg) {
+    gap: 15px;
+  }
 }
 
 .subLink {
@@ -254,15 +266,6 @@
     color: var(--color-blue-200);
     outline: none;
   }
-}
-
-// Mobile submenu reads bigger than the desktop mega-menu panel.
-.panelMobile .columnTitle {
-  font-size: 13px;
-}
-
-.panelMobile .subLink {
-  font-size: 17px;
 }
 
 .mobileSection {

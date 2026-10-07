@@ -7,6 +7,8 @@ export type MegaMenuLink = {
 
 export type MegaMenuColumn = {
   title: string;
+  /** Desktop column width in px (Figma fixed column widths). */
+  width?: number;
   links: MegaMenuLink[];
 };
 
@@ -28,6 +30,7 @@ export const megaMenus: MegaMenuConfig[] = [
     columns: [
       {
         title: 'Capabilities',
+        width: 224,
         links: [
           { label: 'Product Overview', href: '/products/capabilities' },
           { label: 'Verified CX Analytics', href: '/products/verified-cx-analytics' },
@@ -40,6 +43,7 @@ export const megaMenus: MegaMenuConfig[] = [
       },
       {
         title: 'Explore',
+        width: 208,
         links: [
           { label: 'Core functionalities', href: productExploreRoutes.coreFunctionalities },
           { label: 'Fix before failure happens', href: productExploreRoutes.fixBeforeFailure },
@@ -49,6 +53,7 @@ export const megaMenus: MegaMenuConfig[] = [
       },
       {
         title: 'Deploy',
+        width: 168,
         links: [
           { label: 'Integrations', href: '/products/integrations' },
           { label: 'CQI Implementation', href: '/products/implementation' },
@@ -66,6 +71,7 @@ export const megaMenus: MegaMenuConfig[] = [
     columns: [
       {
         title: 'By Industry',
+        width: 177,
         links: [
           { label: 'Telecom', href: '/solutions/telecom' },
           { label: 'Airlines', href: '/solutions/airlines' },
@@ -77,6 +83,7 @@ export const megaMenus: MegaMenuConfig[] = [
       },
       {
         title: 'By Problem',
+        width: 116,
         links: [
           { label: 'All industries', href: '/solutions/all-industry' },
           { label: 'Not listed?', href: '/solutions/not-listed' },
@@ -113,6 +120,7 @@ export const megaMenus: MegaMenuConfig[] = [
     columns: [
       {
         title: 'CQI Sense',
+        width: 104,
         links: [
           { label: 'About us', href: '/company/about' },
           { label: 'Our history', href: '/company/history' },
@@ -121,6 +129,7 @@ export const megaMenus: MegaMenuConfig[] = [
       },
       {
         title: 'Work with us',
+        width: 114,
         links: [
           { label: 'Partnerships', href: '/company/partnerships' },
           { label: 'Careers', href: '/company/careers' },

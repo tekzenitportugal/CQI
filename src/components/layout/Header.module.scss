@@ -2,13 +2,18 @@
 
 .header {
   position: fixed;
-  top: 25px;
+  // Figma mobile: logo row sits 20px from the top; desktop pill sits at 25px.
+  top: 20px;
   left: 0;
   right: 0;
   z-index: 100;
   background: transparent;
   will-change: transform;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+
+  @include respond-to(lg) {
+    top: 25px;
+  }
 }
 
 .headerHidden {
@@ -21,12 +26,13 @@
   grid-template-columns: auto 1fr auto auto;
   align-items: center;
   gap: 12px;
-  height: 50px;
+  height: 48px;
 
   // Figma: logo + menu share a 999px group, so the pill ends 437px from the right edge
   @include respond-to(lg) {
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 437px);
     column-gap: 0;
+    height: 50px;
   }
 }
 
@@ -53,9 +59,10 @@
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 40px;
-  height: 40px;
-  padding: 8px;
+  // Figma mobile MENU: 48px box, 12px padding, 24px icon.
+  width: 48px;
+  height: 48px;
+  padding: 12px;
   background: var(--color-antracite-50);
   border-radius: 12px;
 

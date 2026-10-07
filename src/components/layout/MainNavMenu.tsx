@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import { megaMenus, pricingNavLink, type MegaMenuConfig, type MegaMenuId } from '@/data/mega-menu';
 import { headerCtas } from '@/data/navigation';
@@ -72,7 +72,7 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
         {mobileOpen && isOpen && (
           <MegaMenuPanel
             menu={menu}
-            className={styles.panelMobile}
+            className={`${styles.panelMobile} ${menu.id === 'product' ? styles.panelStacked : ''}`.trim()}
             onNavigate={() => {
               closeMenus();
               onNavigate?.();
@@ -179,7 +179,11 @@ function MegaMenuPanel({ menu, className, onNavigate }: MegaMenuPanelProps) {
     <div className={className} role="region" aria-label={`${menu.label} menu`}>
       <div className={styles.panelColumns}>
         {menu.columns.map((column) => (
-          <div key={column.title} className={styles.column}>
+          <div
+            key={column.title}
+            className={styles.column}
+            style={column.width ? ({ '--column-width': `${column.width}px` } as CSSProperties) : undefined}
+          >
             <p className={styles.columnTitle}>{column.title}</p>
             <ul className={styles.linkList}>
               {column.links.map((link) => (
