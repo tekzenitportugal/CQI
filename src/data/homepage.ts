@@ -79,7 +79,7 @@ export const homepageData = {
   },
 
   fullBleedImage: {
-    src: '/images/shared/home/phone-hands.jpg',
+    videoSrc: '/videos/home/cqi_home.mp4',
     width: 1436,
     height: 508,
   },

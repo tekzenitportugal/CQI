@@ -1,6 +1,5 @@
 import type { homepageData } from '@/data/homepage';
 import { Container } from '@/components/ui/Container';
-import { FpoImage } from '@/components/ui/FpoImage';
 import styles from './FullBleedImageSection.module.scss';
 
 type FullBleedImageSectionProps = {
@@ -11,14 +10,17 @@ export function FullBleedImageSection({ data }: FullBleedImageSectionProps) {
   return (
     <section className={styles.section}>
       <Container>
-        <FpoImage
-          src={data.src}
-          alt="Hands holding a phone showing a customer journey"
+        <video
+          className={styles.video}
+          src={data.videoSrc}
           width={data.width}
           height={data.height}
-          className={styles.image}
-          sizes="(max-width: 1536px) 100vw, 1436px"
-          label
+          aria-label="CQI product overview"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
         />
       </Container>
     </section>
