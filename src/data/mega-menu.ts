@@ -26,13 +26,13 @@ export const megaMenus: MegaMenuConfig[] = [
   {
     id: 'product',
     label: 'Product',
-    href: '/products/capabilities',
+    href: '/products/overview',
     columns: [
       {
         title: 'Capabilities',
         width: 224,
         links: [
-          { label: 'Product Overview', href: '/products/capabilities' },
+          { label: 'Product Overview', href: '/products/overview' },
           { label: 'Verified CX Analytics', href: '/products/verified-cx-analytics' },
           { label: 'Customer Quality Index', href: '/products/customer-quality-index' },
           { label: 'Root cause & recovery', href: '/products/root-cause-recovery' },

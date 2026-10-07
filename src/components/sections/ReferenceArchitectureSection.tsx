@@ -13,7 +13,7 @@ type ReferenceArchitectureSectionProps = {
 
 /**
  * Figma "CARDS - CQI IMPLEMENTATION": same peeking-deck pattern as the product overview's
- * LayerStackSection (`/products/capabilities`) — one card set, one tier open at a time, the
+ * LayerStackSection (`/products/overview`) — one card set, one tier open at a time, the
  * rest fanned behind it as peek tabs in tier order. Clicking a peek brings that tier forward.
  */
 export function ReferenceArchitectureSection({ data }: ReferenceArchitectureSectionProps) {

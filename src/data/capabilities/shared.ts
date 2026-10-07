@@ -2,7 +2,7 @@ import type { CtaBannerData, LinkItem } from '@/types/content';
 import { productExploreRoutes } from '@/data/product-routes';
 
 export const capabilityRoutes = {
-  overview: '/products/capabilities',
+  overview: '/products/overview',
   verifiedCxAnalytics: '/products/verified-cx-analytics',
   customerQualityIndex: '/products/customer-quality-index',
   rootCauseRecovery: '/products/root-cause-recovery',

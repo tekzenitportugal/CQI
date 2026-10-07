@@ -14,7 +14,7 @@ export default function NotFound() {
         description: 'You can head back to the homepage or explore our product.',
         buttons: [
           { label: 'Homepage', href: '/', variant: 'primary' },
-          { label: 'Product overview', href: '/products/capabilities', variant: 'secondary' },
+          { label: 'Product overview', href: '/products/overview', variant: 'secondary' },
         ],
       }}
     />

@@ -14,7 +14,7 @@ const staticRoutes = [
   '/cookies',
   '/pricing',
   '/privacy-policy',
-  '/products/capabilities',
+  '/products/overview',
   '/products/core-functionalities',
   '/products/fix-before-failure-happens',
   '/products/how-we-do-it',

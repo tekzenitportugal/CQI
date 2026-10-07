@@ -56,8 +56,13 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/products/capabilities",
+        destination: "/products/overview",
+        permanent: true,
+      },
+      {
         source: "/product/capabilities",
-        destination: "/products/capabilities",
+        destination: "/products/overview",
         permanent: true,
       },
       {

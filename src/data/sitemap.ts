@@ -25,7 +25,7 @@ export const sitemapData = {
       {
         title: 'Product',
         links: [
-          { label: 'Product overview', href: '/products/capabilities' },
+          { label: 'Product overview', href: '/products/overview' },
           { label: 'Verified CX Analytics', href: '/products/verified-cx-analytics' },
           { label: 'Customer Quality Index', href: '/products/customer-quality-index' },
           { label: 'Root cause & recovery', href: '/products/root-cause-recovery' },
@@ -115,7 +115,7 @@ export const sitemapData = {
       {
         title: 'Product',
         links: [
-          { label: 'Product overview', href: '/products/capabilities' },
+          { label: 'Product overview', href: '/products/overview' },
           { label: 'Verified CX Analytics', href: '/products/verified-cx-analytics' },
           { label: 'Customer Quality Index', href: '/products/customer-quality-index' },
           { label: 'Root cause & recovery', href: '/products/root-cause-recovery' },

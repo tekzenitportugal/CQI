@@ -85,7 +85,7 @@
   }
 }
 
-// Same peeking-deck mechanic as LayerStackSection (/products/capabilities): every tier
+// Same peeking-deck mechanic as LayerStackSection (/products/overview): every tier
 // stays absolutely positioned at all times, so top/left/right animate smoothly between
 // depths instead of snapping — the back tiers clip down to a flat colour tab (matching
 // the Figma peek), the front tier expands to a tall max-height to reveal its full copy.
