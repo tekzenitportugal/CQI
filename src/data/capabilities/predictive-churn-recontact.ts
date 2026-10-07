@@ -16,7 +16,7 @@ export const predictiveChurnRecontact: CapabilityPageData = {
       'Real-time customer risk assessment across every customer, including the ones who never complain.',
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
-  heroImage: '/images/product/capabilities/predictive-churn-recontact/hero.png',
+  heroImage: '/images/product/capabilities/predictive-churn-recontact/hero.webp',
   heroImageMobile: '/images/product/capabilities/predictive-churn-recontact/hero-mobile.png',
   heroImageAspectRatio: '1520 / 849',
   features: {
@@ -47,7 +47,7 @@ export const predictiveChurnRecontact: CapabilityPageData = {
       },
     ],
     image: {
-      src: '/images/product/capabilities/predictive-churn-recontact/what-it-does.png',
+      src: '/images/product/capabilities/predictive-churn-recontact/what-it-does.webp',
       inset: { top: 98, left: 0, width: 587, height: 354 },
     },
   },

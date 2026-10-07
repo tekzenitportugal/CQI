@@ -92,7 +92,7 @@ export function IndustryScenariosSection({ data }: IndustryScenariosSectionProps
               {scenario.image && (
                 <FpoImage
                   src={scenario.image}
-                  alt=""
+                  alt={scenario.title}
                   width={707}
                   height={400}
                   overlay={scenario.imageOverlay ?? 0}

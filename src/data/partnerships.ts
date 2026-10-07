@@ -70,8 +70,8 @@ export const partnershipsData = {
     eyebrow: 'Partnerships',
     description:
       'CQI operates a focused, outcome-led partner model. Partners add a verified, outcome-driven intelligence layer to their existing CX, CRM and contact-centre offerings.',
-    image: '/images/company/partnerships/hero.png',
-    mobileImage: '/images/company/partnerships/hero-mobile.png',
+    image: '/images/company/partnerships/hero.webp',
+    mobileImage: '/images/company/partnerships/hero-mobile.webp',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

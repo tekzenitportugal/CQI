@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function ProductOverviewPage() {
   return (
     <>
-      <GradientHero data={productOverviewData.hero} image="/images/product/capabilities-overview/hero-banner-prod-overview.png" />
+      <GradientHero data={productOverviewData.hero} image="/images/product/capabilities-overview/hero-banner-prod-overview.webp" />
       {/* Figma: heading 200px below the hero band; cards 350px tall */}
       <CapabilitiesSection
         data={productOverviewData.capabilities}

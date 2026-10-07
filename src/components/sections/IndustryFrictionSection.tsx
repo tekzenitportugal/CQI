@@ -49,7 +49,7 @@ export function IndustryFrictionSection({ data }: IndustryFrictionSectionProps) 
           >
             <FpoImage
               src={data.image}
-              alt=""
+              alt={data.title}
               width={587}
               height={341}
               overlay={data.imageOverlay ?? 0.5}

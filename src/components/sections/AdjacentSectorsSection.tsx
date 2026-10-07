@@ -31,7 +31,7 @@ export function AdjacentSectorsSection({ data }: AdjacentSectorsSectionProps) {
           {data.cards.map((card) => (
             <article key={card.title} className={styles.card}>
               <div className={styles.cardMedia}>
-                <FpoImage src={card.image} alt="" width={256} height={250} overlay={false} fillContainer />
+                <FpoImage src={card.image} alt={card.title} width={256} height={250} overlay={false} fillContainer />
               </div>
               <div className={styles.cardCopy}>
                 <p className={styles.cardTitle}>{card.title}</p>

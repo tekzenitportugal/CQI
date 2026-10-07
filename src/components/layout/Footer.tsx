@@ -34,7 +34,7 @@ export function Footer({ data }: FooterProps) {
             <a href="#" aria-label="Instagram">
               <Image src="/images/shared/common/instagram.svg" alt="" width={16} height={16} />
             </a>
-            <a href="#" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/cqi-sense/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <Image src="/images/shared/common/linkedin.png" alt="" width={16} height={16} className={styles.linkedin} />
             </a>
           </div>

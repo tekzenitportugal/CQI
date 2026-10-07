@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { NotFoundSection } from '@/components/sections/NotFoundSection';
+
+export const metadata: Metadata = {
+  title: 'Page not found — CQI',
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

@@ -30,8 +30,8 @@ export const airlinesSolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
-  heroImage: '/images/solutions/airlines/hero.png',
-  heroImageMobile: '/images/solutions/airlines/hero-mobile.png',
+  heroImage: '/images/solutions/airlines/hero.webp',
+  heroImageMobile: '/images/solutions/airlines/hero-mobile.webp',
   heroImageAspectRatio: '2433 / 2544',
   heroMockup: true,
   friction: mapFriction({
@@ -72,7 +72,7 @@ export const airlinesSolutionData = {
     imageOverlay: 0,
     imagePosition: 'center top',
     imageFramed: true,
-  }, '/images/solutions/airlines/dashboard.png'),
+  }, '/images/solutions/airlines/dashboard.webp'),
   threeThings: mapThreeThings({
     title: 'Three things the verification layer adds in this sector.',
     titleHighlight: 'the verification layer adds',
@@ -107,7 +107,7 @@ export const airlinesSolutionData = {
           'A passenger is refused the lounge, sits through a 60-minute delay, finds the Wi-Fi down and misses a connection, and files nothing. CQI scores the lifecycle from operational events, flags the erosion and routes a tailored recovery action to the right person.',
         outcome:
           'Retention recovered before the next booking decision, with the action verified in billing or loyalty rather than assumed.',
-        image: '/images/solutions/airlines/scenario-1.png',
+        image: '/images/solutions/airlines/scenario-1.webp',
       },
       {
         title: 'Turn on the light at the handoff',

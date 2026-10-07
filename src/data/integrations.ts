@@ -55,7 +55,7 @@ export const integrationsData = {
     eyebrow: 'Integrations',
     description:
       'CQI favours a lightweight integration. A library of connectors, adapters and pre-defined pipelines accelerates ingestion while guaranteeing security, data health and privacy compliance, and outbound connectors push verified action back into the systems that own it.',
-    image: '/images/product/integrations/hero.png',
+    image: '/images/product/integrations/hero.webp',
     mobileImage: '/images/product/integrations/hero-mobile.png',
     imageWidth: 1520,
     imageHeight: 848,
@@ -144,7 +144,7 @@ export const integrationsData = {
           {
             tag: 'Ingestion pattern',
             tagVariant: 'signals',
-            logo: '/images/product/integrations/logos/salesforce.png',
+            logo: '/images/product/integrations/logos/salesforce.webp',
             logoAlt: 'Salesforce',
             logoWidth: 71,
             logoHeight: 50,
@@ -153,7 +153,7 @@ export const integrationsData = {
           {
             tag: 'Ingestion pattern',
             tagVariant: 'signals',
-            logo: '/images/product/integrations/logos/dynamics-365.png',
+            logo: '/images/product/integrations/logos/dynamics-365.webp',
             logoAlt: 'Dynamics 365',
             logoWidth: 89,
             logoHeight: 50,
@@ -412,7 +412,7 @@ export const integrationsData = {
     titleHighlight: ['what you run'],
     description:
       'A technical session on connectors, data model, residency and governance, before any commitment.',
-    image: '/images/product/security-trust/cta.png',
+    image: '/images/product/security-trust/cta.webp',
     imageWidth: 579,
     imageHeight: 289,
     // Figma node 6225:38813: raw 2731×4096 portrait, 300.48% of the frame tall, top −75%.

@@ -57,7 +57,7 @@ export function CapabilityFeaturesSection({ data, spaceTop = 200, spaceBottom = 
         <div className={styles.media}>
           <FpoImage
             src={data.image.src}
-            alt=""
+            alt={data.title}
             width={587}
             height={550}
             inset={data.image.inset}

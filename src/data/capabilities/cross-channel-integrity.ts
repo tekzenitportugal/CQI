@@ -15,8 +15,8 @@ export const crossChannelIntegrity: CapabilityPageData = {
       'A commitment ledger spanning channels, with containment, continuity and repetition scored separately.',
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
-  heroImage: '/images/product/capabilities/cross-channel-integrity/hero.png',
-  heroImageMobile: '/images/product/capabilities/cross-channel-integrity/hero-mobile.png',
+  heroImage: '/images/product/capabilities/cross-channel-integrity/hero.webp',
+  heroImageMobile: '/images/product/capabilities/cross-channel-integrity/hero-mobile.webp',
   heroImageAspectRatio: '1520 / 849',
   features: {
     eyebrow: 'What it does',

@@ -125,7 +125,7 @@ export const productOverviewData = {
       { title: 'Repetition', description: 'How many times did the customer have to come back?' },
     ],
     image: {
-      src: '/images/product/capabilities/journey-health.png',
+      src: '/images/product/capabilities/journey-health.webp',
       width: 587,
       height: 340,
       // Figma node 6225:41743: raw 1920x2722 dashboard screenshot, shown top-cropped

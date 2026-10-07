@@ -7,8 +7,8 @@ export const whoIsItForData = {
     eyebrow: 'Who is it for?',
     description:
       'CQI is bought by CX and customer success leadership, validated by IT and data, and used every day by operations and the front line. Each of them needs a different thing from the same verified view.',
-    image: '/images/product/who-is-it-for/hero.png',
-    mobileImage: '/images/product/who-is-it-for/hero-mobile.png',
+    image: '/images/product/who-is-it-for/hero.webp',
+    mobileImage: '/images/product/who-is-it-for/hero-mobile.webp',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

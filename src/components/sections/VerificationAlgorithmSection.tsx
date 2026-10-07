@@ -17,21 +17,21 @@ export function VerificationAlgorithmSection({ data }: VerificationAlgorithmSect
           <div className={styles.decoration} aria-hidden="true">
             <img
               className={styles.ringOuter}
-              src="/images/product/how-we-do-it/ellipse-outer.png"
+              src="/images/product/how-we-do-it/ellipse-outer.webp"
               alt=""
               width={2572}
               height={2572}
             />
             <img
               className={styles.ringMiddle}
-              src="/images/product/how-we-do-it/ellipse-middle.png"
+              src="/images/product/how-we-do-it/ellipse-middle.webp"
               alt=""
               width={2008}
               height={2008}
             />
             <img
               className={styles.ringInner}
-              src="/images/product/how-we-do-it/ellipse-inner.png"
+              src="/images/product/how-we-do-it/ellipse-inner.webp"
               alt=""
               width={1442}
               height={1442}
@@ -39,7 +39,7 @@ export function VerificationAlgorithmSection({ data }: VerificationAlgorithmSect
             {/* Figma mobile arcs: separate ellipses, shown below lg only */}
             <img
               className={styles.ringOuterMobile}
-              src="/images/product/how-we-do-it/ellipse-outer-mobile.png"
+              src="/images/product/how-we-do-it/ellipse-outer-mobile.webp"
               alt=""
               width={1649}
               height={1649}
@@ -47,7 +47,7 @@ export function VerificationAlgorithmSection({ data }: VerificationAlgorithmSect
             />
             <img
               className={styles.ringMiddleMobile}
-              src="/images/product/how-we-do-it/ellipse-middle-mobile.png"
+              src="/images/product/how-we-do-it/ellipse-middle-mobile.webp"
               alt=""
               width={1287}
               height={1287}
@@ -55,7 +55,7 @@ export function VerificationAlgorithmSection({ data }: VerificationAlgorithmSect
             />
             <img
               className={styles.ringInnerMobile}
-              src="/images/product/how-we-do-it/ellipse-inner-mobile.png"
+              src="/images/product/how-we-do-it/ellipse-inner-mobile.webp"
               alt=""
               width={925}
               height={925}

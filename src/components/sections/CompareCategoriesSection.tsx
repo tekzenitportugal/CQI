@@ -42,7 +42,7 @@ export function CompareCategoriesSection({ data }: CompareCategoriesSectionProps
         </div>
         <div className={styles.mobileBackground} aria-hidden="true">
           <img className={styles.mEllipse1} src="/images/resources/compare-cqi/ellipse-1.webp" alt="" />
-          <img className={styles.mEllipse2} src="/images/resources/compare-cqi/ellipse-2-mobile.png" alt="" />
+          <img className={styles.mEllipse2} src="/images/resources/compare-cqi/ellipse-2-mobile.webp" alt="" />
           <img className={styles.mEllipse3} src="/images/resources/compare-cqi/ellipse-3.webp" alt="" />
           <img className={styles.mEllipse4} src="/images/resources/compare-cqi/ellipse-4.webp" alt="" />
         </div>

@@ -84,7 +84,7 @@ export const industryPlugIn = {
 export function industryCtaBanner(
   sectorLabel: string,
   titleHighlight: string,
-  image: string = '/images/solutions/telecom/cta-tower.png',
+  image: string = '/images/solutions/telecom/cta-tower.webp',
   imagePosition: string = 'center top',
   imageInset?: CtaBannerData['imageInset'],
 ): CtaBannerData {

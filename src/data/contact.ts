@@ -15,8 +15,8 @@ export const contactData = {
     eyebrow: 'Get in touch',
     description:
       'Whether you are buying, partnering, joining or writing about CQI, the conversation starts in the same place.',
-    image: '/images/shared/contact/hero.png',
-    mobileImage: '/images/shared/contact/hero-mobile.png',
+    image: '/images/shared/contact/hero.webp',
+    mobileImage: '/images/shared/contact/hero-mobile.webp',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

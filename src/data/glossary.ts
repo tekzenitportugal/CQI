@@ -13,8 +13,8 @@ export const glossaryData = {
     mobileIntroGap: 10,
     description:
       'Verified CX introduces terms that overlap with, but do not mean the same as, the standard CX lexicon. These are the definitions used across this site and in CQI deployments.',
-    image: '/images/resources/glossary/hero.png',
-    mobileImage: '/images/resources/glossary/hero-mobile.png',
+    image: '/images/resources/glossary/hero.webp',
+    mobileImage: '/images/resources/glossary/hero-mobile.webp',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

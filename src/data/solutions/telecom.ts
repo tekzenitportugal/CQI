@@ -25,8 +25,8 @@ export const telecomSolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
-  heroImage: '/images/solutions/telecom/hero.png',
-  heroImageMobile: '/images/solutions/telecom/hero-mobile.png',
+  heroImage: '/images/solutions/telecom/hero.webp',
+  heroImageMobile: '/images/solutions/telecom/hero-mobile.webp',
   heroImageAspectRatio: '2430 / 2544',
   heroMockup: true,
 
@@ -101,7 +101,7 @@ export const telecomSolutionData = {
           "A customer experiences intermittent internet drops but standard agent troubleshooting reveals no issues. CQI correlates the customer's interaction directly with backend network events, revealing a localised infrastructure fault.",
         outcome:
           'Eliminates repeat troubleshooting calls, increases first contact resolution and prevents technical churn.',
-        image: '/images/solutions/telecom/scenario-1.png',
+        image: '/images/solutions/telecom/scenario-1.webp',
       },
       {
         title: 'Correcting billing errors',
@@ -109,7 +109,7 @@ export const telecomSolutionData = {
           'Discrepancies in billing generate high call volumes and severe friction. CQI detects misalignment between what customers report and what billing systems show, orchestrating real-time alerts to the operations team to fix the underlying data error.',
         outcome:
           'Lowers operational expenditure, reduces overall call volumes and restores customer confidence quickly.',
-        image: '/images/solutions/telecom/scenario-2.png',
+        image: '/images/solutions/telecom/scenario-2.webp',
       },
     ],
   },
@@ -136,7 +136,7 @@ export const telecomSolutionData = {
 
   plugIn: industryPlugIn,
   cta: (() => {
-    const cta = industryCtaBanner('telecom friction', 'telecom friction', '/images/solutions/telecom/cta-tower.png', 'center', {
+    const cta = industryCtaBanner('telecom friction', 'telecom friction', '/images/solutions/telecom/cta-tower.webp', 'center', {
       top: -92,
       left: 0,
       width: 579,

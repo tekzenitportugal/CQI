@@ -31,7 +31,7 @@ export function CtaBannerSection({ data, variant = 'default' }: CtaBannerSection
             <FpoImage
               className={data.mobileImage ? styles.desktopMedia : undefined}
               src={data.image}
-              alt=""
+              alt={data.title}
               width={data.imageWidth ?? 579}
               height={data.imageHeight ?? 289}
               overlay={false}
@@ -44,7 +44,7 @@ export function CtaBannerSection({ data, variant = 'default' }: CtaBannerSection
               <FpoImage
                 className={styles.mobileMedia}
                 src={data.mobileImage}
-                alt=""
+                alt={data.title}
                 width={716}
                 height={440}
                 overlay={false}

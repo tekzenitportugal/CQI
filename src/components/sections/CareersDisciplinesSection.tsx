@@ -35,7 +35,7 @@ export function CareersDisciplinesSection({ data }: CareersDisciplinesSectionPro
               <div className={styles.media}>
                 <Image
                   src={card.image}
-                  alt=""
+                  alt={card.title}
                   width={256}
                   height={234}
                   className={styles.image}

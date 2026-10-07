@@ -95,7 +95,7 @@ export const howWeProveItData = {
       'The number a CQI programme reports is the movement of customers between lifecycle states over time, measured against a control group. It answers the question a board actually asks: how much of the base got better, and how do we know it was us?',
     footnote:
       'The illustration shows the shape of that report. Percentages are an example of the reporting format, not a client result.',
-    image: '/images/product/how-we-prove-it/customer-health.png',
+    image: '/images/product/how-we-prove-it/customer-health.webp',
   } satisfies RiskBandMigrationData,
 
   outcomeScope: {

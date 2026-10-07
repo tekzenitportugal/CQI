@@ -15,7 +15,7 @@ export function GapSection({ data }: GapSectionProps) {
         <div className={styles.media}>
           <FpoImage
             src={data.image}
-            alt=""
+            alt={data.title}
             width={data.imageWidth}
             height={data.imageHeight}
             overlay={false}

@@ -31,8 +31,8 @@ export const consumerElectronicsSolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
-  heroImage: '/images/solutions/consumer-electronics/hero.png',
-  heroImageMobile: '/images/solutions/consumer-electronics/hero-mobile.png',
+  heroImage: '/images/solutions/consumer-electronics/hero.webp',
+  heroImageMobile: '/images/solutions/consumer-electronics/hero-mobile.webp',
   friction: mapFriction({
     title: 'In consumer electronics, friction rarely starts with a return.',
     titleHighlight: ['rarely starts with a return.'],
@@ -98,7 +98,7 @@ export const consumerElectronicsSolutionData = {
           'Smart appliances trigger minor error codes that the customer ignores until a major breakdown occurs. CQI uses this IoT telemetry to anticipate the technical failure and schedule proactive maintenance before the appliance completely fails.',
         outcome:
           'Reduces costly emergency repair visits, extends product lifespan and optimises field technician utilisation.',
-        image: '/images/solutions/consumer-electronics/scenario-1.png',
+        image: '/images/solutions/consumer-electronics/scenario-1.webp',
         imagePosition: 'center bottom',
       },
       {
@@ -107,7 +107,7 @@ export const consumerElectronicsSolutionData = {
           'A specific appliance model shows a high field failure rate. CQI correlates these service requests and IoT error codes with specific manufacturing batches, allowing operations to instantly correct the defect on the production line.',
         outcome:
           'Decreases warranty costs per unit, improves overall equipment effectiveness and protects brand reputation.',
-        image: '/images/solutions/consumer-electronics/scenario-2.png',
+        image: '/images/solutions/consumer-electronics/scenario-2.webp',
         imagePosition: 'center',
         imageOverlay: 0.6,
         imageBlend: 'color',

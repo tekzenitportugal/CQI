@@ -19,7 +19,7 @@ export const teamData = {
     description:
       'The team pairs people who have run contact centres and operations with the data and AI engineers who instrument them. That combination is why the product talks about promises and root causes rather than sentiment scores.',
     image: '/images/company/team/hero-figma.webp',
-    mobileImage: '/images/company/team/hero-mobile.png',
+    mobileImage: '/images/company/team/hero-mobile.webp',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

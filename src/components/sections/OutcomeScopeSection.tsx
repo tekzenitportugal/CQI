@@ -23,7 +23,7 @@ export function OutcomeScopeSection({ data }: OutcomeScopeSectionProps) {
           <div className={styles.media}>
             <FpoImage
               src={data.image}
-              alt=""
+              alt={data.title}
               width={773}
               height={400}
               // Figma 6225:34119: portrait is 289.84% of the frame and shifted up

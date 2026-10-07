@@ -77,7 +77,7 @@ export const notListedPageData = {
     titleHighlight: ['where your', 'friction hides'],
     description:
       'A 45-minute session on your operation, with no assumption that your sector has to look like telecom.',
-    image: '/images/product/security-trust/cta.png',
+    image: '/images/product/security-trust/cta.webp',
     imageWidth: 579,
     imageHeight: 289,
     // Figma node 6225:39892: raw 2731×4096 portrait, 300.48% of the frame tall, top −75%.

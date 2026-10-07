@@ -17,7 +17,7 @@ export const customerQualityIndex: CapabilityPageData = {
     descriptionMaxWidth: 510,
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
-  heroImage: '/images/product/capabilities/customer-quality-index/hero.png',
+  heroImage: '/images/product/capabilities/customer-quality-index/hero.webp',
   heroImageAspectRatio: '2409 / 2544',
   heroMockup: true,
   features: {

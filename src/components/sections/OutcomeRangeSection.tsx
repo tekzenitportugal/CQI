@@ -36,7 +36,7 @@ export function OutcomeRangeSection({ data }: OutcomeRangeSectionProps) {
           <div className={styles.media}>
             <FpoImage
               src={data.image}
-              alt=""
+              alt={data.title}
               width={773}
               height={400}
               overlay={0.15}

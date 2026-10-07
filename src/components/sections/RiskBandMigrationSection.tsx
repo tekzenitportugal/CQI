@@ -16,7 +16,7 @@ export function RiskBandMigrationSection({ data }: RiskBandMigrationSectionProps
           <div className={styles.media}>
             <FpoImage
               src={data.image}
-              alt=""
+              alt={data.title}
               width={587}
               height={341}
               // Figma 6225:38959: image is 100.18% × 119.46%, anchored to the top,

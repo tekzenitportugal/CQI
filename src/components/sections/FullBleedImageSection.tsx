@@ -9,11 +9,11 @@ type FullBleedImageSectionProps = {
 
 export function FullBleedImageSection({ data }: FullBleedImageSectionProps) {
   return (
-    <section className={styles.section} aria-hidden="true">
+    <section className={styles.section}>
       <Container>
         <FpoImage
           src={data.src}
-          alt=""
+          alt="Hands holding a phone showing a customer journey"
           width={data.width}
           height={data.height}
           className={styles.image}

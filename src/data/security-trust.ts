@@ -25,8 +25,8 @@ export const securityTrustData = {
     eyebrow: 'Security & Trust',
     description:
       'CQI operates as a data processor. Data is processed inside CQI’s own cloud and is anonymised before models run.',
-    image: '/images/product/security-trust/hero.png',
-    mobileImage: '/images/product/security-trust/hero-mobile.png',
+    image: '/images/product/security-trust/hero.webp',
+    mobileImage: '/images/product/security-trust/hero-mobile.webp',
     // Figma mobile (6225:42967): copy starts at y=216, below the 8px banner inset.
     mobilePaddingTop: 208,
     mobileTextGap: 48,
@@ -147,7 +147,7 @@ export const securityTrustData = {
     title: 'Send us your security questionnaire',
     titleHighlight: ['security questionnaire'],
     description: 'We will supply the evidence pack and join your infosec review.',
-    image: '/images/product/security-trust/cta.png',
+    image: '/images/product/security-trust/cta.webp',
     imageWidth: 579,
     imageHeight: 289,
     // Figma node 6225:38813: raw 2731×4096 portrait, 300.48% of the frame tall, top −75%.

@@ -22,8 +22,8 @@ export const historyData = {
     eyebrow: 'OUR HISTORY',
     description:
       'CQI began with a problem its founders had lived: CX programmes that measure complaints instead of preventing them.',
-    image: '/images/company/history/hero.png',
-    mobileImage: '/images/company/history/hero-mobile.png',
+    image: '/images/company/history/hero.webp',
+    mobileImage: '/images/company/history/hero-mobile.webp',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,
