@@ -80,8 +80,8 @@ export const homepageData = {
 
   fullBleedImage: {
     videoSrc: '/videos/home/cqi_home.mp4',
-    width: 1436,
-    height: 508,
+    width: 3840,
+    height: 2160,
   },
 
   capabilities: {
