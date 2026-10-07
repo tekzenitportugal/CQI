@@ -14,10 +14,11 @@
   flex-direction: column;
   gap: 120px;
 
-  @include respond-to(xl) {
+  @media (min-width: 1024px) {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: clamp(40px, 7.8vw, 120px);
   }
 }
 
@@ -31,17 +32,19 @@
     gap: fluid-space(100px);
   }
 
-  @include respond-to(xl) {
+  @media (min-width: 1024px) {
     width: auto;
-    flex-shrink: 0;
+    min-width: 0;
+    flex-shrink: 1;
   }
 }
 
 .heading {
   width: 100%;
 
-  @include respond-to(xl) {
+  @media (min-width: 1024px) {
     width: var(--section-heading-title-max-width);
+    max-width: 100%;
   }
 }
 
@@ -52,6 +55,11 @@
   gap: 20px;
 
   @include respond-to(md) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  // Side-by-side with the image: keep Figma's 344px cards.
+  @media (min-width: 1024px) {
     grid-template-columns: repeat(2, minmax(0, 344px));
   }
 }
@@ -66,7 +74,8 @@
   background: var(--color-antracite-50);
 
   @include respond-to(md) {
-    height: 228px;
+    // Figma height; grows only if narrow desktop widths wrap the copy further.
+    min-height: 228px;
   }
 }
 
@@ -78,7 +87,7 @@
   color: var(--color-light-blue-500);
 
   @include respond-to(md) {
-    font-size: 24px;
+    font-size: clamp(20px, 1.6vw, 24px);
   }
 }
 
@@ -90,16 +99,18 @@
   color: var(--color-antracite-400);
 
   @include respond-to(md) {
-    font-size: 17.5px;
+    font-size: clamp(15px, 1.14vw, 17.5px);
   }
 }
 
 .media {
   width: 100%;
-  max-width: 587px;
 
-  @include respond-to(xl) {
-    flex-shrink: 0;
+  // Shrinks faster than the copy column so the cards keep as much width as possible.
+  @media (min-width: 1024px) {
+    max-width: 587px;
+    min-width: 0;
+    flex-shrink: 1.6;
   }
 }
 

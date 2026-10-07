@@ -24,9 +24,12 @@
 }
 
 .media {
-  max-width: 587px;
   border: 0.5px solid var(--color-antracite-75);
   box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.15);
+
+  @include respond-to(lg) {
+    max-width: 587px;
+  }
 }
 
 .content {

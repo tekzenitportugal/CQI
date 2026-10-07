@@ -48,7 +48,7 @@ export function FeatureSplitSection({ data }: FeatureSplitSectionProps) {
             overlay={false}
             borderRadius={8}
             className={styles.mediaFrame}
-            sizes="(max-width: 992px) 100vw, 587px"
+            sizes="(max-width: 1023px) 100vw, 587px"
           />
         </div>
       </Container>

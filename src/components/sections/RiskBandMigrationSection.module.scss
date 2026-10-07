@@ -29,7 +29,10 @@
 
 .media {
   width: 100%;
-  max-width: 587px;
+
+  @include respond-to(lg) {
+    max-width: 587px;
+  }
 }
 
 // Figma 6225:38959: 0.5px border, 8px radius, 1px 1px 16px shadow.

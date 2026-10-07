@@ -181,6 +181,9 @@
   @include respond-to(lg) {
     position: absolute;
     inset: 8px 8px 0;
+    // Container's width:100% would add the 8px left inset on top of the
+    // parent width and push the copy 8px past the right edge.
+    width: auto;
     display: flex;
     align-items: center;
     padding-top: 0;

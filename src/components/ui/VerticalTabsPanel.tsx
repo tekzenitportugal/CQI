@@ -81,7 +81,7 @@ export function VerticalTabsPanel<T extends VerticalTabItem>({
           overlay={false}
           objectPosition={activeTab.imageObjectPosition}
           flipX={activeTab.imageFlipX}
-          sizes="(max-width: 992px) 100vw, 618px"
+          sizes="(max-width: 1023px) 100vw, 618px"
           fillContainer
         />
       </div>

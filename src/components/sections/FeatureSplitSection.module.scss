@@ -72,10 +72,10 @@
 
 .media {
   width: 100%;
-  max-width: 587px;
 
   @include respond-to(lg) {
     flex: 0 1 587px;
+    max-width: 587px;
   }
 }
 

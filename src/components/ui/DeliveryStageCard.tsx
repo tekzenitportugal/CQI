@@ -33,7 +33,7 @@ export function DeliveryStageCard({ stage, className, priority }: DeliveryStageC
             fill
             priority={priority}
             className={styles.photo}
-            sizes="(max-width: 992px) 100vw, 708px"
+            sizes="(max-width: 1023px) 100vw, 708px"
           />
         )}
       </div>

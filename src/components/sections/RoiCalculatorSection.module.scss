@@ -31,8 +31,9 @@
   background: var(--color-white);
 
   @include respond-to(lg) {
-    flex: 0 0 585px;
-    width: 585px;
+    // Shrinks (down to 340px) at narrow desktop widths so the results panel keeps room.
+    flex: 0 1 585px;
+    min-width: 340px;
     padding-right: 30px; // Figma: 20px left, 30px right.
   }
 }
@@ -104,6 +105,10 @@
   display: flex;
   flex: 1;
   min-width: 0;
+
+  @include respond-to(lg) {
+    flex: 1 0 480px;
+  }
   flex-direction: column;
   gap: 50px;
   padding: 30px 20px 30px 30px;
@@ -218,8 +223,12 @@
 
   // Figma: Line col 313px, Basis starts at x=332, Annual value right-aligned.
   @include respond-to(lg) {
-    grid-template-columns: 313px 1fr auto;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr) auto;
     column-gap: 19px;
+  }
+
+  @include respond-to(xxl) {
+    grid-template-columns: 313px 1fr auto;
   }
 }
 

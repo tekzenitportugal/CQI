@@ -59,7 +59,7 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
                     width={stage.imageWidth}
                     height={stage.imageHeight}
                     className={`${styles.image} ${stage.mobileImage ? styles.desktopImage : ''}`.trim()}
-                    sizes="(max-width: 992px) 100vw, 466px"
+                    sizes="(max-width: 1023px) 100vw, 466px"
                   />
                   {stage.mobileImage && (
                     <Image

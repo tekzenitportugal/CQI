@@ -170,9 +170,11 @@
   // inset 25px from the container edge. column-gap 57px reproduces that pitch through the
   // grid's 1fr tracks (each card is left-aligned within its wider track via its own max-width).
   @include respond-to(lg) {
-    grid-template-columns: repeat(4, 1fr);
-    column-gap: 57px;
-    margin-left: 25px;
+    // minmax(0, 1fr) lets columns shrink below their nowrap tags' min-content, and the
+    // gap scales down from Figma's 57px so four cards still fit at 1024px.
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: clamp(16px, 3.7vw, 57px);
+    margin-left: clamp(0px, 1.6vw, 25px);
   }
 }
 
@@ -228,7 +230,7 @@
 
   // Figma gives each card's tag row its own fixed width (237/217/181/310px), which sets where
   // the tags wrap; the 4th is wider than the 294px column and bleeds 8px past it, centred.
-  @include respond-to(lg) {
+  @include respond-to(xxl) {
     width: var(--tags-width, auto);
     max-width: none;
   }

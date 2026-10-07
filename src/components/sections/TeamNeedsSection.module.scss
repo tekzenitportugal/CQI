@@ -30,7 +30,7 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 142px;
+    gap: clamp(40px, 9.9vw, 142px);
   }
 }
 
@@ -43,7 +43,8 @@
 
   @include respond-to(lg) {
     width: 465px;
-    flex-shrink: 0;
+    min-width: 320px;
+    flex-shrink: 1;
     align-self: stretch;
     min-height: 466px;
     gap: 60px;
@@ -121,7 +122,8 @@
 .tabsPanel {
   @include respond-to(lg) {
     width: 829px;
-    flex-shrink: 0;
+    min-width: 460px;
+    flex-shrink: 1;
   }
 }
 

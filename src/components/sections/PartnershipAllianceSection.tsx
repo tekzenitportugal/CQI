@@ -36,7 +36,7 @@ export function PartnershipAllianceSection({ data }: PartnershipAllianceSectionP
             width={data.imageWidth}
             height={data.imageHeight}
             overlay={false}
-            sizes="(max-width: 992px) 100vw, 587px"
+            sizes="(max-width: 1023px) 100vw, 587px"
             fillContainer
           />
         </div>

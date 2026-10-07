@@ -50,7 +50,8 @@
 
   @include respond-to(lg) {
     width: 465px;
-    flex-shrink: 0;
+    min-width: 320px;
+    flex-shrink: 1;
     align-self: stretch;
   }
 }
@@ -127,6 +128,7 @@
 
   @include respond-to(lg) {
     width: 829px;
-    flex-shrink: 0;
+    min-width: 460px;
+    flex-shrink: 1;
   }
 }

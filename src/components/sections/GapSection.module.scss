@@ -28,7 +28,9 @@
 }
 
 .media {
-  max-width: 587px;
+  @include respond-to(lg) {
+    max-width: 587px;
+  }
 }
 
 .content {

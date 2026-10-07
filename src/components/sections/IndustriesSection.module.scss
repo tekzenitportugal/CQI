@@ -20,7 +20,7 @@
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 142px;
+    gap: clamp(40px, 9.9vw, 142px);
   }
 
   @media (max-width: 1023.98px) {
@@ -37,7 +37,8 @@
   @include respond-to(lg) {
     gap: 114px;
     width: 465px;
-    flex-shrink: 0;
+    min-width: 320px;
+    flex-shrink: 1;
     align-self: stretch;
     justify-content: space-between;
   }
@@ -98,6 +99,7 @@
 
   @include respond-to(lg) {
     width: 829px;
-    flex-shrink: 0;
+    min-width: 460px;
+    flex-shrink: 1;
   }
 }

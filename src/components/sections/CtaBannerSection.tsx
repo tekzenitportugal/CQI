@@ -37,7 +37,7 @@ export function CtaBannerSection({ data, variant = 'default' }: CtaBannerSection
               overlay={false}
               objectPosition={data.imagePosition}
               inset={data.imageInset}
-              sizes="(max-width: 992px) 100vw, 579px"
+              sizes="(max-width: 1023px) 100vw, 579px"
               fillContainer
             />
             {data.mobileImage && (
