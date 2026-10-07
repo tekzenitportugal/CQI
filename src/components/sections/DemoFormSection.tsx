@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, type FormEvent } from 'react';
 import { Container } from '@/components/ui/Container';
 import styles from './DemoFormSection.module.scss';
 
@@ -13,8 +14,41 @@ type DemoFormSectionProps = {
   data: DemoFormSectionData;
 };
 
-/** Figma "Tell us where to start" (6079:31685–31730). No backend wired yet — UI only. */
+type Status = 'idle' | 'sending' | 'success' | 'error';
+
+/** Figma "Tell us where to start" (6079:31685–31730). Submits to /api/request-demo. */
 export function DemoFormSection({ data }: DemoFormSectionProps) {
+  const [status, setStatus] = useState<Status>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    setStatus('sending');
+    setErrorMessage('');
+
+    try {
+      const response = await fetch('/api/request-demo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Something went wrong. Please try again.');
+      }
+
+      form.reset();
+      setStatus('success');
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : 'Something went wrong. Please try again.',
+      );
+      setStatus('error');
+    }
+  }
+
   return (
     <section className={styles.section}>
       <Container className={styles.layout}>
@@ -23,13 +57,15 @@ export function DemoFormSection({ data }: DemoFormSectionProps) {
           <p className={styles.title}>{data.title}</p>
         </div>
 
-        <form
-          className={styles.form}
-          onSubmit={(event) => {
-            // TODO: wire up to a real submission endpoint.
-            event.preventDefault();
-          }}
-        >
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className={styles.honeypot}
+          />
           <div className={styles.fields}>
             <label className={styles.field}>
               <span className={styles.label}>Name</span>
@@ -85,9 +121,21 @@ export function DemoFormSection({ data }: DemoFormSectionProps) {
             </label>
           </div>
 
-          <button type="submit" className={styles.submit}>
-            {data.submitLabel}
-          </button>
+          <div className={styles.actions}>
+            <button type="submit" className={styles.submit} disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending…' : data.submitLabel}
+            </button>
+            {status === 'success' && (
+              <p className={styles.success} role="status">
+                Thank you — we&apos;ve received your request and will be in touch shortly.
+              </p>
+            )}
+            {status === 'error' && (
+              <p className={styles.error} role="alert">
+                {errorMessage}
+              </p>
+            )}
+          </div>
         </form>
       </Container>
     </section>

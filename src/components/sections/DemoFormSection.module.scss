@@ -143,6 +143,37 @@
   pointer-events: none;
 }
 
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.success,
+.error {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.success {
+  color: var(--color-antracite-400);
+}
+
+.error {
+  color: #c62828;
+}
+
 .submit {
   align-self: flex-start;
   height: 50px;
@@ -154,4 +185,9 @@
   font-size: 16px;
   color: var(--color-white);
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
 }
