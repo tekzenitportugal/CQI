@@ -132,12 +132,5 @@
 }
 
 .optionLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
   align-self: flex-start;
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--color-blue-200);
-  @include text-link-hover;
 }

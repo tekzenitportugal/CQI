@@ -23,25 +23,43 @@
 
 .timeline {
   position: relative;
+  // cqw = the row's own width, so the line gradient can be pinned to the columns.
+  container-type: inline-size;
 }
 
+// Full-bleed dashed rule: viewport-wide and centred on the row, so it reaches both screen edges.
+// The colour ramps dark -> light at each tag (column start + 45px) and back to dark between
+// columns. Columns are 344px wide with a 151px gap inside a 50px inset, so they start at
+// 50px / 545px / 1040px from the row's left edge.
 .lineTrack {
   position: absolute;
   z-index: 0;
   // Figma Group 960: Line 17 sits 14px below the row top, through the pill tags.
   top: 14px;
-  left: calc(-1 * var(--container-padding));
-  right: calc(-1 * var(--container-padding));
+  left: calc(50% - 50vw);
+  width: 100vw;
   height: 1px;
   pointer-events: none;
   overflow: hidden;
 
-  img {
-    display: block;
-    width: 100%;
-    min-width: 100%;
-    height: 1px;
-  }
+  --o: calc((100vw - 100cqw) / 2);
+  --t1: calc(var(--o) + 95px);
+  --t2: calc(var(--o) + 590px);
+  --t3: calc(var(--o) + 1085px);
+  background-image: linear-gradient(
+    90deg,
+    #0036cc 0,
+    #0036cc var(--o),
+    #fff var(--t1),
+    #0036cc calc((var(--t1) + var(--t2)) / 2),
+    #fff var(--t2),
+    #0036cc calc((var(--t2) + var(--t3)) / 2),
+    #fff var(--t3),
+    #0036cc calc(var(--t3) + 200px),
+    #0036cc 100%
+  );
+  mask-image: repeating-linear-gradient(90deg, #000 0, #000 4px, transparent 4px, transparent 8px);
+  -webkit-mask-image: repeating-linear-gradient(90deg, #000 0, #000 4px, transparent 4px, transparent 8px);
 }
 
 .grid {

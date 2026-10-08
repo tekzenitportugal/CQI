@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/Button';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { Container } from '@/components/ui/Container';
 import styles from './SeeItLiveStagesSection.module.scss';
 
@@ -128,7 +128,7 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
 
         <div className={styles.footer}>
           <p className={styles.disclaimer}>{data.disclaimer}</p>
-          <Button label={data.cta.label} href={data.cta.href} variant="primary" />
+          <GhostLink label={data.cta.label} href={data.cta.href} />
         </div>
       </Container>
     </section>

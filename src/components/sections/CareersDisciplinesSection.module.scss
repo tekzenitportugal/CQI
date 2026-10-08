@@ -19,20 +19,12 @@
   gap: 32px;
   margin-bottom: 64px;
 
-  @include respond-to(lg) {
-    margin-bottom: 100px;
-  }
-
-  // Figma: the 71px heading block sits at y=1056, the 50px button at y=1068 (12px below its top).
+  // The ghost link sits on the baseline of the heading block (bottom-aligned with the left text).
   @include respond-to(lg) {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: space-between;
     gap: 48px;
-
-    > :last-child {
-      margin-top: 12px;
-    }
   }
 }
 

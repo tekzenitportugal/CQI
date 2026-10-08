@@ -26,7 +26,7 @@ export function CareersDisciplinesSection({ data }: CareersDisciplinesSectionPro
             align="left"
             className={styles.sectionHeading}
           />
-          <Button label={data.cta.label} href={data.cta.href} variant={data.cta.variant ?? 'primary'} />
+          <Button label={data.cta.label} href={data.cta.href} variant="text" showArrow />
         </div>
 
         <Carousel itemLabel="discipline" className={styles.carousel}>

@@ -88,6 +88,8 @@
 }
 
 .controls {
+  --control-height: 44px;
+
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -110,12 +112,13 @@
   align-items: center;
   justify-content: center;
   width: 134px;
+  height: var(--control-height);
 
   @media (max-width: 1023.98px) {
     width: auto;
   }
 
-  padding: 12px 24px;
+  padding: 0 24px;
   border: 1px solid var(--color-antracite-200);
   border-radius: 12px;
   background: none;
@@ -147,15 +150,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  padding: 10px 16px;
+  height: var(--control-height);
+  padding: 0 16px;
   border: 1px solid var(--color-antracite-100);
   border-radius: 12px;
-
-  // Figma mobile: 40px-tall field.
-  @media (max-width: 1023.98px) {
-    height: 40px;
-    padding-block: 0;
-  }
 }
 
 .searchInput {
@@ -179,9 +177,9 @@
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 10px;
+  width: var(--control-height);
+  height: var(--control-height);
+  padding: 0;
   border: 1px solid var(--color-blue-200);
   border-radius: 12px;
   background: none;
@@ -246,5 +244,58 @@
 
   @media (max-width: 1023.98px) {
     font-size: 17.5px;
+  }
+}
+
+// Print: screen-hidden, glossary-only document (everything else on the page is hidden when printing).
+.printRoot {
+  display: none;
+}
+
+@media print {
+  :global(body) > :not(.printRoot) {
+    display: none !important;
+  }
+
+  .printRoot {
+    display: block;
+    color: #000;
+  }
+
+  .printTitle {
+    margin: 0 0 24px;
+    font-family: var(--font-heading);
+    font-size: 28px;
+  }
+
+  .printList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .printRow {
+    display: flex;
+    gap: 24px;
+    padding-block: 12px;
+    border-bottom: 1px dashed #999;
+    break-inside: avoid;
+  }
+
+  .printTerm {
+    flex: 0 0 180px;
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .printDefinition {
+    flex: 1;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 13px;
+    line-height: 1.4;
   }
 }

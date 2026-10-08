@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { Container } from '@/components/ui/Container';
+import { GhostLink } from '@/components/ui/GhostLink';
 import styles from './DemoCoverageSection.module.scss';
 
 export type DemoOption = {
@@ -47,10 +47,7 @@ export function DemoCoverageSection({ data }: DemoCoverageSectionProps) {
                 <p className={styles.optionTitle}>{option.title}</p>
                 <p className={styles.optionDescription}>{option.description}</p>
               </div>
-              <Link href={option.linkHref} className={styles.optionLink}>
-                {option.linkLabel}
-                <img src="/images/shared/common/arrow-right-blue.svg" alt="" width={16} height={16} aria-hidden="true" />
-              </Link>
+              <GhostLink label={option.linkLabel} href={option.linkHref} className={styles.optionLink} />
             </div>
           ))}
         </div>

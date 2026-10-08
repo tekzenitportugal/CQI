@@ -1,6 +1,7 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Container } from '@/components/ui/Container';
 import styles from './GlossarySection.module.scss';
 
@@ -31,11 +32,8 @@ export function GlossarySection({ data }: GlossarySectionProps) {
   const [activeCategory, setActiveCategory] = useState(data.categories[0]);
   const [activeLetter, setActiveLetter] = useState<string | null>(null);
 
-  const availableLetters = useMemo(() => {
-    const letters = new Set<string>();
-    data.entries.forEach((entry) => letters.add(entry.term[0]?.toUpperCase()));
-    return letters;
-  }, [data.entries]);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   const filteredEntries = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -47,9 +45,18 @@ export function GlossarySection({ data }: GlossarySectionProps) {
     });
   }, [data.entries, data.categories, query, activeCategory]);
 
+  const availableLetters = useMemo(() => {
+    const letters = new Set<string>();
+    filteredEntries.forEach((entry) => letters.add(entry.term[0]?.toUpperCase()));
+    return letters;
+  }, [filteredEntries]);
+
+  // A selected letter only stays active while the current tab/search still has terms for it.
+  const currentLetter = activeLetter && availableLetters.has(activeLetter) ? activeLetter : null;
+
   const handleLetterClick = (letter: string) => {
     setActiveLetter(letter);
-    const target = data.entries.find((entry) => entry.term[0]?.toUpperCase() === letter);
+    const target = filteredEntries.find((entry) => entry.term[0]?.toUpperCase() === letter);
     if (!target) return;
     document.getElementById(`term-${slugify(target.term)}`)?.scrollIntoView({
       behavior: 'smooth',
@@ -69,7 +76,7 @@ export function GlossarySection({ data }: GlossarySectionProps) {
                   key={letter}
                   type="button"
                   className={`${styles.letter} ${enabled ? styles.letterEnabled : ''} ${
-                    activeLetter === letter ? styles.letterActive : ''
+                    currentLetter === letter ? styles.letterActive : ''
                   }`.trim()}
                   disabled={!enabled}
                   onClick={() => handleLetterClick(letter)}
@@ -112,7 +119,7 @@ export function GlossarySection({ data }: GlossarySectionProps) {
                 onClick={() => window.print()}
                 aria-label="Print glossary"
               >
-                <img src="/images/resources/glossary/printer.svg" alt="" width={24} height={24} aria-hidden="true" />
+                <img src="/images/resources/glossary/printer.svg" alt="" width={14} height={14} aria-hidden="true" />
               </button>
             </div>
 
@@ -127,6 +134,22 @@ export function GlossarySection({ data }: GlossarySectionProps) {
           </div>
         </div>
       </Container>
+
+      {mounted &&
+        createPortal(
+          <div className={styles.printRoot}>
+            <h1 className={styles.printTitle}>Glossary</h1>
+            <ul className={styles.printList}>
+              {filteredEntries.map((entry) => (
+                <li key={entry.term} className={styles.printRow}>
+                  <p className={styles.printTerm}>{entry.term}</p>
+                  <p className={styles.printDefinition}>{entry.definition}</p>
+                </li>
+              ))}
+            </ul>
+          </div>,
+          document.body,
+        )}
     </section>
   );
 }

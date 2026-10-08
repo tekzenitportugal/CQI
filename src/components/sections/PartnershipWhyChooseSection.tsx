@@ -1,5 +1,5 @@
 import type { WhyChooseData } from '@/data/partnerships';
-import { Button } from '@/components/ui/Button';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { Container } from '@/components/ui/Container';
 import { RuledRowsList } from '@/components/ui/RuledRowsList';
 import { highlightText } from '@/utils/highlightText';
@@ -28,7 +28,7 @@ export function PartnershipWhyChooseSection({ data }: PartnershipWhyChooseSectio
               <p className={styles.description}>{data.subDescription}</p>
             </div>
           </div>
-          <Button label={data.button.label} href={data.button.href} variant={data.button.variant} />
+          <GhostLink label={data.button.label} href={data.button.href} />
         </div>
 
         <RuledRowsList rows={data.rows} className={styles.list} />

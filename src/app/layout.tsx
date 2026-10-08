@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Noto_Sans, Poppins } from 'next/font/google';
+import { CookieBanner } from '@/components/layout/CookieBanner';
 import { Footer } from '@/components/layout/Footer';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { homepageData } from '@/data/homepage';
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <main>{children}</main>
         <Footer data={homepageData.footer} />
+        <CookieBanner />
       </body>
     </html>
   );

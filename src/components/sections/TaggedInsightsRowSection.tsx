@@ -19,9 +19,7 @@ export function TaggedInsightsRowSection({ data }: TaggedInsightsRowSectionProps
       <Container>
         <h2 className={styles.title}>{data.title}</h2>
         <div className={styles.timeline}>
-          <div className={styles.lineTrack} aria-hidden="true">
-            <img src="/images/solutions/shared/three-things-line.svg" alt="" width={1536} height={1} />
-          </div>
+          <div className={styles.lineTrack} aria-hidden="true" />
           <ul className={styles.grid}>
             {data.items.map((item) => (
               <li key={item.title} className={styles.item}>

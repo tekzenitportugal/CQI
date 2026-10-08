@@ -1,5 +1,5 @@
 import type { teamData } from '@/data/team';
-import { Button } from '@/components/ui/Button';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { CarouselCard } from '@/components/ui/CarouselCard';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -22,7 +22,7 @@ export function WorkingAtCqiSection({ data }: WorkingAtCqiSectionProps) {
             align="left"
             className={styles.sectionHeading}
           />
-          <Button label={data.button.label} href={data.button.href} variant="primary" />
+          <GhostLink label={data.button.label} href={data.button.href} />
         </div>
 
         <div className={styles.cards}>

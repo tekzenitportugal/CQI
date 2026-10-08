@@ -1,0 +1,67 @@
+// Figma "cookies" card: 425px wide, 32px padding, 40px between copy and button, 50px from the right edge.
+.banner {
+  position: fixed;
+  z-index: 200;
+  right: var(--container-padding);
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: min(425px, calc(100vw - 2 * var(--container-padding)));
+  padding: 32px;
+  border-radius: 20px;
+  background: #252a3b;
+  color: var(--color-white);
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-white);
+  cursor: pointer;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.text {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 1.4;
+
+  @media (max-width: 575px) {
+    font-size: 15px;
+  }
+}
+
+.accept {
+  height: 50px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--color-white);
+  color: var(--color-antracite-500);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  cursor: pointer;
+}
