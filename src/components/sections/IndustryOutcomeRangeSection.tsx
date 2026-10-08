@@ -1,5 +1,5 @@
 import type { IndustryOutcomeRangeData } from '@/types/content';
-import { Button } from '@/components/ui/Button';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { Container } from '@/components/ui/Container';
 import { PercentMetricCard } from '@/components/ui/PercentMetricCard';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -26,13 +26,7 @@ export function IndustryOutcomeRangeSection({
             align="left"
             className={styles.sectionHeading}
           />
-          {data.cta && (
-            <Button
-              label={data.cta.label}
-              href={data.cta.href}
-              variant={data.cta.variant ?? 'primary'}
-            />
-          )}
+          {data.cta && <GhostLink label={data.cta.label} href={data.cta.href} />}
         </div>
 
         <div className={styles.body}>

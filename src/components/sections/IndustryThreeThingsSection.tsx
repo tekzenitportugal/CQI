@@ -49,7 +49,7 @@ export function IndustryThreeThingsSection({
 }: IndustryThreeThingsSectionProps) {
   return (
     <section
-      className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''} ${plainMobile ? styles.plainMobile : ''} ${alignedLine ? styles.matchedPadding : ''} ${industryMobile ? styles.industryMobile : ''} ${data.roomyFirstStep ? styles.roomyFirstStep : ''}`.trim()}
+      className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''} ${plainMobile ? styles.plainMobile : ''} ${alignedLine && variant !== 'grouped' ? styles.matchedPadding : ''} ${industryMobile ? styles.industryMobile : ''} ${data.roomyFirstStep ? styles.roomyFirstStep : ''}`.trim()}
     >
       <Container>
         <SectionHeading

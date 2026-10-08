@@ -1,6 +1,7 @@
 import type { WhereCqiFitsData } from '@/types/content';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import styles from './WhereCqiFitsSection.module.scss';
 
@@ -25,14 +26,18 @@ export function WhereCqiFitsSection({ data, variant = 'default' }: WhereCqiFitsS
         />
         {data.ctas && data.ctas.length > 0 && (
           <div className={styles.actions}>
-            {data.ctas.map((cta) => (
-              <Button
-                key={cta.label}
-                label={cta.label}
-                href={cta.href}
-                variant={cta.variant}
-              />
-            ))}
+            {data.ctas.map((cta) =>
+              variant === 'solutions' ? (
+                <GhostLink key={cta.label} label={cta.label} href={cta.href} />
+              ) : (
+                <Button
+                  key={cta.label}
+                  label={cta.label}
+                  href={cta.href}
+                  variant={cta.variant}
+                />
+              ),
+            )}
           </div>
         )}
       </Container>

@@ -31,7 +31,7 @@ export function IndustrySolutionView({ data }: IndustrySolutionViewProps) {
       )}
       <IndustryFrictionSection data={data.friction} />
       <div className="solutions-band">
-        <IndustryThreeThingsSection data={data.threeThings} variant="grouped" industryMobile />
+        <IndustryThreeThingsSection data={data.threeThings} variant="grouped" industryMobile alignedLine />
         <IndustryScenariosSection data={data.scenarios} />
       </div>
       <div>
