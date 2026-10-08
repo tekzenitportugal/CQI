@@ -17,10 +17,10 @@
   gap: 32px;
   margin-bottom: 125px;
 
-  // Figma: buttons sit 27px below the top of the 86px title
+  // Links sit on the bottom line of the title text.
   @include respond-to(lg) {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: flex-end;
     justify-content: space-between;
     gap: 48px;
   }
@@ -41,8 +41,8 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  align-items: stretch;
-  gap: 16px;
+  align-items: flex-start;
+  gap: 16px 32px;
   width: 100%;
 
   @include respond-to(lg) {
@@ -50,7 +50,6 @@
     flex-wrap: wrap;
     align-items: flex-start;
     width: auto;
-    margin-top: 27px;
   }
 
   // Figma mobile already pairs the two CTAs side by side, not stacked.
@@ -62,18 +61,6 @@
   }
 }
 
-.actions > a,
-.actions > button {
-  width: 100%;
-
-  @include respond-to(lg) {
-    width: auto;
-  }
-
-  @media (max-width: 1023.98px) {
-    width: auto;
-  }
-}
 
 .card {
   display: grid;

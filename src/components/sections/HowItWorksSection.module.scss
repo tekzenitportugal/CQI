@@ -1,7 +1,12 @@
 @use '@/styles/mixins' as *;
 
+// Breathing room kept above the heading once the frame sticks to the viewport top
+// (clears the floating header). Taken out of the section's top padding so the
+// unstuck layout is unchanged.
+$sticky-top-space: 120px;
+
 .section {
-  @include section-space(250px);
+  @include section-space(250px - $sticky-top-space);
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {
@@ -36,13 +41,45 @@
   position: sticky;
   top: 0;
   height: 100svh;
+  padding-top: $sticky-top-space;
   display: flex;
   align-items: flex-start;
 
   @media (max-width: 1023.98px) {
+    padding-top: 0;
     height: 50svh;
     align-items: flex-start;
   }
+}
+
+// Positioning context so the Skip button can sit on the container's right content edge.
+.stage {
+  position: relative;
+}
+
+// Figma 6355:24897: blue 14px "Skip" + down arrow, 8px gap. Desktop only — below lg the
+// diagram isn't pinned, so there is nothing to skip past.
+.skip {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-blue-200);
+  cursor: pointer;
+
+  @include respond-to(lg) {
+    display: inline-flex;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  @include text-link-hover;
 }
 
 // Canvas matches the dome/arc geometry exactly: shared centre (390, 495),

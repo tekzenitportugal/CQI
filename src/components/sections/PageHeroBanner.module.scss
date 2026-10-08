@@ -2,8 +2,7 @@
 
 // Figma Rectangle 85: a 1520×848 rounded box inset 8px from the page edges.
 .banner {
-  position: relative;
-  padding: 8px 8px 0;
+  @include hero-inset;
   min-height: 888px;
 
   @include respond-to(lg) {
@@ -13,18 +12,8 @@
 
 // Below lg the box sits behind the copy and grows with it; from lg it has Figma's fixed height.
 .heroBox {
-  position: absolute;
-  inset: 8px 8px 0;
-  border-radius: 20px;
-  overflow: hidden;
+  @include hero-box;
   background: var(--hero-mobile-box-bg, var(--color-white));
-
-  @include respond-to(lg) {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: clamp(560px, 55.21vw, 848px);
-  }
 }
 
 // Figma: the hero rectangle is mirrored horizontally; the photo is full width,
@@ -52,7 +41,7 @@
 .gradientOnly {
   position: absolute;
   inset: 0;
-  background: linear-gradient(283.09deg, #668fff -147.05%, #edf2ff 100%);
+  background: var(--hero-gradient);
 }
 
 // Flat full-bleed path (dedicated mobile crop supplied): plain cover photo, art-directed

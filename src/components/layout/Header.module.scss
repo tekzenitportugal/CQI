@@ -34,6 +34,14 @@
     column-gap: 0;
     height: 50px;
   }
+
+  // Below ~1280px the fixed 437px right column starves the logo column, so the logo
+  // collapses or touches the menu. Size the columns to their content instead and
+  // keep a guaranteed gap between logo, menu pill and CTA.
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    column-gap: 24px;
+  }
 }
 
 // Capability pages: logo, pill and button spread with equal gaps (justify-between in Figma)
@@ -45,6 +53,7 @@
 }
 
 .logo {
+  flex-shrink: 0;
   justify-self: start;
   display: flex;
   align-items: center;

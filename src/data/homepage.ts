@@ -132,8 +132,8 @@ export const homepageData = {
     title: 'See the outcome range of what programmes have been scoped to deliver.',
     titleHighlight: ['outcome range', 'deliver'],
     ctas: [
-      { label: 'Model your own range', href: '/resources/roi-calculator', variant: 'primary' as const },
-      { label: 'How we prove it', href: '/products/how-we-prove-it', variant: 'secondary' as const },
+      { label: 'Model your own range', href: '/resources/roi-calculator', variant: 'ghost' as const },
+      { label: 'How we prove it', href: '/products/how-we-prove-it', variant: 'ghost' as const },
     ] satisfies CtaLink[],
     eyebrow: 'Get up to',
     metrics: [
@@ -220,11 +220,12 @@ export const homepageData = {
     title: 'A layer above the stack you already bought',
     description:
       'CCaaS, CRM, VoC and WFO stay exactly where they are. CQI verifies across them.',
-    ctas: [
-      { label: 'See the architecture', href: '/products/integrations', variant: 'primary' as const },
-      { label: 'Compare with your stack', href: '/resources/compare-cqi', variant: 'secondary' as const },
-    ] satisfies CtaLink[],
   },
+
+  stackCtas: [
+    { label: 'See the architecture', href: '/products/implementation', variant: 'ghost' as const },
+    { label: 'Compare with your stack', href: '/resources/compare-cqi', variant: 'ghost' as const },
+  ] satisfies CtaLink[],
 
   stackLayers: [
     {

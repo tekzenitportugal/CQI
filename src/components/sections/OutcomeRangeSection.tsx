@@ -1,5 +1,5 @@
 import type { homepageData } from '@/data/homepage';
-import { Button } from '@/components/ui/Button';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { Container } from '@/components/ui/Container';
 import { FpoImage } from '@/components/ui/FpoImage';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -22,12 +22,7 @@ export function OutcomeRangeSection({ data }: OutcomeRangeSectionProps) {
           />
           <div className={styles.actions}>
             {data.ctas.map((cta) => (
-              <Button
-                key={cta.label}
-                label={cta.label}
-                href={cta.href}
-                variant={cta.variant}
-              />
+              <GhostLink key={cta.label} label={cta.label} href={cta.href} />
             ))}
           </div>
         </div>

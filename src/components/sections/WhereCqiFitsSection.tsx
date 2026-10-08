@@ -23,16 +23,18 @@ export function WhereCqiFitsSection({ data, variant = 'default' }: WhereCqiFitsS
           align="center"
           className={styles.heading}
         />
-        <div className={styles.actions}>
-          {data.ctas.map((cta) => (
-            <Button
-              key={cta.label}
-              label={cta.label}
-              href={cta.href}
-              variant={cta.variant}
-            />
-          ))}
-        </div>
+        {data.ctas && data.ctas.length > 0 && (
+          <div className={styles.actions}>
+            {data.ctas.map((cta) => (
+              <Button
+                key={cta.label}
+                label={cta.label}
+                href={cta.href}
+                variant={cta.variant}
+              />
+            ))}
+          </div>
+        )}
       </Container>
     </section>
   );

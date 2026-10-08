@@ -139,4 +139,5 @@
   font-family: var(--font-body);
   font-size: 14px;
   color: var(--color-blue-200);
+  @include text-link-hover;
 }

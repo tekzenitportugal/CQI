@@ -81,7 +81,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  scroll-margin-top: calc(var(--header-offset-top) + var(--header-height) + 24px);
 }
 
 .sectionTitle {

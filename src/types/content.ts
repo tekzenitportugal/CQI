@@ -180,7 +180,8 @@ export type WhereCqiFitsData = {
   eyebrow: string;
   title: string;
   description: string;
-  ctas: CtaLink[];
+  /** Rendered under the heading; omit to place the CTAs elsewhere (homepage puts them after the diagram). */
+  ctas?: CtaLink[];
 };
 
 export type IndustryTagGroup = {

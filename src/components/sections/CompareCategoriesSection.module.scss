@@ -262,6 +262,7 @@
   font-weight: 400;
   line-height: 1.4;
   color: var(--color-blue-200);
+  @include text-link-hover;
 }
 
 .desktopOnly {

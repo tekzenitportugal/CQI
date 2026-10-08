@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as *;
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -165,9 +167,10 @@
   line-height: 1.4;
   border-radius: 0;
 
+  @include text-link-hover;
+
   &:hover {
     color: var(--color-blue-hover);
-    text-decoration: underline;
   }
 
   &:active {

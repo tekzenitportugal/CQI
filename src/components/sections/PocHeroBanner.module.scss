@@ -3,23 +3,12 @@
 // Figma Rectangle 154 is a plain gradient (see GradientHero's "inset" variant), with an
 // extra .actions row (this page's hero has two buttons under the copy).
 .banner {
-  position: relative;
-  padding: 8px 8px 0;
+  @include hero-inset;
 }
 
 .heroBox {
-  position: absolute;
-  inset: 8px 8px 0;
-  border-radius: 20px;
-  overflow: hidden;
+  @include hero-box;
   background: var(--hero-gradient);
-
-  @include respond-to(lg) {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: clamp(560px, 55.21vw, 848px);
-  }
 }
 
 .contentWrap {

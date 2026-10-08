@@ -81,11 +81,7 @@
   font-weight: 400;
   line-height: 1.4;
   color: var(--color-antracite-400);
-  transition: opacity 0.2s ease;
-
-  &:hover {
-    opacity: 0.85;
-  }
+  @include text-link-hover;
 }
 
 .exploreLinkIcon {

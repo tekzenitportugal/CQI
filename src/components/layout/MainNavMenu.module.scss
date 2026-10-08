@@ -122,6 +122,11 @@
     padding-left: 16px;
   }
 
+  // Tighter item padding so the pill fits beside the logo and CTA on narrow desktops.
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    padding-left: 8px;
+  }
+
   &:focus-visible {
     outline: none;
   }
@@ -145,6 +150,11 @@
 
   @include respond-to(lg) {
     padding-left: 16px;
+  }
+
+  @media (min-width: 1024px) and (max-width: 1279.98px) {
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 

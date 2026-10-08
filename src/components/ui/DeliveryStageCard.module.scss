@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as *;
+
 .card {
   position: relative;
   width: 100%;
@@ -110,6 +112,7 @@
   line-height: 1.4;
   color: var(--color-white);
   text-decoration: none;
+  @include text-link-hover;
 
   @media (max-width: 767.98px) {
     margin-top: 36px;

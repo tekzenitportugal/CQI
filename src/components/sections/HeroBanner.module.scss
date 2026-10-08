@@ -1,3 +1,5 @@
+@use '@/styles/mixins' as *;
+
 // display:flex lets .section stretch/grow to fill (and exceed, if content
 // demands it) this min-height, so HeroSection can vertically centre its
 // copy against the real box edges instead of a hand-tuned padding guess.
@@ -7,12 +9,7 @@
   flex-direction: column;
   min-height: var(--hero-min-height);
   background: var(--hero-gradient);
-
-  // Below desktop, inset 8px from the viewport edge with a rounded card
-  // corner, matching the curved/inset treatment desktop already has.
-  @media (max-width: 1023.98px) {
-    margin: 8px 8px 0;
-    border-radius: 20px;
-    overflow: hidden;
-  }
+  // Shared hero card shell (see hero-* mixins in styles/_mixins.scss).
+  margin: $hero-inset $hero-inset 0;
+  @include hero-frame;
 }

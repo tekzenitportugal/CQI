@@ -1,10 +1,13 @@
 import type { CSSProperties } from 'react';
 import type { homepageData } from '@/data/homepage';
 import { Container } from '@/components/ui/Container';
+import { GhostLink } from '@/components/ui/GhostLink';
 import styles from './StackInfographicSection.module.scss';
 
 type StackInfographicSectionProps = {
   layers: typeof homepageData.stackLayers;
+  /** Ghost links shown centred under the diagram. */
+  ctas?: { label: string; href: string }[];
 };
 
 /** Figma "infographic layers - homepage" (6079:26105) is a 1084.616 × 495 canvas. */
@@ -87,7 +90,7 @@ const toMobileLineVars = ({ left, top, height }: LineBox) =>
     '--m-line-height': `${(height / MOBILE_CANVAS.height) * 100}%`,
   }) as CSSProperties;
 
-export function StackInfographicSection({ layers }: StackInfographicSectionProps) {
+export function StackInfographicSection({ layers, ctas }: StackInfographicSectionProps) {
   return (
     <section className={styles.section}>
       <Container className={styles.inner}>
@@ -153,6 +156,14 @@ export function StackInfographicSection({ layers }: StackInfographicSectionProps
             );
           })}
         </div>
+
+        {ctas && ctas.length > 0 && (
+          <div className={styles.actions}>
+            {ctas.map((cta) => (
+              <GhostLink key={cta.label} label={cta.label} href={cta.href} />
+            ))}
+          </div>
+        )}
       </Container>
     </section>
   );

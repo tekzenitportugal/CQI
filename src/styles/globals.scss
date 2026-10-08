@@ -11,6 +11,8 @@
 
 html {
   scroll-behavior: smooth;
+  // Applies to every in-page <a href="#id"> jump and scrollIntoView call.
+  scroll-padding-top: var(--anchor-offset);
   overflow-x: clip;
 }
 

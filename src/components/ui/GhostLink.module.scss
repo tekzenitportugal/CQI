@@ -1,0 +1,23 @@
+@use '@/styles/mixins' as *;
+
+// Ghost button: plain text + arrow, no box; hover only underlines.
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  @include text-link-hover;
+}
+
+// On white / near-white backgrounds.
+.blue {
+  color: var(--color-blue-200);
+}
+
+// On tinted or dark-on-light surfaces.
+.dark {
+  color: var(--color-antracite-400);
+}

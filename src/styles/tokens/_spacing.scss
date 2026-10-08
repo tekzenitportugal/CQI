@@ -4,9 +4,11 @@
   --header-offset-top: 25px;
   --header-height: 50px;
   --hero-nav-gap: 120px;
+  /* Gap kept above any scroll/anchor target so it never lands flush with the viewport top (clears the floating header) */
+  --anchor-offset: calc(var(--header-offset-top) + var(--header-height) + 24px);
   --hero-min-height: 864px;
-  /* Figma Rectangle 85 (6079:28557, rotated 180°) — light grey left → soft blue right */
-  --hero-gradient: linear-gradient(257.015deg, #668fff -147.05%, #f5f5f5 100%);
+  /* Single hero box gradient for every hero banner (Figma 76.91deg #668fff → #edf2ff, flipped = 283.09deg) */
+  --hero-gradient: linear-gradient(283.09deg, #668fff -147.05%, #edf2ff 100%);
   /* Figma Rectangle 105 (6079:28555) — band behind industries → CTA */
   --fade-band-gradient: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
 }

@@ -27,7 +27,7 @@ export default function HomePage() {
       <div className="fade-band">
         <IndustriesSection data={homepageData.industries} />
         <WhereCqiFitsSection data={homepageData.whereCqiFits} />
-        <StackInfographicSection layers={homepageData.stackLayers} />
+        <StackInfographicSection layers={homepageData.stackLayers} ctas={homepageData.stackCtas} />
         <CtaBannerSection data={homepageData.cta} />
       </div>
     </>

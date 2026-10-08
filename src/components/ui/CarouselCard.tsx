@@ -9,7 +9,7 @@ type CarouselCardProps = {
   tag?: string;
   /** 72px pictogram above the copy. */
   icon?: string;
-  /** Makes the whole card a link with an "Explore →" row. */
+  /** Adds an "Explore →" link row (only the link is clickable, not the whole card). */
   href?: string;
   linkLabel?: string;
   /** Figma sets a few titles in Regular instead of Medium. */
@@ -57,21 +57,15 @@ export function CarouselCard({
         copy
       )}
       {href && (
-        <span className={styles.link}>
+        <Link href={href} className={styles.link}>
           {linkLabel}
           <img src="/images/shared/common/carousel/arrow-explore.svg" alt="" width={16} height={16} aria-hidden="true" />
-        </span>
+        </Link>
       )}
     </>
   );
 
   const classNames = [styles.card, className].filter(Boolean).join(' ');
 
-  return href ? (
-    <Link href={href} className={classNames}>
-      {body}
-    </Link>
-  ) : (
-    <article className={classNames}>{body}</article>
-  );
+  return <article className={classNames}>{body}</article>;
 }

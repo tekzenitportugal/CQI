@@ -9,6 +9,52 @@
   padding-inline: var(--container-padding);
 }
 
+// ── Hero banner shell (Figma Rectangle 85) ─────────────────────────────────
+// Single source of truth for every hero banner: edit here and all pages follow.
+$hero-inset: 8px;
+$hero-radius: 20px;
+
+// Outer wrapper: keeps the 8px gap around the card.
+@mixin hero-inset {
+  position: relative;
+  padding: $hero-inset $hero-inset 0;
+}
+
+// Positions a layer exactly over the card (box, cutouts, content).
+@mixin hero-fill {
+  position: absolute;
+  inset: $hero-inset $hero-inset 0;
+}
+
+// Rounded, clipped card frame (no background — each page sets its own).
+@mixin hero-frame {
+  border-radius: $hero-radius;
+  overflow: hidden;
+}
+
+// The card itself: fills the wrapper below lg, fixed Figma height from lg.
+@mixin hero-box {
+  @include hero-fill;
+  @include hero-frame;
+
+  @include respond-to(lg) {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: clamp(560px, 55.21vw, 848px);
+  }
+}
+
+// Hover treatment for every text link (not buttons): underline sitting 4px below the text.
+@mixin text-link-hover {
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+}
+
 // Figma vertical spacing is designed on a 1536px frame. Values are exact at
 // 1536px and above, and scale down (to 40%) on smaller screens.
 @function fluid-space($value) {

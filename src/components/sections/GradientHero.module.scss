@@ -73,23 +73,12 @@
 // Just a padding wrapper so the in-flow copy/image share heroBox's 8px inset —
 // no background of its own, so it never bleeds to the viewport edge on mobile.
 .insetBanner {
-  position: relative;
-  padding: 8px 8px 0;
+  @include hero-inset;
 }
 
 .heroBox {
-  position: absolute;
-  inset: 8px 8px 0;
-  border-radius: 20px;
-  overflow: hidden;
+  @include hero-box;
   background: var(--hero-gradient);
-
-  @include respond-to(lg) {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: clamp(560px, 55.21vw, 848px);
-  }
 }
 
 // Figma: the device mockup is a transparent-background cutout, right-anchored
@@ -150,11 +139,9 @@
 }
 
 .insetMobileCutout {
-  position: absolute;
-  inset: 8px 8px 0;
+  @include hero-fill;
+  @include hero-frame;
   z-index: 1;
-  overflow: hidden;
-  border-radius: 20px;
   pointer-events: none;
 
   @include respond-to(lg) {
@@ -179,8 +166,7 @@
   padding-inline: 12px;
 
   @include respond-to(lg) {
-    position: absolute;
-    inset: 8px 8px 0;
+    @include hero-fill;
     // Container's width:100% would add the 8px left inset on top of the
     // parent width and push the copy 8px past the right edge.
     width: auto;

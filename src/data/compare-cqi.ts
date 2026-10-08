@@ -19,10 +19,6 @@ export const compareCqiData = {
       'CQI is not an alternative to your contact centre, your analytics platform or your VoC programme. It is the layer above them. These pages set out what each category does well, where it stops, and what verification adds.',
   } satisfies HeroCopyData,
 
-  // Figma 6225:40836: linear-gradient(76.91deg, #668fff 147.05%, #edf2ff 100%) rendered flipped
-  // horizontally → 283.09deg; first stop is -147.05% per the site's gradient-sign rule.
-  heroGradient: 'linear-gradient(283.09deg, #668fff -147.05%, #edf2ff 100%)',
-
   categories: {
     title: 'Four categories, four different jobs',
     titleHighlight: ['Four categories'],

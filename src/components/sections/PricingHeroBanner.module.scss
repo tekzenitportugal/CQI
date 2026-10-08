@@ -3,8 +3,7 @@
 // "Rectangle 85" box as in PageHeroBanner.module.scss (gradient only), with an
 // extra .actions row (this page's hero has two buttons under the copy).
 .banner {
-  position: relative;
-  padding: 8px 8px 0;
+  @include hero-inset;
 
   // Figma mobile: 880px card (page y 8–888).
   @media (max-width: 1023.98px) {
@@ -13,18 +12,8 @@
 }
 
 .heroBox {
-  position: absolute;
-  inset: 8px 8px 0;
-  border-radius: 20px;
-  overflow: hidden;
+  @include hero-box;
   background: var(--color-white);
-
-  @include respond-to(lg) {
-    position: relative;
-    inset: auto;
-    width: 100%;
-    height: clamp(560px, 55.21vw, 848px);
-  }
 }
 
 // Figma 6225:42239: linear-gradient(76.91deg, #668fff 147.05%, #edf2ff 100%) rendered flipped
@@ -33,7 +22,7 @@
 .gradient {
   position: absolute;
   inset: 0;
-  background: linear-gradient(283.09deg, #668fff -147.05%, #edf2ff 100%);
+  background: var(--hero-gradient);
 }
 
 .contentWrap {

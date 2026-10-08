@@ -15,9 +15,6 @@ export const sitemapData = {
     description: 'The full structure, useful while the site is in review.',
   } satisfies HeroCopyData,
 
-  // Figma 6225:44946 mobile: same left-light → right-blue band as Compare CQI.
-  heroGradient: 'linear-gradient(283.09deg, #668fff -147.05%, #edf2ff 100%)',
-
   links: {
     title: 'Every section, every page',
     titleHighlight: ['section', 'page'],
