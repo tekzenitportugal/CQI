@@ -12,6 +12,8 @@ type IndustryThreeThingsSectionProps = {
   headingAlign?: 'left' | 'center';
   /** Figma mobile variant without the connecting line: fixed-height steps, wider copy. */
   plainMobile?: boolean;
+  /** Desktop line runs edge to edge, with its lightest points under each step marker (How we prove it). */
+  alignedLine?: boolean;
   /** Figma mobile (Solutions · industry pages): no connecting line, 24px marker gap, copy wraps the full column. */
   industryMobile?: boolean;
 };
@@ -42,11 +44,12 @@ export function IndustryThreeThingsSection({
   eyebrow,
   headingAlign = 'left',
   plainMobile = false,
+  alignedLine = false,
   industryMobile = false,
 }: IndustryThreeThingsSectionProps) {
   return (
     <section
-      className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''} ${plainMobile ? styles.plainMobile : ''} ${industryMobile ? styles.industryMobile : ''} ${data.roomyFirstStep ? styles.roomyFirstStep : ''}`.trim()}
+      className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''} ${plainMobile ? styles.plainMobile : ''} ${alignedLine ? styles.matchedPadding : ''} ${industryMobile ? styles.industryMobile : ''} ${data.roomyFirstStep ? styles.roomyFirstStep : ''}`.trim()}
     >
       <Container>
         <SectionHeading
@@ -57,9 +60,15 @@ export function IndustryThreeThingsSection({
           className={`${styles.heading} ${headingAlign === 'center' ? styles.headingCenter : ''}`.trim()}
         />
         <div className={styles.timeline}>
-          <div className={styles.lineTrack} aria-hidden="true">
-            <img src="/images/solutions/shared/three-things-line.svg" alt="" width={1536} height={1} />
-          </div>
+          {alignedLine ? (
+            <div className={styles.alignedLine} aria-hidden="true">
+              <span className={styles.alignedLineCore} />
+            </div>
+          ) : (
+            <div className={styles.lineTrack} aria-hidden="true">
+              <img src="/images/solutions/shared/three-things-line.svg" alt="" width={1536} height={1} />
+            </div>
+          )}
           <ul className={styles.grid}>
             {data.items.map((item) => (
               <li key={item.step} className={styles.item}>
