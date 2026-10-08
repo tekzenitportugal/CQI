@@ -3,7 +3,7 @@
 
 .section {
   @include solutions.solutions-neutral-band-background;
-  @include section-space(150px, 200px);
+  @include section-space(200px, 200px);
   overflow-x: clip;
 
   // Consistent 100px inter-section rhythm on mobile/tablet.

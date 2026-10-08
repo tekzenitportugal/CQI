@@ -12,8 +12,6 @@
 
   // Next section shares this one's background (same solutions-band wrapper).
   &.grouped {
-    background: linear-gradient(180deg, #edf2ff 0%, #f5f5f5 100%);
-
     @media (max-width: 1023.98px) {
       padding-bottom: 0;
     }

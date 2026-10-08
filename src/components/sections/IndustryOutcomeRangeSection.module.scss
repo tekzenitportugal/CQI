@@ -77,6 +77,8 @@
   @include respond-to(lg) {
     grid-template-columns: repeat(3, minmax(0, 465px));
     justify-content: space-between;
+    // Figma 6362:27051: 465px cards carry a wider 214px blue block and a 64px figure.
+    --metric-value-size: clamp(40px, 5vw, 64px);
   }
 }
 

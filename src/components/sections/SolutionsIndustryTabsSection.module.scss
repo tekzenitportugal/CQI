@@ -1,7 +1,7 @@
 @use '@/styles/mixins' as *;
 
 .section {
-  @include section-space(200px, 150px);
+  @include section-space(200px, 200px);
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
   @media (max-width: 1023.98px) {

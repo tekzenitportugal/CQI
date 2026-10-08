@@ -22,6 +22,11 @@
   align-items: center;
   justify-content: center;
   width: 155px;
+
+  // Figma: 214px block in a 465px card, 155px in a 344px card — the same ~49% of the card.
+  @include respond-to(lg) {
+    width: clamp(155px, 49.2%, 214px);
+  }
   align-self: stretch;
   border-radius: 12px;
   background: #668fff;
@@ -30,7 +35,7 @@
 .value {
   margin: 0;
   font-family: var(--font-poppins);
-  font-size: clamp(40px, 5vw, 62px);
+  font-size: var(--metric-value-size, clamp(40px, 5vw, 62px));
   font-weight: 300;
   line-height: 1.2;
   color: #fefefe;
