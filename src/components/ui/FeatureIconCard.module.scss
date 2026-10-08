@@ -20,14 +20,15 @@
   }
 }
 
-// Figma "CARDS" (Icon + Content, Mode=Light): light-blue gradient, blue text throughout.
+// Figma "CARDS" (6342:26987, "The consequence"): faint coral fill, coral-100 border,
+// antracite title and body.
 .cardAccent {
-  border: 1px solid var(--color-antracite-75);
-  background: linear-gradient(251.94deg, var(--color-light-blue-75) 1.43%, #f5f5f5 100%);
-  color: var(--color-light-blue-500);
+  border: 1px solid var(--color-coral-100);
+  background: rgba(255, 237, 240, 0.15);
+  color: var(--color-antracite-400);
 
   .description {
-    color: var(--color-light-blue-500);
+    color: var(--color-antracite-300);
   }
 }
 
