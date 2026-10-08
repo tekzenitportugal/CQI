@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useCallback, useEffect, useState, type CSSProperties } from 'react';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
 import { createPortal } from 'react-dom';
 import { megaMenus, pricingNavLink, type MegaMenuConfig, type MegaMenuId } from '@/data/mega-menu';
 import { headerCtas } from '@/data/navigation';
@@ -14,6 +15,15 @@ type MainNavMenuProps = {
   onNavigate?: () => void;
 };
 
+// How long the dropdown stays open after the cursor leaves, so it survives the trip from
+// the trigger down to the panel even when the cursor drifts outside the hover zone.
+const CLOSE_DELAY_MS = 300;
+
+function isActivePath(pathname: string, href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 function getMenuById(id: MegaMenuId): MegaMenuConfig {
   const menu = megaMenus.find((entry) => entry.id === id);
   if (!menu) throw new Error(`Unknown menu: ${id}`);
@@ -24,6 +34,17 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
   const [openMenu, setOpenMenu] = useState<MegaMenuId | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<MegaMenuId | null>(null);
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const cancelClose = useCallback(() => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  }, []);
+
+  useEffect(() => cancelClose, [cancelClose]);
 
   useEffect(() => {
     setMounted(true);
@@ -32,16 +53,19 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
   const desktopPanelMenu = openMenu && !mobileOpen ? openMenu : null;
 
   const closeMenus = useCallback(() => {
+    cancelClose();
     setOpenMenu(null);
     setMobileExpanded(null);
-  }, []);
+  }, [cancelClose]);
 
   const handleMouseEnter = (id: MegaMenuId) => {
+    cancelClose();
     setOpenMenu(id);
   };
 
   const handleMouseLeave = () => {
-    setOpenMenu(null);
+    cancelClose();
+    closeTimer.current = setTimeout(() => setOpenMenu(null), CLOSE_DELAY_MS);
   };
 
   const toggleMobileSection = (id: MegaMenuId) => {
@@ -54,11 +78,14 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
   const renderMegaTrigger = (menu: MegaMenuConfig) => {
     const isOpen =
       mobileOpen ? mobileExpanded === menu.id : openMenu === menu.id;
+    const isCurrent = menu.columns.some((column) =>
+      column.links.some((link) => isActivePath(pathname, link.href)),
+    );
     return (
       <li key={menu.id} className={styles.topItem}>
         <button
           type="button"
-          className={`${styles.trigger} ${isOpen ? styles.triggerActive : ''}`.trim()}
+          className={`${styles.trigger} ${isOpen || isCurrent ? styles.triggerActive : ''}`.trim()}
           aria-expanded={isOpen}
           aria-haspopup="true"
           onMouseEnter={() => handleMouseEnter(menu.id)}
@@ -86,6 +113,7 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
   const shell = (
     <div
       className={`${styles.shell} ${mobileOpen ? styles.shellMobileOpen : ''}`.trim()}
+      onMouseEnter={cancelClose}
       onMouseLeave={handleMouseLeave}
       id="main-navigation"
     >
@@ -97,7 +125,7 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
           <li className={styles.topItem}>
             <Link
               href={pricingNavLink.href}
-              className={`${styles.topLink} ${styles.topLinkPlain}`.trim()}
+              className={`${styles.topLink} ${styles.topLinkPlain} ${isActivePath(pathname, pricingNavLink.href) ? styles.topLinkActive : ''}`.trim()}
               onClick={() => {
                 closeMenus();
                 onNavigate?.();
@@ -175,6 +203,8 @@ type MegaMenuPanelProps = {
 };
 
 function MegaMenuPanel({ menu, className, onNavigate }: MegaMenuPanelProps) {
+  const pathname = usePathname();
+
   return (
     <div className={className} role="region" aria-label={`${menu.label} menu`}>
       <div className={styles.panelColumns}>
@@ -188,7 +218,12 @@ function MegaMenuPanel({ menu, className, onNavigate }: MegaMenuPanelProps) {
             <ul className={styles.linkList}>
               {column.links.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className={styles.subLink} onClick={onNavigate}>
+                  <Link
+                    href={link.href}
+                    className={`${styles.subLink} ${isActivePath(pathname, link.href) ? styles.subLinkActive : ''}`.trim()}
+                    onClick={onNavigate}
+                    aria-current={isActivePath(pathname, link.href) ? 'page' : undefined}
+                  >
                     {link.label}
                   </Link>
                 </li>

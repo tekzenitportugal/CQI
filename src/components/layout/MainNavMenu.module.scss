@@ -140,6 +140,10 @@
   color: var(--color-blue-200);
 }
 
+.topLinkActive {
+  color: var(--color-blue-200);
+}
+
 .triggerActive {
   color: var(--color-blue-200);
 }
@@ -173,7 +177,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 102;
-    padding-top: 10px;
+    padding-top: 16px;
   }
 }
 
@@ -276,6 +280,10 @@
     color: var(--color-blue-200);
     outline: none;
   }
+}
+
+.subLinkActive {
+  color: var(--color-blue-200);
 }
 
 .mobileSection {

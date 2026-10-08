@@ -20,6 +20,9 @@ type HeaderProps = {
 // Ignore scroll jitter smaller than this before toggling hide/show.
 const SCROLL_DELTA_THRESHOLD = 4;
 
+// Cursor within this many px of the viewport top brings a hidden header back.
+const REVEAL_ZONE_PX = 80;
+
 export function Header({ variant = 'default' }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -51,8 +54,17 @@ export function Header({ variant = 'default' }: HeaderProps) {
       });
     };
 
+    // Also reveal the header when the cursor reaches the top of the page, even without scrolling.
+    const handleMouseMove = (e: MouseEvent) => {
+      if (e.clientY <= REVEAL_ZONE_PX) setHidden(false);
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   // Never hide the header while the mobile menu is open underneath it.
