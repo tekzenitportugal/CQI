@@ -23,6 +23,7 @@ export default function PricingPage() {
         figmaMobile
         inlineMobileTitle
         largeMobileTags
+        labelGradient
         eyebrow={pricingData.steps.eyebrow}
         title={pricingData.steps.title}
         titleHighlight={pricingData.steps.titleHighlight}

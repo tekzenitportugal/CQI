@@ -119,7 +119,14 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   /** Below lg only (dedicated mobile image): CSS `background` for the wash layer over the photo. */
   mobileOverlay?: string;
   /** lg+ only (dedicated mobile image): Figma placement of the photo inside the hero box, as % of the box. Omit for full-bleed cover. */
-  desktopImageFrame?: { left: number; top: number; width: number; height: number };
+  desktopImageFrame?: {
+    left: number;
+    top: number;
+    width: number;
+    height: number;
+    /** Native width/height ratio; when set, width is derived from height so the photo is never distorted. */
+    aspect?: number;
+  };
 };
 
 export type IconFeatureCard = {

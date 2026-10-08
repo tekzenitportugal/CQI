@@ -14,7 +14,10 @@ export const seeItLiveData = {
     eyebrow: 'See it live',
     description:
       'A self-guided walkthrough of what CQI does with a single verified misalignment: a tariff reduction promised on 412 calls and executed on none of them. Click through the stages in order.',
-    image: '/images/resources/see-it-live/hero.png',
+    image: '/images/resources/see-it-live/hero-desktop.webp',
+    // Figma 6362:28750: photo 147.21% tall (as Figma), width kept at its native 4:3 ratio (Figma stretches it ~17%
+    // wider), left chosen so the figure sits where Figma has it; the wash covers the exposed left edge.
+    desktopImageFrame: { left: 23.4, top: -0.11, width: 109.5, height: 147.21, aspect: 4 / 3 },
     mobileImage: '/images/resources/see-it-live/hero-mobile.png',
     mobileIntroGap: 10,
     mobileImageShift: 70,

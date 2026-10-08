@@ -29,7 +29,7 @@ export const compareCqiData = {
     items: [
       {
         title: 'CQI vs CCaaS &\ncontact centre reporting',
-        description: 'CCaaS platforms optimise how interactions are handled.',
+        description: 'CCaaS platforms optimise\nhow interactions\nare handled.',
         mobileTitle: 'CQI vs CCaaS\n& contact centre reporting',
         mobileDescription: 'What your customers speak. Calls, chats, bot sessions, emails and feedback, read in full, not sampled.',
         tags: ['NICE', 'Genesys', 'Amazon Connect', 'Five9'],
@@ -38,7 +38,7 @@ export const compareCqiData = {
       },
       {
         title: 'CQI vs Interaction &\nspeech analytics',
-        description: 'Interaction analytics explains what happens during interactions.',
+        description: 'Interaction analytics explains\nwhat happens during\ninteractions.',
         mobileTitle: 'CQI vs Interaction\n& speech analytics',
         tags: ['Verint', 'CallMiner', 'Observe.AI', 'Quantum Metric'],
         tagsWidth: 217,
@@ -46,7 +46,7 @@ export const compareCqiData = {
       },
       {
         title: 'CQI vs VoC &\nCXM platforms',
-        description: 'VoC platforms measure how customers feel about experiences.',
+        description: 'VoC platforms measure how\ncustomers feel about\nexperiences.',
         mobileTitle: 'CQI vs VoC\n& CXM platforms',
         tags: ['Qualtrics', 'Medallia', 'InMoment', 'Forsta'],
         tagsWidth: 181,
@@ -54,7 +54,7 @@ export const compareCqiData = {
       },
       {
         title: 'CQI vs QA &\nquality management',
-        description: 'QA programmes assure how well interactions were handled.',
+        description: 'QA programmes assure\nhow well interactions\nwere handled.',
         mobileTitle: 'CQI vs QA &\nquality management',
         tags: ['Sample scorecards', 'Speech-driven auto-QA', 'Workforce optimisation suites'],
         tagsWidth: 310,

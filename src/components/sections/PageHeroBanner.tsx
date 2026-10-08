@@ -26,6 +26,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
         '--hero-img-top': `${frame.top}%`,
         '--hero-img-width': `${frame.width}%`,
         '--hero-img-height': `${frame.height}%`,
+        ...(frame.aspect ? { '--hero-img-aspect': String(frame.aspect) } : {}),
       } as CSSProperties)
     : undefined;
   const hasDedicatedMobile = Boolean(data.mobileImage);
@@ -46,7 +47,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
               alt=""
               fill
               priority
-              className={`${styles.heroImage} ${styles.desktopOnly} ${frame ? styles.framed : ''}`.trim()}
+              className={`${styles.heroImage} ${styles.desktopOnly} ${frame ? styles.framed : ''} ${frame?.aspect ? styles.framedRatio : ''}`.trim()}
               style={desktopFrameVars}
               sizes="100vw"
             />

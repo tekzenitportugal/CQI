@@ -52,6 +52,33 @@
   }
 }
 
+// Scroll progress: same box, dash pattern and fade as .line, in blue; .lineFill's height is set from JS.
+.lineProgress {
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+    position: absolute;
+    top: 326px;
+    bottom: 124px;
+    left: 50%;
+    width: 1px;
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, black 0%, black 69.5%, transparent 100%);
+  }
+}
+
+.lineFill {
+  height: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--color-blue-200) 0,
+    var(--color-blue-200) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
 .lineCapTop {
   display: none;
 
@@ -103,8 +130,10 @@
     border-radius: 50%;
     background: var(--color-white);
     border: 1px dashed var(--color-antracite-100);
+    transition: border-color 0.3s ease;
 
     &::before {
+      transition: background-color 0.3s ease;
       content: '';
       position: absolute;
       top: 50%;
@@ -115,6 +144,24 @@
       border-radius: 50%;
       background: var(--color-antracite-200);
     }
+  }
+}
+
+// Dot passed by the scroll-progress line: grey centre turns blue.
+.dotReached {
+  @include respond-to(lg) {
+    border-color: var(--color-blue-100);
+
+    &::before {
+      background: var(--color-blue-200);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dot,
+  .dot::before {
+    transition: none;
   }
 }
 

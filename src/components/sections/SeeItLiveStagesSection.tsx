@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
@@ -26,11 +29,52 @@ type SeeItLiveStagesSectionProps = {
 
 /** Figma "5 stages" walkthrough (6079:31287): alternating text/screenshot rows down a centre line. */
 export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
+  const fillRef = useRef<HTMLDivElement>(null);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [reached, setReached] = useState<boolean[]>(() => data.stages.map((_, i) => i === 0));
+
+  // Scroll progress: the blue fill grows down the line to a trigger point in the viewport, and each
+  // dot turns blue once its centre has been passed by that point.
+  useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const line = lineRef.current;
+      const fill = fillRef.current;
+      if (!line || !fill) return;
+      const trigger = window.innerHeight * 0.55;
+      const lineRect = line.getBoundingClientRect();
+      const height = Math.min(Math.max(trigger - lineRect.top, 0), lineRect.height);
+      fill.style.height = `${height}px`;
+      const next = dotRefs.current.map((dot, i) => {
+        if (i === 0 || !dot) return true;
+        const rect = dot.getBoundingClientRect();
+        return rect.top + rect.height / 2 <= trigger;
+      });
+      setReached((prev) => (prev.length === next.length && prev.every((v, i) => v === next[i]) ? prev : next));
+    };
+    const onScroll = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
   return (
     <section className={styles.section}>
       <Container>
         <div className={styles.timeline}>
-          <div className={styles.line} aria-hidden="true" />
+          <div ref={lineRef} className={styles.line} aria-hidden="true" />
+          <div className={styles.lineProgress} aria-hidden="true">
+            <div ref={fillRef} className={styles.lineFill} />
+          </div>
 
           {/* .rows is its own container so .line isn't a sibling — otherwise it shifts every
               row's :nth-child parity by one and inverts the whole alternating layout. */}
@@ -48,7 +92,12 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
 
                 {index === 0 && <div className={styles.lineCapTop} aria-hidden="true" />}
                 <div
-                  className={index === 0 ? `${styles.dot} ${styles.dotActive}` : styles.dot}
+                  ref={(el) => {
+                    dotRefs.current[index] = el;
+                  }}
+                  className={[styles.dot, index === 0 ? styles.dotActive : '', reached[index] ? styles.dotReached : '']
+                    .filter(Boolean)
+                    .join(' ')}
                   aria-hidden="true"
                 />
 

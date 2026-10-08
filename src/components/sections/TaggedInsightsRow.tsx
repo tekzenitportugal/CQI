@@ -17,6 +17,8 @@ export type TaggedInsightsRowProps = {
   inlineMobileTitle?: boolean;
   /** With `figmaMobile`: uppercase, fixed-size tag pills with a 200px bottom gap (Figma Pricing mobile). */
   largeMobileTags?: boolean;
+  /** Line ramps dark -> light behind each tag (Figma Pricing "Three steps"). */
+  labelGradient?: boolean;
 };
 
 /**
@@ -35,6 +37,7 @@ export function TaggedInsightsRow({
   figmaMobile,
   inlineMobileTitle,
   largeMobileTags,
+  labelGradient,
 }: TaggedInsightsRowProps) {
   return (
     <section className={[
@@ -42,6 +45,7 @@ export function TaggedInsightsRow({
         figmaMobile && styles.figmaMobile,
         inlineMobileTitle && styles.inlineMobileTitle,
         largeMobileTags && styles.largeMobileTags,
+        labelGradient && styles.labelGradient,
         className,
       ].filter(Boolean).join(' ')}>
       <Container>

@@ -1,5 +1,5 @@
 import type { AboutPurposeData } from '@/data/about';
-import { Button } from '@/components/ui/Button';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { Container } from '@/components/ui/Container';
 import { RuledRowsList } from '@/components/ui/RuledRowsList';
 import { highlightText } from '@/utils/highlightText';
@@ -9,7 +9,7 @@ type AboutPurposeSectionProps = {
   data: AboutPurposeData;
 };
 
-/** Figma "Frame 1000003308": purpose copy + 2 buttons on the left, a 5-row ruled list on the right. */
+/** Figma "Frame 1000003308": purpose copy + 2 ghost links on the left, a 5-row ruled list on the right. */
 export function AboutPurposeSection({ data }: AboutPurposeSectionProps) {
   return (
     <section className={styles.section}>
@@ -29,7 +29,7 @@ export function AboutPurposeSection({ data }: AboutPurposeSectionProps) {
 
           <div className={styles.buttons}>
             {data.buttons.map((button) => (
-              <Button key={button.label} label={button.label} href={button.href} variant={button.variant} />
+              <GhostLink key={button.label} label={button.label} href={button.href} />
             ))}
           </div>
         </div>

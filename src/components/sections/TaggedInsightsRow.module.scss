@@ -1,6 +1,7 @@
 @use '@/styles/mixins' as *;
 
 .section {
+  overflow-x: clip;
   @include section-space(275px, 0);
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
@@ -53,6 +54,8 @@
 
 .row {
   position: relative;
+  // cqw = the row's own width, so the line gradient can be pinned to the columns.
+  container-type: inline-size;
 }
 
 // Figma Implementation mobile (6225:42840).
@@ -126,14 +129,41 @@
   position: absolute;
   z-index: 0;
   top: 13.5px;
-  left: calc(-1 * var(--container-padding));
-  right: calc(-1 * var(--container-padding));
+  // Full-bleed: viewport-wide and centred on the row, so it reaches both edges at any width.
+  left: calc(50% - 50vw);
+  width: 100vw;
   height: 1px;
   overflow: hidden;
   pointer-events: none;
   background-image: url('/images/shared/common/time-to-value-line.svg');
   background-repeat: no-repeat;
   background-size: 100% 1px;
+}
+
+// Dashed rule whose lighter stretches sit behind the tags: the colour ramps dark -> light at each
+// tag centre (tag = column start + 30px) and back to dark between columns. Columns are
+// 344px wide, spread edge to edge, so tag 2 starts at 50cqw - 172px and tag 3 at 100cqw - 344px.
+.labelGradient .lineTrack {
+  @include respond-to(lg) {
+    --o: calc((100vw - 100cqw) / 2);
+    --t1: calc(var(--o) + 30px);
+    --t2: calc(var(--o) + 50cqw - 142px);
+    --t3: calc(var(--o) + 100cqw - 314px);
+    background-image: linear-gradient(
+      90deg,
+      #0036cc 0,
+      #0036cc var(--o),
+      #fff var(--t1),
+      #0036cc calc((var(--t1) + var(--t2)) / 2),
+      #fff var(--t2),
+      #0036cc calc((var(--t2) + var(--t3)) / 2),
+      #fff var(--t3),
+      #0036cc calc(var(--t3) + 200px),
+      #0036cc 100%
+    );
+    background-size: auto;
+    mask-image: repeating-linear-gradient(90deg, #000 0, #000 4px, transparent 4px, transparent 8px);
+  }
 }
 
 .grid {
@@ -157,6 +187,11 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+
+  // The tag hugs its text instead of stretching to the column width.
+  > :first-child {
+    align-self: flex-start;
+  }
 }
 
 .itemCopy {

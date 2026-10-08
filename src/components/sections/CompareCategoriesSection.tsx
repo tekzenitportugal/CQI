@@ -7,6 +7,7 @@ import styles from './CompareCategoriesSection.module.scss';
 export type CompareCategoryCard = {
   /** `\n` breaks the two-line uppercase heading, as in Figma. */
   title: string;
+  /** `\n` sets the three-line break, as in Figma. */
   description: string;
   /** Figma mobile copy, where it differs from the desktop frame (line break / wording). */
   mobileTitle?: string;
@@ -71,7 +72,10 @@ export function CompareCategoriesSection({ data }: CompareCategoriesSectionProps
                       {category.mobileTitle}
                     </p>
                   )}
-                  <p className={`${styles.cardDescription} ${category.mobileDescription ? styles.desktopOnly : ''}`.trim()}>
+                  <p
+                    className={`${styles.cardDescription} ${category.mobileDescription ? styles.desktopOnly : ''}`.trim()}
+                    style={{ whiteSpace: 'pre-line' }}
+                  >
                     {category.description}
                   </p>
                   {category.mobileDescription && (

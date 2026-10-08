@@ -64,6 +64,16 @@
     height: var(--hero-img-height) !important;
     // Figma sizes the <img> to exactly this box (no crop), so the photo is fitted, not cover-zoomed.
     object-fit: fill;
+    max-width: none;
+  }
+}
+
+// Photo sized by its height at its native ratio (width follows), so it can never be squeezed or
+// stretched when the box width changes; `left` stays a % of the box.
+.framedRatio {
+  @include respond-to(lg) {
+    width: auto !important;
+    aspect-ratio: var(--hero-img-aspect);
   }
 }
 
