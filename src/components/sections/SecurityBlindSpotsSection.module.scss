@@ -18,29 +18,25 @@
   gap: fluid-space(64px);
 }
 
-// Figma: eyebrow 20px Poppins Medium (B75), gap 14px, title 40px Poppins Light — bigger/lighter
-// than SectionHeading's shared 14px eyebrow / 28-36px title, so this instance overrides both.
+// Desktop spec: eyebrow 14px Noto Sans SemiBold (#3369FF), title 36px Poppins Regular (#4D4D4D),
+// gap 14px. Overrides SectionHeading's shared styles for this instance.
 .heading {
   --section-heading-title-max-width: 1194px;
   gap: 14px;
 
   p:first-child {
-    font-family: var(--font-heading);
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1.3;
     letter-spacing: 0;
-    color: var(--color-blue-75);
-
-    @media (max-width: 1023.98px) {
-      font-size: 17.5px;
-    }
+    color: var(--color-blue-100);
   }
 
   :where(h2, h3, h4) {
     font-family: var(--font-heading);
-    font-weight: 300;
-    font-size: clamp(28px, 2.604vw, 40px);
+    font-weight: 400;
+    font-size: 36px;
     line-height: 1.2;
     color: var(--color-antracite-400);
   }

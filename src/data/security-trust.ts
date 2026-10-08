@@ -116,7 +116,7 @@ export const securityTrustData = {
   } satisfies ComplianceStandardsData,
 
   governance: {
-    title: 'Governance is a product feature, not a policy document',
+    title: 'Governance is a product feature,\nnot a policy document',
     titleHighlight: ['product feature'],
     auditability: {
       label: 'Auditability',
