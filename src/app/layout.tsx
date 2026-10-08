@@ -15,7 +15,7 @@ const notoSans = Noto_Sans({
 
 const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['300', '400', '600'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-poppins',
   display: 'swap',
 });

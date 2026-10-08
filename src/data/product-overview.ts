@@ -120,7 +120,7 @@ export const productOverviewData = {
     description:
       'A journey is only as healthy as the commitments that survive it. CQI scores each stage on containment, continuity and repetition, so a red stage tells you which of three broke.',
     features: [
-      { title: 'containment', description: 'Did the channel the customer choose actually resolve it?' },
+      { title: 'Containment', description: 'Did the channel the customer choose actually resolve it?' },
       { title: 'Continuity', description: 'Did context and commitments survive the move  between channels?' },
       { title: 'Repetition', description: 'How many times did the customer have to come back?' },
     ],
