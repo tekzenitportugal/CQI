@@ -19,7 +19,7 @@ export default function IntegrationsPage() {
       <PageHeroBanner data={integrationsData.hero} />
       <IntegrationsPartnersSection data={integrationsData.partners} />
       <IntegrationsConnectionSection data={integrationsData.connection} />
-      <ExpandableBandList items={integrationsData.waysBands} colors={integrationsData.bandColors} />
+      <ExpandableBandList items={integrationsData.waysBands} colors={integrationsData.bandColors} scrollDriven />
       <FaqSection data={integrationsData.faq} />
       <CtaBannerSection data={integrationsData.cta} />
     </>

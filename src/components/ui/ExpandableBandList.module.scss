@@ -12,6 +12,17 @@
   }
 }
 
+.track {
+  width: 100%;
+}
+
+// Pinned while the page scrolls through the bands: the list (~800px tall with a band open)
+// is centred in the viewport, never tucking under the fixed header on short screens.
+.pin {
+  position: sticky;
+  top: max(calc(var(--header-offset-top, 0px) + var(--header-height)), calc((100vh - 800px) / 2));
+}
+
 .item {
   width: 100%;
   transition: background-color 0.2s ease;

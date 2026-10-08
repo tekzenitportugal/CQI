@@ -1,6 +1,6 @@
 import type { IntegrationsConnectionData } from '@/data/integrations';
-import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { highlightText } from '@/utils/highlightText';
 import styles from './IntegrationsConnectionSection.module.scss';
 
@@ -17,7 +17,7 @@ export function IntegrationsConnectionSection({ data }: IntegrationsConnectionSe
           <h2 className={styles.title}>{highlightText(data.title, data.titleHighlight)}</h2>
           <div className={styles.row}>
             <p className={styles.description}>{data.description}</p>
-            <Button label={data.button.label} href={data.button.href} variant="primary" />
+            <GhostLink label={data.button.label} href={data.button.href} />
           </div>
         </div>
 
