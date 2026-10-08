@@ -1,13 +1,31 @@
 import { Fragment, type ReactNode } from 'react';
 
+/** Phrases that must stay on one line ("not" never gets stranded before the hyphenated term). */
+const NO_BREAK_PHRASES = /(not rip-and-replace|rip-and-replace)/gi;
+
+function withNoBreaks(line: string, keyPrefix: string): ReactNode {
+  const parts = line.split(NO_BREAK_PHRASES);
+  if (parts.length === 1) return line;
+
+  return parts.map((part, index) =>
+    index % 2 === 1 ? (
+      <span key={`${keyPrefix}-nb-${index}`} style={{ whiteSpace: 'nowrap' }}>
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
 /** Renders `\n` in copy as <br /> line breaks. */
 function withLineBreaks(text: string, keyPrefix: string): ReactNode {
   const lines = text.split('\n');
-  if (lines.length === 1) return text;
+  if (lines.length === 1) return withNoBreaks(text, keyPrefix);
 
   return lines.map((line, index) => (
     <Fragment key={`${keyPrefix}-${index}`}>
-      {line}
+      {withNoBreaks(line, `${keyPrefix}-${index}`)}
       {index < lines.length - 1 && (
         <>
           {' '}

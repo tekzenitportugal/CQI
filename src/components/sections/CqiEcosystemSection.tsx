@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { implementationData } from '@/data/implementation';
-import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { TagPill } from '@/components/ui/TagPill';
 import styles from './CqiEcosystemSection.module.scss';
 
@@ -62,7 +62,7 @@ export function CqiEcosystemSection({ data }: CqiEcosystemSectionProps) {
 
           <div className={styles.copy}>
             <p className={styles.paragraph}>{data.paragraph}</p>
-            <Button label={data.cta.label} href={data.cta.href} variant={data.cta.variant} />
+            <GhostLink label={data.cta.label} href={data.cta.href} />
           </div>
         </div>
       </Container>
