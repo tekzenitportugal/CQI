@@ -65,6 +65,16 @@
   height: 1px;
   background: var(--color-antracite-75);
   pointer-events: none;
+
+  // Desktop (Figma Line 17, 6351:24177): the dashed blue-gradient rule, running the full
+  // viewport width regardless of the container's max-width, so it has no side margins.
+  @include respond-to(lg) {
+    left: 50%;
+    right: auto;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: url('/images/shared/common/time-to-value-line.svg') no-repeat 0 0 / 100% 1px;
+  }
 }
 
 // The 3-colour progress segments (Figma Rectangle 102/100/101) sit on top of

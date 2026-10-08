@@ -15,7 +15,7 @@ type PocRequirementsSectionProps = {
 export function PocRequirementsSection({ data }: PocRequirementsSectionProps) {
   return (
     <section className={styles.section}>
-      <ExpandableBandList items={data.items} colors={data.colors} />
+      <ExpandableBandList items={data.items} colors={data.colors} scrollDriven />
       <Container>
         <p className={styles.footnote}>{data.footnote}</p>
       </Container>
