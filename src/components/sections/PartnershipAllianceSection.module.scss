@@ -19,7 +19,8 @@
   @include respond-to(lg) {
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    // Centred (not space-between) so the pair stays 20px apart however wide the container is.
+    justify-content: center;
     gap: 20px;
     // Figma: 587 + 20 + 587 = 1194px, centred in the container.
     max-width: calc(1194px + 2 * var(--container-padding));
@@ -32,6 +33,10 @@
   align-items: flex-start;
   gap: 60px;
   max-width: 587px;
+
+  @include respond-to(lg) {
+    flex: 0 0 587px;
+  }
 }
 
 // Figma: title → sub-block is 48px; the button sits 60px below that block.

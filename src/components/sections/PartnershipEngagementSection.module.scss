@@ -221,49 +221,77 @@
   }
 }
 
-.connectorMain,
-.connectorAccent {
+// Scroll progress (--p, 0 to 1, set by EngagementProgress). Each connector segment gets its own
+// slice of it: --i is the segment index and --n the segment count. The dark dashes are revealed
+// through a mask stroke drawn along the same path (pathLength 1), forward or reverse depending
+// on which way the path is written.
+.diagram {
+  --p: 0;
+}
+
+.fillForward,
+.fillReverse {
+  --seg: clamp(0, var(--p) * var(--n) - var(--i), 1);
+  fill: none;
+  stroke-dasharray: 1 2;
+}
+
+.fillForward {
+  stroke-dashoffset: calc(1 - var(--seg));
+}
+
+.fillReverse {
+  stroke-dashoffset: calc(var(--seg) - 1);
+}
+
+// Figma connector-main: 874.594 x 570.892, flipped vertically so the path reads left to right.
+.connectorMain {
   position: absolute;
   left: 13.06%;
   top: 1.53%;
-  transform: rotate(180deg) scaleX(-1);
-}
-
-.connectorMain {
   width: 74.73%;
   height: 96.92%;
+  overflow: visible;
+  transform: scaleY(-1);
 }
 
-.connectorAccent {
-  width: 14.69%;
-  height: 59.04%;
+// Dot markers: grey until the fill reaches them, then blue.
+.dot,
+.svgDot {
+  fill: #afafaf;
+  transition: fill 0.3s ease, background-color 0.3s ease;
+
+  &[data-reached],
+  &.dotStart {
+    fill: #0044ff;
+    background-color: #0044ff;
+  }
 }
 
-.dotBlue,
-.dotGray1,
-.dotGray2,
-.dotGray3 {
+.dot {
   position: absolute;
   width: 1.539%;
   height: 3.056%;
+  border-radius: 50%;
+  background-color: #afafaf;
 }
 
-.dotBlue {
+.dot0 {
   left: 12.062%;
   top: 0%;
 }
 
-.dotGray1 {
+.dot1 {
   left: 36.99%;
   top: 96.95%;
 }
 
-.dotGray2 {
+.dot2 {
   left: 61.71%;
   top: 0%;
 }
 
-.dotGray3 {
+.dot3 {
   left: 86.42%;
   top: 96.74%;
 }

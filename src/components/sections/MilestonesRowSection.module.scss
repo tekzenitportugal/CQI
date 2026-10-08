@@ -43,20 +43,19 @@
 
 .row {
   position: relative;
+  container-type: inline-size;
 }
 
 .lineTrack {
   position: absolute;
   z-index: 0;
   top: 0;
-  left: calc(-1 * var(--container-padding));
-  right: calc(-1 * var(--container-padding));
+  // Full-bleed: viewport-wide and centred on the row, so it reaches both edges at any width.
+  left: calc(50% - 50vw);
+  width: 100vw;
   height: 1px;
   overflow: hidden;
   pointer-events: none;
-  background-image: url('/images/company/history/milestones-line.svg');
-  background-repeat: no-repeat;
-  background-size: 100% 1px;
 
   // Figma mobile has no dashed rule.
   @media (max-width: 1023.98px) {
@@ -64,8 +63,35 @@
   }
 
   // Figma: the dashed rule runs through the vertical centre of the tag pills (line y=1275, row top 1261).
+  // The colour ramps dark -> light at each tag (column start + 30px) and back to dark between
+  // columns. Columns are 239px wide, spread edge to edge, so column n starts at n * (100cqw - 239px) / 4.
   @include respond-to(lg) {
+    --o: calc((100vw - 100cqw) / 2);
+    --step: calc((100cqw - 239px) / 4);
+    --t1: calc(var(--o) + 30px);
+    --t2: calc(var(--t1) + var(--step));
+    --t3: calc(var(--t2) + var(--step));
+    --t4: calc(var(--t3) + var(--step));
+    --t5: calc(var(--t4) + var(--step));
     top: 14px;
+    background-image: linear-gradient(
+      90deg,
+      #0036cc 0,
+      #0036cc var(--o),
+      #fff var(--t1),
+      #0036cc calc(var(--t1) + var(--step) / 2),
+      #fff var(--t2),
+      #0036cc calc(var(--t2) + var(--step) / 2),
+      #fff var(--t3),
+      #0036cc calc(var(--t3) + var(--step) / 2),
+      #fff var(--t4),
+      #0036cc calc(var(--t4) + var(--step) / 2),
+      #fff var(--t5),
+      #0036cc calc(var(--t5) + 200px),
+      #0036cc 100%
+    );
+    mask-image: repeating-linear-gradient(90deg, #000 0, #000 4px, transparent 4px, transparent 8px);
+    -webkit-mask-image: repeating-linear-gradient(90deg, #000 0, #000 4px, transparent 4px, transparent 8px);
   }
 }
 
