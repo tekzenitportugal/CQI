@@ -19,6 +19,15 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     ...(data.mobileImageShift ? { '--hero-mobile-img-shift': `${data.mobileImageShift}px`, '--hero-mobile-box-bg': '#050505' } : {}),
     ...(data.mobileOverlay ? { '--hero-mobile-overlay': data.mobileOverlay } : {}),
   } as CSSProperties;
+  const frame = data.desktopImageFrame;
+  const desktopFrameVars = frame
+    ? ({
+        '--hero-img-left': `${frame.left}%`,
+        '--hero-img-top': `${frame.top}%`,
+        '--hero-img-width': `${frame.width}%`,
+        '--hero-img-height': `${frame.height}%`,
+      } as CSSProperties)
+    : undefined;
   const hasDedicatedMobile = Boolean(data.mobileImage);
 
   return (
@@ -37,7 +46,8 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
               alt=""
               fill
               priority
-              className={`${styles.heroImage} ${styles.desktopOnly}`}
+              className={`${styles.heroImage} ${styles.desktopOnly} ${frame ? styles.framed : ''}`.trim()}
+              style={desktopFrameVars}
               sizes="100vw"
             />
             <Image
@@ -48,7 +58,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
               className={`${styles.heroImage} ${styles.mobileOnly}`}
               sizes="100vw"
             />
-            <div className={styles.overlayFlat} />
+            <div className={`${styles.overlayFlat} ${frame ? styles.overlayFramed : ''}`.trim()} />
           </>
         ) : (
           <>

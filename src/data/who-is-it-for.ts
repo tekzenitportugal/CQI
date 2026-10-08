@@ -11,6 +11,8 @@ export const whoIsItForData = {
     mobileImage: '/images/product/who-is-it-for/hero-mobile.webp',
     imageWidth: 1520,
     imageHeight: 848,
+    // Figma 6342:27253 (mirrored frame): photo 100.64% tall at its native 3:2 ratio (84.2% wide), face kept where Figma has it.
+    desktopImageFrame: { left: 24.6, top: -0.31, width: 84.2, height: 100.64 },
   } satisfies PageHeroData,
 
   teamNeeds: {
@@ -101,7 +103,7 @@ export const whoIsItForData = {
     titleHighlight: ['CQI'],
     description:
       'CQI is built for complex service industries with high interaction volumes, multi-channel journeys and operational dependencies between the promise and its delivery.',
-    cta: { label: 'Not listed? Talk to us', href: '/solutions/not-listed', variant: 'primary' as const },
+    cta: { label: 'Not listed? Talk to us', href: '/solutions/not-listed' },
     industries: [
       {
         label: 'Telecom',

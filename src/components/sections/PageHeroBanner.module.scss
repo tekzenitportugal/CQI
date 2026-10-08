@@ -54,6 +54,19 @@
   }
 }
 
+// Photo placed at Figma's exact offset/size inside the box (not full-bleed); the wash covers the exposed edge.
+.framed {
+  @include respond-to(lg) {
+    inset: auto !important;
+    top: var(--hero-img-top) !important;
+    left: var(--hero-img-left) !important;
+    width: var(--hero-img-width) !important;
+    height: var(--hero-img-height) !important;
+    // Figma sizes the <img> to exactly this box (no crop), so the photo is fitted, not cover-zoomed.
+    object-fit: fill;
+  }
+}
+
 .mobileOnly {
   display: block;
   top: calc(-1 * var(--hero-mobile-img-shift, 0px)) !important;
@@ -90,6 +103,14 @@
       rgba(223, 232, 254, 0.3) 60%,
       rgba(223, 232, 254, 0) 70%
     );
+  }
+}
+
+// Framed heroes (Figma 6342:27253): radial wash centred on the left edge, 1377×2775 radii in a 1520×848 box.
+.overlayFramed {
+  @include respond-to(lg) {
+    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(137.7 0 0 277.52 -20 432.23)'><stop stop-color='rgba(204,218,255,1)' offset='0.3662'/><stop stop-color='rgba(237,242,255,0.5)' offset='0.74256'/><stop stop-color='rgba(237,242,255,0)' offset='1'/></radialGradient></defs></svg>")
+      center / 100% 100% no-repeat;
   }
 }
 

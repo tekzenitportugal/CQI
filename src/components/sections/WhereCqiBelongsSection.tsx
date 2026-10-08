@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import type { whoIsItForData } from '@/data/who-is-it-for';
-import { Button } from '@/components/ui/Button';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import styles from './WhereCqiBelongsSection.module.scss';
@@ -38,7 +38,7 @@ export function WhereCqiBelongsSection({ data }: WhereCqiBelongsSectionProps) {
               align="center"
               className={styles.heading}
             />
-            <Button label={data.cta.label} href={data.cta.href} variant={data.cta.variant} />
+            <GhostLink label={data.cta.label} href={data.cta.href} />
           </div>
 
           <ul className={styles.tags}>
