@@ -2,7 +2,6 @@
 @use '@/styles/solutions/spacing' as solutions;
 
 .section {
-  @include solutions.solutions-neutral-band-background;
   @include section-space(150px, 150px);
 
   // Consistent 100px inter-section rhythm on mobile/tablet.
