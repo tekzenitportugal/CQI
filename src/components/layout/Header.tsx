@@ -20,18 +20,24 @@ type HeaderProps = {
 // Ignore scroll jitter smaller than this before toggling hide/show.
 const SCROLL_DELTA_THRESHOLD = 4;
 
+// Scroll distance after which the blurred backdrop appears behind the header.
+const SCROLLED_THRESHOLD_PX = 8;
+
 // Cursor within this many px of the viewport top brings a hidden header back.
 const REVEAL_ZONE_PX = 80;
 
 export function Header({ variant = 'default' }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  // Once the page has scrolled, a blurred fade sits behind the logo/menu so they stay readable over content.
+  const [scrolled, setScrolled] = useState(false);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const isCompact = variant === 'compact';
 
   useEffect(() => {
     lastScrollY.current = window.scrollY;
+    setScrolled(window.scrollY > SCROLLED_THRESHOLD_PX);
 
     const handleScroll = () => {
       if (ticking.current) return;
@@ -40,6 +46,8 @@ export function Header({ variant = 'default' }: HeaderProps) {
       requestAnimationFrame(() => {
         const currentY = window.scrollY;
         const delta = currentY - lastScrollY.current;
+
+        setScrolled(currentY > SCROLLED_THRESHOLD_PX);
 
         if (currentY <= 0) {
           setHidden(false);
@@ -84,7 +92,15 @@ export function Header({ variant = 'default' }: HeaderProps) {
   }, [menuOpen]);
 
   return (
-    <header className={`${styles.header} ${showHidden ? styles.headerHidden : ''}`.trim()}>
+    <header className={`${styles.header} ${showHidden ? styles.headerHidden : ''} ${scrolled ? styles.headerScrolled : ''}`.trim()}>
+      {/* Progressive blur: stacked layers with increasing blur, each masked to a narrower band at the top. */}
+      <div className={styles.blurMask} aria-hidden="true">
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
       <Container className={`${styles.inner} ${isCompact ? styles.innerCompact : ''}`.trim()}>
         <Link href="/" className={styles.logo} aria-label="CQI home">
           <Image src="/images/shared/common/cqi-logo.svg" alt="CQI" width={67} height={32} priority />
