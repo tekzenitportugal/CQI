@@ -1,0 +1,79 @@
+@use '@/styles/mixins' as *;
+
+.section {
+  @include section-space(200px);
+}
+
+.band {
+  background: var(--color-antracite-50);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 100px;
+  padding-block: 50px;
+
+  @include respond-to(lg) {
+    gap: 140px;
+  }
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--color-blue-200);
+  @include text-link-hover;
+}
+
+.all {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  width: 100%;
+  @include text-link-hover;
+
+  @include respond-to(lg) {
+    gap: 20px;
+  }
+}
+
+.allLabel {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: right;
+  color: var(--color-antracite-400);
+
+  @include respond-to(lg) {
+    font-size: 32px;
+    white-space: nowrap;
+  }
+}
+
+.allIcon {
+  flex: none;
+  width: 32px;
+  height: 32px;
+
+  @include respond-to(lg) {
+    width: 40px;
+    height: 40px;
+  }
+}

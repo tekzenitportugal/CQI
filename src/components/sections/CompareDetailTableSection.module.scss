@@ -1,0 +1,198 @@
+@use '@/styles/mixins' as *;
+
+$columns: 314px 1fr 1fr;
+// Width of the highlighted CQI column: (table inner width − dimension column − two 16px gaps) / 2.
+$cqi-width: calc((100% - 346px) / 2);
+
+.section {
+  @include section-space(300px);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 64px;
+}
+
+.heading {
+  --section-heading-description-weight: 500;
+  --section-heading-description-max-width: 1194px;
+  --section-heading-description-margin-top: 14px;
+
+  @media (max-width: 1023.98px) {
+    --section-heading-description-margin-top: 16px;
+  }
+}
+
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1194px;
+  padding: 16px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  background: var(--color-antracite-50);
+}
+
+.headerRow {
+  display: grid;
+  grid-template-columns: $columns;
+  column-gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-antracite-75);
+}
+
+.headerCell {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-antracite-200);
+}
+
+.headerDimension {
+  padding-left: 16px;
+}
+
+.headerCqi {
+  color: var(--color-blue-200);
+}
+
+// The CQI column is one continuous tinted band behind every row.
+.body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: $cqi-width;
+    border-radius: 4px;
+    background: var(--color-blue-50);
+  }
+}
+
+.row {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: $columns;
+  column-gap: 16px;
+  align-items: start;
+}
+
+.dimension {
+  margin: 0;
+  padding: 16px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+}
+
+.cell {
+  padding: 18px 0 16px;
+}
+
+.cellCqi {
+  padding-inline: 16px;
+}
+
+.cellLabel {
+  display: none;
+}
+
+.cellText {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 17.5px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: var(--color-antracite-300);
+}
+
+// Figma mobile (6469:32599): each dimension becomes its own card with labelled cells.
+@media (max-width: 1023.98px) {
+  .table {
+    gap: 20px;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+  }
+
+  .headerRow {
+    display: none;
+  }
+
+  .body {
+    gap: 20px;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+    border: 1px solid var(--color-antracite-75);
+    border-radius: 20px;
+    background: var(--color-antracite-50);
+  }
+
+  .dimension {
+    padding: 12px;
+    font-family: var(--font-body);
+    font-size: 17.5px;
+    line-height: 1.3;
+  }
+
+  .cell {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .cell + .cell {
+    margin-top: 10px;
+  }
+
+  .cellCqi {
+    border-radius: 8px;
+    background: var(--color-blue-50);
+  }
+
+  .cellLabel {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+    text-transform: uppercase;
+    color: var(--color-antracite-200);
+  }
+
+  .cellLabelCqi {
+    color: var(--color-blue-200);
+  }
+
+  .cellText {
+    font-size: 15px;
+  }
+}

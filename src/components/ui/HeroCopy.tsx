@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react';
 import type { CtaLink } from '@/types/content';
 import { Button } from '@/components/ui/Button';
+import { TagPill } from '@/components/ui/TagPill';
 import { highlightText } from '@/utils/highlightText';
 import styles from './HeroCopy.module.scss';
 
@@ -22,6 +23,10 @@ export type HeroCopyData = {
   mobileHighlightBlock?: boolean;
   /** Mobile only: ignore the desktop line breaks in the title and let it wrap naturally. */
   mobileInlineTitle?: boolean;
+  /** Mobile only: ignore the desktop line breaks in the description and let it wrap naturally. */
+  mobileInlineDescription?: boolean;
+  /** White pills under the intro (e.g. example platforms on the compare detail pages). */
+  tags?: string[];
   /** Figma mobile hero box height (px) when it differs from the 864px default (inset variant). */
   mobileMinHeight?: number;
   /** Figma mobile top padding (px) above the vertically centred copy (inset variant, no image). */
@@ -46,6 +51,8 @@ export function HeroCopy({
   mobileIntroGap,
   mobileHighlightBlock,
   mobileInlineTitle,
+  mobileInlineDescription,
+  tags,
   className,
 }: HeroCopyProps) {
   const style = {
@@ -70,8 +77,17 @@ export function HeroCopy({
         >{highlightText(title, titleHighlight)}</h1>
         <div className={styles.intro}>
           <p className={styles.eyebrow}>{eyebrow}</p>
-          <p className={styles.description}>{highlightText(description)}</p>
+          <p className={[styles.description, mobileInlineDescription && styles.descriptionInlineMobile].filter(Boolean).join(' ')}>
+            {highlightText(description)}
+          </p>
         </div>
+        {tags && tags.length > 0 && (
+          <div className={styles.tags}>
+            {tags.map((tag) => (
+              <TagPill key={tag} label={tag} variant="white" />
+            ))}
+          </div>
+        )}
       </div>
       {cta && <Button label={cta.label} href={cta.href} variant={cta.variant ?? 'secondary'} />}
     </div>

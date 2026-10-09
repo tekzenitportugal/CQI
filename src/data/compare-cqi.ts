@@ -34,7 +34,7 @@ export const compareCqiData = {
         mobileDescription: 'What your customers speak. Calls, chats, bot sessions, emails and feedback, read in full, not sampled.',
         tags: ['NICE', 'Genesys', 'Amazon Connect', 'Five9'],
         tagsWidth: 237,
-        href: '#',
+        href: '/resources/compare-cqi/ccaas-contact-centre-reporting',
       },
       {
         title: 'CQI vs Interaction &\nspeech analytics',
@@ -42,7 +42,7 @@ export const compareCqiData = {
         mobileTitle: 'CQI vs Interaction\n& speech analytics',
         tags: ['Verint', 'CallMiner', 'Observe.AI', 'Quantum Metric'],
         tagsWidth: 217,
-        href: '#',
+        href: '/resources/compare-cqi/interaction-speech-analytics',
       },
       {
         title: 'CQI vs VoC &\nCXM platforms',
@@ -50,7 +50,7 @@ export const compareCqiData = {
         mobileTitle: 'CQI vs VoC\n& CXM platforms',
         tags: ['Qualtrics', 'Medallia', 'InMoment', 'Forsta'],
         tagsWidth: 181,
-        href: '#',
+        href: '/resources/compare-cqi/voc-cxm-platforms',
       },
       {
         title: 'CQI vs QA &\nquality management',
@@ -58,7 +58,7 @@ export const compareCqiData = {
         mobileTitle: 'CQI vs QA &\nquality management',
         tags: ['Sample scorecards', 'Speech-driven auto-QA', 'Workforce optimisation suites'],
         tagsWidth: 310,
-        href: '#',
+        href: '/resources/compare-cqi/qa-quality-management',
       },
     ],
   } satisfies CompareCategoriesSectionData,

@@ -14,13 +14,14 @@
 }
 
 .text {
+  --hero-text-gap: #{fluid-space(48px)};
   display: flex;
   flex-direction: column;
-  gap: fluid-space(48px);
+  gap: var(--hero-text-gap);
   width: 100%;
 
   @media (max-width: 1023.98px) {
-    gap: var(--hero-mobile-text-gap, 60px);
+    --hero-text-gap: var(--hero-mobile-text-gap, 60px);
   }
 }
 
@@ -93,6 +94,22 @@
     font-size: 20px;
     line-height: normal;
   }
+}
+
+.descriptionInlineMobile {
+  @media (max-width: 1023.98px) {
+    br {
+      display: none;
+    }
+  }
+}
+
+// Figma: 32px between the intro and the tag row (the text gap above is larger).
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: calc(32px - var(--hero-text-gap));
 }
 
 // 1024–1599px: the cutout image takes the right half, so the copy stays in the left 50%.

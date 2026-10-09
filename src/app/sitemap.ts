@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { capabilityPages } from '@/data/capabilities';
+import { compareDetailSlugs } from '@/data/compare-cqi-pages';
 import { industrySlugs } from '@/data/solutions';
 import { SITE_URL } from './site-url';
 
@@ -40,6 +41,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     ...staticRoutes,
     ...capabilityPages.map((page) => `/products/${page.slug}`),
+    ...compareDetailSlugs.map((slug) => `/resources/compare-cqi/${slug}`),
     ...industrySlugs.map((slug) => `/solutions/${slug}`),
   ];
   return routes.map((route) => ({
