@@ -73,6 +73,9 @@
 .mobileImageBox {
   position: relative;
   width: 100%;
+  // Native size of the mobile art: shrinks on narrow phones, never scales up below lg.
+  max-width: 333px;
+  margin-inline: auto;
   aspect-ratio: 333 / 226;
 }
 

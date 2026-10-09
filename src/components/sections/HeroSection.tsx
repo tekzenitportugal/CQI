@@ -58,6 +58,7 @@ export function HeroSection({ data }: HeroSectionProps) {
               alt=""
               fill
               className={styles.mobileImage}
+              unoptimized
               sizes="100vw"
             />
           </div>
