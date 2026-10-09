@@ -46,6 +46,8 @@
 .inner {
   position: relative;
   z-index: 2;
+  // The seats sit in the gap this container spans; let clicks through to them (see .bottom).
+  pointer-events: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,9 +94,22 @@
 .seat {
   position: relative;
   display: block;
+  padding: 0;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.15s ease;
   border: 0.87px solid #dfdfdf;
   border-radius: u(4.2);
   background: var(--color-white);
+}
+
+.seat:hover {
+  transform: scale(1.12);
+}
+
+.seat:focus-visible {
+  outline: 2px solid var(--color-blue-200);
+  outline-offset: 2px;
 }
 
 .seatSelected {
@@ -149,7 +164,9 @@
   gap: 48px;
   width: 100%;
   max-width: 1194px;
+  min-height: 291px;
   margin-top: 614px;
+  pointer-events: auto;
 
   @media (max-width: 1023.98px) {
     flex-direction: column;
@@ -232,7 +249,6 @@
   gap: 24px;
   width: 587px;
   max-width: 100%;
-  min-height: 291px;
   padding: 32px;
   border: 1px solid var(--color-antracite-75);
   border-radius: 20px;
@@ -279,13 +295,45 @@
   height: 27px;
   padding: 5px 12px;
   border-radius: 20px;
-  background: var(--color-coral-50);
   font-family: var(--font-body);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.4;
-  color: var(--color-coral-400);
   white-space: nowrap;
+}
+
+// Status tag colours (Figma tag variants).
+.tagHealthy {
+  background: #c1fde9;
+  color: #1e7055;
+}
+
+.tagFriction {
+  background: #fff8dc;
+  color: #c49d00;
+}
+
+.tagEroding {
+  background: #ffefd7;
+  color: #d88200;
+}
+
+.tagRisk {
+  background: var(--color-coral-50);
+  color: var(--color-coral-400);
+}
+
+.tagSilent {
+  background: var(--color-antracite-75);
+  color: var(--color-antracite-400);
+}
+
+.cardNote {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
 }
 
 .cardRows {
@@ -398,6 +446,7 @@
 @media (max-width: 1023.98px) {
   .bottom {
     gap: 26px;
+    min-height: 0;
     margin-top: 64px;
   }
 

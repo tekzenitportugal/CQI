@@ -18,7 +18,6 @@ const MOOD_FACE = {
 
 /** "CQI in action": five-stop timeline, copy and image alternating around a centre line. */
 export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
-  const lastIndex = data.steps.length - 1;
   const listRef = useRef<HTMLOListElement>(null);
 
   // Scroll progress (same behaviour as See it live): the blue dashes fill each segment down to a trigger
@@ -29,7 +28,7 @@ export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
     if (!list) return;
 
     const markers = Array.from(list.querySelectorAll<HTMLElement>('[data-marker]'));
-    const lines = Array.from(list.querySelectorAll<HTMLElement>('[data-line]'));
+    const line = list.querySelector<HTMLElement>('[data-line]');
     let frame = 0;
 
     const update = () => {
@@ -43,11 +42,11 @@ export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
       markers.forEach((marker, i) => {
         marker.toggleAttribute('data-reached', i === 0 || centres[i] <= trigger);
       });
-      lines.forEach((line, i) => {
-        const span = centres[i + 1] - centres[i];
-        const fill = span > 0 ? Math.min(1, Math.max(0, (trigger - centres[i]) / span)) : 0;
+      if (line) {
+        const rect = line.getBoundingClientRect();
+        const fill = rect.height > 0 ? Math.min(1, Math.max(0, (trigger - rect.top) / rect.height)) : 0;
         line.style.setProperty('--fill', fill.toFixed(4));
-      });
+      }
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -75,6 +74,13 @@ export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
           className={styles.heading}
         />
 
+        <div className={styles.timeline}>
+          {/* One continuous rule from the first stop to the last: solid lead-in above, fading tail below. */}
+          <span className={styles.line} data-line aria-hidden="true">
+            <span className={styles.lineLead} />
+            <span className={styles.lineTail} />
+          </span>
+
         <ol ref={listRef} className={styles.steps}>
           {data.steps.map((step, index) => {
             const mood = MOOD_FACE[step.mood];
@@ -84,6 +90,7 @@ export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
               <li
                 key={step.label}
                 className={`${styles.step} ${index % 2 === 1 ? styles.imageLeft : ''}`.trim()}
+                style={{ '--art-height': step.desktopImageSize.height } as CSSProperties}
               >
                 <div className={styles.copy}>
                   <div className={styles.iconRow}>
@@ -108,19 +115,18 @@ export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
                 </div>
 
                 <div className={styles.marker} aria-hidden="true">
-                  {index === 0 && <span className={styles.lineLead} />}
-                  {index < lastIndex && (
-                    <span
-                      data-line
-                      className={styles.line}
-                    />
-                  )}
-                  {index === lastIndex && <span className={styles.lineTail} />}
                   <span data-marker className={styles.dot} />
                 </div>
 
-                {/* Figma shows grey placeholders here until the step artwork is supplied. */}
                 <div className={styles.media} aria-hidden="true">
+                  <img
+                    src={step.desktopImage}
+                    alt=""
+                    width={step.desktopImageSize.width}
+                    height={step.desktopImageSize.height}
+                    className={styles.desktopArt}
+                    style={{ '--art-width': step.desktopImageSize.width } as CSSProperties}
+                  />
                   <img
                     src={step.mobileImage}
                     alt=""
@@ -134,6 +140,7 @@ export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
             );
           })}
         </ol>
+        </div>
       </Container>
     </section>
   );

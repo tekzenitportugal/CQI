@@ -23,19 +23,27 @@
 }
 
 // Figma: 100px under the heading block, steps 464px tall with 200px between them.
+.timeline {
+  position: relative;
+  width: 100%;
+  max-width: 1194px;
+  margin: 100px auto 0;
+
+  @media (max-width: 1023.98px) {
+    margin-top: 64px;
+  }
+}
+
 .steps {
   display: flex;
   flex-direction: column;
   gap: 200px;
-  width: 100%;
-  max-width: 1194px;
-  margin: 100px auto 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 
   @media (max-width: 1023.98px) {
     gap: 120px;
-    margin-top: 64px;
   }
 }
 
@@ -55,7 +63,8 @@
     grid-template-columns: minmax(0, 1fr) 51px minmax(0, 1fr);
     grid-template-areas: 'copy marker media';
     column-gap: 106px;
-    min-height: 464px;
+    // Row height = the step art's frame (the export adds 16px of shadow on every side).
+    min-height: calc(var(--art-height) * 1px - 32px);
   }
 }
 
@@ -252,62 +261,84 @@
   }
 }
 
-// Dashed rule from this dot's centre to the next one's (row height + 200px gap).
+// One dashed rule from the first stop's centre to the last stop's (row heights 464 … 276, Figma).
 .line {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1px;
-  height: calc(100% + 200px);
-  transform: translateX(-50%);
-  background: repeating-linear-gradient(180deg, var(--color-antracite-100) 0 4px, transparent 4px 8px);
-}
+  display: none;
 
-// Blue progress dashes, same pattern, filled down by scroll (--fill 0 to 1).
-.line::after {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  height: calc(var(--fill, 0) * 100%);
-  background: repeating-linear-gradient(180deg, var(--color-blue-200) 0 4px, transparent 4px 8px);
+  @include respond-to(lg) {
+    display: block;
+    position: absolute;
+    top: 232px;
+    bottom: 138px;
+    left: 50%;
+    width: 1px;
+    transform: translateX(-50%);
+    background: repeating-linear-gradient(180deg, var(--color-antracite-100) 0 4px, transparent 4px 8px);
+
+    // Blue progress dashes, filled down by scroll (--fill 0 to 1).
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto;
+      height: calc(var(--fill, 0) * 100%);
+      background: repeating-linear-gradient(180deg, var(--color-blue-200) 0 4px, transparent 4px 8px);
+    }
+  }
 }
 
 // The rule runs clearly to the last stop, then fades out below it.
 .lineTail {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 100%;
+  left: 0;
   width: 1px;
   height: 200px;
-  transform: translateX(-50%);
   background: repeating-linear-gradient(180deg, var(--color-antracite-100) 0 4px, transparent 4px 8px);
   mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
 }
 
-// Solid lead-in above the first stop (Figma Rectangle 25: 2px × 258px).
+// Solid lead-in above the first stop (Figma Rectangle 25: 2px × 280px).
 .lineLead {
   position: absolute;
-  bottom: 50%;
-  left: 50%;
+  bottom: 100%;
+  left: -0.5px;
   width: 2px;
-  height: 258px;
-  transform: translateX(-50%);
+  height: 280px;
   border-radius: 2px;
   background: linear-gradient(180deg, rgba(175, 175, 175, 0), var(--color-antracite-100));
 }
 
-// ── Placeholder artwork ──────────────────────────────────────────────────────
+// ── Step art ─────────────────────────────────────────────────────────────────
 .media {
+  position: relative;
   grid-area: media;
   width: 100%;
   max-width: 464px;
-  aspect-ratio: 1;
-  background: #d9d9d9;
   justify-self: end;
+
+  @include respond-to(lg) {
+    height: calc(var(--art-height) * 1px - 32px);
+  }
 
   @media (max-width: 1023.98px) {
     justify-self: stretch;
     max-width: none;
+  }
+}
+
+// Exports include a soft shadow around the frame, so they are centred on it and overflow by 16px.
+.desktopArt {
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(var(--art-width) * 1px);
+    max-width: none;
+    height: auto;
+    transform: translate(-50%, -50%);
   }
 }
 

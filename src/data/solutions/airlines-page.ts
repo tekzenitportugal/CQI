@@ -10,8 +10,10 @@ export type AirlinesSeatBlock = {
   /** Design-px position inside the 1350 × 1435 plane graphic. */
   left: number;
   top: number;
-  /** Three rows of eleven seats. */
-  rows: [string, string, string];
+  /** Number of the block's first column (seats are numbered 1–22 along the cabin). */
+  firstCol: number;
+  /** Row letters, top to bottom — F is the top row of the plane, A the bottom (see airlines-seat-cards.ts). */
+  letters: [string, string, string];
 };
 
 export type AirlinesStep = {
@@ -20,6 +22,9 @@ export type AirlinesStep = {
   description: string;
   icon: string;
   /** Figma mobile shows the step's phone/card mockup (exported at the frame's rendered size). */
+  /** Desktop art (Figma exports include a soft shadow, so they are larger than the 464px frame). */
+  desktopImage: string;
+  desktopImageSize: { width: number; height: number };
   mobileImage: string;
   mobileImageSize: { width: number; height: number };
   mood: 'friction' | 'eroding' | 'risk';
@@ -78,19 +83,19 @@ export const airlinesPageData = {
       { state: 'S', label: 'Silent' },
     ] satisfies { state: SeatState; label: string }[],
     legendNote: 'Each state carries the context and next action, not just a color.',
-    // Sampled seat by seat from the Figma cabin view.
+    // Four blocks of 3 rows × 11 seats; each seat's status comes from its card in airlines-seat-cards.ts.
     seatBlocks: [
-      { left: 335.86, top: 621.98, rows: ['HHSFFHHHHHH', 'HFHHHESHHHH', 'HHHHHHEHHHH'] },
-      { left: 680.88, top: 621.98, rows: ['HRFEHHHFHHH', 'FHFRERHHHHH', 'HRFHHHHFHHF'] },
-      { left: 335.86, top: 743.998, rows: ['HFHHFHEHFHE', 'HFHHHHHHHFH', 'HHRHFHHHHHF'] },
-      { left: 680.88, top: 743.998, rows: ['EHHHHHHFHHH', 'HEHFHFHHRHF', 'HHRHHHHSFFH'] },
+      { left: 335.86, top: 621.98, firstCol: 1, letters: ['F', 'E', 'D'] },
+      { left: 680.88, top: 621.98, firstCol: 12, letters: ['F', 'E', 'D'] },
+      { left: 335.86, top: 743.998, firstCol: 1, letters: ['C', 'B', 'A'] },
+      { left: 680.88, top: 743.998, firstCol: 12, letters: ['C', 'B', 'A'] },
     ] satisfies AirlinesSeatBlock[],
     /** Mobile shows a 6 × 3 close-up of the cabin instead of the plane (Figma mobile 6561:39363). */
     mobileSeats: ['RHEHHH', 'HFHERH', 'RFHSHH'],
     mobileSelectedSeat: { row: 1, col: 4 },
     mobileNote: 'This is a representation of the airplane seating layout.',
-    /** Highlighted seat (block index, row, column) — the one the state card describes. */
-    selectedSeat: { block: 3, row: 2, col: 2 },
+    /** The seat selected on load: the featured passenger, described by `card` below. */
+    defaultSeat: '14A',
     card: {
       seat: 'Seat 14A',
       mobileSeat: 'Seat 5B',
@@ -151,6 +156,8 @@ export const airlinesPageData = {
         headline: 'Seat reassigned last time: preferred seat locked for today.',
         description: 'The problem from the last trip is not repeated on this one.',
         icon: '/images/solutions/airlines/step-1.svg',
+        desktopImage: '/images/solutions/airlines/step-desktop-1.png',
+        desktopImageSize: { width: 496, height: 496 },
         mobileImage: '/images/solutions/airlines/step-mobile-1.png',
         mobileImageSize: { width: 400, height: 400 },
         mood: 'risk',
@@ -161,6 +168,8 @@ export const airlinesPageData = {
         description:
           'Acknowledge the earlier disruption and offer the lounge before the passenger has to ask.',
         icon: '/images/solutions/airlines/step-2.svg',
+        desktopImage: '/images/solutions/airlines/step-desktop-2.png',
+        desktopImageSize: { width: 499, height: 496 },
         mobileImage: '/images/solutions/airlines/step-mobile-2.png',
         mobileImageSize: { width: 400, height: 398 },
         mood: 'eroding',
@@ -170,6 +179,8 @@ export const airlinesPageData = {
         headline: 'Priority boarding.',
         description: 'The gate team knows the passenger’s situation before they arrive.',
         icon: '/images/solutions/airlines/step-3.svg',
+        desktopImage: '/images/solutions/airlines/step-desktop-3.png',
+        desktopImageSize: { width: 496, height: 300 },
         mobileImage: '/images/solutions/airlines/step-mobile-3.png',
         mobileImageSize: { width: 400, height: 242 },
         mood: 'eroding',
@@ -180,6 +191,8 @@ export const airlinesPageData = {
         description:
           'Recommended actions are ready onboard, and the crew can report events related to passengers.',
         icon: '/images/solutions/airlines/step-4.svg',
+        desktopImage: '/images/solutions/airlines/step-desktop-4.png',
+        desktopImageSize: { width: 464, height: 496 },
         mobileImage: '/images/solutions/airlines/step-mobile-4.png',
         mobileImageSize: { width: 374, height: 400 },
         mood: 'eroding',
@@ -189,6 +202,8 @@ export const airlinesPageData = {
         headline: 'Route the passenger at risk with context.',
         description: 'The agent sees the full history and can respond with understanding.',
         icon: '/images/solutions/airlines/step-5.svg',
+        desktopImage: '/images/solutions/airlines/step-desktop-5.png',
+        desktopImageSize: { width: 496, height: 308 },
         mobileImage: '/images/solutions/airlines/step-mobile-5.png',
         mobileImageSize: { width: 400, height: 249 },
         mood: 'friction',
