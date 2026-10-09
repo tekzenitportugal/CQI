@@ -25,8 +25,8 @@ type FpoImageProps = {
   flipX?: boolean;
   fillContainer?: boolean;
   sizes?: string;
-  /** Figma default is 12px; override when a design calls for a different image radius. */
-  borderRadius?: number;
+  /** Figma default is 12px; pick another design radius (class-based, so CSS can still override it). */
+  borderRadius?: 8 | 14;
 };
 
 export function FpoImage({
@@ -67,20 +67,20 @@ export function FpoImage({
         styles.wrapper,
         insetFitsFrame && styles.insetFitsFrame,
         fillContainer && styles.fillContainer,
+        borderRadius && styles[`radius${borderRadius}`],
         className,
       ]
         .filter(Boolean)
         .join(' ')}
-      style={{
-        ...(fillContainer
+      style={
+        fillContainer
           ? undefined
           : ({
               '--fpo-aspect-ratio': `${width} / ${height}`,
               ...(insetFitsFrame &&
                 inset && { '--fpo-aspect-ratio-inset': `${inset.width} / ${inset.height}` }),
-            } as CSSProperties)),
-        ...(borderRadius ? { borderRadius: `${borderRadius}px` } : undefined),
-      }}
+            } as CSSProperties)
+      }
     >
       <div className={styles.imageBox} style={insetStyle}>
         <Image

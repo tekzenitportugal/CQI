@@ -83,4 +83,9 @@
 .mediaFrame {
   border: 0.5px solid var(--color-antracite-75);
   box-shadow: -7px 1px 15.9px 0 rgba(0, 0, 0, 0.15);
+
+  // Mobile/tablet frame radius is 5px (desktop keeps FpoImage's 8px).
+  @media (max-width: 1023.98px) {
+    border-radius: 5px;
+  }
 }

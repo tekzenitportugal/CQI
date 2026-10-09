@@ -56,6 +56,24 @@
   object-position: center bottom;
 }
 
+// Full-width box (edge to edge of the gradient card) that crops the cutout,
+// positioned by percentages so it scales with the card (Figma mobile mockup).
+.mobileCropBox {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--crop-aspect);
+  overflow: hidden;
+}
+
+.mobileCropImage {
+  position: absolute;
+  top: var(--crop-top);
+  left: var(--crop-left);
+  width: var(--crop-width);
+  max-width: none;
+  height: auto;
+}
+
 .inner {
   display: flex;
   align-items: center;

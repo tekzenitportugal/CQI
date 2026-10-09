@@ -19,6 +19,12 @@ type GradientHeroProps = {
   imageBehindGradient?: boolean | 'wide';
   /** Figma mobile cutout (inset variant): a wide mockup pinned to the bottom-left of the hero card, cropped by it. */
   mobileImage?: string;
+  /**
+   * Default variant, below lg: instead of letterboxing `image` inside the stacked
+   * box, show it cropped by a full-width box (Figma mobile cutout). All values are
+   * percentages of the box, so the image keeps its proportions and scales with it.
+   */
+  mobileCrop?: { aspect: string; width: number; left: number; top: number; imageWidth: number; imageHeight: number };
 };
 
 /** Text-only hero on the 864px gradient band; copy is centred in the space below the header. */
@@ -30,6 +36,7 @@ export function GradientHero({
   imageUnoptimized,
   imageBehindGradient,
   mobileImage,
+  mobileCrop,
 }:GradientHeroProps) {
   if (variant === 'inset') {
     return (
@@ -105,7 +112,32 @@ export function GradientHero({
         {/* Figma mobile (6225:43827): below lg the cutout has no room to float
             beside the copy, so it stacks under it instead — same source image,
             just laid out in normal flow instead of the absolute full-bleed cutout. */}
-        {image && (
+        {image && mobileCrop && (
+          <div className={styles.mobileGraphicWrap}>
+            <div
+              className={styles.mobileCropBox}
+              style={
+                {
+                  '--crop-aspect': mobileCrop.aspect,
+                  '--crop-width': `${mobileCrop.width}%`,
+                  '--crop-left': `${mobileCrop.left}%`,
+                  '--crop-top': `${mobileCrop.top}%`,
+                } as CSSProperties
+              }
+              aria-hidden="true"
+            >
+              <Image
+                src={image}
+                alt=""
+                width={mobileCrop.imageWidth}
+                height={mobileCrop.imageHeight}
+                className={styles.mobileCropImage}
+                sizes="100vw"
+              />
+            </div>
+          </div>
+        )}
+        {image && !mobileCrop && (
           <Container className={styles.mobileGraphicWrap}>
             <div className={styles.mobileGraphicBox} aria-hidden="true">
               <Image

@@ -29,7 +29,7 @@ function withLineBreaks(text: string, keyPrefix: string): ReactNode {
       {index < lines.length - 1 && (
         <>
           {' '}
-          <br />
+          <br className="br-desktop" />
         </>
       )}
     </Fragment>

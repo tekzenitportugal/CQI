@@ -91,3 +91,11 @@ ul {
 .text-highlight {
   color: var(--color-blue-200);
 }
+
+// Authored line breaks (`\n` in copy, rendered by highlightText) are a desktop
+// layout detail; on mobile/tablet the text just reflows.
+.br-desktop {
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
+}

@@ -2,8 +2,21 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 12px;
   aspect-ratio: var(--fpo-aspect-ratio, auto);
+}
+
+// Radius lives in zero-specificity :where() rules, so a consumer's own className
+// (e.g. a mobile override) always wins without !important or inline styles.
+:where(.wrapper) {
+  border-radius: 12px;
+}
+
+:where(.radius8) {
+  border-radius: 8px;
+}
+
+:where(.radius14) {
+  border-radius: 14px;
 }
 
 // Only for insets that sit fully inside the frame (letterboxed, dead space around the
