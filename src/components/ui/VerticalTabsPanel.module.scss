@@ -86,6 +86,10 @@
       flex-wrap: wrap;
       gap: 8px;
     }
+
+    @media (max-width: 430px) {
+      gap: 6px;
+    }
   }
 
   .tab {
@@ -105,6 +109,29 @@
         flex: 0 0 calc(50% - 4px);
         width: auto;
       }
+    }
+
+    // Narrow phones: tighten the first row (Telecom / Airlines / Banking /
+    // Insurance) so all four stay on the top line; the last two tabs keep
+    // their 50% row below.
+    @media (max-width: 430px) {
+      &:nth-child(-n + 4) {
+        padding: 0 6px;
+        white-space: nowrap;
+      }
+
+      &:nth-child(n + 5) {
+        flex-basis: calc(50% - 3px);
+      }
+    }
+
+    // Phones: let long labels (e.g. "Consumer Electronics") break onto two
+    // lines instead of running past the right padding / being clipped.
+    @media (max-width: 767.98px) {
+      white-space: normal;
+      overflow-wrap: anywhere;
+      text-overflow: clip;
+      line-height: 1.2;
     }
   }
 

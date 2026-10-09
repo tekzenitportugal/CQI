@@ -68,3 +68,11 @@
     line-height: normal;
   }
 }
+
+// Desktop keeps the authored line break; below lg the copy reflows as one
+// paragraph so the wrap doesn't leave a short orphan line before the break.
+.descriptionLine {
+  @include respond-to(lg) {
+    display: block;
+  }
+}

@@ -47,32 +47,31 @@ const toCanvasVars = ({ left, top, width }: Box) =>
   }) as CSSProperties;
 
 /**
- * Figma mobile "Where cqi fits" diagram (6225:42513, "Group 971" diagram half)
- * is a 374.043 × 664 canvas, reusing the same percentage-positioning approach
- * as the desktop xl layout above but with its own card/node/line geometry —
+ * Figma mobile "Where cqi fits" diagram (6445:9368, "Group 970") is a
+ * 374 × 671 canvas, reusing the same percentage-positioning approach as the
+ * desktop xl layout above but with its own card/node/line geometry —
  * active only below 1024px, independent of the desktop breakpoint.
  */
-const MOBILE_CANVAS = { width: 374.043, height: 664 };
+const MOBILE_CANVAS = { width: 374, height: 671 };
 
 type LineBox = { left: number; top: number; height: number };
 
 const MOBILE_GEOMETRY: { card: Box; node: Box; line: LineBox }[] = [
   {
-    card: { left: 195.04, top: 36, width: 179 },
-    node: { left: 275, top: 202, width: 20 },
-    line: { left: 285.04, top: 149.2, height: 49.54 },
+    card: { left: 195.02, top: 15, width: 179 },
+    node: { left: 275, top: 188.65, width: 20 },
+    line: { left: 285, top: 150.8, height: 37.85 },
   },
   {
-    card: { left: 163.04, top: 564, width: 190 },
-    node: { left: 240.06, top: 512, width: 36 },
-    // Figma's dashed connector for this layer runs from the layer-stack
-    // artwork down to the node, not from the node down to the card below it.
-    line: { left: 258.07, top: 362.23, height: 123.82 },
+    card: { left: 163.02, top: 527, width: 190 },
+    node: { left: 240, top: 477, width: 36 },
+    // Dashed connector runs from the layer-stack artwork down to the node.
+    line: { left: 258, top: 366, height: 111 },
   },
   {
-    card: { left: 0.04, top: 0, width: 179 },
-    node: { left: 29, top: 182, width: 20 },
-    line: { left: 39.05, top: 129.35, height: 222.8 },
+    card: { left: 0.04, top: -2, width: 179 },
+    node: { left: 29, top: 345, width: 20 },
+    line: { left: 39, top: 135.4, height: 209.6 },
   },
 ];
 
@@ -123,7 +122,14 @@ export function StackInfographicSection({ layers, ctas }: StackInfographicSectio
                   style={{ ...toCanvasVars(geometry.card), ...toMobileVars(mobileGeometry.card) }}
                 >
                   <div className={styles.cardHeader}>
-                    <h3 className={styles.cardTitle}>{layer.title}</h3>
+                    <h3 className={styles.cardTitle}>
+                      {layer.title.split(' - ').map((part, i) => (
+                        <span key={part} className={styles.titlePart}>
+                          {i > 0 && <span className={styles.titleSep}> - </span>}
+                          {part}
+                        </span>
+                      ))}
+                    </h3>
                     <span
                       className={`${styles.tag} ${layer.tagHighlight ? styles.tagHighlight : ''}`.trim()}
                     >

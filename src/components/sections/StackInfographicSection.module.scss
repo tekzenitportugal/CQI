@@ -23,6 +23,11 @@
   flex-direction: column;
   align-items: center;
   gap: fluid-space(60px);
+
+  // Mobile/tablet: 32px between the diagram and the ghost links.
+  @media (max-width: 1023.98px) {
+    gap: 32px;
+  }
 }
 
 // Ghost links under the diagram.
@@ -54,8 +59,8 @@
   @media (max-width: 1023.98px) {
     position: relative;
     display: block;
-    max-width: 374.043px;
-    aspect-ratio: 374.043 / 664;
+    max-width: 374px;
+    aspect-ratio: 374 / 671;
   }
 }
 
@@ -88,7 +93,7 @@
     display: block;
     position: absolute;
     left: 0;
-    top: 19.69%;
+    top: 19.64%;
     width: 100%;
     height: auto;
   }
@@ -120,6 +125,7 @@
     left: var(--m-left);
     width: var(--m-width);
     max-width: none;
+    gap: 20px;
   }
 }
 
@@ -129,6 +135,26 @@
   justify-content: space-between;
   gap: 12px;
   width: 100%;
+
+  // Mobile (Figma 6445:9368): title stacked above the tag.
+  @media (max-width: 1023.98px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+// Mobile breaks "CQI - Verified CX" onto two lines, without the dash.
+.titlePart {
+  @media (max-width: 1023.98px) {
+    display: block;
+  }
+}
+
+.titleSep {
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
 }
 
 .cardTitle {

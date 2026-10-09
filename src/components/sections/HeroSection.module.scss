@@ -60,11 +60,10 @@
 
 .mobileMedia {
   position: relative;
-  width: calc(100% + 2 * var(--container-padding));
+  // 35px from each side of the banner, regardless of the container padding.
+  width: calc(100% - 2 * (35px - var(--container-padding)));
   margin-top: 65px;
-  margin-inline: calc(-1 * var(--container-padding));
-  border-radius: 20px;
-  overflow: hidden;
+  margin-inline: calc(35px - var(--container-padding));
 
   @include respond-to(lg) {
     display: none;

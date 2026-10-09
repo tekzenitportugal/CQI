@@ -28,7 +28,14 @@ export function GapSection({ data }: GapSectionProps) {
           </h2>
           <div className={styles.gapBlock}>
             <p className={styles.eyebrow}>{data.eyebrow}</p>
-            <p className={styles.description}>{highlightText(data.description)}</p>
+            <p className={styles.description}>
+              {data.description.split('\n').map((line, i) => (
+                <span key={i} className={styles.descriptionLine}>
+                  {i > 0 && ' '}
+                  {highlightText(line)}
+                </span>
+              ))}
+            </p>
           </div>
         </div>
       </Container>
