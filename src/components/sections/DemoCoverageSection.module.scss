@@ -31,6 +31,11 @@
   border-radius: 20px;
   background: var(--color-white);
 
+  @media (max-width: 1023.98px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   @include respond-to(lg) {
     flex-direction: row;
     justify-content: space-between;
@@ -45,6 +50,10 @@
   font-weight: 500;
   line-height: 1.3;
   color: var(--color-antracite-400);
+
+  @media (max-width: 1023.98px) {
+    font-size: 20px;
+  }
 }
 
 // Figma: 554px list, a dashed #668fff rule above every item and one closing the list.

@@ -70,7 +70,7 @@ export const careersData: CareersPageData = {
     title: 'See what you would be working on',
     titleHighlight: ['working on'],
     description: 'The product, end to end, before you decide whether to apply.',
-    image: '/images/company/careers/cta-portfolio.jpg',
+    image: '/images/company/careers/cta-portfolio.png',
     imageWidth: 579,
     imageHeight: 289,
     buttons: [

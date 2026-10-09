@@ -67,7 +67,7 @@ export const contactData = {
     title: 'Or start with the walkthrough',
     titleHighlight: ['walkthrough'],
     description: 'Five stages, one broken promise, no form to fill in.',
-    image: '/images/shared/contact/cta-walkthrough.jpg',
+    image: '/images/shared/contact/cta-walkthrough.png',
     imageWidth: 579,
     imageHeight: 289,
     buttons: [

@@ -57,6 +57,10 @@
   color: var(--color-antracite-300);
   max-width: 587px;
   flex-shrink: 0;
+
+  @media (max-width: 1023.98px) {
+    font-size: 20px;
+  }
 }
 
 .columns {
@@ -86,6 +90,11 @@
   border: 1px solid var(--color-antracite-75);
   border-radius: 20px;
 
+  @media (max-width: 1023.98px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   // TagPill is a plain inline span; position it to overlap the card's top border.
   > :first-child {
     position: absolute;
@@ -110,6 +119,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 1023.98px) {
+    gap: 17.5px;
+  }
 }
 
 .cardTitle {
@@ -119,6 +132,10 @@
   font-weight: 500;
   line-height: 1.3;
   color: var(--color-antracite-400);
+
+  @media (max-width: 1023.98px) {
+    font-size: 20px;
+  }
 }
 
 .cardDescription {
@@ -137,6 +154,11 @@
   display: flex;
   gap: 32px;
   align-items: baseline;
+
+  @media (max-width: 1023.98px) {
+    flex-direction: column;
+    gap: 17.5px;
+  }
 }
 
 .rowLabel {
@@ -151,7 +173,12 @@
   color: var(--color-antracite-400);
 
   @media (max-width: 1023.98px) {
+    width: auto;
     font-size: 17.5px;
+
+    br {
+      display: none;
+    }
   }
 }
 

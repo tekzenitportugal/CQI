@@ -64,6 +64,10 @@
 .description {
   @include body-lg;
   color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 20px;
+  }
 }
 
 .media {

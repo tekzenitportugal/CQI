@@ -89,7 +89,12 @@
 .photoLegacy::after,
 .photoDedicated::after {
   inset: 0;
-  background: $hero-mobile-wash;
+  background: radial-gradient(
+    363.22% 100.6% at 50.94% 0.03%,
+    #ccdaff 55%,
+    rgba(237, 242, 255, 0.2) 72%,
+    rgba(237, 242, 255, 0) 90%
+  );
 }
 
 // lg+: each variant swaps in its own wash (the mobile Figma radial above is for below lg only).

@@ -61,25 +61,20 @@
   }
 }
 
-// --title-top: text y offset inside the circle.
 .node[data-index='0'] {
   top: 0;
-  --title-top: 22.81%;
 }
 
 .node[data-index='1'] {
   top: 24.638%;
-  --title-top: 16.73%;
 }
 
 .node[data-index='2'] {
   top: 49.275%;
-  --title-top: 20.15%;
 }
 
 .node[data-index='3'] {
   top: 73.913%;
-  --title-top: 23.95%;
 }
 
 // Figma Group 731/732/733/734 positions, as % of the 1169×589 diagram box (desktop).
@@ -165,12 +160,14 @@
 
 .nodeContent {
   position: absolute;
-  top: var(--title-top);
+  top: 0;
+  bottom: 0;
   left: 12.167%; // 32 / 263
   width: 76.05%; // 200 / 263
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   text-align: center;
 

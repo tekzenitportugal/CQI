@@ -49,7 +49,7 @@ function PartnershipTypeCard({ column }: { column: PartnershipTypeColumn }) {
 
         <div className={styles.row}>
           <p className={styles.rowLabel}>
-            CQI
+            CQI{' '}
             <br />
             provides
           </p>
