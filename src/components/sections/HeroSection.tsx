@@ -20,6 +20,7 @@ export function HeroSection({ data }: HeroSectionProps) {
           className={styles.graphicImage}
           sizes="(min-width: 1536px) 779px, 60vw"
           priority
+          unoptimized
         />
       </div>
 

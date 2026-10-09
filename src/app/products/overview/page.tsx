@@ -17,9 +17,11 @@ export default function ProductOverviewPage() {
     <>
       <GradientHero
         data={productOverviewData.hero}
-        image="/images/product/capabilities-overview/hero-banner-prod-overview.webp"
+        image="/images/product/capabilities-overview/hero-banner-prod-overview.png"
+        imageUnoptimized
+        imageAspectRatio="2931 / 2544"
         // Figma mobile 6439:7279: 397×332 box flush to the card's bottom, laptop cropped in it.
-        mobileCrop={{ aspect: '397 / 332', width: 125, left: -25, top: -14.8, imageWidth: 989, imageHeight: 848 }}
+        mobileCrop={{ aspect: '397 / 332', width: 125, left: -25, top: -14.8, imageWidth: 2931, imageHeight: 2544 }}
       />
       {/* Figma: heading 200px below the hero band; cards 350px tall */}
       <CapabilitiesSection

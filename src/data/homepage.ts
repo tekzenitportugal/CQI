@@ -19,8 +19,8 @@ export const homepageData = {
       "Know what your customer is trying to do. And what's stopping them. Most CX platforms report how customers felt. CQI shows what they were trying to do, what you promised them, where that promise broke down, and the action that closes the gap.",
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'text' as const },
     image: '/images/shared/home/hero-banner.png',
-    imageWidth: 779,
-    imageHeight: 732,
+    imageWidth: 2352,
+    imageHeight: 2544,
   },
 
   gap: {

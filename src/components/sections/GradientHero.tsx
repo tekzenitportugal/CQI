@@ -123,6 +123,7 @@ export function GradientHero({
               priority
               className={styles.graphicImage}
               sizes="(min-width: 1536px) 779px, 60vw"
+              unoptimized={imageUnoptimized}
             />
           </div>
         )}
@@ -153,6 +154,7 @@ export function GradientHero({
                 width={mobileCrop.imageWidth}
                 height={mobileCrop.imageHeight}
                 className={styles.mobileCropImage}
+                unoptimized={imageUnoptimized}
                 sizes="100vw"
               />
             </div>
@@ -166,6 +168,7 @@ export function GradientHero({
                 alt=""
                 fill
                 className={styles.mobileGraphicImage}
+                unoptimized={imageUnoptimized}
                 sizes="100vw"
               />
             </div>
