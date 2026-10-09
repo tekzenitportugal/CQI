@@ -1,0 +1,391 @@
+@use '@/styles/mixins' as *;
+
+// Figma: 200px under the grey band; the FAQ below owns its own 200px (400px to the last step).
+.section {
+  padding-top: 200px;
+  padding-bottom: 200px;
+
+  // Figma mobile: 400px under the carousel card, 200px before the FAQ.
+  @media (max-width: 1023.98px) {
+    padding-top: 406px;
+    padding-bottom: 0;
+  }
+}
+
+.heading {
+  --section-heading-title-max-width: 587px;
+  --section-heading-description-max-width: 587px;
+
+  // Figma mobile: the intro line is a 252px box.
+  @media (max-width: 1023.98px) {
+    --section-heading-description-max-width: 252px;
+  }
+}
+
+// Figma: 100px under the heading block, steps 464px tall with 200px between them.
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 200px;
+  width: 100%;
+  max-width: 1194px;
+  margin: 100px auto 0;
+  padding: 0;
+  list-style: none;
+
+  @media (max-width: 1023.98px) {
+    gap: 120px;
+    margin-top: 64px;
+  }
+}
+
+.step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+
+  @media (max-width: 1023.98px) {
+    grid-template-areas: 'copy' 'media';
+    gap: 64px;
+    align-items: start;
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 1fr) 51px minmax(0, 1fr);
+    grid-template-areas: 'copy marker media';
+    column-gap: 106px;
+    min-height: 464px;
+  }
+}
+
+.imageLeft {
+  @include respond-to(lg) {
+    grid-template-areas: 'media marker copy';
+  }
+}
+
+.copy {
+  grid-area: copy;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 466px;
+}
+
+.iconRow {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+  }
+}
+
+// Pictograms that are a cropped group inside the 72px box (Figma insets).
+.icon1 img {
+  inset: 25% 7.16% 26.01% 6.94%;
+  width: auto;
+  height: auto;
+}
+
+.icon4 {
+  img {
+    inset: 12.5% 26.18% 5.56% 15.28%;
+    width: auto;
+    height: auto;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 46px;
+    width: 16px;
+    height: 22px;
+    border: 1.5px solid var(--color-blue-75);
+    border-radius: 6px;
+  }
+}
+
+.moodBadge {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1.33px solid var(--color-antracite-75);
+  border-radius: 50%;
+  background: var(--color-antracite-50);
+}
+
+.mood {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29.33px;
+  height: 29.33px;
+  border-radius: 50%;
+
+  img {
+    width: 26.67px;
+    height: 26.67px;
+  }
+}
+
+.friction {
+  background: var(--color-sentiment-yellow);
+}
+
+.eroding {
+  background: var(--color-sentiment-orange);
+}
+
+.risk {
+  background: var(--color-sentiment-red);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+}
+
+.headline {
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--color-antracite-300);
+}
+
+.description {
+  @include body-md;
+  color: var(--color-antracite-300);
+  max-width: 427px;
+}
+
+// ── Centre line + dots ───────────────────────────────────────────────────────
+.marker {
+  position: relative;
+  display: none;
+  grid-area: marker;
+  align-self: stretch;
+  align-items: center;
+  justify-content: center;
+
+  @include respond-to(lg) {
+    display: flex;
+  }
+}
+
+// Figma Group 897: 34px white disc, dashed #afafaf ring, 12px #888 centre. Reached (scroll) or first stop:
+// 51px, solid ring, 27px blue centre (Figma Group 8).
+.dot {
+  position: relative;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  border: 1px dashed var(--color-antracite-100);
+  border-radius: 50%;
+  background: var(--color-white);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--color-antracite-200);
+    transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+  }
+
+  &[data-reached] {
+    width: 51px;
+    height: 51px;
+    border: 1.5px solid var(--color-antracite-100);
+
+    &::before {
+      width: 27px;
+      height: 27px;
+      background: var(--color-blue-200);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &,
+    &::before {
+      transition: none;
+    }
+  }
+}
+
+// Dashed rule from this dot's centre to the next one's (row height + 200px gap).
+.line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: calc(100% + 200px);
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(180deg, var(--color-antracite-100) 0 4px, transparent 4px 8px);
+}
+
+// Blue progress dashes, same pattern, filled down by scroll (--fill 0 to 1).
+.line::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(var(--fill, 0) * 100%);
+  background: repeating-linear-gradient(180deg, var(--color-blue-200) 0 4px, transparent 4px 8px);
+}
+
+// The rule runs clearly to the last stop, then fades out below it.
+.lineTail {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 200px;
+  transform: translateX(-50%);
+  background: repeating-linear-gradient(180deg, var(--color-antracite-100) 0 4px, transparent 4px 8px);
+  mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
+}
+
+// Solid lead-in above the first stop (Figma Rectangle 25: 2px × 258px).
+.lineLead {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  width: 2px;
+  height: 258px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  background: linear-gradient(180deg, rgba(175, 175, 175, 0), var(--color-antracite-100));
+}
+
+// ── Placeholder artwork ──────────────────────────────────────────────────────
+.media {
+  grid-area: media;
+  width: 100%;
+  max-width: 464px;
+  aspect-ratio: 1;
+  background: #d9d9d9;
+  justify-self: end;
+
+  @media (max-width: 1023.98px) {
+    justify-self: stretch;
+    max-width: none;
+  }
+}
+
+.imageLeft .media {
+  justify-self: start;
+}
+
+// ── Mobile (Figma 6561:39363) ────────────────────────────────────────────────
+.mobileArt {
+  @include respond-to(lg) {
+    display: none;
+  }
+
+  // Exports include the mockups' drop shadows, so they're a little larger than the 374px frame.
+  @media (max-width: 1023.98px) {
+    display: block;
+    width: calc(var(--art-width) / 374 * 100%);
+    max-width: none;
+    height: auto;
+    // Centre the oversized export on the 374px frame and trim its 13px of shadow padding.
+    margin: -13px 0 -13px calc((1 - var(--art-width) / 374) * 50%);
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .media {
+    max-width: none;
+    aspect-ratio: auto;
+    background: none;
+  }
+
+  .copy {
+    gap: 24px;
+    max-width: none;
+  }
+
+  .icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .moodBadge {
+    width: 32px;
+    height: 32px;
+    border-width: 1.07px;
+  }
+
+  .mood {
+    width: 23.47px;
+    height: 23.47px;
+
+    img {
+      width: 21.33px;
+      height: 21.33px;
+    }
+  }
+
+  .text {
+    gap: 16px;
+  }
+
+  .label {
+    font-size: 17.5px;
+  }
+
+  .headline {
+    font-size: 17.5px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.3;
+    max-width: 354px;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .imageLeft .media {
+    justify-self: stretch;
+  }
+}

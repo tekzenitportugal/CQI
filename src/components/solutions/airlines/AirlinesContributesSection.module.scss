@@ -1,0 +1,216 @@
+@use '@/styles/mixins' as *;
+
+// Sits on the grey band right after Customer Pulse; the band ends 200px under the card.
+.section {
+  padding-bottom: 200px;
+
+  // Figma mobile: the card runs to the band's bottom edge (6px past it).
+  @media (max-width: 1023.98px) {
+    padding-bottom: 0;
+  }
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 591px) minmax(0, 587px);
+    justify-content: space-between;
+    align-items: start;
+  }
+}
+
+.heading {
+  --section-heading-title-max-width: 591px;
+}
+
+.intro {
+  @include body-lg;
+  color: var(--color-antracite-300);
+
+  @include respond-to(lg) {
+    // Figma: copy sits 18px below the eyebrow line.
+    padding-top: 18px;
+  }
+
+}
+
+// Figma: 100px between the heading block and the pager row, 32px between pager and card.
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+  margin-top: 100px;
+  margin-bottom: 32px;
+
+  @media (max-width: 1023.98px) {
+    margin-top: 64px;
+  }
+}
+
+.counter {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-antracite-100);
+}
+
+.controlGroup {
+  display: flex;
+  gap: 16px;
+}
+
+.controlBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 12px;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.controlActive {
+  background: var(--color-blue-200);
+}
+
+.controlInactive {
+  background: var(--color-blue-50);
+}
+
+.controlIconFlipped {
+  transform: scaleX(-1);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 416px;
+  border-radius: 20px;
+  overflow: hidden;
+  background:
+    linear-gradient(23.07deg, rgba(63, 68, 83, 0.2) 0.25%, rgba(178, 199, 255, 0.2) 62.06%),
+    var(--color-card-dark);
+
+  @media (max-width: 1023.98px) {
+    min-height: 0;
+    padding: 8px;
+    gap: 32px;
+    margin-bottom: -6px;
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 621px) minmax(0, 1fr);
+    padding: 8px 8px 8px 50px;
+    gap: 50px;
+  }
+}
+
+.cardCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 32px;
+  padding: 24px 0;
+  color: var(--color-white);
+
+  @media (max-width: 1023.98px) {
+    justify-content: flex-start;
+    padding: 20px 20px 35px;
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--color-light-blue-75);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-400);
+}
+
+.cardIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1.3;
+
+  @media (max-width: 1023.98px) {
+    font-size: 26px;
+  }
+}
+
+.cardDescription {
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.3;
+
+  @media (max-width: 1023.98px) {
+    font-size: 17.5px;
+  }
+}
+
+.outcome {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.outcomeLabel {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--color-light-blue-100);
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
+}
+
+.outcomeText {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  line-height: 1.3;
+
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+  }
+}
+
+.cardMedia {
+  position: relative;
+  height: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.2);
+
+  @include respond-to(lg) {
+    height: 400px;
+  }
+}
+
+.cardImage {
+  object-fit: cover;
+}

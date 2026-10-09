@@ -1,0 +1,7 @@
+@use 'sass:math';
+
+// The airlines Figma frame is 1536px wide. Fixed-size artwork (plane, seats) keeps its exact
+// design px at 1536px and above and shrinks proportionally below.
+@function u($px) {
+  @return min(#{$px}px, #{math.div($px, 1536) * 100}vw);
+}

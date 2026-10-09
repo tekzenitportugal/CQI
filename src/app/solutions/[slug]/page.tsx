@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { AirlinesSolutionView } from '@/components/solutions/airlines/AirlinesSolutionView';
 import { IndustrySolutionView } from '@/components/solutions/IndustrySolutionView';
 import { getIndustrySolution, industrySlugs, isIndustrySlug } from '@/data/solutions';
 
@@ -27,6 +28,9 @@ export default async function IndustrySolutionPage({ params }: IndustryPageProps
 
   const data = getIndustrySolution(slug);
   if (!data) notFound();
+
+  // Airlines has its own redesigned layout; every other industry keeps the shared view.
+  if (slug === 'airlines') return <AirlinesSolutionView />;
 
   return <IndustrySolutionView data={data} />;
 }

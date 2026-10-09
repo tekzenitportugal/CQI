@@ -167,6 +167,33 @@
   }
 }
 
+// Full-width banner flush to the bottom of the card (Figma mobile mask group, e.g. airlines).
+.insetMobileBanner {
+  @include hero-fill;
+  @include hero-frame;
+  z-index: 1;
+  pointer-events: none;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.insetMobileBannerImage {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
+
+// Copy 20px from the screen edge (Figma 20px margin) instead of the default 28px.
+.insetBanner .insetContentWrapFlush {
+  @media (max-width: 1023.98px) {
+    padding-inline: 12px;
+  }
+}
+
 .insetMobileCutoutImage {
   position: absolute;
   top: 564px;

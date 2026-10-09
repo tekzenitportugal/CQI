@@ -1,0 +1,474 @@
+@use '@/styles/mixins' as *;
+@use './scale' as *;
+
+// Figma Customer Pulse (6544:38038): heading 243px under the band top, plane graphic 90px under it,
+// legend + state card 614px below the heading.
+.section {
+  position: relative;
+  overflow: hidden;
+  padding-top: 243px;
+  padding-bottom: 251px;
+
+  // Figma mobile: heading 200px under the band top, 250px of band below the legend.
+  @media (max-width: 1023.98px) {
+    padding-top: 200px;
+    padding-bottom: 250px;
+  }
+}
+
+// Figma Rectangles 559/560: the wings fade into the band at the top and bottom of the plane.
+.section::before,
+.section::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
+}
+
+.section::before {
+  top: 0;
+  height: 693px;
+  background: linear-gradient(180deg, #f3f4f7 0%, #f3f4f7 68%, rgba(243, 244, 247, 0) 100%);
+}
+
+.section::after {
+  top: 921px;
+  bottom: 0;
+  background: linear-gradient(180deg, rgba(243, 244, 247, 0) 0, #f3f4f7 160px);
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.heading {
+  --section-heading-title-max-width: 947px;
+}
+
+// ── Plane + seats (1350 × 1435 artwork, centred) ────────────────────────────
+.plane {
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  width: u(1350);
+  height: u(1434.68);
+  z-index: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
+}
+
+.planeImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+}
+
+.seatBlock {
+  position: absolute;
+  top: calc(var(--seat-top) / 1434.68 * 100%);
+  left: calc(var(--seat-left) / 1350 * 100%);
+  display: grid;
+  grid-template-columns: repeat(11, u(20.89));
+  grid-auto-rows: u(20.89);
+  gap: u(3.01) u(8.99);
+}
+
+.seat {
+  position: relative;
+  display: block;
+  border: 0.87px solid #dfdfdf;
+  border-radius: u(4.2);
+  background: var(--color-white);
+}
+
+.seatSelected {
+  outline: 1.5px solid var(--color-blue-200);
+  outline-offset: 0;
+}
+
+// Coloured sentiment circles (seat and legend share the same tones).
+.healthy {
+  background: var(--color-sentiment-greener);
+}
+
+.friction {
+  background: var(--color-sentiment-yellow);
+}
+
+.eroding {
+  background: var(--color-sentiment-orange);
+}
+
+.risk {
+  background: var(--color-sentiment-red);
+}
+
+.silent {
+  background: var(--color-antracite-500);
+}
+
+.seatFace {
+  position: absolute;
+  top: 16.7%;
+  left: 16.7%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 66.7%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  img {
+    width: 91%;
+    height: 91%;
+  }
+}
+
+// ── Legend + state card ──────────────────────────────────────────────────────
+.bottom {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+  width: 100%;
+  max-width: 1194px;
+  margin-top: 614px;
+
+  @media (max-width: 1023.98px) {
+    flex-direction: column;
+    margin-top: 64px;
+  }
+}
+
+.legendBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 375px;
+  max-width: 100%;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  &:nth-child(odd) {
+    width: 140px;
+  }
+}
+
+.legendBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1.07px solid var(--color-antracite-75);
+  border-radius: 50%;
+  background: var(--color-antracite-50);
+}
+
+.legendFace {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 23.47px;
+  height: 23.47px;
+  border-radius: 50%;
+
+  img {
+    width: 21.33px;
+    height: 21.33px;
+  }
+}
+
+.legendLabel {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+  white-space: nowrap;
+}
+
+.legendNote {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 24px;
+  width: 587px;
+  max-width: 100%;
+  min-height: 291px;
+  padding: 32px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  background: var(--color-white);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cardSeat {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.cardSeatNumber {
+  font-size: 24px;
+  line-height: 1.3;
+  color: var(--color-antracite-400);
+}
+
+.cardPassenger {
+  font-size: 17.5px;
+  line-height: 1.3;
+  color: var(--color-antracite-200);
+}
+
+.cardTag {
+  display: inline-flex;
+  align-items: center;
+  height: 27px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--color-coral-50);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-coral-400);
+  white-space: nowrap;
+}
+
+.cardRows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+}
+
+.cardRow {
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+
+  dt {
+    flex: 0 0 131px;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.35;
+    text-transform: uppercase;
+    color: var(--color-antracite-400);
+  }
+
+  dd {
+    flex: 1 1 0;
+    min-width: 0;
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 17.5px;
+    line-height: 1.3;
+    color: var(--color-antracite-300);
+  }
+}
+
+// Figma shows a down arrow on this link.
+.cardLink img {
+  transform: rotate(90deg);
+}
+
+// ── Mobile (Figma 6561:39363): 6 × 3 seat close-up, then the card, then the legend ──
+.desktopOnly {
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
+}
+
+.mobileOnly {
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.mobileSeats {
+  width: 100%;
+  margin-top: 100px;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.mobileGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 12.57%);
+  justify-content: space-between;
+  row-gap: 5px;
+}
+
+.mobileSeat {
+  position: relative;
+  display: block;
+  aspect-ratio: 1;
+  border: 2px solid #dfdfdf;
+  border-radius: 10px;
+  background: var(--color-white);
+}
+
+.mobileSeatSelected {
+  border-color: var(--color-blue-200);
+  background: var(--color-antracite-50);
+}
+
+.mobileSeatFace {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  img {
+    width: 91%;
+    height: 91%;
+  }
+}
+
+.mobileNote {
+  margin-top: 24px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+}
+
+@media (max-width: 1023.98px) {
+  .bottom {
+    gap: 26px;
+    margin-top: 64px;
+  }
+
+  .card {
+    order: -1;
+    min-height: 0;
+    padding: 21px;
+    gap: 24px;
+  }
+
+  .cardBody {
+    gap: 28px;
+  }
+
+  .cardSeatNumber {
+    font-size: 20px;
+  }
+
+  .cardPassenger {
+    font-size: 15px;
+  }
+
+  .cardRows {
+    gap: 20px;
+  }
+
+  .cardRow {
+    gap: 24px;
+
+    dt {
+      flex-basis: 123px;
+      font-size: 17.5px;
+    }
+
+    dd {
+      font-size: 15px;
+    }
+  }
+
+  .legendBlock {
+    width: 100%;
+  }
+
+  .legend {
+    gap: 16px 24px;
+  }
+
+  .legendItem {
+    gap: 12px;
+
+    &:nth-child(odd) {
+      width: 166px;
+    }
+  }
+
+  .legendBadge {
+    width: 24px;
+    height: 24px;
+  }
+
+  .legendFace {
+    width: 17.6px;
+    height: 17.6px;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .legendLabel {
+    font-size: 17.5px;
+  }
+}

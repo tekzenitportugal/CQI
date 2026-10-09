@@ -1,0 +1,76 @@
+@use '@/styles/mixins' as *;
+
+// Figma: hero card ends 243px above this block; the grey band starts 243px below it.
+.section {
+  padding-block: 243px;
+
+  // Figma mobile: 200px under the hero card, 200px above the grey band.
+  @media (max-width: 1023.98px) {
+    padding-block: 200px;
+  }
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 120px;
+  align-items: center;
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 587px) minmax(0, 708px);
+    justify-content: space-between;
+    gap: 91px;
+  }
+}
+
+.media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 374 / 217;
+
+  @include respond-to(lg) {
+    aspect-ratio: 587 / 340;
+  }
+}
+
+.image {
+  object-fit: cover;
+  object-position: center;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.title {
+  @include heading-h3;
+
+  @media (max-width: 1023.98px) {
+    line-height: 1.214;
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  @include eyebrow;
+
+  @media (max-width: 1023.98px) {
+    font-size: 12px;
+  }
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @include body-md;
+  max-width: 690px;
+  color: var(--color-antracite-300);
+}

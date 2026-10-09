@@ -26,6 +26,10 @@ type GradientHeroProps = {
   mobileBackdrop?: string;
   /** Figma mobile cutout (inset variant): a wide mockup pinned to the bottom-left of the hero card, cropped by it. */
   mobileImage?: string;
+  /** Inset variant, below lg: a full-width banner (any aspect) pinned flush to the bottom of the hero card. */
+  mobileBanner?: { src: string; width: number; height: number };
+  /** Inset variant, below lg: copy starts 20px from the screen edge (Figma 20px margin) instead of the default 28px. */
+  mobileCopyFlush?: boolean;
   /**
    * Default variant, below lg: instead of letterboxing `image` inside the stacked
    * box, show it cropped by a full-width box (Figma mobile cutout). All values are
@@ -46,6 +50,8 @@ export function GradientHero({
   imageCentered,
   mobileBackdrop,
   mobileImage,
+  mobileBanner,
+  mobileCopyFlush,
   mobileCrop,
 }:GradientHeroProps) {
   // Photo hero (image sits behind the gradient wash): the photo is the box's ::before background and the
@@ -61,7 +67,7 @@ export function GradientHero({
   if (variant === 'inset') {
     return (
       <section
-        className={`${styles.insetBanner} ${mobileImage ? styles.insetBannerCutout : ''} ${photo && mobileBackdrop ? styles.insetBannerBackdrop : ''}`.trim()}
+        className={`${styles.insetBanner} ${mobileImage || mobileBanner ? styles.insetBannerCutout : ''} ${photo && mobileBackdrop ? styles.insetBannerBackdrop : ''}`.trim()}
         style={
           {
             ...(data.mobileMinHeight && { '--hero-min-height': `${data.mobileMinHeight}px` }),
@@ -76,7 +82,7 @@ export function GradientHero({
           )}
         </div>
         <Container
-          className={`${styles.insetContentWrap} ${!image ? styles.insetContentWrapCentered : ''}`.trim()}
+          className={`${styles.insetContentWrap} ${!image ? styles.insetContentWrapCentered : ''} ${mobileCopyFlush ? styles.insetContentWrapFlush : ''}`.trim()}
         >
           <HeroCopy {...data} className={styles.insetContent} />
         </Container>
@@ -96,7 +102,20 @@ export function GradientHero({
             />
           </div>
         )}
-        {image && !mobileImage && !photo && (
+        {mobileBanner && (
+          <div className={styles.insetMobileBanner} aria-hidden="true">
+            <Image
+              src={mobileBanner.src}
+              alt=""
+              width={mobileBanner.width}
+              height={mobileBanner.height}
+              className={styles.insetMobileBannerImage}
+              unoptimized={imageUnoptimized}
+              sizes="100vw"
+            />
+          </div>
+        )}
+        {image && !mobileImage && !mobileBanner && !photo && (
           <Container className={`${styles.insetMobileGraphicWrap} ${mobileFill ? styles.insetMobileGraphicWrapFill : ""}`.trim()}>
             <div
               className={styles.insetMobileGraphicBox}
