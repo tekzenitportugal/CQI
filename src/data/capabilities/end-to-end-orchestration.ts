@@ -19,6 +19,7 @@ export const endToEndOrchestration: CapabilityPageData = {
   heroImageAspectRatio: '1520 / 849',
   heroImageUnoptimized: true,
   heroImageBehindGradient: true,
+  heroImageMobile: '/images/product/capabilities/end-to-end-orchestration/hero-mobile.png',
   heroMockup: true,
   features: {
     eyebrow: 'What it does',

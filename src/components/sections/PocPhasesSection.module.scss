@@ -307,10 +307,6 @@
     &:nth-child(even) {
       min-height: 167px;
     }
-
-    &:nth-child(n + 3) {
-      padding-left: 8px;
-    }
   }
 
   .itemCopy {

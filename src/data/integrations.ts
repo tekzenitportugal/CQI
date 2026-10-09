@@ -57,6 +57,7 @@ export const integrationsData = {
       'CQI favours a lightweight integration. A library of connectors, adapters and pre-defined pipelines accelerates ingestion while guaranteeing security, data health and privacy compliance, and outbound connectors push verified action back into the systems that own it.',
     image: '/images/product/integrations/hero.webp',
     mobileImage: '/images/product/integrations/hero-mobile.png',
+    mobilePortraitCrop: true,
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

@@ -99,3 +99,9 @@ ul {
     display: none;
   }
 }
+
+// Phrases that must not split (see highlightText). A hero can opt out below lg by
+// setting `.title-wrap-hyphen` on its title.
+.no-break {
+  white-space: nowrap;
+}

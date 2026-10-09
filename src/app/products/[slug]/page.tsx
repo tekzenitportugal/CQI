@@ -36,6 +36,8 @@ export default async function CapabilityPage({ params }: CapabilityPageProps) {
           imageAspectRatio={page.heroImageAspectRatio}
           imageUnoptimized={page.heroImageUnoptimized}
           imageBehindGradient={page.heroImageBehindGradient}
+          mobileFill={page.heroMobileFill}
+          mobileBackdrop={page.heroImageMobile}
         />
       ) : (
         page.heroImage && (

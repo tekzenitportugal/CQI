@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { DeliveryStage } from '@/data/implementation';
@@ -13,9 +14,14 @@ type DeliveryStageCardProps = {
 
 /** Figma "CQI IMPLEMENTATION" delivery card: dark gradient card, photo bleeding off the top-right, copy bottom-left. */
 export function DeliveryStageCard({ stage, className, priority }: DeliveryStageCardProps) {
+  // Wide screenshots keep their own aspect ratio so nothing is cropped; tall ones stay top-anchored in the Figma tile.
+  const isWide = stage.imageWidth / stage.imageHeight >= 1.5;
   return (
     <article className={[styles.card, className].filter(Boolean).join(' ')}>
-      <div className={styles.media}>
+      <div
+        className={[styles.media, isWide && styles.mediaNatural].filter(Boolean).join(' ')}
+        style={isWide ? ({ '--stage-ratio': `${stage.imageWidth} / ${stage.imageHeight}` } as CSSProperties) : undefined}
+      >
         {stage.fpo ? (
           <FpoImage
             src={stage.image}

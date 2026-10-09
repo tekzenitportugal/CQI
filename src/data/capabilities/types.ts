@@ -21,6 +21,8 @@ export type CapabilityPageData = {
   heroImageUnoptimized?: boolean;
   /** Fade the hero gradient over the image's left edge so the image sits behind it and the copy stays readable. */
   heroImageBehindGradient?: boolean;
+  /** Below lg, crop the image's transparent margins so the device spans the card's full width (inset variant). */
+  heroMobileFill?: boolean;
   /** Set for pages still using the right-anchored product mockup cutout over the plain gradient, instead of a full-bleed photo. */
   heroMockup?: boolean;
   features: CapabilityFeaturesData;

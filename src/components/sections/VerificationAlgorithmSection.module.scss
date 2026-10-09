@@ -92,10 +92,17 @@ $section-bottom: 2402; // root cause starts
   width: d(1442);
 }
 
+.arcsMobile {
+  display: none;
+}
+
 .ringOuterMobile,
 .ringMiddleMobile,
 .ringInnerMobile {
-  display: none;
+  position: absolute;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1;
 }
 
 .orb {
@@ -304,39 +311,63 @@ $section-bottom: 2402; // root cause starts
     display: none;
   }
 
+  // Arcs hang off the layers (not the intro), so a taller intro never shifts them against the copy.
+  .layersWrap {
+    position: relative;
+  }
+
+  .arcsMobile {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    overflow: hidden;
+    pointer-events: none;
+  }
+
   .ringOuterMobile,
   .ringMiddleMobile,
   .ringInnerMobile {
-    display: block;
     left: 50%;
     // Figma rotates these exports 90deg: the blue wash on their left edge ends up on top.
     transform: translateX(-50%) rotate(90deg);
   }
 
+  // Arc apexes sit one 244.5px band apart; each layer is centred in its band.
   .ringOuterMobile {
-    top: 342px;
+    top: 0;
     width: 1649px;
   }
 
   .ringMiddleMobile {
-    top: 587px;
+    top: 244.5px;
     width: 1287px;
   }
 
   .ringInnerMobile {
-    top: 831px;
+    top: 489px;
     width: 925px;
   }
 
   .layers {
     grid-template-columns: minmax(0, 1fr);
-    gap: 73px;
+    gap: 0;
   }
 
   .layer {
     width: 100%;
     max-width: 250px;
     margin-inline: auto;
+
+    &:not(.layerVerification) {
+      justify-content: center;
+      min-height: 244.5px;
+      padding-block: 24px;
+    }
   }
 
   .layerBody {
@@ -356,6 +387,7 @@ $section-bottom: 2402; // root cause starts
     max-width: none;
     justify-content: center;
     aspect-ratio: 1;
+    margin-top: 38px;
     padding: 0 62px;
     border-radius: 50%;
 
@@ -366,6 +398,17 @@ $section-bottom: 2402; // root cause starts
     .layerTitle {
       font-size: 20px;
       text-transform: none;
+    }
+  }
+
+  // Narrow phones: keep a desktop-like gap between the copy and the orb edge.
+  @media (max-width: 378px) {
+    .layerVerification {
+      padding: 0 72px;
+
+      .layerDescription {
+        font-size: 14px;
+      }
     }
   }
 }

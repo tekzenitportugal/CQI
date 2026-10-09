@@ -231,10 +231,10 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  display: none;
+  // No backdrop blur: Figma's photo is crisp under the wash.
+  background: $hero-mobile-wash;
 
   @include respond-to(lg) {
-    display: block;
     background: linear-gradient(
       90deg,
       rgba(223, 232, 254, 1) 0%,
@@ -261,3 +261,51 @@
     );
   }
 }
+
+// Mobile fill (Figma 6439:7942): the image box is the card's full width at 398×314, so the
+// transparent margin of the PNG stays and the device sits at ~65% width, bottom-anchored.
+// Desktop is untouched.
+.insetMobileGraphicWrapFill {
+  margin-top: 36px;
+  padding-bottom: 0;
+
+  .insetMobileGraphicBox {
+    overflow: hidden;
+    aspect-ratio: 398 / 314;
+  }
+
+  .insetMobileGraphicImage {
+    object-fit: cover;
+    object-position: center 60%;
+  }
+}
+
+// Figma mobile photo hero (e.g. How we do it): 880px card, the photo fills it edge to edge
+// (bottom-anchored) and a blue wash — solid under the copy — fades out to reveal it.
+.insetBannerBackdrop {
+  @media (max-width: 1023.98px) {
+    min-height: 888px;
+  }
+}
+
+// Photo hero: the photo is the box's ::before (the wash is ::after on lg+, the copy's ::before below).
+// Mobile: full-card cover, bottom-anchored. lg+: right-anchored, never stretched.
+.photoBox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--hero-image-mobile) center bottom / cover no-repeat;
+
+  @include respond-to(lg) {
+    background: var(--hero-image) right bottom / contain no-repeat;
+  }
+
+  // 1024–1599px: confine the photo to the right half so it never runs under the copy.
+  @media (min-width: 1024px) and (max-width: 1599.98px) {
+    left: auto;
+    width: 50%;
+  }
+}
+
+

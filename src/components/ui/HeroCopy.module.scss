@@ -124,3 +124,13 @@
     max-width: 100%;
   }
 }
+
+.titleMobileWidth {
+  @media (max-width: 1023.98px) {
+    max-width: var(--hero-mobile-title-width);
+
+    :global(.no-break) {
+      white-space: normal;
+    }
+  }
+}

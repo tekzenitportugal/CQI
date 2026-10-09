@@ -118,8 +118,8 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   mobileIntroGap?: number;
   /** Below lg only (dedicated mobile image): shifts the photo up by this many px (Figma crops it taller than the card). */
   mobileImageShift?: number;
-  /** Below lg only (dedicated mobile image): CSS `background` for the wash layer over the photo. */
-  mobileOverlay?: string;
+  /** Tall (796×1760) transparent-top mobile banner: bottom-anchored, banner grows with width above 430px. */
+  mobilePortraitCrop?: boolean;
   /** lg+ only (dedicated mobile image): Figma placement of the photo inside the hero box, as % of the box. Omit for full-bleed cover. */
   desktopImageFrame?: {
     left: number;

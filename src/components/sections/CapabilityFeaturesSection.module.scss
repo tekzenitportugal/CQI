@@ -115,14 +115,27 @@
 }
 
 // Figma mobile (6225:44166): the screenshot drops the dimmed-frame letterboxing and
-// gets its own flat card treatment — 374×216 photo, thin border, drop shadow.
+// gets its own flat card treatment — 374×216 photo, 5px radius, no border or shadow.
 // Extra specificity (.media .mediaImage) is required to beat FpoImage's own
 // same-breakpoint rules on its wrapper element regardless of CSS module import order.
 .media .mediaImage {
   @media (max-width: 1023.98px) {
     aspect-ratio: 374 / 216;
-    border-radius: 8px;
-    border: 0.5px solid var(--color-antracite-75);
-    box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    overflow: visible;
+  }
+}
+
+// The screenshots ship with ~30px of transparent margin + soft shadow baked in on every side
+// (card = ~1174×681 inside a ~1238×745 PNG). On phones, scale the image box past the frame so
+// the card's own edge meets the frame edge — otherwise it floats inset from the column.
+// The wrapper is overflow: visible so the baked-in shadow still shows around the card.
+// `> div` is FpoImage's imageBox; its mobile reset uses !important, hence the same here.
+.media .mediaImage > div {
+  @media (max-width: 767.98px) {
+    top: -4.41% !important;
+    left: -2.56% !important;
+    width: 105.45% !important;
+    height: 109.4% !important;
   }
 }

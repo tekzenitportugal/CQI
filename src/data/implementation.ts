@@ -64,6 +64,7 @@ export const implementationData = {
     mobileIntroGap: 10,
     mobileHighlightBlock: true,
     mobileMinHeight: 880,
+    mobileTitleWidth: 250,
     mobilePaddingTop: 56,
   } satisfies HeroCopyData,
 

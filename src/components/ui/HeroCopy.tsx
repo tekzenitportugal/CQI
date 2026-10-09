@@ -21,6 +21,8 @@ export type HeroCopyData = {
   mobileIntroGap?: number;
   /** Mobile only: the highlighted title phrase starts its own line. */
   mobileHighlightBlock?: boolean;
+  /** Mobile only: caps the title width (px) and lets no-break phrases wrap at their hyphens (Figma title breaks). */
+  mobileTitleWidth?: number;
   /** Mobile only: ignore the desktop line breaks in the title and let it wrap naturally. */
   mobileInlineTitle?: boolean;
   /** Mobile only: ignore the desktop line breaks in the description and let it wrap naturally. */
@@ -50,6 +52,7 @@ export function HeroCopy({
   mobileTextGap,
   mobileIntroGap,
   mobileHighlightBlock,
+  mobileTitleWidth,
   mobileInlineTitle,
   mobileInlineDescription,
   tags,
@@ -61,6 +64,7 @@ export function HeroCopy({
     ...(copyMaxWidth ? { '--hero-copy-max-width': `${copyMaxWidth}px` } : {}),
     ...(mobileTextGap ? { '--hero-mobile-text-gap': `${mobileTextGap}px` } : {}),
     ...(mobileIntroGap ? { '--hero-mobile-intro-gap': `${mobileIntroGap}px` } : {}),
+    ...(mobileTitleWidth ? { '--hero-mobile-title-width': `${mobileTitleWidth}px` } : {}),
   } as CSSProperties;
 
   return (
@@ -71,6 +75,7 @@ export function HeroCopy({
             styles.title,
             mobileHighlightBlock && styles.titleBlockHighlight,
             mobileInlineTitle && styles.titleInlineMobile,
+            mobileTitleWidth && styles.titleMobileWidth,
           ]
             .filter(Boolean)
             .join(' ')}

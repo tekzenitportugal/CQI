@@ -116,3 +116,13 @@ $hero-radius: 20px;
     font-size: 15px;
   }
 }
+
+// Figma mobile hero wash (6445:8626). The Figma layer is rotated 90°, so its ellipse (363.22% × 100.6%)
+// is centred on the card's TOP edge: solid #ccdaff down to 58% of the height, easing out to clear at the
+// bottom. Laid over the photo with a 2.965px backdrop blur, exactly as in Figma.
+$hero-mobile-wash: radial-gradient(
+  363.22% 100.6% at 50.94% 0.03%,
+  #ccdaff 57.95%,
+  rgba(237, 242, 255, 0.5) 75.14%,
+  rgba(237, 242, 255, 0) 100%
+);

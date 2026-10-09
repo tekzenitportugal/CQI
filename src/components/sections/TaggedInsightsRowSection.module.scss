@@ -136,7 +136,7 @@
 }
 
 // Figma mobile (6225:43080): no connecting line, 293px/28px title, 64px to the steps,
-// 24px tag → title, 20px titles and 17.5px copy.
+// 24px tag → title, 17.5px titles and 17.5px copy.
 @media (max-width: 1023.98px) {
   .title {
     max-width: 293px;
@@ -154,7 +154,7 @@
   }
 
   .itemTitle {
-    font-size: 20px;
+    font-size: 17.5px;
     line-height: 1.3;
   }
 

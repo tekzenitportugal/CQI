@@ -122,3 +122,18 @@
     opacity: 0.85;
   }
 }
+
+// Wide screenshots: the tile takes the image's own ratio (never centre/side-cropped);
+// the card centres it, and it can never exceed the card's inner height.
+.mediaNatural {
+  aspect-ratio: var(--stage-ratio);
+
+  @media (max-width: 767.98px) {
+    height: auto;
+  }
+
+  @media (min-width: 768px) {
+    height: auto;
+    max-height: calc(100% - 16px);
+  }
+}

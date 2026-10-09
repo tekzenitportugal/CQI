@@ -68,6 +68,7 @@
   flex-direction: column;
   align-items: center;
   gap: 16px;
+  min-width: 0;
 }
 
 .sentimentRing {
@@ -158,7 +159,7 @@
   .sentimentRow {
     flex-wrap: nowrap;
     justify-content: space-between;
-    gap: 14px;
+    gap: 12px;
     width: 100%;
   }
 

@@ -27,6 +27,15 @@
 .title {
   @include heading-h3;
 
+  // Mobile/tablet: the highlighted phrase never splits across lines, and lines balance.
+  @media (max-width: 1023.98px) {
+    text-wrap: balance;
+
+    :global(.text-highlight) {
+      white-space: nowrap;
+    }
+  }
+
   @include respond-to(lg) {
     flex: 0 1 465px;
   }

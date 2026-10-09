@@ -22,8 +22,6 @@ export const seeItLiveData = {
     mobileImage: '/images/resources/see-it-live/hero-mobile.png',
     mobileIntroGap: 10,
     mobileImageShift: 70,
-    mobileOverlay:
-      'linear-gradient(180deg, #ccdaff 0%, #ccdaff 47%, rgba(237, 242, 255, 0.5) 69.5%, rgba(237, 242, 255, 0) 92%)',
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

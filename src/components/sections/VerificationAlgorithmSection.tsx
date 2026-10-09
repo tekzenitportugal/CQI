@@ -36,31 +36,6 @@ export function VerificationAlgorithmSection({ data }: VerificationAlgorithmSect
               width={1442}
               height={1442}
             />
-            {/* Figma mobile arcs: separate ellipses, shown below lg only */}
-            <img
-              className={styles.ringOuterMobile}
-              src="/images/product/how-we-do-it/ellipse-outer-mobile.webp"
-              alt=""
-              width={1649}
-              height={1649}
-              loading="lazy"
-            />
-            <img
-              className={styles.ringMiddleMobile}
-              src="/images/product/how-we-do-it/ellipse-middle-mobile.webp"
-              alt=""
-              width={1287}
-              height={1287}
-              loading="lazy"
-            />
-            <img
-              className={styles.ringInnerMobile}
-              src="/images/product/how-we-do-it/ellipse-inner-mobile.webp"
-              alt=""
-              width={925}
-              height={925}
-              loading="lazy"
-            />
             <img
               className={styles.orb}
               src="/images/product/how-we-do-it/ellipse-verification.svg"
@@ -77,6 +52,34 @@ export function VerificationAlgorithmSection({ data }: VerificationAlgorithmSect
             <p className={styles.introAside}>{data.aside}</p>
           </div>
 
+          <div className={styles.layersWrap}>
+            {/* Figma mobile arcs, anchored to the layers so each layer centres in its band (below xl) */}
+            <div className={styles.arcsMobile} aria-hidden="true">
+              <img
+                className={styles.ringOuterMobile}
+                src="/images/product/how-we-do-it/ellipse-outer-mobile.webp"
+                alt=""
+                width={1649}
+                height={1649}
+                loading="lazy"
+              />
+              <img
+                className={styles.ringMiddleMobile}
+                src="/images/product/how-we-do-it/ellipse-middle-mobile.webp"
+                alt=""
+                width={1287}
+                height={1287}
+                loading="lazy"
+              />
+              <img
+                className={styles.ringInnerMobile}
+                src="/images/product/how-we-do-it/ellipse-inner-mobile.webp"
+                alt=""
+                width={925}
+                height={925}
+                loading="lazy"
+              />
+            </div>
           <ul className={styles.layers}>
             {data.layers.map((layer) => (
               <li
@@ -108,6 +111,7 @@ export function VerificationAlgorithmSection({ data }: VerificationAlgorithmSect
               </li>
             ))}
           </ul>
+          </div>
         </div>
       </Container>
     </section>

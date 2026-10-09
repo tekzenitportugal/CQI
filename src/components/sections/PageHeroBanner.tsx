@@ -1,8 +1,8 @@
 import type { CSSProperties } from 'react';
-import Image from 'next/image';
 import type { PageHeroData } from '@/types/content';
 import { Container } from '@/components/ui/Container';
 import { HeroCopy } from '@/components/ui/HeroCopy';
+import { heroImageUrl } from '@/utils/heroImageUrl';
 import styles from './PageHeroBanner.module.scss';
 
 type PageHeroBannerProps = {
@@ -17,7 +17,6 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     ...(data.mobileTextGap ? { '--hero-mobile-text-gap': `${data.mobileTextGap}px` } : {}),
     ...(data.mobileIntroGap ? { '--hero-mobile-intro-gap': `${data.mobileIntroGap}px` } : {}),
     ...(data.mobileImageShift ? { '--hero-mobile-img-shift': `${data.mobileImageShift}px`, '--hero-mobile-box-bg': '#050505' } : {}),
-    ...(data.mobileOverlay ? { '--hero-mobile-overlay': data.mobileOverlay } : {}),
   } as CSSProperties;
   const frame = data.desktopImageFrame;
   const desktopFrameVars = frame
@@ -31,47 +30,33 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
       } as CSSProperties)
     : undefined;
   const hasDedicatedMobile = Boolean(data.mobileImage);
+  const unoptimized = data.imageUnoptimized;
+  const imageVars = data.image
+    ? ({
+        '--hero-image': heroImageUrl(data.image, 1920, unoptimized),
+        '--hero-image-mobile': heroImageUrl(data.mobileImage ?? data.image, 1080, unoptimized),
+      } as CSSProperties)
+    : undefined;
+  const boxClass = [
+    styles.heroBox,
+    !data.image && styles.heroBoxGradient,
+    data.image && (hasDedicatedMobile ? styles.photoDedicated : styles.photoLegacy),
+    data.image && !hasDedicatedMobile && !mirror && styles.photoUnmirrored,
+    frame && styles.photoFramed,
+    frame?.aspect && styles.photoFramedRatio,
+    data.mobilePortraitCrop && styles.photoPortrait,
+    data.image && (hasDedicatedMobile ? (frame ? styles.washFramed : styles.washFlat) : mirror ? styles.washLegacy : styles.washLegacyUnmirrored),
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <section
-      className={styles.banner}
-      style={mobileVars}
+      className={`${styles.banner} ${data.image ? styles.hasPhoto : ''}`.trim()}
+      style={{ ...mobileVars, ...imageVars, ...desktopFrameVars }}
     >
-      <div className={styles.heroBox} aria-hidden="true">
-        {!data.image ? (
-          <div className={styles.gradientOnly} />
-        ) : hasDedicatedMobile ? (
-          <>
-            {/* Flat full-bleed photo — no crop/mirror tricks; the wash is a separate overlay layer below. */}
-            <Image
-              src={data.image!}
-              alt=""
-              fill
-              priority
-              unoptimized={data.imageUnoptimized}
-              className={`${styles.heroImage} ${styles.desktopOnly} ${frame ? styles.framed : ''} ${frame?.aspect ? styles.framedRatio : ''}`.trim()}
-              style={desktopFrameVars}
-              sizes="100vw"
-            />
-            <Image
-              src={data.mobileImage!}
-              alt=""
-              fill
-              priority
-              className={`${styles.heroImage} ${styles.mobileOnly}`}
-              sizes="100vw"
-            />
-            <div className={`${styles.overlayFlat} ${frame ? styles.overlayFramed : ''}`.trim()} />
-          </>
-        ) : (
-          <>
-            <div className={`${styles.imageWrap} ${mirror ? '' : styles.unmirrored}`.trim()}>
-              <Image src={data.image!} alt="" fill priority className={styles.heroImage} sizes="100vw" />
-            </div>
-            <div className={`${styles.overlay} ${mirror ? '' : styles.overlayUnmirrored}`.trim()} />
-          </>
-        )}
-      </div>
+      {/* Photo = ::before and wash = ::after of this one box; breakpoints only swap CSS. */}
+      <div className={boxClass} aria-hidden="true" />
 
       <Container className={styles.contentWrap}>
         <HeroCopy

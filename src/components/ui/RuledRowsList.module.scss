@@ -69,7 +69,7 @@
   margin-top: var(--ruled-description-offset, 0);
   font-family: var(--font-body);
   font-size: 17.5px;
-  font-weight: var(--ruled-description-weight, 500);
+  font-weight: var(--ruled-description-weight, 400);
   // Figma: 1.4 of 17.5px, rounded to whole 24px lines
   line-height: var(--ruled-description-line-height, 24px);
   color: var(--color-antracite-300);
@@ -81,6 +81,6 @@
 }
 
 .link {
-  color: inherit;
+  color: var(--color-blue-200);
   text-decoration: none;
 }

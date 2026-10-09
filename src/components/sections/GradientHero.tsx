@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react';
 import { Container } from '@/components/ui/Container';
 import { HeroCopy, type HeroCopyData } from '@/components/ui/HeroCopy';
 import { HeroBanner } from '@/components/sections/HeroBanner';
+import { heroImageUrl } from '@/utils/heroImageUrl';
 import styles from './GradientHero.module.scss';
 
 type GradientHeroProps = {
@@ -17,6 +18,10 @@ type GradientHeroProps = {
   imageUnoptimized?: boolean;
   /** Lay a gradient fade over the image's left edge so it sits behind the copy's gradient (inset variant). */
   imageBehindGradient?: boolean | 'wide';
+  /** Inset variant, below lg: crop the image's transparent margins so the device spans the card width. */
+  mobileFill?: boolean;
+  /** Figma mobile photo hero: a dedicated full-card photo (below lg) with a blue wash over the copy, replacing the stacked image. */
+  mobileBackdrop?: string;
   /** Figma mobile cutout (inset variant): a wide mockup pinned to the bottom-left of the hero card, cropped by it. */
   mobileImage?: string;
   /**
@@ -35,22 +40,35 @@ export function GradientHero({
   imageAspectRatio,
   imageUnoptimized,
   imageBehindGradient,
+  mobileFill,
+  mobileBackdrop,
   mobileImage,
   mobileCrop,
 }:GradientHeroProps) {
+  // Photo hero (image sits behind the gradient wash): the photo is the box's ::before background and the
+  // wash its ::after / the copy's ::before — no <img>, breakpoints only swap CSS. Transparent cutouts keep <Image>.
+  const photo = Boolean(image && imageBehindGradient);
+  const photoVars = photo
+    ? ({
+        '--hero-image': heroImageUrl(image!, 1920, imageUnoptimized),
+        '--hero-image-mobile': heroImageUrl(mobileBackdrop ?? image!, 1080, imageUnoptimized),
+      } as CSSProperties)
+    : undefined;
+
   if (variant === 'inset') {
     return (
       <section
-        className={`${styles.insetBanner} ${mobileImage ? styles.insetBannerCutout : ''}`.trim()}
+        className={`${styles.insetBanner} ${mobileImage ? styles.insetBannerCutout : ''} ${photo && mobileBackdrop ? styles.insetBannerBackdrop : ''}`.trim()}
         style={
           {
             ...(data.mobileMinHeight && { '--hero-min-height': `${data.mobileMinHeight}px` }),
             ...(data.mobilePaddingTop && { '--hero-mobile-pad-top': `${data.mobilePaddingTop}px` }),
+            ...photoVars,
           } as CSSProperties
         }
       >
-        <div className={`${styles.heroBox} ${imageBehindGradient ? styles.heroBoxFade : ''} ${imageBehindGradient === 'wide' ? styles.heroBoxFadeWide : ''}`.trim()} aria-hidden="true">
-          {image && (
+        <div className={`${styles.heroBox} ${photo ? styles.photoBox : ''} ${imageBehindGradient ? styles.heroBoxFade : ''} ${imageBehindGradient === 'wide' ? styles.heroBoxFadeWide : ''}`.trim()} aria-hidden="true">
+          {image && !photo && (
             <Image src={image} alt="" fill priority unoptimized={imageUnoptimized} className={styles.heroBoxImage} sizes="100vw" />
           )}
         </div>
@@ -75,8 +93,8 @@ export function GradientHero({
             />
           </div>
         )}
-        {image && !mobileImage && (
-          <Container className={styles.insetMobileGraphicWrap}>
+        {image && !mobileImage && !photo && (
+          <Container className={`${styles.insetMobileGraphicWrap} ${mobileFill ? styles.insetMobileGraphicWrapFill : ""}`.trim()}>
             <div
               className={styles.insetMobileGraphicBox}
               style={imageAspectRatio ? ({ '--hero-mobile-aspect': imageAspectRatio } as CSSProperties) : undefined}

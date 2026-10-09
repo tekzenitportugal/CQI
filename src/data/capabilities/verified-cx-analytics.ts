@@ -19,6 +19,7 @@ export const verifiedCxAnalytics: CapabilityPageData = {
   heroImageAspectRatio: '2412 / 2226',
   heroImageUnoptimized: true,
   heroMockup: true,
+  heroMobileFill: true,
   features: {
     eyebrow: 'What it does',
     title:

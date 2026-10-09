@@ -25,6 +25,7 @@ export default function HowWeDoItPage() {
         imageAspectRatio="1520 / 849"
         imageUnoptimized
         imageBehindGradient="wide"
+        mobileBackdrop="/images/product/how-we-do-it/hero-mobile.png"
       />
       <VerificationAlgorithmSection data={howWeDoItData.verificationIntro} />
       <RootCauseAnalyticsSection data={howWeDoItData.rootCause} />

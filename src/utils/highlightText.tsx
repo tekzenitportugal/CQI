@@ -9,7 +9,7 @@ function withNoBreaks(line: string, keyPrefix: string): ReactNode {
 
   return parts.map((part, index) =>
     index % 2 === 1 ? (
-      <span key={`${keyPrefix}-nb-${index}`} style={{ whiteSpace: 'nowrap' }}>
+      <span key={`${keyPrefix}-nb-${index}`} className="no-break">
         {part}
       </span>
     ) : (

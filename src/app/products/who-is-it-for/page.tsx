@@ -22,6 +22,7 @@ export default function WhoIsItForPage() {
         imageAspectRatio="1520 / 849"
         imageUnoptimized
         imageBehindGradient="wide"
+        mobileBackdrop="/images/product/who-is-it-for/hero-mobile.png"
       />
       <div className={styles.body}>
         <TeamNeedsSection data={whoIsItForData.teamNeeds} />

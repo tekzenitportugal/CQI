@@ -64,10 +64,6 @@
     :global(.text-highlight) {
       color: var(--color-antracite-400);
     }
-
-    :global(.text-highlight)::before {
-      content: ' ';
-    }
   }
 }
 

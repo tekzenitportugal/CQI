@@ -16,10 +16,37 @@
   background: var(--hero-mobile-box-bg, var(--color-white));
 }
 
-// Figma: the hero rectangle is mirrored horizontally; the photo is full width,
-// 119.51% tall, starting 8.55% in from the left and 16.24% above the top.
-.imageWrap {
+// Gradient-only hero (no photo). Figma 6225:40342: linear-gradient(76.91deg, #668fff 147.05%, #edf2ff 100%)
+// rendered flipped horizontally; per the site's gradient-sign rule the true first stop is -147.05%,
+// and the flip turns 76.91deg into 283.09deg.
+.heroBoxGradient {
+  background: var(--hero-gradient);
+}
+
+// Photo hero: ONE box, no extra elements. The photo is its ::before (background-image, swapped per
+// breakpoint via --hero-image / --hero-image-mobile) and the gradient wash is its ::after.
+// Below lg the wash is the Figma radial (top-centred ellipse); from lg each variant swaps in its own.
+.photoLegacy::before,
+.photoDedicated::before,
+.photoLegacy::after,
+.photoDedicated::after {
+  content: '';
   position: absolute;
+  pointer-events: none;
+}
+
+.photoLegacy::before,
+.photoDedicated::before {
+  background: var(--hero-image-mobile) center / cover no-repeat;
+
+  @include respond-to(lg) {
+    background-image: var(--hero-image);
+  }
+}
+
+// Legacy path (no dedicated mobile crop): Figma mirrors the photo horizontally; it is full width,
+// 119.51% tall, starting 16.24% above the top.
+.photoLegacy::before {
   top: -16.24%;
   left: 0;
   width: 100%;
@@ -27,125 +54,76 @@
   transform: scaleX(-1);
 }
 
-.unmirrored {
+.photoUnmirrored.photoLegacy::before {
   transform: none;
 }
 
-.heroImage {
-  object-fit: cover;
-}
-
-// Gradient-only hero (no photo). Figma 6225:40342: linear-gradient(76.91deg, #668fff 147.05%, #edf2ff 100%)
-// rendered flipped horizontally; per the site's gradient-sign rule the true first stop is -147.05%,
-// and the flip turns 76.91deg into 283.09deg.
-.gradientOnly {
-  position: absolute;
-  inset: 0;
-  background: var(--hero-gradient);
-}
-
-// Flat full-bleed path (dedicated mobile crop supplied): plain cover photo, art-directed
-// per breakpoint, no crop-percentage/mirror hacks — the wash is .overlayFlat below.
-.desktopOnly {
-  display: none;
-
-  @include respond-to(lg) {
-    display: block;
-  }
+// Dedicated mobile crop: flat full-bleed photo; optionally shifted up (Figma crops it taller than the card).
+.photoDedicated::before {
+  inset: calc(-1 * var(--hero-mobile-img-shift, 0px)) 0 0;
 }
 
 // Photo placed at Figma's exact offset/size inside the box (not full-bleed); the wash covers the exposed edge.
-.framed {
+.photoFramed.photoDedicated::before {
   @include respond-to(lg) {
-    inset: auto !important;
-    top: var(--hero-img-top) !important;
-    left: var(--hero-img-left) !important;
+    inset: auto;
+    top: var(--hero-img-top);
+    left: var(--hero-img-left);
     transform: translateX(var(--hero-img-focus-x, 0%));
-    width: var(--hero-img-width) !important;
-    height: var(--hero-img-height) !important;
-    // Figma sizes the <img> to exactly this box (no crop), so the photo is fitted, not cover-zoomed.
-    object-fit: fill;
-    max-width: none;
+    width: var(--hero-img-width);
+    height: var(--hero-img-height);
+    // Figma sizes the photo to exactly this box (no crop), so it is fitted, not cover-zoomed.
+    background-size: 100% 100%;
   }
 }
 
 // Photo sized by its height at its native ratio (width follows), so it can never be squeezed or
 // stretched when the box width changes; `left` stays a % of the box.
-.framedRatio {
+.photoFramedRatio.photoDedicated::before {
   @include respond-to(lg) {
-    width: auto !important;
+    width: auto;
     aspect-ratio: var(--hero-img-aspect);
   }
 }
 
-.mobileOnly {
-  display: block;
-  top: calc(-1 * var(--hero-mobile-img-shift, 0px)) !important;
-
-  @include respond-to(lg) {
-    display: none;
-  }
+.photoLegacy::after,
+.photoDedicated::after {
+  inset: 0;
+  background: $hero-mobile-wash;
 }
 
-// Flat CSS gradient on its own layer above the photo (never baked into the image itself),
-// so the banner always reads full-bleed. Strongest over the copy — left on desktop,
-// top on mobile where the text stacks above the photo — fading out to reveal it.
-.overlayFlat {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: var(
-    --hero-mobile-overlay,
-    linear-gradient(
-      180deg,
-      rgba(223, 232, 254, 0.97) 0%,
-      rgba(223, 232, 254, 0.94) 38%,
-      rgba(223, 232, 254, 0.55) 70%,
-      rgba(223, 232, 254, 0) 100%
-    )
-  );
-
-  @include respond-to(lg) {
+// lg+: each variant swaps in its own wash (the mobile Figma radial above is for below lg only).
+@include respond-to(lg) {
+  // Flat CSS wash above the photo (never baked into the image), strongest over the copy (left).
+  .washFlat::after {
     background: linear-gradient(
       90deg,
       rgba(223, 232, 254, 1) 0%,
-      rgba(223, 232, 254, .98) 35%,
+      rgba(223, 232, 254, 0.98) 35%,
       rgba(223, 232, 254, 0.7) 50%,
       rgba(223, 232, 254, 0.3) 60%,
       rgba(223, 232, 254, 0) 70%
     );
   }
-}
 
-// Framed heroes (Figma 6342:27253): radial wash centred on the left edge (Figma 6362:28751), 1316×2652 radii in a 1520×848 box.
-.overlayFramed {
-  @include respond-to(lg) {
+  // Framed heroes (Figma 6342:27253): radial wash centred on the left edge (Figma 6362:28751), 1316×2652 radii in a 1520×848 box.
+  .washFramed::after {
     background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(131.56 0 0 265.15 0.41 432.23)'><stop stop-color='rgba(204,218,255,1)' offset='0.3662'/><stop stop-color='rgba(237,242,255,0.5)' offset='0.74256'/><stop stop-color='rgba(237,242,255,0)' offset='1'/></radialGradient></defs></svg>")
       center / 100% 100% no-repeat;
   }
-}
 
-// Figma radial overlay (fading from the bottom-left corner), exported from 6079:28651 and mirrored.
-.overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  // Small screens: the copy covers the photo, so a stronger wash keeps it readable.
-  background: linear-gradient(180deg, rgba(223, 232, 254, 0.96) 0%, rgba(223, 232, 254, 0.88) 70%, rgba(223, 232, 254, 0.6) 100%);
-
-  @include respond-to(lg) {
+  // Figma radial overlay (fading from the bottom-left corner), exported from 6079:28651 and mirrored.
+  .washLegacy::after {
     background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(103.45 -60.65 -92.866 -158.4 0 848)'><stop stop-color='rgba(223,232,254,1)' offset='0.35645'/><stop stop-color='rgba(245,248,255,0.5)' offset='0.7565'/><stop stop-color='rgba(254,254,254,0)' offset='1'/></radialGradient></defs></svg>")
       center / 100% 100% no-repeat;
   }
-}
 
-// Non-mirrored counterpart (Figma 6079:30662, gradient object 6079:30664). Figma's own gradient
-// handles are rotated/skewed, not axis-aligned, so a plain CSS radial-gradient() (which can only
-// scale on x/y, not rotate) collapses it into a vertical fade — the SVG gradientTransform matrix
-// is required to reproduce the true diagonal wash. Figma renders this layer flipped horizontally
-// (rotate-180 + scaleY(-1), net scaleX(-1)) over the box; scaleX(-1) here replicates that.
-.overlayUnmirrored {
-  @include respond-to(lg) {
+  // Non-mirrored counterpart (Figma 6079:30662, gradient object 6079:30664). Figma's own gradient
+  // handles are rotated/skewed, not axis-aligned, so a plain CSS radial-gradient() (which can only
+  // scale on x/y, not rotate) collapses it into a vertical fade — the SVG gradientTransform matrix
+  // is required to reproduce the true diagonal wash. Figma renders this layer flipped horizontally
+  // (rotate-180 + scaleY(-1), net scaleX(-1)) over the box; scaleX(-1) here replicates that.
+  .washLegacyUnmirrored::after {
     transform: scaleX(-1);
     background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect x='0' y='0' height='100%' width='100%' fill='url(%23g2)' opacity='1'/><defs><radialGradient id='g2' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(-147.2 -69.4 106.26 -225.39 1520 848)'><stop stop-color='rgba(223,232,254,1)' offset='0.42521'/><stop stop-color='rgba(245,248,255,0.5)' offset='0.7565'/><stop stop-color='rgba(254,254,254,0)' offset='1'/></radialGradient></defs></svg>")
       center / 100% 100% no-repeat;
@@ -181,5 +159,36 @@
   @include respond-to(lg) {
     padding-top: 0;
     padding-bottom: 0;
+  }
+}
+
+// Opt-in (`mobilePortraitCrop`) for the tall transparent-top mobile banners, wider phones / small tablets: the photo scales with the width
+// (0.904 × box width tall), so the banner grows to hold the whole picture below the copy (470px) and
+// the photo is bottom-anchored with a faded top edge — it is never centre-cropped.
+@media (min-width: 431px) and (max-width: 1023.98px) {
+  .photoPortrait.photoDedicated::before {
+    background-position: center bottom;
+    $photo-top: 470px;
+    -webkit-mask-image: linear-gradient(180deg, transparent $photo-top, #000 calc(#{$photo-top} + 140px));
+    mask-image: linear-gradient(180deg, transparent $photo-top, #000 calc(#{$photo-top} + 140px));
+  }
+}
+
+@media (min-width: 431px) and (max-width: 1023.98px) {
+  .banner:has(.photoPortrait) {
+    min-height: calc(470px + 0.904 * (100vw - 16px));
+  }
+}
+
+// Up to 430px the box is ~Figma's 398×880, so the crop is tiny — but centring still shaved the photo's
+// bottom edge; anchor it to the bottom so the photo is never cut there.
+@media (max-width: 430.98px) {
+  .photoPortrait.photoDedicated::before {
+    background-position: center bottom;
+    background-size: 100% auto;
+    // The asset's photo starts 59% down and is 0.904 × the box width tall; fade its hard top edge.
+    $photo-top: calc(100% - 0.904 * (100vw - 16px));
+    -webkit-mask-image: linear-gradient(180deg, transparent $photo-top, #000 calc(#{$photo-top} + 90px));
+    mask-image: linear-gradient(180deg, transparent $photo-top, #000 calc(#{$photo-top} + 90px));
   }
 }
