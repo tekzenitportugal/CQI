@@ -21,6 +21,7 @@
   @include respond-to(lg) {
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-end;
   }
 
   @media (max-width: 1023.98px) {
@@ -53,13 +54,6 @@
   @include body-lg;
   font-size: clamp(18px, 1.5625vw, 24px);
   color: var(--color-antracite-300);
-}
-
-// Figma: the button sits 97px down, level with the description
-.cta {
-  @include respond-to(lg) {
-    margin-top: 97px;
-  }
 }
 
 // Figma mobile ("CARDS - PRODUCT OVERVIEW - mobile", 6225:43874): same peeking

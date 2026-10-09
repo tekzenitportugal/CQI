@@ -51,6 +51,11 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+
+  // Desktop: rows touch, so the "With CQI" blocks read as one continuous blue column.
+  @include respond-to(md) {
+    gap: 0;
+  }
 }
 
 .row {
@@ -86,7 +91,7 @@
   }
 
   @include respond-to(md) {
-    padding-block: 16px;
+    padding-block: 24px;
   }
 }
 
@@ -103,7 +108,7 @@
   }
 
   @include respond-to(md) {
-    padding-block: 16px;
+    padding-block: 24px;
   }
 }
 
@@ -120,8 +125,9 @@
   }
 
   @include respond-to(md) {
-    padding: 16px;
-    border-radius: 4px;
+    align-self: stretch;
+    padding: 24px 16px;
+    border-radius: 0;
     background: var(--color-blue-50);
   }
 }

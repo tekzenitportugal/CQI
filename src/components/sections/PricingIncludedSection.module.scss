@@ -29,15 +29,28 @@
   max-width: 950px;
   margin: 0 auto;
 
+  // Desktop: one shared row track per line (4 rows + the closing rule), so each right-hand
+  // rule sits at exactly the same height as its left-hand twin however the copy wraps.
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(5, auto);
+    column-gap: 20px;
   }
 }
 
 .list {
   flex: 1 1 0;
   min-width: 0;
+
+  // .columns prefix outranks RuledRowsList's own flex layout.
+  @include respond-to(lg) {
+    .columns > & {
+      display: grid;
+      grid-row: 1 / span 5;
+      grid-template-rows: subgrid;
+    }
+  }
 
   // Figma (6362:29318): 16px between each rule and the text, regular 17.5px copy at 1.3.
   --ruled-item-padding: 16px;

@@ -20,6 +20,7 @@ export const verifiedCxAnalytics: CapabilityPageData = {
   heroImageUnoptimized: true,
   heroMockup: true,
   heroMobileFill: true,
+  heroImageCentered: true,
   features: {
     eyebrow: 'What it does',
     title:

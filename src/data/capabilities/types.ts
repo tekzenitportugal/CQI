@@ -23,6 +23,8 @@ export type CapabilityPageData = {
   heroImageBehindGradient?: boolean;
   /** Below lg, crop the image's transparent margins so the device spans the card's full width (inset variant). */
   heroMobileFill?: boolean;
+  /** Desktop: vertically centre the cutout between the nav and the bottom of the hero (instead of bottom-anchoring). */
+  heroImageCentered?: boolean;
   /** Set for pages still using the right-anchored product mockup cutout over the plain gradient, instead of a full-bleed photo. */
   heroMockup?: boolean;
   features: CapabilityFeaturesData;

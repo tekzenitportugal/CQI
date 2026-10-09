@@ -132,6 +132,23 @@
   }
 }
 
+// Desktop: invisible hit area extending below and beside each trigger, so the pointer stays
+// "inside" the nav while it travels down toward the dropdown panel.
+.trigger {
+  @include respond-to(lg) {
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: -32px;
+      left: -8px;
+      right: -8px;
+    }
+  }
+}
+
 .trigger:hover {
   color: var(--color-blue-200);
 }

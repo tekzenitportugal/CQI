@@ -309,3 +309,12 @@
 }
 
 
+
+// Cutout centred vertically in the space between the nav and the bottom of the card (lg+ only).
+.heroBoxImageCentered {
+  @include respond-to(lg) {
+    top: calc(var(--header-offset-top) + var(--header-height)) !important;
+    height: calc(100% - var(--header-offset-top) - var(--header-height)) !important;
+    object-position: right center;
+  }
+}

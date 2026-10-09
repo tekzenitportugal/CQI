@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import type { CtaLink } from '@/types/content';
-import { Button } from '@/components/ui/Button';
+import { GhostLink } from '@/components/ui/GhostLink';
 import { Container } from '@/components/ui/Container';
 import { highlightText } from '@/utils/highlightText';
 import styles from './LayerStackSection.module.scss';
@@ -109,7 +109,7 @@ export function LayerStackSection({ data }: LayerStackSectionProps) {
             </div>
             <p className={styles.description}>{data.description}</p>
           </div>
-          <Button label={data.cta.label} href={data.cta.href} variant={data.cta.variant ?? 'secondary'} className={styles.cta} />
+          <GhostLink label={data.cta.label} href={data.cta.href} />
         </div>
 
         <div

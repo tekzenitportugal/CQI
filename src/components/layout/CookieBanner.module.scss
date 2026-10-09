@@ -1,4 +1,4 @@
-// Figma "cookies" card: 425px wide, 32px padding, 40px between copy and button, 50px from the right edge.
+// Figma "cookies" card (6456:40401): 425px wide, 24px padding, 32px between copy and button.
 .banner {
   position: fixed;
   z-index: 200;
@@ -6,9 +6,9 @@
   bottom: 20px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   width: min(425px, calc(100vw - 2 * var(--container-padding)));
-  padding: 32px;
+  padding: 24px;
   border-radius: 20px;
   background: #252a3b;
   color: var(--color-white);
@@ -35,7 +35,7 @@
 .title {
   margin: 0;
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.2;
 }
@@ -43,13 +43,9 @@
 .text {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 17.5px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.4;
-
-  @media (max-width: 575px) {
-    font-size: 15px;
-  }
 }
 
 .accept {

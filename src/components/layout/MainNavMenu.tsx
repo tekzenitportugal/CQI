@@ -17,7 +17,7 @@ type MainNavMenuProps = {
 
 // How long the dropdown stays open after the cursor leaves, so it survives the trip from
 // the trigger down to the panel even when the cursor drifts outside the hover zone.
-const CLOSE_DELAY_MS = 300;
+const CLOSE_DELAY_MS = 600;
 
 function isActivePath(pathname: string, href: string) {
   if (href === '/') return pathname === '/';

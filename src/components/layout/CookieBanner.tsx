@@ -40,9 +40,7 @@ export function CookieBanner() {
         <p className={styles.title}>We use cookies!</p>
         <p className={styles.text}>
           We use cookies to enhance your browsing experience, serve personalized ads or content, and analyze our
-          traffic.
-          <br />
-          By proceeding into the website, you consent to our use of cookies.
+          traffic. By proceeding into the website, you consent to our use of cookies.
         </p>
       </div>
       <button type="button" className={styles.accept} onClick={dismiss}>

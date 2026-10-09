@@ -20,6 +20,8 @@ type GradientHeroProps = {
   imageBehindGradient?: boolean | 'wide';
   /** Inset variant, below lg: crop the image's transparent margins so the device spans the card width. */
   mobileFill?: boolean;
+  /** Inset variant, lg+: vertically centre the cutout between the nav and the bottom of the hero. */
+  imageCentered?: boolean;
   /** Figma mobile photo hero: a dedicated full-card photo (below lg) with a blue wash over the copy, replacing the stacked image. */
   mobileBackdrop?: string;
   /** Figma mobile cutout (inset variant): a wide mockup pinned to the bottom-left of the hero card, cropped by it. */
@@ -41,6 +43,7 @@ export function GradientHero({
   imageUnoptimized,
   imageBehindGradient,
   mobileFill,
+  imageCentered,
   mobileBackdrop,
   mobileImage,
   mobileCrop,
@@ -69,7 +72,7 @@ export function GradientHero({
       >
         <div className={`${styles.heroBox} ${photo ? styles.photoBox : ''} ${imageBehindGradient ? styles.heroBoxFade : ''} ${imageBehindGradient === 'wide' ? styles.heroBoxFadeWide : ''}`.trim()} aria-hidden="true">
           {image && !photo && (
-            <Image src={image} alt="" fill priority unoptimized={imageUnoptimized} className={styles.heroBoxImage} sizes="100vw" />
+            <Image src={image} alt="" fill priority unoptimized={imageUnoptimized} className={`${styles.heroBoxImage} ${imageCentered ? styles.heroBoxImageCentered : ""}`.trim()} sizes="100vw" />
           )}
         </div>
         <Container

@@ -130,10 +130,10 @@
     border-radius: 50%;
     background: var(--color-white);
     border: 1px dashed var(--color-antracite-100);
-    transition: border-color 0.3s ease;
+    transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
 
     &::before {
-      transition: background-color 0.3s ease;
+      transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
       content: '';
       position: absolute;
       top: 50%;
@@ -147,12 +147,16 @@
   }
 }
 
-// Dot passed by the scroll-progress line: grey centre turns blue.
+// Dot reached by the scroll-progress line: takes the first-stage look (51px, solid ring, 27px blue centre).
 .dotReached {
   @include respond-to(lg) {
-    border-color: var(--color-blue-100);
+    width: 51px;
+    height: 51px;
+    border: 1.5px solid var(--color-antracite-100);
 
     &::before {
+      width: 27px;
+      height: 27px;
       background: var(--color-blue-200);
     }
   }
