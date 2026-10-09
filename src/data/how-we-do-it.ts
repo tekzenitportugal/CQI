@@ -14,10 +14,7 @@ export const howWeDoItData = {
     eyebrow: 'How we do it',
     description:
       'CQI’s verification algorithm connects what customers say, how your teams respond, and what your data records, then surfaces the misalignments between them and points at the root cause.',
-    image: '/images/product/how-we-do-it/hero.webp',
-    mobileImage: '/images/product/how-we-do-it/hero-mobile.webp',
-    imageWidth: 1520,
-    imageHeight: 848,
+    image: '/images/product/how-we-do-it/hero-banner.png',
   } satisfies PageHeroData,
 
   verificationIntro: {

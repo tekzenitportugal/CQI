@@ -25,7 +25,8 @@ export const securityTrustData = {
     eyebrow: 'Security & Trust',
     description:
       'CQI operates as a data processor. Data is processed inside CQI’s own cloud and is anonymised before models run.',
-    image: '/images/product/security-trust/hero.webp',
+    image: '/images/product/security-trust/hero-banner.jpg',
+    imageUnoptimized: true,
     mobileImage: '/images/product/security-trust/hero-mobile.webp',
     // Figma mobile (6225:42967): copy starts at y=216, below the 8px banner inset.
     mobilePaddingTop: 208,

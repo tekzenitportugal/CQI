@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { whoIsItForData } from '@/data/who-is-it-for';
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
-import { PageHeroBanner } from '@/components/sections/PageHeroBanner';
+import { GradientHero } from '@/components/sections/GradientHero';
 import { TeamNeedsSection } from '@/components/sections/TeamNeedsSection';
 import { WhereCqiBelongsSection } from '@/components/sections/WhereCqiBelongsSection';
 import styles from './page.module.scss';
@@ -15,7 +15,14 @@ export const metadata: Metadata = {
 export default function WhoIsItForPage() {
   return (
     <>
-      <PageHeroBanner data={whoIsItForData.hero} />
+      <GradientHero
+        data={whoIsItForData.hero}
+        variant="inset"
+        image={whoIsItForData.hero.image}
+        imageAspectRatio="1520 / 849"
+        imageUnoptimized
+        imageBehindGradient="wide"
+      />
       <div className={styles.body}>
         <TeamNeedsSection data={whoIsItForData.teamNeeds} />
         <WhereCqiBelongsSection data={whoIsItForData.whereBelongs} />

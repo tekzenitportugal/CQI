@@ -23,6 +23,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
   const desktopFrameVars = frame
     ? ({
         '--hero-img-left': `${frame.left}%`,
+        ...(frame.focusX ? { '--hero-img-focus-x': `-${frame.focusX}%` } : {}),
         '--hero-img-top': `${frame.top}%`,
         '--hero-img-width': `${frame.width}%`,
         '--hero-img-height': `${frame.height}%`,
@@ -47,6 +48,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
               alt=""
               fill
               priority
+              unoptimized={data.imageUnoptimized}
               className={`${styles.heroImage} ${styles.desktopOnly} ${frame ? styles.framed : ''} ${frame?.aspect ? styles.framedRatio : ''}`.trim()}
               style={desktopFrameVars}
               sizes="100vw"

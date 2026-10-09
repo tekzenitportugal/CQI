@@ -17,6 +17,10 @@ export type CapabilityPageData = {
   heroImageMobile?: string;
   /** Natural aspect ratio ("w / h") of `heroImage`, used to size it when stacked below the copy on mobile. */
   heroImageAspectRatio?: string;
+  /** Serve `heroImage` as-is, skipping Next's resize/recompress. */
+  heroImageUnoptimized?: boolean;
+  /** Fade the hero gradient over the image's left edge so the image sits behind it and the copy stays readable. */
+  heroImageBehindGradient?: boolean;
   /** Set for pages still using the right-anchored product mockup cutout over the plain gradient, instead of a full-bleed photo. */
   heroMockup?: boolean;
   features: CapabilityFeaturesData;

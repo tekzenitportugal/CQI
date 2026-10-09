@@ -13,6 +13,10 @@ type GradientHeroProps = {
   image?: string;
   /** Natural aspect ratio ("w / h") of `image`, used to size the mobile-stacked copy below lg. */
   imageAspectRatio?: string;
+  /** Serve `image` untouched (no Next resize/recompress). */
+  imageUnoptimized?: boolean;
+  /** Lay a gradient fade over the image's left edge so it sits behind the copy's gradient (inset variant). */
+  imageBehindGradient?: boolean | 'wide';
   /** Figma mobile cutout (inset variant): a wide mockup pinned to the bottom-left of the hero card, cropped by it. */
   mobileImage?: string;
 };
@@ -23,6 +27,8 @@ export function GradientHero({
   variant = 'default',
   image,
   imageAspectRatio,
+  imageUnoptimized,
+  imageBehindGradient,
   mobileImage,
 }:GradientHeroProps) {
   if (variant === 'inset') {
@@ -36,9 +42,9 @@ export function GradientHero({
           } as CSSProperties
         }
       >
-        <div className={styles.heroBox} aria-hidden="true">
+        <div className={`${styles.heroBox} ${imageBehindGradient ? styles.heroBoxFade : ''} ${imageBehindGradient === 'wide' ? styles.heroBoxFadeWide : ''}`.trim()} aria-hidden="true">
           {image && (
-            <Image src={image} alt="" fill priority className={styles.heroBoxImage} sizes="100vw" />
+            <Image src={image} alt="" fill priority unoptimized={imageUnoptimized} className={styles.heroBoxImage} sizes="100vw" />
           )}
         </div>
         <Container
@@ -69,7 +75,7 @@ export function GradientHero({
               style={imageAspectRatio ? ({ '--hero-mobile-aspect': imageAspectRatio } as CSSProperties) : undefined}
               aria-hidden="true"
             >
-              <Image src={image} alt="" fill className={styles.insetMobileGraphicImage} sizes="100vw" />
+              <Image src={image} alt="" fill unoptimized={imageUnoptimized} className={styles.insetMobileGraphicImage} sizes="100vw" />
             </div>
           </Container>
         )}

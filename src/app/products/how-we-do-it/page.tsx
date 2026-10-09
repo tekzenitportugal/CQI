@@ -4,7 +4,7 @@ import { ColourToActionSection } from '@/components/sections/ColourToActionSecti
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
 import { CustomerPulseHowSection } from '@/components/sections/CustomerPulseHowSection';
 import { RiskDecompositionCarouselSection } from '@/components/sections/RiskDecompositionCarouselSection';
-import { PageHeroBanner } from '@/components/sections/PageHeroBanner';
+import { GradientHero } from '@/components/sections/GradientHero';
 import { RiskEngineSection } from '@/components/sections/RiskEngineSection';
 import { RootCauseAnalyticsSection } from '@/components/sections/RootCauseAnalyticsSection';
 import { VerificationAlgorithmSection } from '@/components/sections/VerificationAlgorithmSection';
@@ -18,7 +18,14 @@ export const metadata: Metadata = {
 export default function HowWeDoItPage() {
   return (
     <>
-      <PageHeroBanner data={howWeDoItData.hero} />
+      <GradientHero
+        data={howWeDoItData.hero}
+        variant="inset"
+        image={howWeDoItData.hero.image}
+        imageAspectRatio="1520 / 849"
+        imageUnoptimized
+        imageBehindGradient="wide"
+      />
       <VerificationAlgorithmSection data={howWeDoItData.verificationIntro} />
       <RootCauseAnalyticsSection data={howWeDoItData.rootCause} />
       <CustomerPulseHowSection data={howWeDoItData.customerPulse} />

@@ -16,7 +16,8 @@ export const verifiedCxAnalytics: CapabilityPageData = {
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
   heroImage: '/images/product/verified-cx/hero-banner-verifedcx.png',
-  heroImageAspectRatio: '872 / 742',
+  heroImageAspectRatio: '2412 / 2226',
+  heroImageUnoptimized: true,
   heroMockup: true,
   features: {
     eyebrow: 'What it does',

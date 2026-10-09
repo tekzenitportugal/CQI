@@ -7,12 +7,7 @@ export const whoIsItForData = {
     eyebrow: 'Who is it for?',
     description:
       'CQI is bought by CX and customer success leadership, validated by IT and data, and used every day by operations and the front line. Each of them needs a different thing from the same verified view.',
-    image: '/images/product/who-is-it-for/hero.webp',
-    mobileImage: '/images/product/who-is-it-for/hero-mobile.webp',
-    imageWidth: 1520,
-    imageHeight: 848,
-    // Figma 6342:27253 (mirrored frame): photo 100.64% tall at its native 3:2 ratio (84.2% wide), face kept where Figma has it.
-    desktopImageFrame: { left: 24.6, top: -0.31, width: 84.2, height: 100.64 },
+    image: '/images/product/who-is-it-for/hero-banner.png',
   } satisfies PageHeroData,
 
   teamNeeds: {

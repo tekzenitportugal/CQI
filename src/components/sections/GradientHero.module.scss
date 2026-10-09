@@ -203,3 +203,43 @@
     padding-bottom: 80px;
   }
 }
+
+// Image sits behind a gradient layer: a wash that is solid
+// under the copy and fades out to reveal the photo (same stops as PageHeroBanner's .overlayFlat; lg+ only —
+// below lg the image is stacked under the copy instead).
+.heroBoxFade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+    background: linear-gradient(
+      90deg,
+      rgba(223, 232, 254, 1) 0%,
+      rgba(223, 232, 254, 0.98) 35%,
+      rgba(223, 232, 254, 0.7) 50%,
+      rgba(223, 232, 254, 0.3) 60%,
+      rgba(223, 232, 254, 0) 70%
+    );
+  }
+}
+
+// Wider wash for photos whose transparent left margin is narrow (e.g. How We Do It):
+// holds solid longer and fades out later so the photo's left edge never shows through.
+.heroBoxFadeWide::after {
+  @include respond-to(lg) {
+    background: linear-gradient(
+      90deg,
+      rgba(223, 232, 254, 1) 0%,
+      rgba(223, 232, 254, 1) 45%,
+      rgba(223, 232, 254, 0.85) 55%,
+      rgba(223, 232, 254, 0.5) 63%,
+      rgba(223, 232, 254, 0.2) 69%,
+      rgba(223, 232, 254, 0) 75%
+    );
+  }
+}

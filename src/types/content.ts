@@ -107,6 +107,8 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   image?: string;
   /** Dedicated portrait crop for below lg; falls back to `image` (CSS-cropped) when omitted. */
   mobileImage?: string;
+  /** Serve `image` untouched (no Next resize/recompress). */
+  imageUnoptimized?: boolean;
   imageWidth?: number;
   imageHeight?: number;
   /** Below lg only: top padding (px) of the copy, measured from the banner's content edge. */
@@ -126,6 +128,8 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
     height: number;
     /** Native width/height ratio; when set, width is derived from height so the photo is never distorted. */
     aspect?: number;
+    /** % of the image's own width that sits at `left`, so a focal point stays at the same spot of the box at any viewport width. */
+    focusX?: number;
   };
 };
 
