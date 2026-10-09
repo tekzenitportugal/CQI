@@ -12,7 +12,6 @@ type IntegrationsPartnersSectionProps = {
   data: IntegrationsPartnersData;
 };
 
-const LOGO_MAX_HEIGHT = 30;
 
 /**
  * Figma "integrations": a category tab bar, an intro line and a card grid, all driven by
@@ -56,13 +55,7 @@ export function IntegrationsPartnersSection({ data }: IntegrationsPartnersSectio
                       width={card.logoWidth}
                       height={card.logoHeight}
                       className={styles.logoImage}
-                      style={{
-                        // Scale from Figma's own per-brand pixel size (not the source
-                        // file's natural ratio, which can differ) so declared dimensions
-                        // are never silently overridden by the browser's auto-sizing.
-                        width: card.logoWidth * Math.min(1, LOGO_MAX_HEIGHT / card.logoHeight),
-                        height: Math.min(card.logoHeight, LOGO_MAX_HEIGHT),
-                      }}
+                      style={{ height: card.logoHeight, width: 'auto' }}
                     />
                   </div>
                 ) : (
