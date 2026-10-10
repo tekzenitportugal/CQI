@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
 export const runtime = 'nodejs';
 
@@ -51,12 +52,15 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Please select a sector.' }, { status: 400 });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
+  const host = process.env.SMTP_HOST;
+  const port = Number(process.env.SMTP_PORT) || 587;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
   const to = process.env.DEMO_REQUEST_TO;
-  const from = process.env.DEMO_REQUEST_FROM || 'CQI Website <onboarding@resend.dev>';
+  const from = process.env.SMTP_FROM || user;
 
-  if (!apiKey || !to) {
-    console.error('request-demo: RESEND_API_KEY or DEMO_REQUEST_TO is not set.');
+  if (!host || !user || !pass || !to || !from) {
+    console.error('request-demo: SMTP_HOST, SMTP_USER, SMTP_PASS or DEMO_REQUEST_TO is not set.');
     return NextResponse.json({ error: 'Email service is not configured.' }, { status: 500 });
   }
 
@@ -81,24 +85,24 @@ export async function POST(request: Request) {
     </table>`;
   const text = rows.map(([label, value]) => `${label}: ${value}`).join('\n');
 
-  const response = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+  const transporter = nodemailer.createTransport({
+    host,
+    port,
+    secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : port === 465,
+    auth: { user, pass },
+  });
+
+  try {
+    await transporter.sendMail({
       from,
       to: to.split(',').map((address) => address.trim()),
-      reply_to: workEmail,
+      replyTo: workEmail,
       subject: `Demo request${organisation ? ` — ${organisation}` : ''}`,
       html,
       text,
-    }),
-  });
-
-  if (!response.ok) {
-    console.error('request-demo: Resend error', response.status, await response.text());
+    });
+  } catch (error) {
+    console.error('request-demo: SMTP error', error);
     return NextResponse.json(
       { error: 'We could not send your request. Please try again.' },
       { status: 502 },
