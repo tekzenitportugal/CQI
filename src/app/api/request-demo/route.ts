@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export const runtime = 'nodejs';
@@ -92,22 +92,21 @@ export async function POST(request: Request) {
     auth: { user, pass },
   });
 
-  try {
-    await transporter.sendMail({
-      from,
-      to: to.split(',').map((address) => address.trim()),
-      replyTo: workEmail,
-      subject: `Demo request${organisation ? ` — ${organisation}` : ''}`,
-      html,
-      text,
-    });
-  } catch (error) {
-    console.error('request-demo: SMTP error', error);
-    return NextResponse.json(
-      { error: 'We could not send your request. Please try again.' },
-      { status: 502 },
-    );
-  }
+  // Reply right away and deliver the email after the response, so the thank-you shows promptly.
+  after(async () => {
+    try {
+      await transporter.sendMail({
+        from,
+        to: to.split(',').map((address) => address.trim()),
+        replyTo: workEmail,
+        subject: `Demo request${organisation ? ` — ${organisation}` : ''}`,
+        html,
+        text,
+      });
+    } catch (error) {
+      console.error('request-demo: SMTP error', error);
+    }
+  });
 
   return NextResponse.json({ ok: true });
 }
