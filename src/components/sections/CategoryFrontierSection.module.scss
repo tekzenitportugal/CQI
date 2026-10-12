@@ -18,10 +18,7 @@
   gap: 24px;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 40px;
+    @include split-row(flex-start, 40px);
   }
 }
 
@@ -90,17 +87,7 @@
 }
 
 .tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: var(--color-light-blue-75);
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-400);
-  white-space: nowrap;
+  @include tag-chip;
 }
 
 .cardCopy {
@@ -139,18 +126,11 @@
   gap: 24px;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 48px;
+    @include split-row;
   }
 }
 
 .note {
   max-width: 539px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-200);
+  @include footnote;
 }

@@ -51,10 +51,7 @@
 }
 
 .sub {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 519px;
+  @include narrow-stack;
 }
 
 .label {

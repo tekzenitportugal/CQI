@@ -20,10 +20,7 @@
 
   // Figma: 587 + 20 + 587 = 1194px, centred in the container.
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    @include split-row(center, 20px);
     max-width: calc(1194px + 2 * var(--container-padding));
   }
 }
@@ -48,10 +45,7 @@
 }
 
 .sub {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 519px;
+  @include narrow-stack;
 }
 
 .label {

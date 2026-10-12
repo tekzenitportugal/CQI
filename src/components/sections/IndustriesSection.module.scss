@@ -17,10 +17,7 @@
   align-items: stretch;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: clamp(40px, 9.9vw, 142px);
+    @include split-row(flex-end, clamp(40px, 9.9vw, 142px));
   }
 
   @media (max-width: 1023.98px) {

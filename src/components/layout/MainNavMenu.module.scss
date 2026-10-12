@@ -303,16 +303,6 @@
   color: var(--color-blue-200);
 }
 
-.mobileSection {
-  @include respond-to(lg) {
-    display: none;
-  }
-}
-
-.mobileSectionOpen .panelMobile {
-  display: flex;
-}
-
 // Figma pins the CTA row to the bottom of the full-screen mobile menu; when
 // an expanded submenu pushes the list taller than the viewport, overflow-y
 // on .pillMobile lets the user scroll down to it instead.

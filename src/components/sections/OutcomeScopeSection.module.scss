@@ -157,11 +157,7 @@
 }
 
 .footnote {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-200);
+  @include footnote;
   max-width: 466px;
 }
 

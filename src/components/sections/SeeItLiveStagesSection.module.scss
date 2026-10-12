@@ -102,10 +102,7 @@
   gap: 64px;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 120px;
+    @include split-row(center, 120px);
   }
 }
 
@@ -294,11 +291,7 @@
 
 .disclaimer {
   margin: 0;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-200);
+  @include footnote;
 }
 
 // Figma mobile uses its own exports of the stage screenshots.

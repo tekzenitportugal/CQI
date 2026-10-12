@@ -23,10 +23,7 @@
   }
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 48px;
+    @include split-row;
   }
 }
 

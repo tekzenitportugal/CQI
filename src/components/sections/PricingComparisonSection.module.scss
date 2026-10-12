@@ -17,10 +17,7 @@
   gap: 26px;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
+    @include split-row(flex-start, 40px);
   }
 }
 
@@ -67,21 +64,14 @@
   gap: 16px;
 
   @include respond-to(md) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
+    @include split-row(center, 24px);
   }
 }
 
 .footnote {
   margin: 0;
   max-width: 772px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-200);
+  @include footnote;
 }
 
 .link {

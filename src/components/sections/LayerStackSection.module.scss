@@ -146,10 +146,7 @@
   gap: 16px;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 48px;
+    @include split-row(center);
   }
 }
 
@@ -170,17 +167,7 @@
 }
 
 .tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: var(--color-light-blue-75);
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-400);
-  white-space: nowrap;
+  @include tag-chip;
 }
 
 // Figma layer colours

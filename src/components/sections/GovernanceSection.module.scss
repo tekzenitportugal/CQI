@@ -24,10 +24,7 @@
   }
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 48px;
+    @include split-row;
   }
 }
 
@@ -43,10 +40,7 @@
 }
 
 .sub {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 519px;
+  @include narrow-stack;
 }
 
 .label {

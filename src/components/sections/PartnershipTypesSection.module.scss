@@ -28,10 +28,7 @@
 
   // Figma: the whole block is 1194px wide (587 + 20 + 587), centred in the container.
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 48px;
+    @include split-row(flex-end);
     max-width: 1194px;
     margin-inline: auto;
   }

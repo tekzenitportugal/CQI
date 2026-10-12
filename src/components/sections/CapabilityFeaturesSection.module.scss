@@ -15,10 +15,7 @@
   gap: 120px;
 
   @media (min-width: 1024px) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: clamp(40px, 7.8vw, 120px);
+    @include split-row(center, clamp(40px, 7.8vw, 120px));
   }
 }
 

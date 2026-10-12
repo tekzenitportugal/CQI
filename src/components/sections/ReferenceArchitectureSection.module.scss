@@ -24,10 +24,7 @@
   }
 
   @include respond-to(lg) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
+    @include split-row(flex-start, 40px);
   }
 }
 
@@ -164,10 +161,7 @@
   margin-top: auto;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 48px;
+    @include split-row(flex-end);
     margin-top: 0;
   }
 }
@@ -207,9 +201,5 @@
   @include respond-to(lg) {
     margin-top: -31px;
   }
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-200);
+  @include footnote;
 }

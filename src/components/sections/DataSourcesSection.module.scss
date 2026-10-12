@@ -17,10 +17,7 @@
   gap: 26px;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 40px;
+    @include split-row(flex-start, 40px);
   }
 }
 

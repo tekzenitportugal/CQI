@@ -126,3 +126,43 @@ $hero-mobile-wash: radial-gradient(
   rgba(237, 242, 255, 0.5) 75.14%,
   rgba(237, 242, 255, 0) 100%
 );
+
+// Header-style row that splits copy/actions at lg (below lg the parent's column layout applies).
+@mixin split-row($align: flex-start, $gap: 48px) {
+  flex-direction: row;
+  align-items: $align;
+  justify-content: space-between;
+  gap: $gap;
+}
+
+// Small grey 12px note under cards, tables and stat rows.
+@mixin footnote {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+}
+
+// Narrow label + description stack used for section sub-headings.
+@mixin narrow-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 519px;
+}
+
+// Light-blue rounded tag chip.
+@mixin tag-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--color-light-blue-75);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-400);
+  white-space: nowrap;
+}

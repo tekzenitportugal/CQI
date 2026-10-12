@@ -21,10 +21,7 @@
 
   // The ghost link sits on the baseline of the heading block (bottom-aligned with the left text).
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 48px;
+    @include split-row(flex-end);
   }
 }
 

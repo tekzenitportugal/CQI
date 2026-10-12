@@ -19,10 +19,7 @@
 
   // Links sit on the bottom line of the title text.
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 48px;
+    @include split-row(flex-end);
   }
 
   @media (max-width: 1023.98px) {
@@ -199,11 +196,7 @@
 }
 
 .footnote {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-200);
+  @include footnote;
   max-width: 466px;
 
   @media (max-width: 1023.98px) {

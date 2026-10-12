@@ -202,11 +202,7 @@
   max-width: 650px;
   margin: 0;
   text-align: left;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-200);
+  @include footnote;
 
   @media (max-width: 767.98px) {
     align-self: stretch;

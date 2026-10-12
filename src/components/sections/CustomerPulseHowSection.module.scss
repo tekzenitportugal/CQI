@@ -114,10 +114,7 @@
   margin-inline: auto;
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 19px;
+    @include split-row(center, 19px);
   }
 }
 
@@ -132,11 +129,7 @@
 }
 
 .featuresFootnote {
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-200);
+  @include footnote;
 }
 
 .media {

@@ -46,10 +46,7 @@
   }
 
   @include respond-to(lg) {
-    flex-direction: row;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 40px;
+    @include split-row(flex-end, 40px);
   }
 }
 
