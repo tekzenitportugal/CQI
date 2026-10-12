@@ -34,7 +34,7 @@ function Control({ direction, enabled, onClick }: ControlProps) {
   );
 }
 
-/** "What CQI contributes": heading + intro, then a carousel card (Figma "USE CASE (AIRLINES)", 2 slides). */
+/** "What CQI contributes": heading + intro, then a carousel card (Figma "USE CASE (AIRLINES) - V2", 3 slides). */
 export function AirlinesContributesSection({ data }: AirlinesContributesSectionProps) {
   const total = data.slides.length;
   const [index, setIndex] = useState(0);
@@ -67,15 +67,10 @@ export function AirlinesContributesSection({ data }: AirlinesContributesSectionP
         <article className={styles.card}>
           <div className={styles.cardCopy}>
             <div className={styles.cardIntro}>
+              <p className={styles.cardTag}>{slide.tag}</p>
               <h3 className={styles.cardTitle}>{slide.title}</h3>
               <p className={styles.cardDescription}>{slide.description}</p>
             </div>
-            {slide.outcome && (
-              <div className={styles.outcome}>
-                <p className={styles.outcomeLabel}>outcome</p>
-                <p className={styles.outcomeText}>{slide.outcome}</p>
-              </div>
-            )}
           </div>
           <div className={styles.cardMedia}>
             <Image
@@ -84,7 +79,7 @@ export function AirlinesContributesSection({ data }: AirlinesContributesSectionP
               alt={slide.title}
               fill
               unoptimized
-              className={styles.cardImage}
+              className={`${styles.cardImage} ${slide.imageFocusLow ? styles.cardImageLow : ""}`}
               sizes="(min-width: 1024px) 707px, 100vw"
             />
           </div>

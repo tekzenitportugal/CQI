@@ -115,25 +115,32 @@ export const airlinesPageData = {
     titleHighlight: ['change the outcome'],
     description:
       'CQI connects signals across the passenger lifecycle, so your teams can understand the experience, recognize eroding loyalty and respond with context.',
-    // Figma "USE CASE (AIRLINES)" (6225:34597): two slides, no step tags.
+    // Figma "USE CASE (AIRLINES) - V2" (6561:38599): three slides with step tags, no outcome block.
     slides: [
       {
-        title: 'Recover the passenger, not the complaint',
+        tag: '1. Sense',
+        title: 'Connect the experience',
         description:
-          'A passenger is refused the lounge, sits through a 60-minute delay, finds the Wi-Fi down and misses a connection, and files nothing. CQI scores the lifecycle from operational events, flags the erosion and routes a tailored recovery action to the right person.',
-        outcome:
-          'Retention recovered before the next booking decision, with the action verified in billing or loyalty rather than assumed.',
-        image: '/images/solutions/airlines/scenario-1.webp',
+          'Bring together what happens across booking, check-in, the gate, onboard and beyond. See the friction that a survey can miss.',
+        image: '/images/solutions/airlines/contribute-sense.png',
       },
       {
-        title: 'Turn on the light at the handoff',
+        tag: '2. Flag',
+        title: 'Make retention risk visible',
         description:
-          'A delay, a downgrade or a lost bag on leg one never travels with the passenger onto leg two, even inside the same alliance. The second carrier sees a confirmed seat and treats a frustrated flyer as new.',
-        outcome:
-          'Only the derived signal is shared, never raw data, so each carrier keeps its own systems and commercial independence.',
-        image: '/images/solutions/airlines/scenario-2.png',
+          'Identify whose trust is eroding and why. Help teams prioritize the passengers who need attention before they go silent.',
+        image: '/images/solutions/airlines/contribute-flag.png',
       },
-    ],
+      {
+        tag: '3. Fix',
+        title: 'Act with the full context',
+        description:
+          'Guide the right team toward a tailored recovery action, using your airline’s playbook while the relationship is still recoverable.',
+        // Portrait photo (2304 × 4096); Figma crops it low so the aircraft sits in the frame.
+        image: '/images/solutions/airlines/contribute-fix.png',
+        imageFocusLow: true,
+      },
+    ] as { tag: string; title: string; description: string; image: string; imageFocusLow?: boolean }[],
   },
 
   journey: {

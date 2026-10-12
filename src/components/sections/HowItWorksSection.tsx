@@ -23,6 +23,7 @@ type DotNodes = {
   ring: SVGCircleElement | null;
   core: SVGCircleElement | null;
   num: SVGTextElement | null;
+  hit: SVGCircleElement | null;
 };
 
 function renderDot(node: DotNodes | undefined, m: DotModel) {
@@ -46,6 +47,12 @@ function renderDot(node: DotNodes | undefined, m: DotModel) {
   node.num.setAttribute("y", y.toFixed(2));
   node.num.setAttribute("font-size", m.font.toFixed(2));
   node.num.textContent = m.label;
+  if (node.hit) {
+    node.hit.setAttribute("cx", x.toFixed(2));
+    node.hit.setAttribute("cy", y.toFixed(2));
+    // Faded-out dots (and the active one) are not jump targets.
+    node.hit.style.pointerEvents = m.opacity > 0.4 && m.active < 0.5 ? "auto" : "none";
+  }
   node.line.setAttribute("x1", m.line.from.x.toFixed(2));
   node.line.setAttribute("y1", m.line.from.y.toFixed(2));
   node.line.setAttribute("x2", m.line.to.x.toFixed(2));
@@ -74,12 +81,18 @@ const STEP_KEYS: Record<string, 1 | -1> = {
 };
 
 const TOUCH_THRESHOLD_PX = 30;
+const SWIPE_THRESHOLD_PX = 40;
+// Below lg the diagram is not pinned, so the numbers (tap) and horizontal swipes drive it.
+const isCompactViewport = () => window.matchMedia("(max-width: 1023.98px)").matches;
 
 export function HowItWorksSection({ data }: HowItWorksSectionProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const dotNodesRef = useRef<DotNodes[]>(
-    data.stages.map(() => ({ line: null, ring: null, core: null, num: null })),
+    data.stages.map(() => ({ line: null, ring: null, core: null, num: null, hit: null })),
   );
+  const goToRef = useRef<(target: number) => void>(() => {});
+  const stageRef = useRef(0);
+  const swipeRef = useRef({ x: 0, y: 0 });
   const itemNodesRef = useRef<(HTMLLIElement | null)[]>(
     data.stages.map(() => null),
   );
@@ -130,21 +143,32 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
       return rect.top <= 0 && rect.bottom > window.innerHeight;
     };
 
-    /** Returns true when the input was consumed (caller should preventDefault). */
-    const attemptStep = (direction: 1 | -1): boolean => {
-      if (anim) return true;
-      const next = Math.min(Math.max(stage + direction, 0), CONFIG.count - 1);
+    /** Eases to any stage; returns false when already there. */
+    const goTo = (next: number): boolean => {
       if (next === stage) return false;
+      const distance = Math.abs(next - p);
       stage = next;
+      stageRef.current = next;
       anim = {
         from: p,
         to: next,
         start: performance.now(),
-        duration: reduceMotion ? 0 : CONFIG.stepDurationMs,
+        duration: reduceMotion ? 0 : CONFIG.stepDurationMs * (1 + 0.3 * (distance - 1)),
       };
       cancelAnimationFrame(rafId);
       rafId = requestAnimationFrame(tick);
       return true;
+    };
+    goToRef.current = (target) => {
+      if (anim) return;
+      goTo(Math.min(Math.max(target, 0), CONFIG.count - 1));
+    };
+
+    /** Returns true when the input was consumed (caller should preventDefault). */
+    const attemptStep = (direction: 1 | -1): boolean => {
+      if (anim) return true;
+      const next = Math.min(Math.max(stage + direction, 0), CONFIG.count - 1);
+      return goTo(next);
     };
 
     const onReduceMotionChange = () => {
@@ -230,7 +254,20 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
                 className={styles.heading}
               />
 
-              <div className={styles.diagram} aria-label="Five stages diagram">
+              <div
+                className={styles.diagram}
+                aria-label="Five stages diagram"
+                onTouchStart={(e) => {
+                  swipeRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+                }}
+                onTouchEnd={(e) => {
+                  if (!isCompactViewport()) return;
+                  const dx = swipeRef.current.x - e.changedTouches[0].clientX;
+                  const dy = swipeRef.current.y - e.changedTouches[0].clientY;
+                  if (Math.abs(dx) < SWIPE_THRESHOLD_PX || Math.abs(dx) < Math.abs(dy)) return;
+                  goToRef.current(stageRef.current + (dx > 0 ? 1 : -1));
+                }}
+              >
                 <svg
                   className={styles.art}
                   viewBox="0 0 780 440"
@@ -323,6 +360,14 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
                           className={styles.num}
                           ref={(el) => {
                             dotNodesRef.current[i].num = el;
+                          }}
+                        />
+                        <circle
+                          className={styles.hit}
+                          r={22}
+                          onClick={() => isCompactViewport() && goToRef.current(i)}
+                          ref={(el) => {
+                            dotNodesRef.current[i].hit = el;
                           }}
                         />
                       </g>

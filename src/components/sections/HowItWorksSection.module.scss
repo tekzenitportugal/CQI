@@ -94,6 +94,11 @@ $sticky-top-space: 120px;
   --u: calc(100cqw / 780);
   --text-boost: 1;
 
+  // Let horizontal swipes reach the diagram while vertical scrolling stays native.
+  @media (max-width: 1023.98px) {
+    touch-action: pan-y;
+  }
+
   @container (max-width: 480px) {
     --text-boost: 1.15;
   }
@@ -134,6 +139,16 @@ $sticky-top-space: 120px;
   fill: var(--color-white);
   stroke: var(--color-antracite-100);
   stroke-width: 1;
+}
+
+// Transparent, larger tap target for the numbers (tap-to-jump below lg; see HowItWorksSection.tsx).
+.hit {
+  fill: transparent;
+  stroke: none;
+
+  @media (max-width: 1023.98px) {
+    cursor: pointer;
+  }
 }
 
 .core {

@@ -9,7 +9,7 @@ type FullBleedImageSectionProps = {
 export function FullBleedImageSection({ data }: FullBleedImageSectionProps) {
   return (
     <section className={styles.section}>
-      <Container>
+      <Container className={styles.container}>
         <div className={styles.frame}>
           <video
             className={styles.video}
