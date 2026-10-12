@@ -165,6 +165,10 @@
   display: block;
   width: auto;
   max-height: 100%;
+  // Narrow cards cap the width of wide wordmarks (Amazon Connect, ServiceNow, Google Cloud);
+  // scale the artwork down uniformly inside the box instead of squashing it.
+  object-fit: contain;
+  object-position: left bottom;
 }
 
 .cardTitle {

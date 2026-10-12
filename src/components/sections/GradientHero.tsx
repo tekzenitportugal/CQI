@@ -82,7 +82,7 @@ export function GradientHero({
           )}
         </div>
         <Container
-          className={`${styles.insetContentWrap} ${!image ? styles.insetContentWrapCentered : ''} ${mobileCopyFlush ? styles.insetContentWrapFlush : ''}`.trim()}
+          className={`${styles.insetContentWrap} ${!image ? styles.insetContentWrapCentered : ''} ${mobileCopyFlush ? styles.insetContentWrapFlush : ''} ${photo ? styles.insetContentWrapWash : ''}`.trim()}
         >
           <HeroCopy {...data} className={styles.insetContent} />
         </Container>

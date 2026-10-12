@@ -240,6 +240,12 @@
   }
 }
 
+// Photo heroes, below lg: the blue wash is solid down to the end of the copy (button or last line), which
+// is this box's bottom edge, then fades out over the photo.
+.insetContentWrapWash {
+  @include hero-mobile-copy-wash;
+}
+
 .insetContent {
   pointer-events: auto;
 
@@ -259,7 +265,10 @@
   z-index: 1;
   pointer-events: none;
   // No backdrop blur: Figma's photo is crisp under the wash.
-  background: $hero-mobile-wash;
+  // Below lg the wash follows the copy instead (.insetContentWrapWash).
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
 
   @include respond-to(lg) {
     background: linear-gradient(

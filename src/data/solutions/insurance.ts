@@ -32,7 +32,7 @@ export const insuranceSolutionData = {
     },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/insurance/hero.png',
-  heroImageMobile: '/images/solutions/insurance/hero-mobile.png',
+  heroImageMobile: '/images/solutions/insurance/hero-mobile-banner.png',
   friction: mapFriction({
     title: 'Friction rarely begins at renewal.',
     titleHighlight: ['rarely', 'begins at renewal.'],

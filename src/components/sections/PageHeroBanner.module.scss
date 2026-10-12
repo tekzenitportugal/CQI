@@ -24,8 +24,8 @@
 }
 
 // Photo hero: ONE box, no extra elements. The photo is its ::before (background-image, swapped per
-// breakpoint via --hero-image / --hero-image-mobile) and the gradient wash is its ::after.
-// Below lg the wash is the Figma radial (top-centred ellipse); from lg each variant swaps in its own.
+// breakpoint via --hero-image / --hero-image-mobile) and, from lg, the gradient wash is its ::after.
+// Below lg the wash follows the copy instead (.hasPhoto .contentWrap), so it always reaches the button.
 .photoLegacy::before,
 .photoDedicated::before,
 .photoLegacy::after,
@@ -89,15 +89,14 @@
 .photoLegacy::after,
 .photoDedicated::after {
   inset: 0;
-  background: radial-gradient(
-    363.22% 100.6% at 50.94% 0.03%,
-    #ccdaff 55%,
-    rgba(237, 242, 255, 0.2) 72%,
-    rgba(237, 242, 255, 0) 90%
-  );
+
+  // Below lg the wash follows the copy instead (see .hasPhoto .contentWrap).
+  @media (max-width: 1023.98px) {
+    display: none;
+  }
 }
 
-// lg+: each variant swaps in its own wash (the mobile Figma radial above is for below lg only).
+// lg+: each variant swaps in its own wash (below lg the wash is on .contentWrap instead).
 @include respond-to(lg) {
   // Flat CSS wash above the photo (never baked into the image), strongest over the copy (left).
   .washFlat::after {
@@ -153,6 +152,12 @@
   }
 }
 
+// Photo heroes, below lg: the blue wash is solid down to the end of the copy (button or last line), then
+// fades out over the photo. The copy ends 200px above this box's bottom (.content's padding).
+.hasPhoto .contentWrap {
+  @include hero-mobile-copy-wash(calc(100% - 200px));
+}
+
 .content {
   padding-top: var(--hero-mobile-pad-top, calc(var(--header-offset-top) + var(--header-height) + 32px));
   // Below lg the box height just tracks the copy, so this is also the only thing
@@ -173,6 +178,8 @@
 @media (min-width: 431px) and (max-width: 1023.98px) {
   .photoPortrait.photoDedicated::before {
     background-position: center bottom;
+    // Width-fitted (what `cover` resolves to here); `mobileImageScale` enlarges it past the box sides.
+    background-size: calc(100% * var(--hero-mobile-img-scale, 1)) auto;
     $photo-top: 470px;
     -webkit-mask-image: linear-gradient(180deg, transparent $photo-top, #000 calc(#{$photo-top} + 140px));
     mask-image: linear-gradient(180deg, transparent $photo-top, #000 calc(#{$photo-top} + 140px));
@@ -190,7 +197,7 @@
 @media (max-width: 430.98px) {
   .photoPortrait.photoDedicated::before {
     background-position: center bottom;
-    background-size: 100% auto;
+    background-size: calc(100% * var(--hero-mobile-img-scale, 1)) auto;
     // The asset's photo starts 59% down and is 0.904 × the box width tall; fade its hard top edge.
     $photo-top: calc(100% - 0.904 * (100vw - 16px));
     -webkit-mask-image: linear-gradient(180deg, transparent $photo-top, #000 calc(#{$photo-top} + 90px));

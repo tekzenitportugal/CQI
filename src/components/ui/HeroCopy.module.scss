@@ -90,9 +90,20 @@
   font-size: clamp(18px, 1.5625vw, 24px);
   color: var(--color-antracite-500);
 
+  // Figma note 6543:39746: every mobile hero description is 17.5px.
   @media (max-width: 1023.98px) {
-    font-size: 20px;
+    font-size: 17.5px;
     line-height: normal;
+  }
+}
+
+// Figma mobile (banking 6543:44126): the closing note is its own block, 20px below, 15px in Antracite/A400.
+.descriptionNote {
+  @media (max-width: 1023.98px) {
+    display: block;
+    margin-top: 20px;
+    font-size: 15px;
+    color: var(--color-antracite-400);
   }
 }
 

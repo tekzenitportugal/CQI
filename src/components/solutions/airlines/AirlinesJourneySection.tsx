@@ -18,35 +18,52 @@ const MOOD_FACE = {
 
 /** "CQI in action": five-stop timeline, copy and image alternating around a centre line. */
 export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
+  const timelineRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLOListElement>(null);
+  const fillRef = useRef<HTMLSpanElement>(null);
 
-  // Scroll progress (same behaviour as See it live): the blue dashes fill each segment down to a trigger
-  // point in the viewport, and a dot turns blue once its centre has been passed. Written straight to the
-  // DOM so scrolling never re-renders.
+  // Scroll progress (same behaviour as See it live): the line starts fully dotted; as the user scrolls, a
+  // solid blue fill grows down from the top of the lead-in, each dot turns blue once the fill passes its
+  // centre, and that step's copy and art fade in (and stay). Written straight to the DOM so scrolling
+  // never re-renders.
   useEffect(() => {
+    const timeline = timelineRef.current;
     const list = listRef.current;
-    if (!list) return;
+    const fill = fillRef.current;
+    if (!timeline || !list || !fill) return;
 
+    const steps = Array.from(list.children) as HTMLElement[];
     const markers = Array.from(list.querySelectorAll<HTMLElement>('[data-marker]'));
-    const line = list.querySelector<HTMLElement>('[data-line]');
+    const progress = fill.parentElement as HTMLElement;
     let frame = 0;
 
     const update = () => {
       frame = 0;
-      const trigger = window.innerHeight * 0.55;
-      const centres = markers.map((marker) => {
-        const rect = marker.getBoundingClientRect();
-        return rect.top + rect.height / 2;
-      });
-
-      markers.forEach((marker, i) => {
-        marker.toggleAttribute('data-reached', i === 0 || centres[i] <= trigger);
-      });
-      if (line) {
-        const rect = line.getBoundingClientRect();
-        const fill = rect.height > 0 ? Math.min(1, Math.max(0, (trigger - rect.top) / rect.height)) : 0;
-        line.style.setProperty('--fill', fill.toFixed(4));
+      // Run the dotted line from the first dot's centre to the last one's (desktop only; the dots are
+      // hidden below lg, which leaves their rects empty).
+      const first = markers[0]?.getBoundingClientRect();
+      const last = markers[markers.length - 1]?.getBoundingClientRect();
+      if (first && last && first.height > 0) {
+        const box = timeline.getBoundingClientRect();
+        timeline.style.setProperty('--line-top', `${first.top + first.height / 2 - box.top}px`);
+        timeline.style.setProperty('--line-bottom', `${box.bottom - (last.top + last.height / 2)}px`);
       }
+
+      const trigger = window.innerHeight * 0.55;
+      const rect = progress.getBoundingClientRect();
+      // Whatever the trigger point already covers at the top of the page is subtracted, so the line is
+      // fully dotted until the user scrolls.
+      const initialOffset = Math.max(trigger - (rect.top + window.scrollY), 0);
+      const height = Math.min(Math.max(trigger - rect.top - initialOffset, 0), rect.height);
+      fill.style.height = `${height}px`;
+
+      const fillEnd = rect.top + height;
+      markers.forEach((marker, i) => {
+        const r = marker.getBoundingClientRect();
+        const reached = height > 0 && r.height > 0 && r.top + r.height / 2 <= fillEnd;
+        marker.toggleAttribute('data-reached', reached);
+        if (reached) steps[i]?.setAttribute('data-revealed', '');
+      });
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
@@ -74,11 +91,15 @@ export function AirlinesJourneySection({ data }: AirlinesJourneySectionProps) {
           className={styles.heading}
         />
 
-        <div className={styles.timeline}>
-          {/* One continuous rule from the first stop to the last: solid lead-in above, fading tail below. */}
-          <span className={styles.line} data-line aria-hidden="true">
+        <div ref={timelineRef} className={styles.timeline}>
+          {/* One continuous dotted rule from the first stop to the last: fading lead-in above, fading
+              tail below. The blue scroll fill runs over all three. */}
+          <span className={styles.line} aria-hidden="true">
             <span className={styles.lineLead} />
             <span className={styles.lineTail} />
+          </span>
+          <span className={styles.lineProgress} aria-hidden="true">
+            <span ref={fillRef} className={styles.lineFill} />
           </span>
 
         <ol ref={listRef} className={styles.steps}>

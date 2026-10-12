@@ -1,13 +1,8 @@
 @use '@/styles/mixins' as *;
 
-// Sits on the grey band right after Customer Pulse; the band ends 200px under the card.
+// Sits on the grey band right after Customer Pulse; the band ends 200px under the card (mobile too).
 .section {
   padding-bottom: 200px;
-
-  // Figma mobile: the card runs to the band's bottom edge (6px past it).
-  @media (max-width: 1023.98px) {
-    padding-bottom: 0;
-  }
 }
 
 .header {
@@ -35,6 +30,10 @@
     padding-top: 18px;
   }
 
+  @media (max-width: 1023.98px) {
+    font-size: 17.5px;
+    line-height: 1.3;
+  }
 }
 
 // Figma: 100px between the heading block and the pager row, 32px between pager and card.
@@ -105,7 +104,6 @@
     min-height: 0;
     padding: 8px;
     gap: 32px;
-    margin-bottom: -6px;
   }
 
   @include respond-to(lg) {
@@ -128,19 +126,11 @@
     justify-content: flex-start;
     padding: 20px 20px 35px;
   }
-}
 
-.tag {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px 12px;
-  border-radius: 20px;
-  background: var(--color-light-blue-75);
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 1.4;
-  color: var(--color-antracite-400);
+  // Figma 6225:34606: title + description, then 48px, then the outcome, centred in the card.
+  @include respond-to(lg) {
+    gap: 48px;
+  }
 }
 
 .cardIntro {

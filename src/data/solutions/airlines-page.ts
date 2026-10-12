@@ -115,17 +115,9 @@ export const airlinesPageData = {
     titleHighlight: ['change the outcome'],
     description:
       'CQI connects signals across the passenger lifecycle, so your teams can understand the experience, recognize eroding loyalty and respond with context.',
+    // Figma "USE CASE (AIRLINES)" (6225:34597): two slides, no step tags.
     slides: [
       {
-        tag: '1. Sense',
-        title: 'Connect the experience',
-        description:
-          'Bring together what happens across booking, check-in, the gate, onboard and beyond. See the friction that a survey can miss.',
-        image: '/images/solutions/airlines/contribute-sense.png',
-      },
-      // Slides 2 and 3 are the scenarios the page already carried.
-      {
-        tag: '2. Recover',
         title: 'Recover the passenger, not the complaint',
         description:
           'A passenger is refused the lounge, sits through a 60-minute delay, finds the Wi-Fi down and misses a connection, and files nothing. CQI scores the lifecycle from operational events, flags the erosion and routes a tailored recovery action to the right person.',
@@ -134,7 +126,6 @@ export const airlinesPageData = {
         image: '/images/solutions/airlines/scenario-1.webp',
       },
       {
-        tag: '3. Hand off',
         title: 'Turn on the light at the handoff',
         description:
           'A delay, a downgrade or a lost bag on leg one never travels with the passenger onto leg two, even inside the same alliance. The second carrier sees a confirmed seat and treats a frustrated flyer as new.',

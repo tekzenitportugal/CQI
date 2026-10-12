@@ -8,8 +8,7 @@
   @media (max-width: 1023.98px) {
     padding-top: 201px;
     padding-bottom: 0;
-  }
-}
+  }}
 
 .timeline {
   position: relative;
@@ -28,16 +27,15 @@
   }
 }
 
-// Figma Line 17: 1px dashed (4 4) #afafaf line down the centre from just below the first dot,
-// fading to white over its last ~30%. lineCapTop is Rectangle 25: the 2px white→#afafaf
-// fade-in above the first dot.
+// Figma Line 17: 1px dashed (4 4) #afafaf line down the centre from the first dot's centre,
+// fading to white over its last ~30%.
 .line {
   display: none;
 
   @include respond-to(lg) {
     display: block;
     position: absolute;
-    top: 326px;
+    top: var(--line-top, 326px); // first dot's centre, measured in JS
     bottom: 124px;
     left: 50%;
     width: 1px;
@@ -52,33 +50,8 @@
   }
 }
 
-// Scroll progress: same box, dash pattern and fade as .line, in blue; .lineFill's height is set from JS.
-.lineProgress {
-  display: none;
-
-  @include respond-to(lg) {
-    display: block;
-    position: absolute;
-    top: 326px;
-    bottom: 124px;
-    left: 50%;
-    width: 1px;
-    overflow: hidden;
-    mask-image: linear-gradient(180deg, black 0%, black 69.5%, transparent 100%);
-  }
-}
-
-.lineFill {
-  height: 0;
-  background: repeating-linear-gradient(
-    180deg,
-    var(--color-blue-200) 0,
-    var(--color-blue-200) 4px,
-    transparent 4px,
-    transparent 8px
-  );
-}
-
+// Figma Rectangle 25: the 2px white→#afafaf gradient above the first dot, drawn dotted so the
+// whole line starts dotted. Runs from 20px above the first row down to the dot's centre.
 .lineCapTop {
   display: none;
 
@@ -86,13 +59,45 @@
     display: block;
     position: absolute;
     top: -20px;
+    bottom: 50%;
     left: 50%;
     width: 2px;
-    height: 320px;
     transform: translateX(-50%);
-    border-radius: 80px;
-    background: linear-gradient(180deg, var(--color-white) 0%, var(--color-antracite-100) 100%);
+    background: repeating-linear-gradient(
+      180deg,
+      var(--color-antracite-100) 0,
+      var(--color-antracite-100) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+    mask-image: linear-gradient(180deg, transparent 0%, black 100%);
   }
+}
+
+// Scroll progress: from the top of lineCapTop to the end of .line, with the same fade-in at the
+// top and fade-out at the bottom. .lineFill (height set from JS) is a solid 2px rounded grey line,
+// so the dotted line fills in solid grey as it's scrolled past (the dots turn blue).
+.lineProgress {
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+    position: absolute;
+    top: var(--fill-top, 306px);
+    bottom: 124px;
+    left: 50%;
+    z-index: 1; // above lineCapTop, below the dots
+    width: 2px;
+    transform: translateX(-50%);
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, transparent 0, black 200px, black 69.5%, transparent 100%);
+  }
+}
+
+.lineFill {
+  height: 0;
+  border-radius: 0 0 80px 80px;
+  background: var(--color-antracite-100);
 }
 
 .row {
@@ -112,6 +117,22 @@
   }
 }
 
+// Desktop: a stage's text and image start hidden and fade in when its dot is reached
+// (.rowRevealed, set once so they stay shown).
+.row .copy,
+.row .media {
+  @include respond-to(lg) {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+}
+
+.rowRevealed .copy,
+.rowRevealed .media {
+  @include respond-to(lg) {
+    opacity: 1;
+  }
+}
 // Figma Group 897 / 896: 34px white disc, dashed #afafaf ring, 12px #888 centre.
 .dot {
   display: none;
@@ -119,6 +140,7 @@
   @include respond-to(lg) {
     display: block;
     position: absolute;
+    z-index: 2; // above the scroll-progress fill
     top: 50%;
     left: 50%;
     width: 34px;
@@ -163,21 +185,6 @@
   .dot,
   .dot::before {
     transition: none;
-  }
-}
-
-// Figma Group 8 (first stage): 51px, solid 1.5px ring, 27px blue centre.
-.dotActive {
-  @include respond-to(lg) {
-    width: 51px;
-    height: 51px;
-    border: 1.5px solid var(--color-antracite-100);
-
-    &::before {
-      width: 27px;
-      height: 27px;
-      background: var(--color-blue-200);
-    }
   }
 }
 

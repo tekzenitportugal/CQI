@@ -41,4 +41,9 @@
   --card-gradient-angle: 49.911deg;
 
   margin-top: 64px;
+
+  // Mobile: all module titles in Medium (desktop keeps Figma's Regular exceptions).
+  @media (max-width: 1023.98px) {
+    --card-title-regular-weight: 500;
+  }
 }

@@ -117,15 +117,31 @@ $hero-radius: 20px;
   }
 }
 
-// Figma mobile hero wash (6445:8626). The Figma layer is rotated 90°, so its ellipse (363.22% × 100.6%)
-// is centred on the card's TOP edge: solid #ccdaff down to 58% of the height, easing out to clear at the
-// bottom. Laid over the photo with a 2.965px backdrop blur, exactly as in Figma.
-$hero-mobile-wash: radial-gradient(
-  363.22% 100.6% at 50.94% 0.03%,
-  #ccdaff 57.95%,
-  rgba(237, 242, 255, 0.5) 75.14%,
-  rgba(237, 242, 255, 0) 100%
-);
+// Mobile photo heroes (Figma note 6543:41405): the blue wash must cover the copy all the way to the end of
+// the button (or of the text when there is no button), then fade out to reveal the photo. Put this on the
+// copy's container (positioned, z-indexed, spanning the card's width from its top edge); $solid-end is
+// where the copy ends inside it. Below lg only.
+@mixin hero-mobile-copy-wash($solid-end: 100%) {
+  @media (max-width: 1023.98px) {
+    &::before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: calc(#{$solid-end} + 200px);
+      border-radius: $hero-radius $hero-radius 0 0;
+      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        #ccdaff calc(100% - 176px),
+        rgba(237, 242, 255, 0.5) calc(100% - 88px),
+        rgba(237, 242, 255, 0) 100%
+      );
+    }
+  }
+}
 
 // Header-style row that splits copy/actions at lg (below lg the parent's column layout applies).
 @mixin split-row($align: flex-start, $gap: 48px) {

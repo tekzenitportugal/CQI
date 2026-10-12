@@ -34,7 +34,7 @@ function Control({ direction, enabled, onClick }: ControlProps) {
   );
 }
 
-/** "What CQI contributes": heading + intro, then a 3-slide carousel card. */
+/** "What CQI contributes": heading + intro, then a carousel card (Figma "USE CASE (AIRLINES)", 2 slides). */
 export function AirlinesContributesSection({ data }: AirlinesContributesSectionProps) {
   const total = data.slides.length;
   const [index, setIndex] = useState(0);
@@ -66,12 +66,11 @@ export function AirlinesContributesSection({ data }: AirlinesContributesSectionP
 
         <article className={styles.card}>
           <div className={styles.cardCopy}>
-            <span className={styles.tag}>{slide.tag}</span>
             <div className={styles.cardIntro}>
               <h3 className={styles.cardTitle}>{slide.title}</h3>
               <p className={styles.cardDescription}>{slide.description}</p>
             </div>
-            {'outcome' in slide && slide.outcome && (
+            {slide.outcome && (
               <div className={styles.outcome}>
                 <p className={styles.outcomeLabel}>outcome</p>
                 <p className={styles.outcomeText}>{slide.outcome}</p>

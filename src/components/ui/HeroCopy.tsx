@@ -66,6 +66,10 @@ export function HeroCopy({
     ...(mobileIntroGap ? { '--hero-mobile-intro-gap': `${mobileIntroGap}px` } : {}),
     ...(mobileTitleWidth ? { '--hero-mobile-title-width': `${mobileTitleWidth}px` } : {}),
   } as CSSProperties;
+  // A blank line (`\n\n`) splits off a closing note: inline on desktop (same text, same breaks), its own smaller block on mobile.
+  const paragraphBreak = description.indexOf('\n\n');
+  const descriptionLead = paragraphBreak === -1 ? description : description.slice(0, paragraphBreak + 2);
+  const descriptionNote = paragraphBreak === -1 ? '' : description.slice(paragraphBreak + 2);
 
   return (
     <div className={[styles.copy, className].filter(Boolean).join(' ')} style={style}>
@@ -83,7 +87,8 @@ export function HeroCopy({
         <div className={styles.intro}>
           <p className={styles.eyebrow}>{eyebrow}</p>
           <p className={[styles.description, mobileInlineDescription && styles.descriptionInlineMobile].filter(Boolean).join(' ')}>
-            {highlightText(description)}
+            {highlightText(descriptionLead)}
+            {descriptionNote && <span className={styles.descriptionNote}>{highlightText(descriptionNote)}</span>}
           </p>
         </div>
         {tags && tags.length > 0 && (

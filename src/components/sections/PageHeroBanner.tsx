@@ -17,6 +17,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     ...(data.mobileTextGap ? { '--hero-mobile-text-gap': `${data.mobileTextGap}px` } : {}),
     ...(data.mobileIntroGap ? { '--hero-mobile-intro-gap': `${data.mobileIntroGap}px` } : {}),
     ...(data.mobileImageShift ? { '--hero-mobile-img-shift': `${data.mobileImageShift}px`, '--hero-mobile-box-bg': '#050505' } : {}),
+    ...(data.mobileImageScale ? { '--hero-mobile-img-scale': String(data.mobileImageScale) } : {}),
   } as CSSProperties;
   const frame = data.desktopImageFrame;
   const desktopFrameVars = frame

@@ -155,6 +155,49 @@
   }
 }
 
+// At-risk seats pulse together: a red ring grows out of the face and fades, like a heartbeat.
+// Not applied to the legend.
+@keyframes risk-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-sentiment-red) 90%, transparent);
+  }
+
+  15% {
+    transform: scale(1.15);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  70%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 var(--pulse-spread) color-mix(in srgb, var(--color-sentiment-red) 0%, transparent);
+  }
+}
+
+.seatFace.risk,
+.mobileSeatFace.risk {
+  animation: risk-pulse 1.8s ease-out infinite;
+}
+
+.seatFace.risk {
+  --pulse-spread: #{u(10)};
+}
+
+.mobileSeatFace.risk {
+  --pulse-spread: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seatFace.risk,
+  .mobileSeatFace.risk {
+    animation: none;
+  }
+}
+
 // ── Legend + state card ──────────────────────────────────────────────────────
 .bottom {
   position: relative;

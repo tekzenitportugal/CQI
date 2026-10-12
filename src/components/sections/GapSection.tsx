@@ -19,6 +19,7 @@ export function GapSection({ data }: GapSectionProps) {
             width={data.imageWidth}
             height={data.imageHeight}
             overlay={false}
+            className={styles.image}
           />
         </div>
 

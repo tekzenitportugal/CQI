@@ -29,31 +29,51 @@ type SeeItLiveStagesSectionProps = {
 
 /** Figma "5 stages" walkthrough (6079:31287): alternating text/screenshot rows down a centre line. */
 export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
+  const timelineRef = useRef<HTMLDivElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
   const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [reached, setReached] = useState<boolean[]>(() => data.stages.map((_, i) => i === 0));
+  const [reached, setReached] = useState<boolean[]>(() => data.stages.map(() => false));
+  // A stage's content fades in the first time its dot is reached, and stays shown after that.
+  const [revealed, setRevealed] = useState<boolean[]>(() => data.stages.map(() => false));
 
-  // Scroll progress: the blue fill grows down the line to a trigger point in the viewport, and each
-  // dot turns blue once its centre has been passed by that point.
+  // Scroll progress: the line starts fully dotted; as the user scrolls, a solid blue fill grows down
+  // from the top of the line, and each dot turns blue once the fill passes its centre.
   useEffect(() => {
     let frame = 0;
     const update = () => {
       frame = 0;
+      const timeline = timelineRef.current;
       const line = lineRef.current;
       const fill = fillRef.current;
-      if (!line || !fill) return;
+      if (!timeline || !line || !fill) return;
+      // The dotted line starts at the first dot's centre (lineCapTop covers the stretch above it);
+      // the blue fill starts at the top of lineCapTop, 20px above the first row, so it covers both.
+      const firstDot = dotRefs.current[0];
+      const firstRow = firstDot?.parentElement;
+      if (firstDot && firstRow && firstDot.offsetParent) {
+        const timelineTop = timeline.getBoundingClientRect().top;
+        const dotRect = firstDot.getBoundingClientRect();
+        timeline.style.setProperty('--line-top', `${dotRect.top + dotRect.height / 2 - timelineTop}px`);
+        timeline.style.setProperty('--fill-top', `${firstRow.getBoundingClientRect().top - timelineTop - 20}px`);
+      }
       const trigger = window.innerHeight * 0.55;
-      const lineRect = line.getBoundingClientRect();
-      const height = Math.min(Math.max(trigger - lineRect.top, 0), lineRect.height);
+      const lineRect = (fill.parentElement ?? line).getBoundingClientRect();
+      // Whatever the trigger point already covers at the top of the page is subtracted, so the line
+      // is fully dotted until the user scrolls and the solid fill grows from the first dot.
+      const lineTopInDocument = lineRect.top + window.scrollY;
+      const initialOffset = Math.max(trigger - lineTopInDocument, 0);
+      const height = Math.min(Math.max(trigger - lineRect.top - initialOffset, 0), lineRect.height);
       fill.style.height = `${height}px`;
-      const next = dotRefs.current.map((dot, i) => {
-        if (i === 0 || !dot) return true;
+      // A dot is reached once the fill's leading edge passes its centre.
+      const fillEnd = lineRect.top + height;
+      const next = dotRefs.current.map((dot) => {
+        if (!dot) return false;
         const rect = dot.getBoundingClientRect();
-        return rect.top + rect.height / 2 <= trigger;
+        return height > 0 && rect.top + rect.height / 2 <= fillEnd;
       });
       setReached((prev) => (prev.length === next.length && prev.every((v, i) => v === next[i]) ? prev : next));
-    };
+      setRevealed((prev) => (next.every((v, i) => !v || prev[i]) ? prev : prev.map((v, i) => v || next[i])));    };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
@@ -70,7 +90,7 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
   return (
     <section className={styles.section}>
       <Container>
-        <div className={styles.timeline}>
+        <div ref={timelineRef} className={styles.timeline}>
           <div ref={lineRef} className={styles.line} aria-hidden="true" />
           <div className={styles.lineProgress} aria-hidden="true">
             <div ref={fillRef} className={styles.lineFill} />
@@ -80,7 +100,10 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
               row's :nth-child parity by one and inverts the whole alternating layout. */}
           <div className={styles.rows}>
             {data.stages.map((stage, index) => (
-              <div key={stage.stageLabel} className={styles.row}>
+              <div
+                key={stage.stageLabel}
+                className={`${styles.row} ${revealed[index] ? styles.rowRevealed : ''}`.trim()}
+              >
                 <div className={styles.copy}>
                   <p className={styles.stageLabel}>{stage.stageLabel}</p>
                   <div className={styles.heading}>
@@ -95,9 +118,7 @@ export function SeeItLiveStagesSection({ data }: SeeItLiveStagesSectionProps) {
                   ref={(el) => {
                     dotRefs.current[index] = el;
                   }}
-                  className={[styles.dot, index === 0 ? styles.dotActive : '', reached[index] ? styles.dotReached : '']
-                    .filter(Boolean)
-                    .join(' ')}
+                  className={`${styles.dot} ${reached[index] ? styles.dotReached : ''}`.trim()}
                   aria-hidden="true"
                 />
 

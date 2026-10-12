@@ -107,4 +107,16 @@
   background: #fff;
   border: 0.5px solid #e1e1e1;
   box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.15);
+
+  // Below lg the screenshot shrinks (~374px wide), but a fixed 8px corner doesn't, so it outgrows the
+  // app's own sidebar corner just inside it. Scale it with the width instead: the screenshot's sidebar
+  // sits 12px in with a 14px radius at 1920px, so the frame radius is 26/1920 of the width
+  // (8px at the full 587px, ~5px on phones). The vertical radius is a % of the 587:341 height.
+  @media (max-width: 1023.98px) {
+    border-radius: 1.354% / 2.33%;
+
+    > * {
+      border-radius: inherit;
+    }
+  }
 }

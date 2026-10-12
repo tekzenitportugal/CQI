@@ -35,6 +35,9 @@
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-rows: repeat(5, auto);
+    // The lists' subgrid rows inherit this row gap, so it must be 0 or every row gets 20px
+    // of extra space below its text (Figma: 16px rule-to-text on both sides, nothing more).
+    row-gap: 0;
     column-gap: 20px;
   }
 }

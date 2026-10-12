@@ -5,9 +5,10 @@
   padding-top: 200px;
   padding-bottom: 200px;
 
-  // Figma mobile: 400px under the carousel card, 200px before the FAQ.
+  // Figma mobile: 400px under the carousel card (the grey band's own 200px + this 200px), 200px
+  // before the FAQ.
   @media (max-width: 1023.98px) {
-    padding-top: 406px;
+    padding-top: 200px;
     padding-bottom: 0;
   }
 }
@@ -216,11 +217,11 @@
   }
 }
 
-// Figma Group 897: 34px white disc, dashed #afafaf ring, 12px #888 centre. Reached (scroll) or first stop:
+// Figma Group 897: 34px white disc, dashed #afafaf ring, 12px #888 centre. Reached by the scroll fill:
 // 51px, solid ring, 27px blue centre (Figma Group 8).
 .dot {
   position: relative;
-  z-index: 1;
+  z-index: 2; // above the scroll-progress fill
   width: 34px;
   height: 34px;
   border: 1px dashed var(--color-antracite-100);
@@ -261,28 +262,64 @@
   }
 }
 
-// One dashed rule from the first stop's centre to the last stop's (row heights 464 … 276, Figma).
+// One dashed rule from the first stop's centre to the last stop's (measured in JS; the fallbacks are
+// Figma's row heights 464 … 276).
 .line {
   display: none;
 
   @include respond-to(lg) {
     display: block;
     position: absolute;
-    top: 232px;
-    bottom: 138px;
+    top: var(--line-top, 232px);
+    bottom: var(--line-bottom, 138px);
     left: 50%;
     width: 1px;
     transform: translateX(-50%);
     background: repeating-linear-gradient(180deg, var(--color-antracite-100) 0 4px, transparent 4px 8px);
+  }
+}
 
-    // Blue progress dashes, filled down by scroll (--fill 0 to 1).
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0 0 auto;
-      height: calc(var(--fill, 0) * 100%);
-      background: repeating-linear-gradient(180deg, var(--color-blue-200) 0 4px, transparent 4px 8px);
-    }
+// Scroll progress (as See it live): spans the lead-in, the line and the tail, with the same fade at each
+// end. .lineFill (height set from JS) is a solid 2px rounded grey line, so the dotted line fills in solid
+// grey as it's scrolled past (the dots turn blue).
+.lineProgress {
+  display: none;
+
+  @include respond-to(lg) {
+    display: block;
+    position: absolute;
+    top: calc(var(--line-top, 232px) - 280px);
+    bottom: calc(var(--line-bottom, 138px) - 200px);
+    left: 50%;
+    z-index: 1; // above the dotted line, below the dots
+    width: 2px;
+    transform: translateX(-50%);
+    overflow: hidden;
+    mask-image: linear-gradient(180deg, transparent 0, black 200px, black calc(100% - 200px), transparent 100%);
+  }
+}
+
+.lineFill {
+  display: block;
+  height: 0;
+  border-radius: 0 0 80px 80px;
+  background: var(--color-antracite-100);
+}
+
+// Desktop: a step's copy and art start hidden and fade in when its dot is reached ([data-revealed], set
+// once so they stay shown).
+.step .copy,
+.step .media {
+  @include respond-to(lg) {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+}
+
+.step[data-revealed] .copy,
+.step[data-revealed] .media {
+  @include respond-to(lg) {
+    opacity: 1;
   }
 }
 
@@ -297,15 +334,16 @@
   mask-image: linear-gradient(180deg, #000 0%, transparent 100%);
 }
 
-// Solid lead-in above the first stop (Figma Rectangle 25: 2px × 280px).
+// Lead-in above the first stop (Figma Rectangle 25: 2px × 280px, white→#afafaf), drawn dotted so the
+// whole line starts dotted, as on See it live.
 .lineLead {
   position: absolute;
   bottom: 100%;
   left: -0.5px;
   width: 2px;
   height: 280px;
-  border-radius: 2px;
-  background: linear-gradient(180deg, rgba(175, 175, 175, 0), var(--color-antracite-100));
+  background: repeating-linear-gradient(180deg, var(--color-antracite-100) 0 4px, transparent 4px 8px);
+  mask-image: linear-gradient(180deg, transparent 0%, black 100%);
 }
 
 // ── Step art ─────────────────────────────────────────────────────────────────

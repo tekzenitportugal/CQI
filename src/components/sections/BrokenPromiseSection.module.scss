@@ -48,6 +48,11 @@
   @include body-lg;
   color: var(--color-antracite-300);
 
+  @media (max-width: 1023.98px) {
+    font-size: 15px;
+    line-height: 1.4;
+  }
+
   @include respond-to(lg) {
     flex: 0 1 588px;
     min-width: 0;

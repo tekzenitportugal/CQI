@@ -36,7 +36,7 @@ export function CarouselCard({
 }: CarouselCardProps) {
   const copy = (
     <div className={styles.copy}>
-      <h3 className={styles.title} style={titleWeight ? { fontWeight: titleWeight } : undefined}>
+      <h3 className={[styles.title, titleWeight === 400 && styles.titleRegular].filter(Boolean).join(' ')}>
         {title}
       </h3>
       <p className={[styles.description, smallDescription && styles.descriptionSmall].filter(Boolean).join(' ')}>

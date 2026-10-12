@@ -29,6 +29,8 @@ export const securityTrustData = {
     imageUnoptimized: true,
     mobileImage: '/images/product/security-trust/hero-mobile.png',
     mobilePortraitCrop: true,
+    // The photo in this asset is only 0.854 × its width tall (the mask assumes 0.904), so at 1:1 its hard top edge shows.
+    mobileImageScale: 1.15,
     // Figma mobile (6225:42967): copy starts at y=216, below the 8px banner inset.
     mobilePaddingTop: 208,
     mobileTextGap: 48,

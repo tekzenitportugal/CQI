@@ -39,4 +39,11 @@
   @include respond-to(lg) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  // Card titles 24px → 20px on mobile/tablet (this page only; FeatureIconCard is shared).
+  @media (max-width: 1023.98px) {
+    h3 {
+      font-size: 20px;
+    }
+  }
 }

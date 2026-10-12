@@ -65,6 +65,11 @@
   }
 }
 
+// Figma sets a few titles in Regular; sections can override via --card-title-regular-weight.
+.titleRegular {
+  font-weight: var(--card-title-regular-weight, 400);
+}
+
 .description {
   font-family: var(--font-body);
   font-size: 17.5px;

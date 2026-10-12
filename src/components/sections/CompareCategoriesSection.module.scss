@@ -273,10 +273,6 @@
   }
 }
 
-.mobileBackground {
-  display: none;
-}
-
 // Figma mobile (6225:43610): the four ellipses are rotated 90° and staggered behind the stacked
 // cards; coordinates are the page-frame positions relative to the content box (page y − 1088).
 @media (max-width: 1023.98px) {
@@ -289,46 +285,47 @@
     display: none;
   }
 
-  .mobileBackground {
-    display: block;
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
+  // Each ellipse hangs off its own card, so every circle's edge sits the same 49px above its card's
+  // title (Figma's first card) whatever the cards' heights; later cards paint over earlier circles.
+  .card {
+    position: relative;
 
-    img {
+    &::before {
+      content: '';
       position: absolute;
-      max-width: none;
+      z-index: -1;
+      top: -49px;
+      left: calc(50% + var(--ellipse-offset) - var(--ellipse-size) / 2);
+      width: var(--ellipse-size);
+      height: var(--ellipse-size);
+      background: var(--ellipse-image) center / 100% 100% no-repeat;
       transform: rotate(90deg);
+      pointer-events: none;
     }
   }
 
-  .mEllipse1 {
-    left: -617px;
-    top: 353px;
-    width: 1649px;
-    height: 1649px;
+  .card:nth-child(4n + 1) {
+    --ellipse-image: url('/images/resources/compare-cqi/ellipse-1.webp');
+    --ellipse-size: 1649px;
+    --ellipse-offset: 0.5px;
   }
 
-  .mEllipse2 {
-    left: calc(50% + 4.98px - 643.7px);
-    top: 687px;
-    width: 1287.4px;
-    height: 1287.4px;
+  .card:nth-child(4n + 2) {
+    --ellipse-image: url('/images/resources/compare-cqi/ellipse-2-mobile.webp');
+    --ellipse-size: 1287.4px;
+    --ellipse-offset: 4.98px;
   }
 
-  .mEllipse3 {
-    left: calc(50% + 0.5px - 824.5px);
-    top: 1021px;
-    width: 1649px;
-    height: 1649px;
+  .card:nth-child(4n + 3) {
+    --ellipse-image: url('/images/resources/compare-cqi/ellipse-3.webp');
+    --ellipse-size: 1649px;
+    --ellipse-offset: 0.5px;
   }
 
-  .mEllipse4 {
-    left: calc(50% + 0.3px - 643.7px);
-    top: 1355px;
-    width: 1287.4px;
-    height: 1287.4px;
+  .card:nth-child(4n + 4) {
+    --ellipse-image: url('/images/resources/compare-cqi/ellipse-4.webp');
+    --ellipse-size: 1287.4px;
+    --ellipse-offset: 0.3px;
   }
 
   .content {
