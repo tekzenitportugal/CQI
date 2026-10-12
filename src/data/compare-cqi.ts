@@ -112,7 +112,7 @@ export const compareCqiData = {
     imageHeight: 289,
     buttons: [
       { label: 'Talk to our team', href: '/contact', variant: 'primary' },
-      { label: 'Product overview', href: '/products', variant: 'secondary' },
+      { label: 'Product overview', href: '/products/overview', variant: 'secondary' },
     ],
   } satisfies CtaBannerData,
 };

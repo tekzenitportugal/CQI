@@ -63,7 +63,13 @@ export function LegalPageSection({ data }: LegalPageSectionProps) {
         if (clickLockRef.current) return;
 
         const visible = entries.filter((entry) => entry.isIntersecting);
-        if (visible.length === 0) return;
+        if (visible.length === 0) {
+          // Back above the first section (top of the page): highlight the first item again.
+          if (sectionEls[0].getBoundingClientRect().top > window.innerHeight * 0.25) {
+            setActiveSlug(sectionEls[0].id);
+          }
+          return;
+        }
 
         const topMost = visible.reduce((closest, entry) =>
           entry.boundingClientRect.top < closest.boundingClientRect.top ? entry : closest
@@ -151,7 +157,8 @@ export function LegalPageSection({ data }: LegalPageSectionProps) {
                   }}
                   href={`#${slug}`}
                   onClick={(event) => handleTocClick(event, slug)}
-                  className={`${styles.tocLink} ${slug === activeSlug ? styles.tocLinkActive : ''}`.trim()}
+                  className={styles.tocLink}
+                  aria-current={slug === activeSlug ? 'location' : undefined}
                 >
                   {section.title}
                 </a>

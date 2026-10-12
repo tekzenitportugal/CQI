@@ -170,7 +170,7 @@ export const partnershipsData = {
     image: '/images/company/partnerships/cta.jpg',
     buttons: [
       { label: 'Talk to our team', href: '/contact', variant: 'primary' },
-      { label: 'Product overview', href: '/products', variant: 'secondary' },
+      { label: 'Product overview', href: '/products/overview', variant: 'secondary' },
     ],
   } satisfies CtaBannerData,
 };

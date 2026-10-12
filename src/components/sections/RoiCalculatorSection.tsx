@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useId, useMemo, useState } from 'react';
 import { Container } from '@/components/ui/Container';
 import styles from './RoiCalculatorSection.module.scss';
 
@@ -88,16 +88,36 @@ type FieldProps = {
 };
 
 function Field({ label, helper, value, onChange, suffix }: FieldProps) {
+  const id = useId();
+  // Keep the raw text so the field can be emptied while typing; the last valid number stays in effect.
+  const [text, setText] = useState(String(value));
+
   return (
     <div className={styles.field}>
-      <p className={styles.fieldLabel}>{label}</p>
-      {helper && <p className={styles.fieldHelper}>{helper}</p>}
+      <p className={styles.fieldLabel} id={`${id}-label`}>
+        {label}
+      </p>
+      {helper && (
+        <p className={styles.fieldHelper} id={`${id}-helper`}>
+          {helper}
+        </p>
+      )}
       <div className={styles.inputWrap}>
         <input
           type="number"
           className={styles.input}
-          value={value}
-          onChange={(event) => onChange(Number(event.target.value))}
+          value={text}
+          aria-labelledby={`${id}-label`}
+          aria-describedby={helper ? `${id}-helper` : undefined}
+          onChange={(event) => {
+            setText(event.target.value);
+            if (event.target.value !== '' && Number.isFinite(event.target.valueAsNumber)) {
+              onChange(event.target.valueAsNumber);
+            }
+          }}
+          onBlur={() => {
+            if (text === '') setText(String(value));
+          }}
         />
         {suffix && <span className={styles.inputSuffix}>{suffix}</span>}
       </div>

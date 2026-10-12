@@ -1,4 +1,4 @@
-import { NextResponse, after } from 'next/server';
+import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
 export const runtime = 'nodejs';
@@ -25,7 +25,30 @@ const escapeHtml = (value: string) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
+// Basic per-IP throttle so a script can't flood the inbox. In-memory, so it is per server instance.
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const recentRequests = new Map<string, number[]>();
+
+function isRateLimited(ip: string) {
+  const now = Date.now();
+  if (recentRequests.size > 1000) {
+    for (const [key, times] of recentRequests) {
+      if (times.every((time) => now - time > RATE_WINDOW_MS)) recentRequests.delete(key);
+    }
+  }
+  const times = (recentRequests.get(ip) ?? []).filter((time) => now - time < RATE_WINDOW_MS);
+  times.push(now);
+  recentRequests.set(ip, times);
+  return times.length > RATE_LIMIT;
+}
+
 export async function POST(request: Request) {
+  const ip = request.headers.get('x-forwarded-for')?.split(',')[0].trim() || request.headers.get('x-real-ip');
+  if (ip && isRateLimited(ip)) {
+    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
@@ -90,23 +113,32 @@ export async function POST(request: Request) {
     port,
     secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : port === 465,
     auth: { user, pass },
+    // Fail fast instead of nodemailer's multi-minute defaults, so "Sending…" never hangs.
+    connectionTimeout: 15_000,
+    greetingTimeout: 15_000,
+    socketTimeout: 20_000,
   });
 
-  // Reply right away and deliver the email after the response, so the thank-you shows promptly.
-  after(async () => {
-    try {
-      await transporter.sendMail({
-        from,
-        to: to.split(',').map((address) => address.trim()),
-        replyTo: workEmail,
-        subject: `Demo request${organisation ? ` — ${organisation}` : ''}`,
-        html,
-        text,
-      });
-    } catch (error) {
-      console.error('request-demo: SMTP error', error);
-    }
-  });
+  // Wait for delivery so the visitor only sees the thank-you once the email has actually been sent.
+  try {
+    await transporter.sendMail({
+      from,
+      to: to.split(',').map((address) => address.trim()),
+      replyTo: workEmail,
+      subject: `Demo request${organisation ? ` — ${organisation}` : ''}`,
+      html,
+      text,
+    });
+  } catch (error) {
+    console.error('request-demo: SMTP error', error);
+    return NextResponse.json(
+      {
+        error:
+          'Sorry, we couldn’t send your request just now. Please try again in a moment, or email us at marketing@cqisense.com.',
+      },
+      { status: 502 },
+    );
+  }
 
   return NextResponse.json({ ok: true });
 }

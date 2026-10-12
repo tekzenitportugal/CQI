@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     url: './',
-    images: [{ url: '/images/shared/home/phone-hands.jpg', width: 1436, height: 508, alt: 'CQI verified CX' }],
+    images: [{ url: '/images/shared/home/phone-hands.jpg', width: 2560, height: 1707, alt: 'CQI verified CX' }],
   },
   twitter: {
     card: 'summary_large_image',

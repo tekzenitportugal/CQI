@@ -184,6 +184,12 @@
   border-radius: 12px;
   background: none;
   cursor: pointer;
+
+  // Nothing to print when the search/tab has no terms.
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
 }
 
 .list {

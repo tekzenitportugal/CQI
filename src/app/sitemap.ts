@@ -26,7 +26,6 @@ const staticRoutes = [
   '/products/security-trust',
   '/products/who-is-it-for',
   '/request-a-demo',
-  '/resources/articles',
   '/resources/compare-cqi',
   '/resources/glossary',
   '/resources/roi-calculator',

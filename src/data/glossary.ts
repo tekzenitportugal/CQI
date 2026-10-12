@@ -161,7 +161,7 @@ export const glossaryData = {
     imageHeight: 289,
     buttons: [
       { label: 'Request a demo', href: '/request-a-demo', variant: 'primary' },
-      { label: 'Product overview', href: '/products', variant: 'secondary' },
+      { label: 'Product overview', href: '/products/overview', variant: 'secondary' },
     ],
   } satisfies CtaBannerData,
 };

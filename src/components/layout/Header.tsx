@@ -31,6 +31,8 @@ export function Header({ variant = 'default' }: HeaderProps) {
   const [hidden, setHidden] = useState(false);
   // Once the page has scrolled, a blurred fade sits behind the logo/menu so they stay readable over content.
   const [scrolled, setScrolled] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
   const isCompact = variant === 'compact';
@@ -91,8 +93,38 @@ export function Header({ variant = 'default' }: HeaderProps) {
     };
   }, [menuOpen]);
 
+  // While the mobile menu is open: Escape closes it, and Tab stays within the header + menu.
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        menuToggleRef.current?.focus();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const containers = [headerRef.current, document.getElementById('main-navigation')];
+      const focusables = containers
+        .flatMap((container) => [...(container?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? [])])
+        .filter((el, index, all) => all.indexOf(el) === index && el.getClientRects().length > 0);
+      if (!focusables.length) return;
+
+      // The menu is portalled to the end of <body>, so DOM tab order can't be relied on: step through the list.
+      const index = focusables.indexOf(document.activeElement as HTMLElement);
+      const step = event.shiftKey ? -1 : 1;
+      const nextIndex = index === -1 ? 0 : (index + step + focusables.length) % focusables.length;
+      event.preventDefault();
+      focusables[nextIndex].focus();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [menuOpen]);
+
   return (
-    <header className={`${styles.header} ${showHidden ? styles.headerHidden : ''} ${scrolled ? styles.headerScrolled : ''}`.trim()}>
+    <header ref={headerRef} className={`${styles.header} ${showHidden ? styles.headerHidden : ''} ${scrolled ? styles.headerScrolled : ''}`.trim()}>
       {/* Progressive blur: stacked layers with increasing blur, each masked to a narrower band at the top. */}
       <div className={styles.blurMask} aria-hidden="true">
         <span />
@@ -135,6 +167,7 @@ export function Header({ variant = 'default' }: HeaderProps) {
         </div>
 
         <button
+          ref={menuToggleRef}
           type="button"
           className={styles.menuToggle}
           aria-expanded={menuOpen}

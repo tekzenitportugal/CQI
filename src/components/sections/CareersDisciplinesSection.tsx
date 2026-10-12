@@ -29,7 +29,7 @@ export function CareersDisciplinesSection({ data }: CareersDisciplinesSectionPro
           <Button label={data.cta.label} href={data.cta.href} variant="text" showArrow />
         </div>
 
-        <Carousel itemLabel="discipline" className={styles.carousel}>
+        <Carousel itemLabel="discipline">
           {data.cards.map((card) => (
             <article key={card.title} className={styles.card}>
               <div className={styles.media}>

@@ -32,7 +32,7 @@ export function IndustryFrictionSection({ data }: IndustryFrictionSectionProps) 
             />
             <div className={styles.tagGroups}>
               {data.tagGroups.map((group) => (
-                <div key={group.label} className={styles.tagGroup}>
+                <div key={group.label}>
                   <p className={styles.tagGroupLabel}>{group.label}</p>
                   <div className={styles.tags}>
                     {group.tags.map((tag) => (

@@ -26,6 +26,15 @@ function slugify(term: string) {
   return term.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+/** Shown in place of the list when the current tab + search has no terms. */
+function emptyMessage(query: string, category: string | null) {
+  if (!query) return `There are no terms in “${category}” yet.`;
+  if (category) {
+    return `No terms in “${category}” match “${query}”. Try a different word, check the spelling, or search all categories.`;
+  }
+  return `No terms match “${query}”. Try a different word or check the spelling.`;
+}
+
 /** Figma "GLOSSARY" section (6079:38465): A–Z jump nav + category tabs/search/print + term list. */
 export function GlossarySection({ data }: GlossarySectionProps) {
   const [query, setQuery] = useState('');
@@ -117,6 +126,7 @@ export function GlossarySection({ data }: GlossarySectionProps) {
                 type="button"
                 className={styles.printButton}
                 onClick={() => window.print()}
+                disabled={filteredEntries.length === 0}
                 aria-label="Print glossary"
               >
                 <img src="/images/resources/glossary/printer.svg" alt="" width={14} height={14} aria-hidden="true" />
@@ -130,6 +140,13 @@ export function GlossarySection({ data }: GlossarySectionProps) {
                   <p className={styles.definition}>{entry.definition}</p>
                 </li>
               ))}
+              {filteredEntries.length === 0 && (
+                <li className={styles.row}>
+                  <p className={styles.definition} role="status">
+                    {emptyMessage(query.trim(), activeCategory === data.categories[0] ? null : activeCategory)}
+                  </p>
+                </li>
+              )}
             </ul>
           </div>
         </div>

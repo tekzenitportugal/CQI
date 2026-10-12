@@ -27,26 +27,34 @@ export function DemoFormSection({ data }: DemoFormSectionProps) {
     setStatus('sending');
     setErrorMessage('');
 
+    let response: Response;
     try {
-      const response = await fetch('/api/request-demo', {
+      response = await fetch('/api/request-demo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(Object.fromEntries(new FormData(form))),
       });
-      const result = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Something went wrong. Please try again.');
-      }
-
-      form.reset();
-      setStatus('success');
-    } catch (error) {
+    } catch {
+      // The request never reached the server (offline, dropped connection).
       setErrorMessage(
-        error instanceof Error ? error.message : 'Something went wrong. Please try again.',
+        'We couldn’t reach our server. Please check your internet connection and try again.',
       );
       setStatus('error');
+      return;
     }
+
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      setErrorMessage(
+        result.error ||
+          'Sorry, we couldn’t send your request just now. Please try again in a moment, or email us at marketing@cqisense.com.',
+      );
+      setStatus('error');
+      return;
+    }
+
+    form.reset();
+    setStatus('success');
   }
 
   return (

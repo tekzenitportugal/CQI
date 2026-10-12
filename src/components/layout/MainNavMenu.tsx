@@ -2,7 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useCallback, useEffect, useRef, useState, type CSSProperties } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type CSSProperties,
+  type FocusEvent,
+  type KeyboardEvent,
+} from 'react';
 import { createPortal } from 'react-dom';
 import { megaMenus, pricingNavLink, type MegaMenuConfig, type MegaMenuId } from '@/data/mega-menu';
 import { headerCtas } from '@/data/navigation';
@@ -18,6 +26,9 @@ type MainNavMenuProps = {
 // How long the dropdown stays open after the cursor leaves, so it survives the trip from
 // the trigger down to the panel even when the cursor drifts outside the hover zone.
 const CLOSE_DELAY_MS = 600;
+
+// Desktop top-level order, used to continue keyboard focus after a dropdown panel.
+const TOP_LEVEL_ORDER = ['product', 'solutions', 'resources', 'pricing', 'company'] as const;
 
 function isActivePath(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
@@ -36,6 +47,9 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const topLevelRefs = useRef<Record<string, HTMLElement | null>>({});
+  const panelRef = useRef<HTMLDivElement | null>(null);
+  const pointerInside = useRef(false);
 
   const cancelClose = useCallback(() => {
     if (closeTimer.current) {
@@ -75,6 +89,50 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
 
   const desktopPanel = desktopPanelMenu ? getMenuById(desktopPanelMenu) : null;
 
+  // Desktop keyboard: Tab from an open trigger enters its panel; Escape closes it.
+  const handleTriggerKeyDown = (event: KeyboardEvent<HTMLButtonElement>, id: MegaMenuId) => {
+    if (mobileOpen) return;
+    if (event.key === 'Escape') {
+      closeMenus();
+    } else if (event.key === 'Tab' && !event.shiftKey && openMenu === id) {
+      const firstLink = panelRef.current?.querySelector<HTMLAnchorElement>('a[href]');
+      if (firstLink) {
+        event.preventDefault();
+        firstLink.focus();
+      }
+    }
+  };
+
+  // Desktop keyboard inside a panel: Shift+Tab on the first link returns to the trigger,
+  // Tab past the last link moves on to the next top-level item, Escape closes.
+  const handlePanelKeyDown = (event: KeyboardEvent<HTMLDivElement>, id: MegaMenuId) => {
+    const links = [...(panelRef.current?.querySelectorAll<HTMLAnchorElement>('a[href]') ?? [])];
+    const trigger = topLevelRefs.current[id];
+    if (event.key === 'Escape') {
+      // Focus first: the trigger's onFocus reopens the panel, so close afterwards.
+      trigger?.focus();
+      closeMenus();
+    } else if (event.key === 'Tab' && event.shiftKey && event.target === links[0]) {
+      event.preventDefault();
+      trigger?.focus();
+    } else if (event.key === 'Tab' && !event.shiftKey && event.target === links[links.length - 1]) {
+      const next = topLevelRefs.current[TOP_LEVEL_ORDER[TOP_LEVEL_ORDER.indexOf(id) + 1]];
+      if (next) {
+        event.preventDefault();
+        next.focus();
+      }
+    }
+  };
+
+  // Close the desktop panel when keyboard focus leaves the menu (not while the pointer is over it).
+  const handleShellBlur = (event: FocusEvent<HTMLDivElement>) => {
+    if (mobileOpen || pointerInside.current) return;
+    if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+      cancelClose();
+      setOpenMenu(null);
+    }
+  };
+
   const renderMegaTrigger = (menu: MegaMenuConfig) => {
     const isOpen =
       mobileOpen ? mobileExpanded === menu.id : openMenu === menu.id;
@@ -84,6 +142,9 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
     return (
       <li key={menu.id} className={styles.topItem}>
         <button
+          ref={(el) => {
+            topLevelRefs.current[menu.id] = el;
+          }}
           type="button"
           className={`${styles.trigger} ${isOpen || isCurrent ? styles.triggerActive : ''}`.trim()}
           aria-expanded={isOpen}
@@ -91,6 +152,7 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
           onMouseEnter={() => handleMouseEnter(menu.id)}
           onFocus={() => handleMouseEnter(menu.id)}
           onClick={() => toggleMobileSection(menu.id)}
+          onKeyDown={(event) => handleTriggerKeyDown(event, menu.id)}
         >
           {menu.label}
           <NavChevron active={isOpen} className={isOpen ? undefined : styles.chevronDown} />
@@ -113,8 +175,15 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
   const shell = (
     <div
       className={`${styles.shell} ${mobileOpen ? styles.shellMobileOpen : ''}`.trim()}
-      onMouseEnter={cancelClose}
-      onMouseLeave={handleMouseLeave}
+      onMouseEnter={() => {
+        pointerInside.current = true;
+        cancelClose();
+      }}
+      onMouseLeave={() => {
+        pointerInside.current = false;
+        handleMouseLeave();
+      }}
+      onBlur={handleShellBlur}
       id="main-navigation"
     >
       <div className={`${styles.pill} ${mobileOpen ? styles.pillMobile : ''}`.trim()}>
@@ -124,11 +193,17 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
           {renderMegaTrigger(getMenuById('resources'))}
           <li className={styles.topItem}>
             <Link
+              ref={(el) => {
+                topLevelRefs.current.pricing = el;
+              }}
               href={pricingNavLink.href}
               className={`${styles.topLink} ${styles.topLinkPlain} ${isActivePath(pathname, pricingNavLink.href) ? styles.topLinkActive : ''}`.trim()}
               onClick={() => {
                 closeMenus();
                 onNavigate?.();
+              }}
+              onFocus={() => {
+                if (!mobileOpen) setOpenMenu(null);
               }}
             >
               {pricingNavLink.label}
@@ -168,8 +243,10 @@ export function MainNavMenu({ mobileOpen, onNavigate }: MainNavMenuProps) {
 
       {desktopPanel && (
         <div
+          ref={panelRef}
           className={styles.panelBridge}
           onMouseEnter={() => handleMouseEnter(desktopPanel.id)}
+          onKeyDown={(event) => handlePanelKeyDown(event, desktopPanel.id)}
         >
           <MegaMenuPanel
             menu={desktopPanel}
