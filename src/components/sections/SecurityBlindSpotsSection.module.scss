@@ -16,6 +16,11 @@
   flex-direction: column;
   align-items: center;
   gap: fluid-space(64px);
+
+  // Mobile/tablet: fixed 64px (the fluid value shrinks below this).
+  @media (max-width: 1023.98px) {
+    gap: 64px;
+  }
 }
 
 // Desktop spec: eyebrow 14px Noto Sans SemiBold (#3369FF), title 36px Poppins Regular (#4D4D4D),
