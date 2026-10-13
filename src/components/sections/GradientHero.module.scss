@@ -123,7 +123,9 @@
 // Same cutout, stacked under the copy — mirrors the "default" variant's
 // mobileGraphicWrap/mobileGraphicBox pattern (see below), sized to this image's
 // own aspect ratio via --hero-mobile-aspect so it doesn't letterbox oddly.
-.insetMobileGraphicWrap {
+// Doubled class: this sits on a <Container>, whose padding-inline has equal specificity, so the
+// winner would otherwise depend on stylesheet order (differs between next dev and the prod build).
+.insetMobileGraphicWrap.insetMobileGraphicWrap {
   position: relative;
   padding-inline: 0;
   padding-bottom: 32px;
@@ -301,7 +303,7 @@
 // Mobile fill (Figma 6439:7942): the image box is the card's full width at 398×314, so the
 // transparent margin of the PNG stays and the device sits at ~65% width, bottom-anchored.
 // Desktop is untouched.
-.insetMobileGraphicWrapFill {
+.insetMobileGraphicWrap.insetMobileGraphicWrapFill {
   margin-top: 36px;
   padding-bottom: 0;
 
