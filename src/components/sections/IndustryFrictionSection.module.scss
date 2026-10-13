@@ -119,4 +119,8 @@
       border-radius: inherit;
     }
   }
+
+  @media (max-width: 767.98px) {
+    border-radius: 5px;
+  }
 }
