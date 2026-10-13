@@ -58,20 +58,22 @@ type LineBox = { left: number; top: number; height: number };
 
 const MOBILE_GEOMETRY: { card: Box; node: Box; line: LineBox }[] = [
   {
-    card: { left: 195.02, top: 15, width: 179 },
-    node: { left: 275, top: 188.65, width: 20 },
-    line: { left: 285, top: 150.8, height: 37.85 },
+    // Your channels
+    card: { left: 193.5, top: 27, width: 173 },
+    node: { left: 270, top: 171, width: 20 },
+    line: { left: 280, top: 191, height: 15 },
   },
   {
-    card: { left: 163.02, top: 527, width: 190 },
-    node: { left: 240, top: 477, width: 36 },
-    // Dashed connector runs from the layer-stack artwork down to the node.
-    line: { left: 258, top: 366, height: 111 },
+    // CQI Verified CX: dot sits 23px above the card, line runs up to the layers.
+    card: { left: 162, top: 531, width: 183 },
+    node: { left: 235.6, top: 472, width: 36 },
+    line: { left: 253.6, top: 366, height: 106 },
   },
   {
-    card: { left: 0.04, top: -2, width: 179 },
-    node: { left: 29, top: 345, width: 20 },
-    line: { left: 39, top: 135.4, height: 209.6 },
+    // Your record systems
+    card: { left: 4.5, top: 11, width: 172 },
+    node: { left: 31, top: 155, width: 20 },
+    line: { left: 41, top: 175, height: 181 },
   },
 ];
 
@@ -103,10 +105,10 @@ export function StackInfographicSection({ layers, ctas }: StackInfographicSectio
             aria-hidden="true"
           />
           <img
-            src="/images/shared/home/stack-layers-mobile.svg"
+            src="/images/shared/home/stack-layers-mobile.png"
             alt=""
-            width={374}
-            height={379}
+            width={1496}
+            height={1529}
             className={styles.layersArtMobile}
             aria-hidden="true"
           />
@@ -125,7 +127,7 @@ export function StackInfographicSection({ layers, ctas }: StackInfographicSectio
                     <h3 className={styles.cardTitle}>
                       {layer.title.split(' - ').map((part, i) => (
                         <span key={part} className={styles.titlePart}>
-                          {i > 0 && <span className={styles.titleSep}> - </span>}
+                          {i > 0 && <span className={styles.titleSep}> <span className={styles.titleDash}>-</span> </span>}
                           {part}
                         </span>
                       ))}
@@ -154,7 +156,7 @@ export function StackInfographicSection({ layers, ctas }: StackInfographicSectio
                 />
 
                 <span
-                  className={styles.lineMobile}
+                  className={`${styles.lineMobile} ${geometry.active ? styles.lineMobileUp : ''}`.trim()}
                   style={toMobileLineVars(mobileGeometry.line)}
                   aria-hidden="true"
                 />
