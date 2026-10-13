@@ -98,6 +98,7 @@ export function IndustryScenariosSection({ data }: IndustryScenariosSectionProps
                   overlay={scenario.imageOverlay ?? 0}
                   overlayBlend={scenario.imageBlend}
                   objectPosition={scenario.imagePosition}
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                   fillContainer
                 />
               )}

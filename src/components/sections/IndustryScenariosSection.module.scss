@@ -206,4 +206,11 @@
     min-height: 400px;
     height: 400px;
   }
+
+  // Figma mobile (6606:74512) fits the whole photo into the 220px frame instead of cropping it.
+  @media (max-width: 767.98px) {
+    img {
+      object-fit: fill;
+    }
+  }
 }
