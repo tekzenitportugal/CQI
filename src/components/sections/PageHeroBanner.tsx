@@ -46,6 +46,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     frame && styles.photoFramed,
     frame?.aspect && styles.photoFramedRatio,
     data.mobilePortraitCrop && styles.photoPortrait,
+    data.mobilePhotoFit && styles.photoFit,
     data.image && (hasDedicatedMobile ? (frame ? styles.washFramed : styles.washFlat) : mirror ? styles.washLegacy : styles.washLegacyUnmirrored),
   ]
     .filter(Boolean)

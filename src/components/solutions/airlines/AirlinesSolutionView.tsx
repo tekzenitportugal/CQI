@@ -21,7 +21,6 @@ export function AirlinesSolutionView() {
         image={data.heroImage}
         imageAspectRatio={data.heroImageAspectRatio}
         imageUnoptimized
-        mobileBanner={data.heroMobileBanner}
         mobileCopyFlush
       />
       <AirlinesWhySection data={data.why} />

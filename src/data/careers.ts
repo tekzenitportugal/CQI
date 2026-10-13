@@ -30,6 +30,7 @@ export const careersData: CareersPageData = {
       'CQI is an enterprise software company solving a problem most of its market has not yet named. The work is close to real operations, and the feedback loop is a client’s own data.',
     image: '/images/company/careers/hero.webp',
     mobileImage: '/images/company/careers/hero-mobile.webp',
+    mobilePhotoFit: true,
     imageWidth: 1520,
     imageHeight: 848,
   } satisfies PageHeroData,

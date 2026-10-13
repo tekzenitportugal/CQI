@@ -28,7 +28,9 @@ export default function NotListedPage() {
       <IndustryThreeThingsSection data={notListedPageData.threeQuestions} industryMobile alignedLine />
       <div className="solutions-band">
         <AdjacentSectorsSection data={notListedPageData.adjacentSectors} />
-        <CtaBannerSection data={notListedPageData.cta} />
+        <div className="solutions-band-cta-white">
+          <CtaBannerSection data={notListedPageData.cta} />
+        </div>
       </div>
     </>
   );

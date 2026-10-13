@@ -204,3 +204,12 @@
     mask-image: linear-gradient(180deg, transparent $photo-top, #000 calc(#{$photo-top} + 90px));
   }
 }
+
+// Below lg: the whole photo at box width, bottom-anchored (Figma: it spans from the card bottom up to
+// the copy, not the full card). The copy's blue wash hides its top edge. Desktop is untouched.
+@media (max-width: 1023.98px) {
+  .photoFit.photoDedicated::before {
+    background-size: 100% auto;
+    background-position: center bottom;
+  }
+}

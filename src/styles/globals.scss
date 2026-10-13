@@ -105,3 +105,10 @@ ul {
 .no-break {
   white-space: nowrap;
 }
+
+/* Not listed, mobile: the CTA sits on white so it doesn't merge with the grey band above it. */
+.solutions-band-cta-white {
+  @media (max-width: 1023.98px) {
+    background: #fff;
+  }
+}

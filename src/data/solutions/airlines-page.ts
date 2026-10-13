@@ -54,7 +54,6 @@ export const airlinesPageData = {
     },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/airlines/hero-banner.png',
-  heroMobileBanner: { src: '/images/solutions/airlines/hero-banner-mobile.png', width: 1194, height: 975 },
   heroImageAspectRatio: '2433 / 2544',
 
   why: {
