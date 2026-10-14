@@ -376,6 +376,8 @@ export type IndustrySolutionData = {
   heroImageAspectRatio?: string;
   /** Right-anchored product cutout on the gradient hero (same treatment as the homepage), instead of a full-bleed photo. */
   heroMockup?: boolean;
+  /** Extra PageHeroBanner options for the full-bleed photo hero (mobile crop, unoptimised, ...). */
+  heroBanner?: Partial<PageHeroData>;
   friction: IndustryFrictionData;
   threeThings: IndustryThreeThingsData;
   scenarios: IndustryScenariosData;

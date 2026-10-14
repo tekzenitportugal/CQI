@@ -54,7 +54,7 @@ export const airlinesPageData = {
     },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/airlines/hero-banner.png',
-  heroImageAspectRatio: '2433 / 2544',
+  heroImageMobile: '/images/solutions/airlines/hero-banner-mobile.png',
 
   why: {
     title: 'The flight is tracked.\nThe feeling is missed.',

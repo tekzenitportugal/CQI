@@ -25,7 +25,9 @@ export function IndustrySolutionView({ data }: IndustrySolutionViewProps) {
           mobileImage={data.heroImageMobile}
         />
       ) : data.heroImage ? (
-        <PageHeroBanner data={{ ...data.hero, image: data.heroImage, mobileImage: data.heroImageMobile }} />
+        <PageHeroBanner
+          data={{ ...data.hero, ...data.heroBanner, image: data.heroImage, mobileImage: data.heroImageMobile }}
+        />
       ) : (
         <GradientHero data={data.hero} variant="inset" />
       )}

@@ -1,6 +1,6 @@
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
 import { FaqSection } from '@/components/sections/FaqSection';
-import { GradientHero } from '@/components/sections/GradientHero';
+import { PageHeroBanner } from '@/components/sections/PageHeroBanner';
 import { AirlinesContributesSection } from '@/components/solutions/airlines/AirlinesContributesSection';
 import { AirlinesJourneySection } from '@/components/solutions/airlines/AirlinesJourneySection';
 import { AirlinesPulseSection } from '@/components/solutions/airlines/AirlinesPulseSection';
@@ -15,13 +15,15 @@ import styles from './AirlinesSolutionView.module.scss';
 export function AirlinesSolutionView() {
   return (
     <>
-      <GradientHero
-        data={data.hero}
-        variant="inset"
-        image={data.heroImage}
-        imageAspectRatio={data.heroImageAspectRatio}
-        imageUnoptimized
-        mobileCopyFlush
+      <PageHeroBanner
+        data={{
+          ...data.hero,
+          image: data.heroImage,
+          mobileImage: data.heroImageMobile,
+          imageUnoptimized: true,
+          // Tall mobile art: keep the cabin (bottom) in view instead of centre-cropping it.
+          mobilePhotoFit: true,
+        }}
       />
       <AirlinesWhySection data={data.why} />
       <div className={styles.band}>

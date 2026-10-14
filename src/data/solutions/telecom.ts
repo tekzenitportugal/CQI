@@ -25,10 +25,10 @@ export const telecomSolutionData = {
       variant: 'secondary',
     },
   } satisfies HeroCopyData,
-  heroImage: '/images/solutions/telecom/hero.webp',
-  heroImageMobile: '/images/solutions/telecom/hero-mobile.webp',
-  heroImageAspectRatio: '2430 / 2544',
-  heroMockup: true,
+  heroImage: '/images/solutions/telecom/hero-banner.png',
+  heroImageMobile: '/images/solutions/telecom/hero-banner-mobile.png',
+  // Tall transparent-top mobile banner: photo bottom-anchored under the copy.
+  heroBanner: { imageUnoptimized: true, mobilePortraitCrop: true },
 
   friction: {
     title:
