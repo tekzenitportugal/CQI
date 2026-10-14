@@ -8,17 +8,22 @@ $sticky-top-space: 120px;
 .section {
   @include section-space(250px - $sticky-top-space);
 
-  // Consistent 100px inter-section rhythm on mobile/tablet.
-  @media (max-width: 1023.98px) {
+  // Consistent 100px inter-section rhythm on mobile.
+  @media (max-width: 767.98px) {
     padding-top: 200px;
     padding-bottom: 0;
+  }
+
+  // Phones pin the frame too, so give back the space it now reserves above the heading.
+  @media (max-width: 767.98px) {
+    padding-top: 200px - $sticky-top-space;
   }
 }
 
 .heading {
   // Figma mobile eyebrow is 12px (the shared SectionHeading default is 14px);
   // the eyebrow renders as the heading's first paragraph when present.
-  @media (max-width: 1023.98px) {
+  @media (max-width: 767.98px) {
     p:first-child {
       font-size: 12px;
     }
@@ -32,7 +37,7 @@ $sticky-top-space: 120px;
   position: relative;
   height: 150svh;
 
-  @media (max-width: 1023.98px) {
+  @media (max-width: 767.98px) {
     height: auto;
   }
 }
@@ -45,10 +50,14 @@ $sticky-top-space: 120px;
   display: flex;
   align-items: flex-start;
 
-  @media (max-width: 1023.98px) {
-    padding-top: 0;
-    height: 50svh;
+  // Phones: not pinned; the input lock holds the page here (see HowItWorksSection.tsx).
+  @media (max-width: 767.98px) {
+    position: static;
     align-items: flex-start;
+    padding-top: $sticky-top-space;
+    height: auto;
+    // 200px between the diagram and the next block.
+    padding-bottom: 200px;
   }
 }
 
@@ -72,11 +81,19 @@ $sticky-top-space: 120px;
   color: var(--color-blue-200);
   cursor: pointer;
 
-  @include respond-to(lg) {
+  @media (min-width: 768px) {
     display: inline-flex;
     position: absolute;
     right: 0;
     bottom: 0;
+  }
+
+  // Phones: the page is locked to the pinned diagram, so Skip is the way past it.
+  @media (max-width: 767.98px) {
+    display: inline-flex;
+    position: absolute;
+    right: 0;
+    bottom: -32px;
   }
 
   @include text-link-hover;
@@ -95,7 +112,7 @@ $sticky-top-space: 120px;
   --text-boost: 1;
 
   // Let horizontal swipes reach the diagram while vertical scrolling stays native.
-  @media (max-width: 1023.98px) {
+  @media (max-width: 767.98px) {
     touch-action: pan-y;
   }
 
@@ -146,7 +163,7 @@ $sticky-top-space: 120px;
   fill: transparent;
   stroke: none;
 
-  @media (max-width: 1023.98px) {
+  @media (max-width: 767.98px) {
     cursor: pointer;
   }
 }

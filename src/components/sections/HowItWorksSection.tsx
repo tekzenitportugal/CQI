@@ -82,8 +82,23 @@ const STEP_KEYS: Record<string, 1 | -1> = {
 
 const TOUCH_THRESHOLD_PX = 30;
 const SWIPE_THRESHOLD_PX = 40;
-// Below lg the diagram is not pinned, so the numbers (tap) and horizontal swipes drive it.
-const isCompactViewport = () => window.matchMedia("(max-width: 1023.98px)").matches;
+// Wheel/trackpad input closer together than this belongs to the same gesture (inertia).
+// How far (px) the frame top may sit from the viewport top and still count as locked.
+const LOCK_TOLERANCE_PX = 2;
+// Scroll is "settled" (momentum finished) after this long without a scroll event.
+const SCROLL_SETTLE_MS = 160;
+const GESTURE_QUIET_MS = 140;
+// Scroll jumps within this long of a wheel/touch-move are momentum, not a link or anchor jump.
+const MOMENTUM_WINDOW_MS = 2500;
+// The diagram is pinned (and the page locked to it) on desktop/large tablet and on phones;
+// 768-1023px keeps the plain tap/swipe layout.
+// Phones are not CSS-pinned: the page is held at the frame by the input lock alone, so once
+// released the diagram scrolls away with the next block (gap stays constant). From 768px up
+// the frame is CSS-pinned (sticky) like desktop and the lock only intercepts input.
+const isStaticLock = () => window.matchMedia("(max-width: 767.98px)").matches;
+const isPinned = () => true;
+// Below 768px the numbers (tap) and horizontal swipes also drive the diagram.
+const isCompactViewport = () => window.matchMedia("(max-width: 767.98px)").matches;
 
 export function HowItWorksSection({ data }: HowItWorksSectionProps) {
   const trackRef = useRef<HTMLDivElement>(null);
@@ -92,17 +107,17 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
   );
   const goToRef = useRef<(target: number) => void>(() => {});
   const stageRef = useRef(0);
+  const skippingRef = useRef(false);
   const swipeRef = useRef({ x: 0, y: 0 });
   const itemNodesRef = useRef<(HTMLLIElement | null)[]>(
     data.stages.map(() => null),
   );
 
   // The track's sticky frame holds the diagram in place for the length of this effect's
-  // "engaged" window (rect.top <= 0 && rect.bottom > viewport). While engaged, scroll/key/
-  // touch input is intercepted and converted into discrete steps — one nudge commits to a
-  // full move to the next or previous stage, eased to completion on its own, so the arc
-  // never rests stopped half-way between two numbers. Input at stage 1 (scrolling up) or
-  // stage 5 (scrolling down) is left alone so the page scrolls on normally.
+  // "engaged" window (rect.top <= 0 && rect.bottom > frame height). While engaged the page
+  // is locked to the diagram: wheel/key/touch input is swallowed and one gesture (inertia
+  // included) moves exactly one stage. The section is left only by scrolling down past
+  // stage 5, scrolling up past stage 1 (both hand the gesture back to the browser), or Skip.
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
@@ -120,6 +135,9 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
       duration: number;
     } | null = null;
     let rafId = 0;
+    let lastUserInputAt = 0;
+    // The sticky frame is what stays pinned; the track is frame + scroll runway.
+    const frameHeight = () => (track.firstElementChild as HTMLElement | null)?.offsetHeight ?? window.innerHeight;
 
     const draw = (value: number) => {
       const vm = viewModel(value, CONFIG, true);
@@ -139,8 +157,10 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
     };
 
     const isEngaged = () => {
+      if (!isPinned()) return false;
       const rect = track.getBoundingClientRect();
-      return rect.top <= 0 && rect.bottom > window.innerHeight;
+      if (isStaticLock()) return Math.abs(rect.top) <= LOCK_TOLERANCE_PX;
+      return rect.top <= 0 && rect.bottom > frameHeight();
     };
 
     /** Eases to any stage; returns false when already there. */
@@ -164,50 +184,129 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
       goTo(Math.min(Math.max(target, 0), CONFIG.count - 1));
     };
 
-    /** Returns true when the input was consumed (caller should preventDefault). */
-    const attemptStep = (direction: 1 | -1): boolean => {
-      if (anim) return true;
-      const next = Math.min(Math.max(stage + direction, 0), CONFIG.count - 1);
-      return goTo(next);
+    // Scrolling past stage 5 (down) or stage 1 (up) hands the page back to the browser.
+    const isBoundary = (direction: 1 | -1) =>
+      (direction > 0 && stage === CONFIG.count - 1) || (direction < 0 && stage === 0);
+
+    // One gesture = one stage. A gesture's mode is fixed when it starts:
+    //  step    – started on a stage with somewhere to go; all its input is swallowed and
+    //            at most one stage change happens (inertia included)
+    //  release – started at stage 1 going up / stage 5 going down; the page scrolls on
+    //  outside – started before the section was pinned; swallowed once pinned so a flick
+    //            can't carry through the stages
+    type Mode = "step" | "release" | "outside";
+    const startMode = (direction: 1 | -1): Mode =>
+      !isEngaged() ? "outside" : isBoundary(direction) ? "release" : "step";
+
+    const markUserInput = () => {
+      lastUserInputAt = performance.now();
+      skippingRef.current = false;
     };
 
     const onReduceMotionChange = () => {
       reduceMotion = reduceMotionQuery.matches;
     };
 
+    let wheelMode: Mode = "outside";
+    let wheelStepped = false;
+    let lastWheelAt = 0;
     const onWheel = (e: WheelEvent) => {
-      if (!isEngaged()) return;
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
       const direction = e.deltaY > 0 ? 1 : e.deltaY < 0 ? -1 : 0;
       if (!direction) return;
-      if (attemptStep(direction)) e.preventDefault();
+      markUserInput();
+      const now = performance.now();
+      // A new gesture starts only after the wheel/trackpad (inertia included) went quiet.
+      if (now - lastWheelAt > GESTURE_QUIET_MS) {
+        wheelMode = startMode(direction);
+        wheelStepped = false;
+      }
+      lastWheelAt = now;
+      if (wheelMode === "release" || !isEngaged()) return;
+      e.preventDefault();
+      if (wheelMode === "step" && !wheelStepped && !anim) {
+        wheelStepped = goTo(stage + direction);
+      }
     };
 
+    let lastKeyStepAt = 0;
     const onKeyDown = (e: KeyboardEvent) => {
-      if (!isEngaged()) return;
       const direction = STEP_KEYS[e.key];
-      if (!direction) return;
-      if (attemptStep(direction)) e.preventDefault();
+      if (!direction || !isEngaged()) return;
+      if (e.target instanceof HTMLElement && e.target.closest("button, input, textarea, select, [contenteditable]")) return;
+      markUserInput();
+      if (isBoundary(direction)) return;
+      e.preventDefault();
+      const now = performance.now();
+      if (e.repeat || anim || now - lastKeyStepAt < GESTURE_QUIET_MS) return;
+      if (goTo(stage + direction)) lastKeyStepAt = now;
     };
 
+    let touchStartX = 0;
     let touchStartY = 0;
+    let touchMode: Mode | "horizontal" | null = null;
     let touchStepped = false;
     const onTouchStart = (e: TouchEvent) => {
+      touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
+      touchMode = null;
       touchStepped = false;
     };
     const onTouchMove = (e: TouchEvent) => {
-      if (!isEngaged()) return;
-      if (touchStepped) {
-        e.preventDefault();
-        return;
+      if (!isPinned()) return;
+      const dx = touchStartX - e.touches[0].clientX;
+      const dy = touchStartY - e.touches[0].clientY;
+      if (touchMode === null) {
+        if (dx === 0 && dy === 0) return;
+        touchMode = Math.abs(dx) > Math.abs(dy) ? "horizontal" : startMode(dy > 0 ? 1 : -1);
       }
-      const delta = touchStartY - e.touches[0].clientY;
-      if (Math.abs(delta) < TOUCH_THRESHOLD_PX) return;
-      const direction = delta > 0 ? 1 : -1;
-      if (attemptStep(direction)) {
-        touchStepped = true;
-        e.preventDefault();
+      if (touchMode === "horizontal") return;
+      markUserInput();
+      if (touchMode === "release" || !isEngaged()) return;
+      if (e.cancelable) e.preventDefault();
+      if (touchMode === "step" && !touchStepped && !anim && Math.abs(dy) >= TOUCH_THRESHOLD_PX) {
+        touchStepped = goTo(stage + (dy > 0 ? 1 : -1));
       }
+    };
+
+    // Momentum can carry a fast flick straight over the pinned runway. If that happens
+    // before the stages were seen, put the page back where the section locks.
+    let crossedLock = false;
+    let settleTimer = 0;
+    let prevTop = track.getBoundingClientRect().top;
+    let prevBottom = track.getBoundingClientRect().bottom;
+    const onScroll = () => {
+      const rect = track.getBoundingClientRect();
+      const fh = frameHeight();
+      const recentInput = performance.now() - lastUserInputAt < MOMENTUM_WINDOW_MS;
+      if (isPinned() && !skippingRef.current && recentInput && isStaticLock()) {
+        // Crossed the lock position (frame top at the viewport top) in one jump: stop on it.
+        const crossedDown = prevTop > -LOCK_TOLERANCE_PX && rect.top < -LOCK_TOLERANCE_PX;
+        const crossedUp = prevTop < LOCK_TOLERANCE_PX && rect.top > LOCK_TOLERANCE_PX;
+        if ((crossedDown && stage < CONFIG.count - 1) || (crossedUp && stage > 0)) {
+          window.scrollTo({ top: window.scrollY + rect.top, behavior: "instant" as ScrollBehavior });
+          // A finger still dragging (touch) overrides the jump above, so once the page
+          // settles pull it back to the lock position if it is still past it.
+          crossedLock = true;
+        }
+      } else if (isPinned() && !skippingRef.current && recentInput) {
+        if (prevTop > 0 && rect.top < 0 && rect.bottom <= fh && stage < CONFIG.count - 1) {
+          window.scrollTo({ top: window.scrollY + rect.top, behavior: "instant" as ScrollBehavior });
+        } else if (prevBottom <= fh && rect.top > 0 && stage > 0) {
+          window.scrollTo({ top: window.scrollY + rect.bottom - fh - 1, behavior: "instant" as ScrollBehavior });
+        }
+      }
+      prevTop = rect.top;
+      prevBottom = rect.bottom;
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(() => {
+        if (!crossedLock) return;
+        crossedLock = false;
+        const r = track.getBoundingClientRect();
+        if (isStaticLock() && Math.abs(r.top) > LOCK_TOLERANCE_PX) {
+          window.scrollTo({ top: window.scrollY + r.top, behavior: "instant" as ScrollBehavior });
+        }
+      }, SCROLL_SETTLE_MS);
     };
 
     draw(p);
@@ -215,12 +314,15 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("scroll", onScroll, { passive: true });
     reduceMotionQuery.addEventListener("change", onReduceMotionChange);
     return () => {
       window.removeEventListener("wheel", onWheel);
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(settleTimer);
       reduceMotionQuery.removeEventListener("change", onReduceMotionChange);
       cancelAnimationFrame(rafId);
     };
@@ -228,6 +330,7 @@ export function HowItWorksSection({ data }: HowItWorksSectionProps) {
 
   // Jump past the pinned diagram to whatever follows the section.
   const skipSection = () => {
+    skippingRef.current = true;
     const track = trackRef.current;
     if (!track) return;
     const reduceMotion = window.matchMedia(

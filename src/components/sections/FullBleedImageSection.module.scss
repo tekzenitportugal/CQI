@@ -10,13 +10,6 @@
   }
 }
 
-// Video runs edge to edge on mobile/tablet (no side gutter).
-.section .container {
-  @media (max-width: 1023.98px) {
-    padding-inline: 0;
-  }
-}
-
 .frame {
   overflow: hidden;
   border-radius: 12px;
