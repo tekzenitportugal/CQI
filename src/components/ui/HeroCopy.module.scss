@@ -107,6 +107,38 @@
   }
 }
 
+// Figma article detail: date / place line is 17.5px in Antracite/A400, not the big intro.
+.descriptionMeta {
+  font-size: 17.5px;
+  line-height: 1.4;
+  color: var(--color-antracite-400);
+}
+
+// "← Back to all articles": Figma puts 32px between it and the title (the text gap is 48px from lg).
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--color-blue-200);
+  text-decoration: none;
+
+  @include respond-to(lg) {
+    margin-bottom: calc(32px - var(--hero-text-gap));
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.backArrow {
+  transform: scaleX(-1);
+}
+
 .descriptionInlineMobile {
   @media (max-width: 1023.98px) {
     br {

@@ -1,4 +1,5 @@
 import type { CtaBannerData, PageHeroData } from '@/types/content';
+import { articleHref, articlePosts } from '@/data/article-posts';
 import type { PublishedPiecesSectionData } from '@/components/sections/PublishedPiecesSection';
 
 export const articlesData = {
@@ -18,33 +19,14 @@ export const articlesData = {
   published: {
     title: 'Published pieces,\nand what is on the way',
     titleHighlight: ['Published pieces,'],
-    items: [
-      {
-        tags: ['Point of view'],
-        title: 'Why your NPS is dropping, and your dashboard isn’t',
-        description:
-          'The gap between survey response rates and lifecycle reality, and what closes it',
-        readTime: '7 min read',
-        href: '#',
-      },
-      {
-        tags: ['Point of view'],
-        title: 'Strictly met, or met but late?',
-        // Same description text as the first card — as given; flag if that was meant to differ.
-        description:
-          'The gap between survey response rates and lifecycle reality, and what closes it',
-        readTime: '7 min read',
-        href: '#',
-      },
-      {
-        tags: ['Delivery'],
-        title: 'From PoC to horizon three',
-        description:
-          'Sequencing a CX intelligence programme without a big-bang replacement.',
-        readTime: '2 min read',
-        href: '#',
-      },
-    ],
+    // Cards come from the posts in article-posts.ts; the section switches layout by count (1 wide card, 2 columns, 3+ grid, "Load more" past 9).
+    items: articlePosts.map((post) => ({
+      image: post.card.image,
+      title: post.hero.title.replace('\n', ' '),
+      description: post.card.description,
+      readTime: post.card.readTime,
+      href: articleHref(post.slug),
+    })),
   } satisfies PublishedPiecesSectionData,
 
   conversationCta: {

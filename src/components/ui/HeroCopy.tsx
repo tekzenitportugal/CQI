@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import type { CtaLink } from '@/types/content';
 import { Button } from '@/components/ui/Button';
@@ -29,6 +30,10 @@ export type HeroCopyData = {
   mobileInlineDescription?: boolean;
   /** White pills under the intro (e.g. example platforms on the compare detail pages). */
   tags?: string[];
+  /** "← label" link above the title (article detail pages). */
+  backLink?: { label: string; href: string };
+  /** Small meta line instead of the big intro (article detail pages: date / place). */
+  descriptionMeta?: boolean;
   /** Figma mobile hero box height (px) when it differs from the 864px default (inset variant). */
   mobileMinHeight?: number;
   /** Figma mobile top padding (px) above the vertically centred copy (inset variant, no image). */
@@ -56,6 +61,8 @@ export function HeroCopy({
   mobileInlineTitle,
   mobileInlineDescription,
   tags,
+  backLink,
+  descriptionMeta,
   className,
 }: HeroCopyProps) {
   const style = {
@@ -74,6 +81,19 @@ export function HeroCopy({
   return (
     <div className={[styles.copy, className].filter(Boolean).join(' ')} style={style}>
       <div className={styles.text}>
+        {backLink && (
+          <Link href={backLink.href} className={styles.backLink}>
+            <img
+              src="/images/shared/common/arrow-right-blue.svg"
+              alt=""
+              width={16}
+              height={16}
+              aria-hidden="true"
+              className={styles.backArrow}
+            />
+            {backLink.label}
+          </Link>
+        )}
         <h1
           className={[
             styles.title,
@@ -86,7 +106,15 @@ export function HeroCopy({
         >{highlightText(title, titleHighlight)}</h1>
         <div className={styles.intro}>
           <p className={styles.eyebrow}>{eyebrow}</p>
-          <p className={[styles.description, mobileInlineDescription && styles.descriptionInlineMobile].filter(Boolean).join(' ')}>
+          <p
+            className={[
+              styles.description,
+              mobileInlineDescription && styles.descriptionInlineMobile,
+              descriptionMeta && styles.descriptionMeta,
+            ]
+              .filter(Boolean)
+              .join(' ')}
+          >
             {highlightText(descriptionLead)}
             {descriptionNote && <span className={styles.descriptionNote}>{highlightText(descriptionNote)}</span>}
           </p>

@@ -18,6 +18,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     ...(data.mobileIntroGap ? { '--hero-mobile-intro-gap': `${data.mobileIntroGap}px` } : {}),
     ...(data.mobileImageShift ? { '--hero-mobile-img-shift': `${data.mobileImageShift}px`, '--hero-mobile-box-bg': '#050505' } : {}),
     ...(data.mobileImageScale ? { '--hero-mobile-img-scale': String(data.mobileImageScale) } : {}),
+    ...(data.mobilePhotoHeight ? { '--hero-mobile-photo-h': `${data.mobilePhotoHeight}%` } : {}),
   } as CSSProperties;
   const frame = data.desktopImageFrame;
   const desktopFrameVars = frame
@@ -47,6 +48,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     frame?.aspect && styles.photoFramedRatio,
     data.mobilePortraitCrop && styles.photoPortrait,
     data.mobilePhotoFit && styles.photoFit,
+    data.mobilePhotoHeight && styles.photoZone,
     data.image && (hasDedicatedMobile ? (frame ? styles.washFramed : styles.washFlat) : mirror ? styles.washLegacy : styles.washLegacyUnmirrored),
   ]
     .filter(Boolean)
@@ -70,6 +72,8 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
           descriptionMaxWidth={data.descriptionMaxWidth}
           copyMaxWidth={data.copyMaxWidth}
           cta={data.cta}
+          backLink={data.backLink}
+          descriptionMeta={data.descriptionMeta}
           mobileInlineTitle={data.mobileInlineTitle}
           className={styles.content}
         />

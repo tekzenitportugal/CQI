@@ -20,10 +20,26 @@
   list-style: none;
 
   @include respond-to(lg) {
-    gap: 36px 20px;
+    gap: 48px 20px;
     margin-top: 100px;
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+@include respond-to(lg) {
+  .gridOne {
+    grid-template-columns: 1fr;
+  }
+
+  .gridTwo {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
 }
 
 .item {

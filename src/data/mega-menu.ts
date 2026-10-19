@@ -97,10 +97,13 @@ export const megaMenus: MegaMenuConfig[] = [
     href: '/resources/articles',
     columns: [
       {
+        title: 'Library',
+        links: [{ label: 'Articles & blog', href: '/resources/articles' }],
+      },
+      {
         title: 'Reference',
         links: [
           { label: 'Glossary', href: '/resources/glossary' },
-          { label: 'ROI Calculator', href: '/resources/roi-calculator' },
           { label: 'Compare CQI', href: '/resources/compare-cqi' },
         ],
       },

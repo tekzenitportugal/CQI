@@ -1,0 +1,147 @@
+@use '@/styles/mixins' as *;
+
+// Figma "ARTICLE WAF2026" (6679:57400): 951px article column, 344px sidebar, 1436px photo row.
+.section {
+  // The conversation banner below ("flushTop") brings its own 200px of space.
+  @include section-space(200px, 0);
+
+  @media (max-width: 1023.98px) {
+    // Figma mobile: contents box starts 100px under the hero card.
+    padding-top: 100px;
+    padding-bottom: 200px;
+  }
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 64px;
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 951fr) 344px;
+    gap: 141px;
+    align-items: start;
+  }
+
+  // Mobile (Figma 6679:57341): contents + share sit above the article.
+  > :last-child {
+    @media (max-width: 1023.98px) {
+      order: -1;
+    }
+  }
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: 100px;
+
+  @include respond-to(lg) {
+    gap: 120px;
+  }
+}
+
+.articleSection {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  // Lands below the floating nav when the sidebar scrolls to a section.
+  scroll-margin-top: var(--anchor-offset);
+}
+
+.heading {
+  margin: 0;
+  @include heading-h3;
+}
+
+.blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.paragraph {
+  margin: 0;
+  @include body-md;
+  line-height: normal;
+  color: var(--color-antracite-300);
+}
+
+// Photo frame: fills with the picture, cropped to the frame like Figma (never stretched).
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--color-antracite-75);
+}
+
+.photoImage {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.photoWide {
+  width: 100%;
+  height: 600px;
+  // Opening photo sits 40px under the intro text (20px block gap + 20px).
+  margin-top: 20px;
+
+  @media (max-width: 1023.98px) {
+    height: auto;
+    aspect-ratio: 374 / 236;
+    border-radius: 8px;
+  }
+}
+
+.quote {
+  margin: 0;
+  padding: 30px;
+  border-radius: 20px;
+  background: var(--color-light-blue-50);
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: normal;
+  color: var(--color-antracite-300);
+
+  @media (max-width: 1023.98px) {
+    font-size: 17.5px;
+  }
+}
+
+.link {
+  align-self: flex-start;
+  // 26px under the paragraph group (20px block gap + 6px).
+  margin-top: 6px;
+}
+
+// Full-width photo row: 951 + 20 + 465 = 1436.
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 40px;
+
+  .photo {
+    aspect-ratio: 374 / 167;
+  }
+
+  @include respond-to(lg) {
+    grid-template-columns: minmax(0, 951fr) minmax(0, 465fr);
+
+    .photo {
+      aspect-ratio: auto;
+      height: 425px;
+    }
+  }
+
+  @media (max-width: 1023.98px) {
+    .photo {
+      border-radius: 8px;
+    }
+
+    .photo:last-child {
+      aspect-ratio: 374 / 342;
+      border-radius: 16px;
+    }
+  }
+}

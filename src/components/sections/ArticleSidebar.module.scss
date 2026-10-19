@@ -1,0 +1,75 @@
+@use '@/styles/mixins' as *;
+
+// Figma sidebar (6679:57456): grey-blue contents box + share icons. Sticky from lg.
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  @include respond-to(lg) {
+    position: sticky;
+    top: calc(var(--header-offset-top) + var(--header-height) + 24px);
+    gap: 60px;
+  }
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px;
+  border-radius: 12px;
+  @include soft-blue-band(67.652deg);
+}
+
+.item {
+  padding: 10px 16px;
+  border-left: 2px solid transparent;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-blue-200);
+  }
+}
+
+.itemActive {
+  border-left-color: var(--color-blue-200);
+}
+
+.share {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.shareLabel {
+  margin: 0;
+  @include eyebrow;
+  font-size: 12px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--color-antracite-400);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--color-blue-200);
+  }
+}

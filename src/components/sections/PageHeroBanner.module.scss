@@ -205,6 +205,14 @@
   }
 }
 
+// Below lg: the whole photo height (a % of the box) bottom-anchored, sides cropped (Figma article detail).
+@media (max-width: 1023.98px) {
+  .photoZone.photoDedicated::before {
+    background-size: auto var(--hero-mobile-photo-h);
+    background-position: 45% 100%;
+  }
+}
+
 // Below lg: the whole photo at box width, bottom-anchored (Figma: it spans from the card bottom up to
 // the copy, not the full card). The copy's blue wash hides its top edge. Desktop is untouched.
 @media (max-width: 1023.98px) {

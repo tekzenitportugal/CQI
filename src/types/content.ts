@@ -122,6 +122,8 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   mobilePortraitCrop?: boolean;
   /** Below lg (dedicated mobile image): show the whole photo at box width, bottom-anchored (Figma: photo spans only from the card bottom up to the copy) instead of cover-cropping it over the full card. */
   mobilePhotoFit?: boolean;
+  /** Below lg (dedicated mobile image): photo shown at this % of the box height (full height, sides cropped), bottom-anchored; the copy's wash covers its top. */
+  mobilePhotoHeight?: number;
   /** With `mobilePortraitCrop`: scales the bottom-anchored photo up (1 = box width) so its hard top edge sits inside the faded-out zone. */
   mobileImageScale?: number;
   /** lg+ only (dedicated mobile image): Figma placement of the photo inside the hero box, as % of the box. Omit for full-bleed cover. */

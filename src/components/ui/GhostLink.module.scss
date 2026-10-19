@@ -12,6 +12,14 @@
   @include text-link-hover;
 }
 
+// <button> variant (GhostButton): strip native button chrome.
+.button {
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
 // On white / near-white backgrounds.
 .blue {
   color: var(--color-blue-200);
