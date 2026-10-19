@@ -62,7 +62,6 @@ export const sitemapData = {
         title: 'Resources',
         links: [
           { label: 'Glossary', href: '/resources/glossary' },
-          { label: 'ROI calculator', href: '/resources/roi-calculator' },
           { label: 'Compare CQI', href: '/resources/compare-cqi' },
           { label: 'See it live', href: '/resources/see-it-live' },
           { label: 'Site map', href: '/sitemap' },

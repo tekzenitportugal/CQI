@@ -19,11 +19,6 @@ export const telecomSolutionData = {
     titleMaxWidth: 702,
     descriptionMaxWidth: 653,
     copyMaxWidth: 708,
-    cta: {
-      label: 'Model the range',
-      href: '/resources/roi-calculator',
-      variant: 'secondary',
-    },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/telecom/hero-banner.png',
   heroImageMobile: '/images/solutions/telecom/hero-banner-mobile.png',

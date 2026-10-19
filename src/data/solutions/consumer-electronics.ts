@@ -25,11 +25,6 @@ export const consumerElectronicsSolutionData = {
     titleMaxWidth: 587,
     descriptionMaxWidth: 587,
     copyMaxWidth: 587,
-    cta: {
-      label: 'Model the range',
-      href: '/resources/roi-calculator',
-      variant: 'secondary',
-    },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/consumer-electronics/hero.webp',
   heroImageMobile: '/images/solutions/consumer-electronics/hero-mobile.webp',

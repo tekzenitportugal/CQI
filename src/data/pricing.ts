@@ -71,7 +71,6 @@ export const pricingData = {
       'CQI is an enterprise SaaS platform priced against the journeys, channels and interaction volumes in scope. Every engagement starts with a proof of concept, so the business case is built on your data rather than a benchmark.',
     buttons: [
       { label: 'Get a scoped proposal', href: '/contact', variant: 'primary' as const },
-      { label: 'ROI calculator', href: '/resources/roi-calculator', variant: 'secondary' as const },
     ],
   } satisfies PricingHeroData,
 

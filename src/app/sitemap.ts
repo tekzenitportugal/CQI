@@ -28,7 +28,6 @@ const staticRoutes = [
   '/request-a-demo',
   '/resources/compare-cqi',
   '/resources/glossary',
-  '/resources/roi-calculator',
   '/resources/see-it-live',
   '/sitemap',
   '/solutions/all-industry',

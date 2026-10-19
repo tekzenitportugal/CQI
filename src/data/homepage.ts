@@ -132,7 +132,6 @@ export const homepageData = {
     title: 'See the outcome range of what programmes have been scoped to deliver.',
     titleHighlight: ['outcome range', 'deliver'],
     ctas: [
-      { label: 'Model your own range', href: '/resources/roi-calculator', variant: 'ghost' as const },
       { label: 'How we prove it', href: '/products/how-we-prove-it', variant: 'ghost' as const },
     ] satisfies CtaLink[],
     eyebrow: 'Get up to',

@@ -25,11 +25,6 @@ export const bankingSolutionData = {
     titleMaxWidth: 586,
     descriptionMaxWidth: 586,
     copyMaxWidth: 587,
-    cta: {
-      label: 'Model the range',
-      href: '/resources/roi-calculator',
-      variant: 'secondary',
-    },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/banking/hero.png',
   heroImageMobile: '/images/solutions/banking/hero-mobile.png',

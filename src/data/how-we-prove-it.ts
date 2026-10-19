@@ -160,12 +160,11 @@ export const howWeProveItData = {
   cta: {
     title: 'Build the business case\non your own numbers',
     titleHighlight: ['your own numbers'],
-    description: 'Start with the calculator, then validate it in a two-week proof of value.',
+    description: 'Validate it in a two-week proof of value.',
     image: '/images/product/how-we-prove-it/cta-tablet.jpg',
     imageWidth: 579,
     imageHeight: 289,
     buttons: [
-      { label: 'ROI calculator', href: '/resources/roi-calculator', variant: 'primary' },
       { label: 'Request a demo', href: '/request-a-demo', variant: 'secondary' },
     ],
   } satisfies CtaBannerData,

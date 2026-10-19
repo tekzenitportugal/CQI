@@ -24,11 +24,6 @@ export const airlinesSolutionData = {
     titleMaxWidth: 708,
     descriptionMaxWidth: 653,
     copyMaxWidth: 708,
-    cta: {
-      label: 'Model the range',
-      href: '/resources/roi-calculator',
-      variant: 'secondary',
-    },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/airlines/hero.webp',
   heroImageMobile: '/images/solutions/airlines/hero-mobile.webp',

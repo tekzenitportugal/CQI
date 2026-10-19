@@ -25,11 +25,6 @@ export const insuranceSolutionData = {
     titleMaxWidth: 587,
     descriptionMaxWidth: 653,
     copyMaxWidth: 587,
-    cta: {
-      label: 'Model the range',
-      href: '/resources/roi-calculator',
-      variant: 'secondary',
-    },
   } satisfies HeroCopyData,
   heroImage: '/images/solutions/insurance/hero.png',
   heroImageMobile: '/images/solutions/insurance/hero-mobile-banner.png',
