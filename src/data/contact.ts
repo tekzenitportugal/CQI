@@ -36,11 +36,11 @@ export const contactData = {
       {
         title: 'Partnerships',
         description: 'Referral, reseller, delivery and joint go-to-market conversations.',
-        email: 'marketing@cqisense.com',
+        email: 'partnerships@cqisense.com',
         link: { label: 'Partnership model', href: '/company/partnerships' },
       },
       {
-        title: 'Security & procurement',
+        title: 'Security',
         description: 'Questionnaires, evidence packs and infosec review.',
         email: 'marketing@cqisense.com',
         link: { label: 'Security & Trust', href: '/products/security-trust' },
@@ -54,11 +54,6 @@ export const contactData = {
         title: 'Careers',
         description: 'Operations, data, AI and CX delivery roles.',
         link: { label: 'Open roles', href: '/company/careers' },
-      },
-      {
-        title: 'Company',
-        description:
-          'CQI operates worldwide, with sector programmes across Telecom, Airlines, Banking, Insurance, Utilities & Energy and Consumer electronics.',
       },
     ] satisfies ContactChannel[],
   },
