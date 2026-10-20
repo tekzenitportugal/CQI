@@ -16,6 +16,8 @@ export type HeroCopyData = {
   descriptionMaxWidth?: number;
   /** Figma hero column width (e.g. 708px on industry pages). */
   copyMaxWidth?: number;
+  /** 1024–1599px only: cap the copy column at this width (px) instead of the default 50% of the page. */
+  copyFitWidth?: number;
   cta?: CtaLink;
   /** Figma mobile overrides (px): title → intro gap and eyebrow → description gap. */
   mobileTextGap?: number;
@@ -53,6 +55,7 @@ export function HeroCopy({
   titleMaxWidth,
   descriptionMaxWidth,
   copyMaxWidth,
+  copyFitWidth,
   cta,
   mobileTextGap,
   mobileIntroGap,
@@ -69,6 +72,7 @@ export function HeroCopy({
     ...(titleMaxWidth ? { '--hero-title-width': `${titleMaxWidth}px` } : {}),
     ...(descriptionMaxWidth ? { '--hero-description-width': `${descriptionMaxWidth}px` } : {}),
     ...(copyMaxWidth ? { '--hero-copy-max-width': `${copyMaxWidth}px` } : {}),
+    ...(copyFitWidth ? { '--hero-copy-fit-width': `${copyFitWidth}px` } : {}),
     ...(mobileTextGap ? { '--hero-mobile-text-gap': `${mobileTextGap}px` } : {}),
     ...(mobileIntroGap ? { '--hero-mobile-intro-gap': `${mobileIntroGap}px` } : {}),
     ...(mobileTitleWidth ? { '--hero-mobile-title-width': `${mobileTitleWidth}px` } : {}),

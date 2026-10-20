@@ -10,6 +10,8 @@ export const crossChannelIntegrity: CapabilityPageData = {
   hero: {
     title: 'Every promise tracked to kept or broken',
     titleHighlight: ['kept or broken'],
+    // Figma's 587px copy column also below 1600px wide, so the title wraps after "tracked".
+    copyFitWidth: 587,
     eyebrow: 'Cross-channel integrity',
     description:
       'A commitment ledger spanning channels, with containment, continuity and repetition scored separately.',

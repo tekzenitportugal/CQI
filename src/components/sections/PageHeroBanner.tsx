@@ -71,6 +71,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
           titleMaxWidth={data.titleMaxWidth}
           descriptionMaxWidth={data.descriptionMaxWidth}
           copyMaxWidth={data.copyMaxWidth}
+          copyFitWidth={data.copyFitWidth}
           cta={data.cta}
           backLink={data.backLink}
           descriptionMeta={data.descriptionMeta}

@@ -158,7 +158,7 @@
 // 1024–1599px: the cutout image takes the right half, so the copy stays in the left 50%.
 @media (min-width: 1024px) and (max-width: 1599.98px) {
   .copy {
-    max-width: 50%;
+    max-width: min(50%, var(--hero-copy-fit-width, 50%));
   }
 
   .title,
