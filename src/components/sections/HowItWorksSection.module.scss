@@ -5,8 +5,15 @@
 // unstuck layout is unchanged.
 $sticky-top-space: 120px;
 
+// Desktop: the frame is pinned with the heading + diagram + Skip centred vertically in the
+// viewport (same space above and below), never closer than 96px to the top so it clears the
+// floating header. $pinned-content-height is heading-top to diagram-bottom (incl. Skip).
+// The section's top padding gives back whatever this reserves, so the unstuck gap stays 250px.
+$pinned-content-height: 623px;
+$pin-top-space: clamp(96px, calc((100svh - #{$pinned-content-height}) / 2), 250px);
+
 .section {
-  @include section-space(250px - $sticky-top-space);
+  @include section-space(calc(250px - #{$pin-top-space}));
 
   // Consistent 100px inter-section rhythm on mobile.
   @media (max-width: 767.98px) {
@@ -35,18 +42,27 @@ $sticky-top-space: 120px;
 // little runway so release-scrolling past stage 5 (or back above stage 1) feels normal.
 .scrollTrack {
   position: relative;
-  height: 150svh;
 
-  @media (max-width: 767.98px) {
-    height: auto;
+  // The frame is only as tall as its content (+ the fixed 200px gap below), so the gap to
+  // the video is the same on every screen height. The extra scroll runway comes from the
+  // spacer below the frame instead of from a 100svh frame.
+  &::after {
+    content: '';
+    display: block;
+    height: 50svh;
+
+    @media (max-width: 767.98px) {
+      display: none;
+    }
   }
 }
 
 .stickyFrame {
   position: sticky;
   top: 0;
-  height: 100svh;
-  padding-top: $sticky-top-space;
+  padding-top: $pin-top-space;
+  // 200px between the diagram and the next block (the video), at every desktop size.
+  padding-bottom: 200px;
   display: flex;
   align-items: flex-start;
 

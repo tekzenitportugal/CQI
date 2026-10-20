@@ -22,4 +22,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  // 1% zoom so every edge of the video sits just behind the frame's overflow clip.
+  transform: scale(1.01);
 }
