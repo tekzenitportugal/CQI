@@ -30,6 +30,12 @@
   @include tag-chip;
 }
 
+// Tagged cards: copy sits directly under the tag (not pushed to the bottom), so titles
+// start at the same height in every card of a row regardless of description length.
+.tag + .copy {
+  margin-bottom: auto;
+}
+
 .iconBody {
   display: flex;
   flex-direction: column;
