@@ -73,6 +73,12 @@ export const compareCqiData = {
     },
     rows: [
       {
+        category: 'CQI',
+        question: 'Was the experience we promised actually delivered?',
+        blindSpot: 'Designed to consume the four below rather\nthan replace them',
+        highlight: true,
+      },
+      {
         category: 'CCaaS',
         question: 'How well was the interaction handled?',
         blindSpot: 'Whether the commitment inside it was executed',
@@ -91,12 +97,6 @@ export const compareCqiData = {
         category: 'QA & Quality Management',
         question: 'Did the agent follow the standard?',
         blindSpot: 'Whether the promise was kept downstream',
-      },
-      {
-        category: 'CQI',
-        question: 'Was the experience we promised actually delivered?',
-        blindSpot: 'Designed to consume the four above rather\nthan replace them',
-        highlight: true,
       },
     ],
   } satisfies DistinctionTableSectionData,
