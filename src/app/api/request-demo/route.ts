@@ -66,13 +66,17 @@ export async function POST(request: Request) {
   const organisation = clean(body.organisation);
   const role = clean(body.role);
   const sector = clean(body.sector);
-  const volume = clean(body.volume);
+  const country = clean(body.country);
+  const message = clean(body.message, 2000);
 
+  if (!name || !organisation || !role || !country) {
+    return NextResponse.json({ error: 'Please fill in all required fields.' }, { status: 400 });
+  }
   if (!EMAIL_PATTERN.test(workEmail)) {
-    return NextResponse.json({ error: 'Please enter a valid work email.' }, { status: 400 });
+    return NextResponse.json({ error: 'Please enter a valid business email.' }, { status: 400 });
   }
   if (!SECTORS[sector]) {
-    return NextResponse.json({ error: 'Please select a sector.' }, { status: 400 });
+    return NextResponse.json({ error: 'Please select an industry.' }, { status: 400 });
   }
 
   const host = process.env.SMTP_HOST;
@@ -88,12 +92,13 @@ export async function POST(request: Request) {
   }
 
   const rows: [string, string][] = [
-    ['Name', name || '—'],
-    ['Work email', workEmail],
-    ['Organisation', organisation || '—'],
-    ['Role', role || '—'],
-    ['Sector', SECTORS[sector]],
-    ['Annual interaction volume', volume || '—'],
+    ['Name', name],
+    ['Business email', workEmail],
+    ['Company', organisation],
+    ['Job title', role],
+    ['Industry', SECTORS[sector]],
+    ['Country/Region', country],
+    ['Areas of interest', message || '—'],
   ];
 
   const html = `

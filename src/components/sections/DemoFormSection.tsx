@@ -7,6 +7,7 @@ import styles from './DemoFormSection.module.scss';
 export type DemoFormSectionData = {
   eyebrow: string;
   title: string;
+  description: string;
   submitLabel: string;
 };
 
@@ -61,8 +62,11 @@ export function DemoFormSection({ data }: DemoFormSectionProps) {
     <section className={styles.section}>
       <Container className={styles.layout}>
         <div className={styles.heading}>
-          <p className={styles.eyebrow}>{data.eyebrow}</p>
-          <p className={styles.title}>{data.title}</p>
+          <div className={styles.headingTitle}>
+            <p className={styles.eyebrow}>{data.eyebrow}</p>
+            <p className={styles.title}>{data.title}</p>
+          </div>
+          <p className={styles.description}>{data.description}</p>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -76,28 +80,28 @@ export function DemoFormSection({ data }: DemoFormSectionProps) {
           />
           <div className={styles.fields}>
             <label className={styles.field}>
-              <span className={styles.label}>Name</span>
-              <input type="text" name="name" className={styles.input} />
+              <span className={styles.label}>Name*</span>
+              <input type="text" name="name" required className={styles.input} />
             </label>
 
             <label className={styles.field}>
-              <span className={styles.label}>Work email*</span>
+              <span className={styles.label}>Business Email*</span>
               <input type="email" name="workEmail" required className={styles.input} />
             </label>
 
             <label className={styles.field}>
-              <span className={styles.label}>Organisation</span>
-              <input type="text" name="organisation" className={styles.input} />
+              <span className={styles.label}>Company*</span>
+              <input type="text" name="organisation" required className={styles.input} />
             </label>
 
             <div className={styles.fieldRow}>
               <label className={styles.field}>
-                <span className={styles.label}>Role</span>
-                <input type="text" name="role" className={styles.input} />
+                <span className={styles.label}>Job title*</span>
+                <input type="text" name="role" required className={styles.input} />
               </label>
 
               <label className={styles.field}>
-                <span className={styles.label}>Sector</span>
+                <span className={styles.label}>Industry*</span>
                 <span className={styles.selectWrapper}>
                   <select name="sector" defaultValue="" required className={styles.select}>
                     <option value="" disabled hidden>
@@ -124,9 +128,24 @@ export function DemoFormSection({ data }: DemoFormSectionProps) {
             </div>
 
             <label className={styles.field}>
-              <span className={styles.label}>Approximate annual interaction volume</span>
-              <input type="text" name="volume" placeholder="e.g 4 million" className={styles.input} />
+              <span className={styles.label}>Country/ Region*</span>
+              <input type="text" name="country" required className={styles.input} />
             </label>
+
+            <label className={styles.field}>
+              <span className={styles.label}>
+                Areas of interest and anything specific you’d like us to cover in the demo.
+              </span>
+              <textarea name="message" className={styles.textarea} />
+            </label>
+
+            <div className={styles.note}>
+              <p>Required fields are marked with *</p>
+              <p>
+                Never share sensitive information (credit card numbers, social security numbers,
+                passwords) through this form.
+              </p>
+            </div>
           </div>
 
           <div className={styles.actions}>

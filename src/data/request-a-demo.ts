@@ -21,6 +21,8 @@ export const requestADemoData = {
   form: {
     eyebrow: 'Book a session',
     title: 'Tell us where to start',
+    description:
+      'Ready to see CQI Sense in action? Fill out the form below and our team will reach out to schedule a personalized demo tailored to your business needs.',
     submitLabel: 'Request a demo',
   } satisfies DemoFormSectionData,
 
