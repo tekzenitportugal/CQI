@@ -1,5 +1,7 @@
 @use '@/styles/mixins' as *;
 
+$ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
 // Figma Frame 1000003491: full-bleed band, content inset 195px top / 217px bottom
 .section {
   @include soft-blue-band(77.015deg);
@@ -78,71 +80,100 @@
   }
 }
 
-// Same peeking-deck mechanic as LayerStackSection (/products/overview): every tier
-// stays absolutely positioned at all times, so top/left/right animate smoothly between
-// depths instead of snapping — the back tiers clip down to a flat colour tab (matching
-// the Figma peek), the front tier expands to a tall max-height to reveal its full copy.
+// Figma "Six tiers, on Google Cloud" (6696:71240): 480px cards, 20px gap, one expanded at a time.
+// The open card is 342px vs ~199px collapsed (≈1.722×), so widths animate via flex-grow.
+// Mobile: all six tiers stack, 20px apart, each fully expanded.
 .stack {
-  position: relative;
-  height: max(343px, var(--stack-height, 0px));
+  container-type: inline-size;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 
   @include respond-to(lg) {
-    height: 300px;
+    flex-direction: row;
+    height: 480px;
   }
 }
 
 .tierCard {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  width: auto;
-  padding: 24px;
-  border-radius: 20px;
-  text-align: left;
-  cursor: pointer;
-  position: absolute;
-  top: calc(60px - var(--depth) * 12px);
-  left: calc(var(--depth) * 12px);
-  right: calc(var(--depth) * 12px);
-  max-height: 12px;
+  justify-content: flex-end;
+  min-width: 0;
   overflow: hidden;
-  z-index: calc(10 - var(--depth));
-  transition:
-    top 0.35s ease,
-    left 0.35s ease,
-    right 0.35s ease,
-    max-height 0.35s ease,
-    background-color 0.35s ease;
+  padding: 24px;
+  border-radius: 12px;
 
   @include respond-to(lg) {
-    padding: 32px 50px;
-    border-radius: 12px;
-    top: calc(100px - var(--depth) * 20px);
-    left: calc(var(--depth) * 20px);
-    right: calc(var(--depth) * 20px);
-    max-height: 20px;
+    flex: 1 1 0;
+    padding: 32px;
+    transition: flex-grow 0.6s $ease;
   }
 }
 
-.tierCard.front {
+@include respond-to(lg) {
+  .open {
+    flex-grow: 1.722;
+  }
+}
+
+.trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
   cursor: default;
-  min-height: 283px;
-  max-height: 600px;
+  pointer-events: none;
 
   @include respond-to(lg) {
-    min-height: 0;
-    max-height: 200px;
+    cursor: pointer;
+    pointer-events: auto;
+
+    // The whole collapsed card is the click target.
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    &:focus-visible {
+      outline: none;
+
+      &::after {
+        outline: 2px solid var(--color-blue-200);
+        outline-offset: -4px;
+        border-radius: 12px;
+      }
+    }
+  }
+}
+
+@include respond-to(lg) {
+  .open .trigger {
+    cursor: default;
+
+    &::after {
+      display: none;
+    }
   }
 }
 
 .tierTitle {
+  display: block;
   font-family: var(--font-heading);
-  font-size: 32px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1.3;
 
-  @media (max-width: 1023.98px) {
-    font-size: 24px;
+  @include respond-to(lg) {
+    white-space: pre-line;
+    // Borrow the card's empty right padding so "& integration" fits on one line when collapsed.
+    margin-right: -18px;
   }
 }
 
@@ -154,27 +185,71 @@
   color: var(--color-white);
 }
 
-.tierBody {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: auto;
+// Expand/collapse: height animates 0fr → 1fr; the content is laid out at the open card's final
+// width the whole time so the text never re-wraps while the card resizes, it just fades and rises.
+.panel {
+  display: grid;
+  grid-template-rows: 1fr;
 
   @include respond-to(lg) {
-    @include split-row(flex-end);
-    margin-top: 0;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.6s $ease;
+  }
+}
+
+@include respond-to(lg) {
+  .open .panel {
+    grid-template-rows: 1fr;
+  }
+}
+
+.panelInner {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-height: 0;
+  overflow: hidden;
+  padding-top: 24px;
+
+  @include respond-to(lg) {
+    padding-top: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(14px);
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      padding-top 0.6s $ease,
+      visibility 0s linear 0.6s;
+    // Open card width: 1.722/6.722 of the row (minus 5 gaps) less its 32px side padding.
+    width: calc((100cqw - 100px) * 0.2562 - 64px);
+  }
+}
+
+@include respond-to(lg) {
+  .open .panelInner {
+    padding-top: 32px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.45s ease 0.2s,
+      transform 0.6s $ease 0.15s,
+      padding-top 0.6s $ease,
+      visibility 0s;
   }
 }
 
 .tierDescription {
   margin: 0;
   font-family: var(--font-body);
-  font-size: 17.5px;
+  font-size: 15px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 20px;
 
-  @media (max-width: 1023.98px) {
-    font-size: 15px;
+  @include respond-to(lg) {
+    line-height: 1.4;
+    font-size: 17.5px;
   }
 }
 
@@ -190,16 +265,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-  flex-shrink: 0;
 }
 
 .footnote {
   margin: 0;
   max-width: 590px;
   margin-top: 32px;
-
-  @include respond-to(lg) {
-    margin-top: -31px;
-  }
   @include footnote;
 }
