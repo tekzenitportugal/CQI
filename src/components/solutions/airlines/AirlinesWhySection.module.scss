@@ -1,12 +1,13 @@
 @use '@/styles/mixins' as *;
 
-// Figma: hero card ends 243px above this block; the grey band starts 243px below it.
+// Figma: stat band ends 389px above this block (268px on mobile); the grey band starts ~200px below it.
 .section {
-  padding-block: 243px;
+  padding-top: 268px;
+  padding-bottom: 182px;
 
-  // Figma mobile: 200px under the hero card, 200px above the grey band.
-  @media (max-width: 1023.98px) {
-    padding-block: 200px;
+  @include respond-to(lg) {
+    padding-top: 389px;
+    padding-bottom: 199px;
   }
 }
 
@@ -23,6 +24,14 @@
   }
 }
 
+// Dashboard screenshot with its pager dots 40px underneath (Figma Frame 1410129145).
+.mediaColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
 .media {
   position: relative;
   width: 100%;
@@ -36,6 +45,30 @@
 .image {
   object-fit: cover;
   object-position: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.imageActive {
+  opacity: 1;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--color-light-blue-75);
+  transition: background 0.2s ease;
+}
+
+.dotActive {
+  background: var(--color-blue-200);
 }
 
 .copy {
@@ -49,6 +82,11 @@
 
   @media (max-width: 1023.98px) {
     line-height: 1.214;
+  }
+
+  // Figma mobile keeps the two sentences on separate lines (the global rule reflows authored breaks).
+  :global(.br-desktop) {
+    display: inline;
   }
 }
 
@@ -69,8 +107,10 @@
 .paragraphs {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  // Figma separates paragraphs with one blank line (= one line-height).
+  gap: 1.4em;
   @include body-md;
-  max-width: 690px;
+  font-weight: 500;
+  line-height: 1.4;
   color: var(--color-antracite-300);
 }

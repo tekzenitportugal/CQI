@@ -3,7 +3,9 @@ import { FaqSection } from '@/components/sections/FaqSection';
 import { PageHeroBanner } from '@/components/sections/PageHeroBanner';
 import { AirlinesContributesSection } from '@/components/solutions/airlines/AirlinesContributesSection';
 import { AirlinesJourneySection } from '@/components/solutions/airlines/AirlinesJourneySection';
+import { AirlinesHistorySection } from '@/components/solutions/airlines/AirlinesHistorySection';
 import { AirlinesPulseSection } from '@/components/solutions/airlines/AirlinesPulseSection';
+import { AirlinesStatSection } from '@/components/solutions/airlines/AirlinesStatSection';
 import { AirlinesWhySection } from '@/components/solutions/airlines/AirlinesWhySection';
 import { airlinesPageData as data } from '@/data/solutions/airlines-page';
 import styles from './AirlinesSolutionView.module.scss';
@@ -21,13 +23,13 @@ export function AirlinesSolutionView() {
           image: data.heroImage,
           mobileImage: data.heroImageMobile,
           imageUnoptimized: true,
-          // Tall mobile art: keep the cabin (bottom) in view instead of centre-cropping it.
-          mobilePhotoFit: true,
         }}
       />
+      <AirlinesStatSection data={data.stat} />
       <AirlinesWhySection data={data.why} />
       <div className={styles.band}>
         <AirlinesPulseSection data={data.pulse} />
+        <AirlinesHistorySection data={data.history} />
         <AirlinesContributesSection data={data.contributes} />
       </div>
       <AirlinesJourneySection data={data.journey} />

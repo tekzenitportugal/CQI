@@ -32,6 +32,11 @@
 
 .heading {
   --section-heading-title-max-width: 947px;
+
+  // Opt-in (`mobileTitleWidth`): narrows the title below lg so it wraps where Figma does.
+  @media (max-width: 1023.98px) {
+    --section-heading-title-max-width: var(--faq-mobile-title-width, 947px);
+  }
 }
 
 .accordion {

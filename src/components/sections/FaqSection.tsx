@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import { Accordion, type AccordionItem } from '@/components/ui/Accordion';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -8,6 +9,8 @@ export type FaqSectionData = {
   eyebrow: string;
   title: string;
   items: AccordionItem[];
+  /** Below lg only: title max width (px), for a Figma line break the plain text would not make. */
+  mobileTitleWidth?: number;
 };
 
 type FaqSectionProps = {
@@ -23,7 +26,10 @@ export function FaqSection({ data, spaceTop, variant = 'default' }: FaqSectionPr
   return (
     <section
       className={`${styles.section} ${variant === 'grouped' ? styles.grouped : ''}`.trim()}
-      style={spaceTop !== undefined ? { paddingTop: fluidSpace(spaceTop) } : undefined}
+      style={{
+        ...(spaceTop !== undefined ? { paddingTop: fluidSpace(spaceTop) } : {}),
+        ...(data.mobileTitleWidth ? { '--faq-mobile-title-width': `${data.mobileTitleWidth}px` } : {}),
+      } as CSSProperties}
     >
       <Container className={styles.inner}>
         <SectionHeading eyebrow={data.eyebrow} title={data.title} align="center" className={styles.heading} />

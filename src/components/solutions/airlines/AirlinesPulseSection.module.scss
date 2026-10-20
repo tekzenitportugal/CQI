@@ -9,10 +9,10 @@
   padding-top: 243px;
   padding-bottom: 251px;
 
-  // Figma mobile: heading 200px under the band top, 250px of band below the legend.
+  // Figma mobile: heading 200px under the band top, 200px of band below the legend (then "Why history matters").
   @media (max-width: 1023.98px) {
     padding-top: 200px;
-    padding-bottom: 250px;
+    padding-bottom: 200px;
   }
 }
 
@@ -55,6 +55,12 @@
 
 .heading {
   --section-heading-title-max-width: 947px;
+  --section-heading-description-weight: 500;
+
+  // Figma mobile: 26px from the title to the intro (24px on desktop).
+  @media (max-width: 1023.98px) {
+    --section-heading-description-margin-top: 16px;
+  }
 }
 
 // ── Plane + seats (1350 × 1435 artwork, centred) ────────────────────────────

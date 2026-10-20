@@ -3,7 +3,7 @@
 // Figma: 200px under the grey band; the FAQ below owns its own 200px (400px to the last step).
 .section {
   padding-top: 200px;
-  padding-bottom: 200px;
+  padding-bottom: 191px;
 
   // Figma mobile: 400px under the carousel card (the grey band's own 200px + this 200px), 200px
   // before the FAQ.
@@ -16,6 +16,7 @@
 .heading {
   --section-heading-title-max-width: 587px;
   --section-heading-description-max-width: 587px;
+  --section-heading-description-weight: 500;
 
   // Figma mobile: the intro line is a 252px box.
   @media (max-width: 1023.98px) {
@@ -199,6 +200,7 @@
 
 .description {
   @include body-md;
+  line-height: 1.3;
   color: var(--color-antracite-300);
   max-width: 427px;
 }

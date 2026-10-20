@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { highlightText } from '@/utils/highlightText';
@@ -8,21 +11,40 @@ type AirlinesWhySectionProps = {
   data: typeof airlinesPageData.why;
 };
 
-/** "The flight is tracked. The feeling is missed." — dashboard left, copy right. */
+/** "The flight is tracked. The feeling is missed." — dashboard carousel left, copy right. */
 export function AirlinesWhySection({ data }: AirlinesWhySectionProps) {
+  const [index, setIndex] = useState(0);
+
   return (
     <section className={styles.section}>
       <Container>
         <div className={styles.layout}>
-          <div className={styles.media}>
-            <Image
-              src={data.image}
-              alt={data.imageAlt}
-              fill
-              unoptimized
-              className={styles.image}
-              sizes="(min-width: 1024px) 587px, 100vw"
-            />
+          <div className={styles.mediaColumn}>
+            <div className={styles.media}>
+              {data.slides.map((slide, slideIndex) => (
+                <Image
+                  key={slideIndex}
+                  src={slide.image}
+                  alt={slide.alt}
+                  fill
+                  unoptimized
+                  className={`${styles.image} ${slideIndex === index ? styles.imageActive : ''}`.trim()}
+                  sizes="(min-width: 1024px) 587px, 100vw"
+                />
+              ))}
+            </div>
+            <div className={styles.dots} role="group" aria-label="Dashboard screenshots">
+              {data.slides.map((slide, slideIndex) => (
+                <button
+                  key={slideIndex}
+                  type="button"
+                  className={`${styles.dot} ${slideIndex === index ? styles.dotActive : ''}`.trim()}
+                  aria-label={`Show screenshot ${slideIndex + 1}`}
+                  aria-current={slideIndex === index}
+                  onClick={() => setIndex(slideIndex)}
+                />
+              ))}
+            </div>
           </div>
           <div className={styles.copy}>
             <h2 className={styles.title}>{highlightText(data.title, data.titleHighlight)}</h2>

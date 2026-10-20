@@ -1,0 +1,252 @@
+@use '@/styles/mixins' as *;
+
+// Figma: 149px under the Customer Pulse padding on desktop (400px below its card), 200px on mobile;
+// 400px / 200px above "What CQI contributes".
+.section {
+  padding-top: 0;
+  padding-bottom: 200px;
+
+  @include respond-to(lg) {
+    padding-top: 147px;
+    padding-bottom: 400px;
+  }
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+
+  @include respond-to(lg) {
+    // Figma: this block spans the 1194px column, not the full 1436px container.
+    max-width: 1194px;
+    margin-inline: auto;
+    grid-template-columns: minmax(0, 587px) minmax(0, 587px);
+    justify-content: space-between;
+    gap: 20px;
+  }
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  @include eyebrow;
+
+  @media (max-width: 1023.98px) {
+    font-size: 12px;
+  }
+}
+
+.title {
+  @include heading-h3;
+
+  @media (max-width: 1023.98px) {
+    line-height: 1.214;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: var(--color-antracite-300);
+}
+
+.lead {
+  @include body-lg;
+
+  @media (max-width: 1023.98px) {
+    font-size: 17.5px;
+  }
+}
+
+.body {
+  @include body-md;
+  line-height: 1.4;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Figma "STATE CARD" (journey variant).
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  background: var(--color-white-50, #fefefe);
+
+  @include respond-to(lg) {
+    padding: 32px;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.who {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.name {
+  font-size: 20px;
+  color: var(--color-antracite-400);
+
+  @include respond-to(lg) {
+    font-size: 24px;
+  }
+}
+
+.seat {
+  font-size: 15px;
+  color: var(--color-antracite-200);
+
+  @include respond-to(lg) {
+    font-size: 17.5px;
+  }
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 27px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.tagHealthy {
+  background: #c1fde9;
+  color: #1e7055;
+}
+
+.tagRisk {
+  background: var(--color-coral-50);
+  color: var(--color-coral-400);
+}
+
+// History row + "Today" side by side on desktop, stacked on mobile.
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  @include respond-to(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  @include respond-to(lg) {
+    gap: 16px;
+  }
+}
+
+.groupLabel {
+  font-family: var(--font-heading);
+  font-size: 17.5px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+
+  @include respond-to(lg) {
+    font-size: 20px;
+  }
+}
+
+.faces {
+  display: flex;
+  gap: 10px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border: 0.8px solid var(--color-antracite-75);
+  border-radius: 50%;
+  background: var(--color-antracite-50);
+
+  @include respond-to(lg) {
+    width: 32px;
+    height: 32px;
+    border-width: 1.07px;
+  }
+}
+
+.face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 17.6px;
+  height: 17.6px;
+  border-radius: 50%;
+
+  @include respond-to(lg) {
+    width: 23.47px;
+    height: 23.47px;
+  }
+
+  img {
+    width: 90.9%;
+    height: 90.9%;
+  }
+}
+
+.healthy {
+  background: var(--color-sentiment-greener);
+}
+
+.friction {
+  background: var(--color-sentiment-yellow);
+}
+
+.eroding {
+  background: var(--color-sentiment-orange);
+}
+
+.risk {
+  background: var(--color-sentiment-red);
+}
+
+.silent {
+  background: var(--color-antracite-500);
+}

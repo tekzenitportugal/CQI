@@ -1,6 +1,5 @@
-import type { HeroCopyData } from '@/components/ui/HeroCopy';
 import type { FaqSectionData } from '@/components/sections/FaqSection';
-import type { CtaBannerData } from '@/types/content';
+import type { CtaBannerData, PageHeroData } from '@/types/content';
 import { airlinesSolutionData } from '@/data/solutions/airlines';
 
 /** Seat state codes: H healthy · F friction · E eroding · R imminent risk · S silent. */
@@ -42,14 +41,30 @@ export const airlinesPageData = {
     eyebrow: 'airlines',
     description:
       'A delay. A broken promise. Another reason to fly elsewhere. CQI helps you see trust eroding and act while you can still keep the passenger.',
-    mobileInlineTitle: true,
-    mobileIntroGap: 10,
-    titleMaxWidth: 708,
+    cta: { label: 'Model the range', href: '#outcome-range', variant: 'secondary' },
+    titleMaxWidth: 587,
     descriptionMaxWidth: 653,
-    copyMaxWidth: 708,
-  } satisfies HeroCopyData,
-  heroImage: '/images/solutions/airlines/hero-banner.png',
-  heroImageMobile: '/images/solutions/airlines/hero-banner-mobile.png',
+    copyMaxWidth: 587,
+  } satisfies PageHeroData,
+  heroImage: '/images/solutions/airlines/hero-banner-v2.jpg',
+  heroImageMobile: '/images/solutions/airlines/hero-banner-mobile-v2.jpg',
+
+  /** Figma "Group 906": the "They don't complain" stat band right under the hero. */
+  stat: {
+    id: 'outcome-range',
+    titleLead: 'They don’t complain.',
+    titleStart: 'They ',
+    titleHighlightA: 'just stop',
+    titleHighlightB: 'choosing you',
+    titleEnd: '.',
+    label: 'Only',
+    value: '15',
+    unit: '%',
+    description: 'of disrupted passengers make a complaint. The rest stay silent, and their next booking is where you find out.',
+    source: 'UK Civil Aviation Authority, Aviation Consumer Survey 2025.',
+    image: '/images/solutions/airlines/stat-cabin.jpg',
+    imageAlt: 'Passengers seated in an aircraft cabin',
+  },
 
   why: {
     title: 'The flight is tracked.\nThe feeling is missed.',
@@ -60,8 +75,13 @@ export const airlinesPageData = {
       'A delay, a lounge refusal and failed Wi-Fi can look like separate incidents. To the passenger, they are one experience, and a reason to switch carriers.',
       'By the time they stop booking, the chance to recover their trust may already be gone.',
     ],
-    image: '/images/solutions/airlines/flight-journey.png',
-    imageAlt: 'CQI Flight Journey dashboard',
+    // Figma shows a 4-dot carousel. TODO: slides 2–4 are placeholders until the client supplies the screenshots.
+    slides: [
+      { image: '/images/solutions/airlines/flight-journey.png', alt: 'CQI Flight Journey dashboard' },
+      { image: '/images/solutions/airlines/flight-journey.png', alt: 'CQI Flight Journey dashboard' },
+      { image: '/images/solutions/airlines/flight-journey.png', alt: 'CQI Flight Journey dashboard' },
+      { image: '/images/solutions/airlines/flight-journey.png', alt: 'CQI Flight Journey dashboard' },
+    ],
   },
 
   pulse: {
@@ -103,38 +123,68 @@ export const airlinesPageData = {
     },
   },
 
+  /** Figma "Frame 1410129101": two passengers, same delay, different journey history. */
+  history: {
+    eyebrow: 'Why history matters',
+    title: 'Same delay, different risk.',
+    lead: 'Today, both passengers face the same delay.',
+    body: 'For one, it’s a minor inconvenience. For the other, it’s the latest in a pattern. CQI reads the whole journey, not just today’s event, so your team knows who to reach first.',
+    historyLabel: 'Journey history',
+    todayLabel: 'Today',
+    passengers: [
+      {
+        name: 'Maria Silva',
+        seat: 'Seat 14A',
+        status: 'risk',
+        statusLabel: 'Imminent Risk',
+        history: ['H', 'H', 'H', 'H', 'H', 'E', 'E', 'E', 'R', 'R'],
+        today: 'R',
+      },
+      {
+        name: 'Andrew',
+        seat: 'Seat 14D',
+        status: 'healthy',
+        statusLabel: 'Healthy',
+        history: ['H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H', 'H'],
+        today: 'E',
+      },
+    ] as {
+      name: string;
+      seat: string;
+      status: 'risk' | 'healthy';
+      statusLabel: string;
+      history: SeatState[];
+      today: SeatState;
+    }[],
+  },
+
   contributes: {
     eyebrow: 'What CQI contributes',
     title: 'See the risk. Give your team a chance to change the outcome.',
     titleHighlight: ['change the outcome'],
     description:
       'CQI connects signals across the passenger lifecycle, so your teams can understand the experience, recognize eroding loyalty and respond with context.',
-    // Figma "USE CASE (AIRLINES) - V2" (6561:38599): three slides with step tags, no outcome block.
-    slides: [
+    // Figma Frame 1000003596: three plain cards (no images) tagged Sense / Flag / Fix.
+    cards: [
       {
-        tag: '1. Sense',
+        tag: 'Sense',
         title: 'Connect the experience',
         description:
           'Bring together what happens across booking, check-in, the gate, onboard and beyond. See the friction that a survey can miss.',
-        image: '/images/solutions/airlines/contribute-sense.png',
       },
       {
-        tag: '2. Flag',
+        tag: 'Flag',
         title: 'Make retention risk visible',
         description:
           'Identify whose trust is eroding and why. Help teams prioritize the passengers who need attention before they go silent.',
-        image: '/images/solutions/airlines/contribute-flag.png',
       },
       {
-        tag: '3. Fix',
+        tag: 'Fix',
         title: 'Act with the full context',
         description:
           'Guide the right team toward a tailored recovery action, using your airline’s playbook while the relationship is still recoverable.',
-        // Portrait photo (2304 × 4096); Figma crops it low so the aircraft sits in the frame.
-        image: '/images/solutions/airlines/contribute-fix.png',
-        imageFocusLow: true,
       },
-    ] as { tag: string; title: string; description: string; image: string; imageFocusLow?: boolean }[],
+    ],
   },
 
   journey: {
@@ -203,9 +253,11 @@ export const airlinesPageData = {
     ] satisfies AirlinesStep[],
   },
 
+  // Figma FAQS - AIRLINES (6679:61824): five questions, no links under the answers.
   faq: {
     eyebrow: 'Before you start',
     title: 'Questions airline teams ask',
+    mobileTitleWidth: 260,
     items: [
       {
         question: 'What data does CQI use?',
@@ -215,20 +267,22 @@ export const airlinesPageData = {
       {
         question: 'How does it connect to our systems?',
         answer:
-          'CQI favours a lightweight integration. A library of connectors, adapters and pre-defined pipelines reads the systems you already run, and outbound connectors push verified action back into the systems that own it.',
-        link: { label: 'Integrations', href: '/products/integrations' },
+          'Your existing systems feed one Customer Brain: CRM, loyalty and billing; flight operations, PSS and dispatch; app, web, IVR and bots; lounge, gate-scan and IFE systems. Gate agents, cabin crew, lounge staff, the contact centre and executives then see the same passenger and the same recommendation.',
       },
       {
         question: 'How is passenger data protected?',
         answer:
-          'CQI operates as a data processor. Data is processed inside CQI’s own cloud and is anonymised before any model runs, so no PII reaches the AI layer. Hosting region, residency and retention are agreed at scoping.',
-        link: { label: 'Security & trust', href: '/products/security-trust' },
+          'All data is handled under the confidentiality and data-protection terms agreed with your airline. Personal identifiers are used only to link records to one passenger across systems, and can be pseudonymized at source as long as the same key is used in every extract.',
+      },
+      {
+        question: 'How soon do we see value?',
+        answer:
+          'You get a playbook from day one: a recommended action for each touchpoint, from booking to after the flight. As CQI learns from your data and from the outcome of each action, its recommendations get smarter over time.',
       },
       {
         question: 'How do we start?',
         answer:
-          'With one cabin and one segment. A non-intrusive proof of value takes two weeks, and 90 days from data integration gets you to your first live color map.',
-        link: { label: 'How the PoC runs', href: '/products/poc-approach' },
+          'With a pilot on one route, one cabin and one segment: 90 days to the first live color map and an ROI proof point within six months. Historical extracts as flat files or database exports are enough for the pilot. On day one CQI runs your own recovery playbook; over time it learns what works and recommends better actions.',
       },
     ],
   } satisfies FaqSectionData,
