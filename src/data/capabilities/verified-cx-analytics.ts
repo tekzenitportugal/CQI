@@ -15,44 +15,44 @@ export const verifiedCxAnalytics: CapabilityPageData = {
       'Connects what customer say with operational events to produce a single, trusted read on CX health, continuously, not monthly.',
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
-  heroImage: '/images/product/verified-cx/hero-banner-verifedcx.png',
-  heroImageAspectRatio: '2412 / 2226',
-  heroImageUnoptimized: true,
+  // Figma 6733:63861: text-only hero on the gradient card (no banner image).
   heroMockup: true,
-  heroMobileFill: true,
-  heroImageCentered: true,
   features: {
     eyebrow: 'What it does',
     title:
       'Every CX platform can tell you what a customer said. Verified CX Analytics tells you whether the operation agreed.',
     titleHighlight: ['whether the operation agreed.'],
-    titleMaxWidth: 708,
-    cards: [
+    // Figma 6733:63861 / animation 6733:64668: labels sit inside the half-disc, one per animation state.
+    steps: [
       {
-        title: 'Complete Coverage',
+        label: 'Complete\ncoverage',
         description:
           '100% of interactions across voice, chat, bot, email and app are transcribed, classified into a topic and subtopic taxonomy, and tagged with behavioural signals, not a 2% sample scored on a form.',
       },
       {
-        title: 'Operational Correlation',
+        label: 'Operational\ncorrelation',
         description:
           'Each interaction is matched against the events around it: billing adjustments, order status, network and provisioning records, field visits, refunds and CRM state.',
       },
       {
-        title: 'Misalignment as the metric',
+        label: 'Misalignment\nas the metric',
         description:
           'Where the conversation and the systems disagree, CQI produces a verified friction record with volume, cost and revenue at risk attached.',
       },
       {
-        title: 'Continuous, not periodic',
+        label: 'Continuous,\nnot periodic',
         description:
           'The read updates as events occur. There is no reporting cycle to wait for and no survey field period to close.',
       },
     ],
-    image: {
-      src: '/images/product/capabilities/verified-cx-analytics/what-it-does.png',
-      inset: { top: 98, left: 0, width: 587, height: 354 },
-    },
+  },
+  // Figma 6733:63942
+  screens: {
+    images: [
+      { src: '/images/product/capabilities/verified-cx-analytics/screen-prevent-frictions.png', alt: 'CQI Prevent CX Frictions screen listing customers at risk with their promise, SLA and verification status' },
+      { src: '/images/product/capabilities/verified-cx-analytics/screen-prevent-frictions-detail.png', alt: 'CQI Prevent CX Frictions screen with one customer expanded to show the detail' },
+      { src: '/images/product/capabilities/verified-cx-analytics/screen-silent-churn.png', alt: 'CQI interactions table, grouped by reason and subreason' },
+    ],
   },
   howItWorks: {
     eyebrow: 'How it works',

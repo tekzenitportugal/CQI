@@ -19,37 +19,41 @@ export const predictiveChurnRecontact: CapabilityPageData = {
   heroImage: '/images/product/capabilities/predictive-churn-recontact/hero.webp',
   heroImageMobile: '/images/product/capabilities/predictive-churn-recontact/hero-mobile.png',
   heroImageAspectRatio: '1520 / 849',
+  // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {
     eyebrow: 'What it does',
-    title: 'The dangerous churn is the churn nobody reported. Most measurement systems are built to miss it.',
+    title:
+      'The dangerous churn is the churn nobody reported. Most measurement systems are built to miss it.',
     titleHighlight: ['nobody reported'],
-    titleMaxWidth: 774,
-    cards: [
+    steps: [
       {
-        title: 'Silent churn',
+        label: 'Silent churn',
         description:
           'Customers who reduce spend or leave without ever complaining, scored from behaviour and operational events rather than from what they said.',
       },
       {
-        title: 'Technical churn',
+        label: 'Technical churn',
         description:
           'Churn driven by unresolved technical conditions — outages, faults, provisioning failures — that never surfaced as a diagnosable ticket.',
       },
       {
-        title: 'Explainable risk',
+        label: 'Explainable risk',
         description:
           'A red status decomposes into frequency, variety and combination of friction, each benchmarked against a threshold, with the exact tipping date.',
       },
       {
-        title: 'Recontact risk',
+        label: 'Recontact risk',
         description:
           'Repeat-contact likelihood surfaced at 4-hour, 24-hour and 7-day windows — the clearest proxy for friction still unresolved.',
       },
     ],
-    image: {
-      src: '/images/product/capabilities/predictive-churn-recontact/what-it-does.webp',
-      inset: { top: 98, left: 0, width: 587, height: 354 },
-    },
+  },
+  screens: {
+    images: [
+      { src: '/images/product/capabilities/predictive-churn-recontact/screen-center.png', alt: 'CQI Interactions screen with the top 10 interaction types and calls by topic' },
+      { src: '/images/product/capabilities/predictive-churn-recontact/screen-right.png', alt: 'CQI friction interactions list' },
+      { src: '/images/product/capabilities/predictive-churn-recontact/screen-left.png', alt: 'CQI interactions table grouped by reason and subreason' },
+    ],
   },
   howItWorks: {
     eyebrow: 'How it works',

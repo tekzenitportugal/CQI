@@ -21,37 +21,41 @@ export const endToEndOrchestration: CapabilityPageData = {
   heroImageBehindGradient: true,
   heroImageMobile: '/images/product/capabilities/end-to-end-orchestration/hero-mobile.png',
   heroMockup: true,
+  // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {
     eyebrow: 'What it does',
-    title: 'An insight that does not change what happens next is a cost, not an asset.',
+    title:
+      'An insight that does not change what happens next is a cost, not an asset.',
     titleHighlight: ['a cost, not an asset'],
-    titleMaxWidth: 774,
-    cards: [
+    steps: [
       {
-        title: 'Treatment by state',
+        label: 'Treatment\nby state',
         description:
           'Routing moves beyond static criteria: a healthy customer is contained, an eroding one meets a senior agent with the broken promise already surfaced.',
       },
       {
-        title: 'No-code workflows',
+        label: 'No-code workflows',
         description:
           'A task and workflow builder with a reactive/proactive toggle, turning a detected signal into an announcement, message, queue, transfer, escalation or export.',
       },
       {
-        title: 'Control group by default',
+        label: 'Control group by default',
         description:
           'Every treatment group is created alongside an immediate control group, so any KPI can be benchmarked automatically.',
       },
       {
-        title: 'Owned by CX, not IT',
+        label: 'Owned by CX, not IT',
         description:
           'CX operators build and iterate the automation themselves rather than queueing development work.',
       },
     ],
-    image: {
-      src: '/images/product/capabilities/end-to-end-orchestration/what-it-does.png',
-      inset: { top: 98, left: 0, width: 587, height: 354 },
-    },
+  },
+  screens: {
+    images: [
+      { src: '/images/product/capabilities/end-to-end-orchestration/screen-center.png', alt: 'CQI Workforce screen with the agent performance table' },
+      { src: '/images/product/capabilities/end-to-end-orchestration/screen-right.png', alt: 'CQI Workforce detail screen with agent performance' },
+      { src: '/images/product/capabilities/end-to-end-orchestration/screen-left.png', alt: 'CQI workflow builder canvas' },
+    ],
   },
   howItWorks: {
     eyebrow: 'How it works',

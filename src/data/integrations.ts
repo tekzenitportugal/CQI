@@ -1,4 +1,4 @@
-import type { CtaBannerData, ExpandableBandItem, PageHeroData } from '@/types/content';
+import type { CtaBannerData, PageHeroData } from '@/types/content';
 import type { FaqSectionData } from '@/components/sections/FaqSection';
 
 export type IntegrationsPartnerCard = {
@@ -25,7 +25,52 @@ export type IntegrationsPartnersData = {
   footnote: string;
 };
 
+/**
+ * One vendor system in an expanded airline row: a logo with an optional caption under it, or, where Figma has
+ * no logo, just the name (`text`) sitting on the logos' baseline.
+ */
+export type IntegrationsAirlineSystem =
+  | {
+      /** Exported from Figma at 3x, including the empty space above the mark, so it drops into the row as-is. */
+      logo: string;
+      logoAlt: string;
+      /** Rendered size in px (the image file is 3x this). */
+      logoWidth: number;
+      logoHeight: number;
+      /** Product name under the logo. */
+      name?: string;
+      /** Width (px) the name wraps at, where Figma sets it over two lines. */
+      nameWidth?: 109 | 113 | 194 | 226 | 279;
+      text?: never;
+    }
+  | {
+      text: string;
+      /** Height (px) of the logo area it shares a row with; the text sits at its bottom edge. */
+      slotHeight: 30 | 32 | 50;
+      logo?: never;
+    };
+
+export type IntegrationsAirlineItem = {
+  title: string;
+  description: string;
+  /** Vendor systems shown when the row is expanded. */
+  systems: IntegrationsAirlineSystem[];
+  /** Rows of logos with no captions line up on their bottom edge (Distribution). */
+  systemsAlign?: 'end';
+};
+
+export type IntegrationsAirlinesData = {
+  title: string;
+  titleHighlight: string[];
+  items: IntegrationsAirlineItem[];
+};
+
 export type IntegrationsConnectionCard = {
+  title: string;
+  description: string;
+};
+
+export type IntegrationsConnectionStep = {
   title: string;
   description: string;
 };
@@ -35,15 +80,16 @@ export type IntegrationsConnectionData = {
   titleHighlight?: string[];
   description: string;
   button: { label: string; href: string };
+  /** The four ways data reaches CQI, stepped through in the pinned dome (Figma 6725:62762). */
+  steps: IntegrationsConnectionStep[];
   cards: IntegrationsConnectionCard[];
 };
 
 export type IntegrationsPageData = {
   hero: PageHeroData;
   partners: IntegrationsPartnersData;
+  airlines: IntegrationsAirlinesData;
   connection: IntegrationsConnectionData;
-  waysBands: ExpandableBandItem[];
-  bandColors: string[];
   faq: FaqSectionData;
   cta: CtaBannerData;
 };
@@ -328,12 +374,185 @@ export const integrationsData = {
       'Entries marked In CQI deployments name platforms that appear in CQI solution architecture or market material. The rest are supported through a standard pattern, open API, streaming, CDC or file.',
   } satisfies IntegrationsPartnersData,
 
+  // Figma "Airline-specific source systems" (6757:36279); each row's expanded state is Figma's "OPEN" variant
+  // (6757:36383 – 6757:37230). Logos are Figma exports of the logo areas, so they keep Figma's spacing.
+  airlines: {
+    title: 'Airline-specific source systems',
+    titleHighlight: ['Airline-specific'],
+    items: [
+      {
+        title: 'Passenger Service System (PSS)',
+        description: 'Core booking system holding reservations, itineraries and special requests.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 36, name: 'Amadeys Altéa Res' },
+          { logo: '/images/product/integrations/logos/airline-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 36, name: 'SabreSonic Res' },
+          { logo: '/images/product/integrations/logos/airline-navitaire.png', logoAlt: 'Navitaire', logoWidth: 107, logoHeight: 36, name: 'Navitaire New Skies' },
+          { logo: '/images/product/integrations/logos/airline-crane-pax.png', logoAlt: 'Hitit Crane PAX', logoWidth: 162, logoHeight: 36, name: 'Hitit Crane PAX' },
+          { logo: '/images/product/integrations/logos/airline-radixx.png', logoAlt: 'Radixx', logoWidth: 93, logoHeight: 36 },
+        ],
+      },
+      {
+        title: 'Departure Control System (DCS)',
+        description: 'Check-in and boarding: who flew, seats, upgrades and denied boarding.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/dcs-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 30, name: 'Amadeys Altéa DC' },
+          { logo: '/images/product/integrations/logos/airline/dcs-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 30, name: 'SabreSonic DCS' },
+          { logo: '/images/product/integrations/logos/airline/dcs-sita.png', logoAlt: 'SITA', logoWidth: 103, logoHeight: 30, name: 'SITA Departure Control' },
+        ],
+      },
+      {
+        title: 'Passenger Data (APIS/APP)',
+        description: 'Passport and travel-document data shared with border authorities.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/apis-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 25, name: 'Amadeys Altéa' },
+          { logo: '/images/product/integrations/logos/airline/apis-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 25, name: 'SabreSonic' },
+        ],
+      },
+      {
+        title: 'Distribution (GDS)',
+        description: 'Travel-agency channels that feed bookings to the airline.',
+        systemsAlign: 'end',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/gds-amadeus.png', logoAlt: 'Amadeus', logoWidth: 140, logoHeight: 20 },
+          { logo: '/images/product/integrations/logos/airline/gds-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 25 },
+          { logo: '/images/product/integrations/logos/airline/gds-travelport.png', logoAlt: 'Travelport', logoWidth: 180, logoHeight: 22 },
+        ],
+      },
+      {
+        title: 'Merchandising & Digital Retail',
+        description: 'Online sales of seats, bags and extras, plus promo codes and payments.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/merch-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 50, name: 'Amadeus Anytime Merchandising & Amadeus e-Retail', nameWidth: 194 },
+          { logo: '/images/product/integrations/logos/airline/merch-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 50, name: 'Sabre Digital Connect' },
+          { logo: '/images/product/integrations/logos/airline/merch-navitaire.png', logoAlt: 'dataLEX', logoWidth: 101, logoHeight: 50 },
+          { logo: '/images/product/integrations/logos/airline/merch-extra.png', logoAlt: 'Cellpoint Digital', logoWidth: 50, logoHeight: 50 },
+        ],
+      },
+      {
+        title: 'Revenue Management',
+        description: 'Sets fares and overbooking levels to maximise revenue.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/rm-pros.png', logoAlt: 'PROS', logoWidth: 107, logoHeight: 30 },
+          { logo: '/images/product/integrations/logos/airline/rm-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 30, name: 'Sabre AirVision RM' },
+        ],
+      },
+      {
+        title: 'Revenue Accounting & Settlement',
+        description: 'Records fares, refunds and flown-ticket revenue.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/revacc-accelya.png', logoAlt: 'Accelya', logoWidth: 100, logoHeight: 50, name: 'Accelya FLX/REVERA' },
+          { logo: '/images/product/integrations/logos/airline/revacc-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 50, name: 'Amadeus Revenue Accounting' },
+          { logo: '/images/product/integrations/logos/airline/revacc-mercator.png', logoAlt: 'Mercator', logoWidth: 100, logoHeight: 50, name: 'Mercator RAPID' },
+          { logo: '/images/product/integrations/logos/airline/revacc-iata.png', logoAlt: 'IATA', logoWidth: 81, logoHeight: 50, name: 'IATA BSP/ARC' },
+        ],
+      },
+      {
+        title: 'Catering & Onboard Service',
+        description: 'Plans and confirms special meals and onboard services.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/catering-zafire.png', logoAlt: 'Zafire', logoWidth: 99, logoHeight: 50 },
+          { logo: '/images/product/integrations/logos/airline/catering-lufthansa.png', logoAlt: 'Lufthansa Systems', logoWidth: 151, logoHeight: 50 },
+        ],
+      },
+      {
+        title: 'Operations Control & Flight Movement',
+        description: 'Tracks flights in real time, including delays, cancellations and diversions.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/ops-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 50, name: 'Amadeus Altéa Flight Management', nameWidth: 113 },
+          { logo: '/images/product/integrations/logos/airline/ops-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 50, name: 'Sabre AirCentre' },
+          { logo: '/images/product/integrations/logos/airline/ops-lufthansa.png', logoAlt: 'Lufthansa Systems', logoWidth: 151, logoHeight: 50, name: 'Lufthansa Systems NetLine/Ops ++', nameWidth: 109 },
+          { logo: '/images/product/integrations/logos/airline/ops-hitit.png', logoAlt: 'Hitit', logoWidth: 81, logoHeight: 50, name: 'Hitit Crane OPS' },
+          { text: 'OAG/Cirium', slotHeight: 50 },
+          { text: 'ACARS/OOOI feeds', slotHeight: 50 },
+        ],
+      },
+      {
+        title: 'Disruption & Service Recovery',
+        description: 'Rebooks and notifies affected passengers and issues compensation.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/disruption-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 30, name: 'Amadeus Altéa Disruption, Customer Experience Management, EMD vouchers', nameWidth: 279 },
+          { logo: '/images/product/integrations/logos/airline/disruption-15below.png', logoAlt: '15below', logoWidth: 100, logoHeight: 30 },
+        ],
+      },
+      {
+        title: 'Baggage Management',
+        description: 'Tracks bags end to end and handles lost or delayed baggage.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/baggage-sita.png', logoAlt: 'SITA', logoWidth: 103, logoHeight: 30, name: 'WorldTracer, BagJourney / BagManager', nameWidth: 226 },
+          { text: 'Baggage Reconciliation System (BRS)', slotHeight: 30 },
+        ],
+      },
+      {
+        title: 'Loyalty Management',
+        description: 'Manages frequent-flyer members, points and tier status.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/loyalty-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 32, name: 'Amadeus Loyalty' },
+          { logo: '/images/product/integrations/logos/airline/loyalty-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 30, name: 'Sabre Loyalty' },
+          { logo: '/images/product/integrations/logos/airline/loyalty-ibs.png', logoAlt: 'IBS Software', logoWidth: 145, logoHeight: 32, name: 'IBS iFly Loyalty' },
+          { logo: '/images/product/integrations/logos/airline/loyalty-comarch.png', logoAlt: 'Comarch', logoWidth: 130, logoHeight: 32 },
+          { logo: '/images/product/integrations/logos/airline/loyalty-extra.png', logoAlt: 'Switchfly', logoWidth: 123, logoHeight: 32 },
+          { text: 'TCS/Kale', slotHeight: 32 },
+        ],
+      },
+      {
+        title: 'Lounge Access',
+        description: 'Controls lounge entry and eligibility.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/lounge-collinson.png', logoAlt: 'Collinson', logoWidth: 146, logoHeight: 50 },
+          { logo: '/images/product/integrations/logos/airline/lounge-plaza.png', logoAlt: 'Plaza Premium Group', logoWidth: 118, logoHeight: 50 },
+        ],
+      },
+      {
+        title: 'Maintenance & Engineering (MRO)',
+        description: 'Logs aircraft and cabin defects and repairs.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/mro-swiss.png', logoAlt: 'Swiss-AS', logoWidth: 148, logoHeight: 32, name: 'Swiss-AS AMOS' },
+          { logo: '/images/product/integrations/logos/airline/mro-ifs.png', logoAlt: 'IFS', logoWidth: 65, logoHeight: 32, name: 'IFS Maintenix' },
+          { logo: '/images/product/integrations/logos/airline/mro-ultramain.png', logoAlt: 'Ultramain', logoWidth: 129, logoHeight: 32, name: 'Ultramain eLogbook' },
+          { logo: '/images/product/integrations/logos/airline/mro-extra1.png', logoAlt: 'Trax', logoWidth: 54, logoHeight: 32 },
+          { logo: '/images/product/integrations/logos/airline/mro-extra2.png', logoAlt: 'Ramco Aviation Software', logoWidth: 79, logoHeight: 32 },
+          { text: 'Cabin Log Book', slotHeight: 32 },
+        ],
+      },
+      {
+        title: 'Aircraft Health Monitoring',
+        description: 'Uses live aircraft sensor data to spot faults early.',
+        systems: [
+          { logo: '/images/product/integrations/logos/airline/ahm-airbus.png', logoAlt: 'Airbus', logoWidth: 128, logoHeight: 32, name: 'Airbus Skywise' },
+          { logo: '/images/product/integrations/logos/airline/ahm-boeing.png', logoAlt: 'Boeing', logoWidth: 115, logoHeight: 32, name: 'Boeing AHM' },
+        ],
+      },
+    ],
+  } satisfies IntegrationsAirlinesData,
+
   connection: {
     title: 'How the connection is made: four ways data reaches CQI',
     titleHighlight: ['data reaches CQI'],
     description:
       'Cloud-to-cloud, encrypted at rest and in transit. CQI performs the computation, so the load does not land on your platforms.',
     button: { label: 'Reference architecture', href: '/products/implementation#reference-architecture' },
+    steps: [
+      {
+        title: 'Direction',
+        description:
+          'Inbound by default, with write-back where a system owns the fix. Comms and service-management connectors are outbound: CQI activates the action there.',
+      },
+      {
+        title: 'Security',
+        description:
+          'Encrypted in transit and at rest. PII is redacted or hashed before analytics, and processing runs inside CQI’s own cloud.',
+      },
+      {
+        title: 'Effort',
+        description:
+          'Pre-defined pipelines and an adapter ecosystem carry most of the work. The proof of concept normally starts from a file or API extract with no production integration at all.',
+      },
+      {
+        title: 'Data quality',
+        description:
+          'Monitored as part of ingestion and reported back, so gaps in the feed surface as a data issue rather than as a wrong insight.',
+      },
+    ],
     cards: [
       {
         title: 'Streaming API',
@@ -357,33 +576,6 @@ export const integrationsData = {
       },
     ],
   } satisfies IntegrationsConnectionData,
-
-  // Figma "CARDS EXPAND - INTEGRATIONS" (6225:35266). Backgrounds are off-white,
-  // L50, L75, L100 — a step lighter than the PoC bands.
-  waysBands: [
-    {
-      title: 'Direction',
-      description:
-        'Inbound by default, with write-back where a system owns the fix. Comms and service-management connectors are outbound: CQI activates the action there.',
-    },
-    {
-      title: 'Security',
-      description:
-        'Encrypted in transit and at rest. PII is redacted or hashed before analytics, and processing runs inside CQI’s own cloud.',
-      link: { label: 'Security & trust', href: '/products/security-trust' },
-    },
-    {
-      title: 'Effort',
-      description:
-        'Pre-defined pipelines and an adapter ecosystem carry most of the work. The proof of concept normally starts from a file or API extract with no production integration at all.',
-    },
-    {
-      title: 'Data quality',
-      description:
-        'Monitored as part of ingestion and reported back, so gaps in the feed surface as a data issue rather than as a wrong insight.',
-    },
-  ] satisfies ExpandableBandItem[],
-  bandColors: ['#fefefe', '#edf2ff', '#ccdaff', '#b2c7ff'],
 
   faq: {
     eyebrow: 'Frequently asked',

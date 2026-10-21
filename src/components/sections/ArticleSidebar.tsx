@@ -57,19 +57,39 @@ export function ArticleSidebar({ items, title }: ArticleSidebarProps) {
     {
       label: 'Share on LinkedIn',
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-      icon: '/images/shared/common/linkedin.png',
+      icon: `${ICON_DIR}/share-linkedin.png`,
+    },
+    {
+      // Instagram has no web share URL, so this opens the Instagram site.
+      label: 'Instagram',
+      href: 'https://www.instagram.com/',
+      icon: `${ICON_DIR}/share-instagram.png`,
     },
     {
       label: 'Share on X',
       href: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-      icon: `${ICON_DIR}/share-x.svg`,
-    },
-    {
-      label: 'Share by email',
-      href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
-      icon: `${ICON_DIR}/share-mail.svg`,
+      icon: `${ICON_DIR}/share-x.png`,
     },
   ];
+  const mailLink = {
+    label: 'Share by email',
+    href: `mailto:?subject=${encodedTitle}&body=${encodedUrl}`,
+    icon: `${ICON_DIR}/share-mail.png`,
+  };
+
+  // Each icon is exported from Figma with its grey tile included, so the image is the whole 28px button.
+  const renderLink = (link: { label: string; href: string; icon: string }) => (
+    <a
+      key={link.label}
+      href={link.href}
+      className={styles.icon}
+      aria-label={link.label}
+      target={link.href.startsWith('mailto:') ? undefined : '_blank'}
+      rel="noopener noreferrer"
+    >
+      <img src={link.icon} alt="" width={28} height={28} aria-hidden="true" />
+    </a>
+  );
 
   return (
     <aside className={styles.sidebar}>
@@ -95,21 +115,11 @@ export function ArticleSidebar({ items, title }: ArticleSidebarProps) {
       <div className={styles.share}>
         <p className={styles.shareLabel}>Share this article</p>
         <div className={styles.icons}>
-          {shareLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className={styles.icon}
-              aria-label={link.label}
-              target={link.href.startsWith('mailto:') ? undefined : '_blank'}
-              rel="noopener noreferrer"
-            >
-              <img src={link.icon} alt="" width={16} height={16} aria-hidden="true" />
-            </a>
-          ))}
+          {shareLinks.map(renderLink)}
           <button type="button" className={styles.icon} aria-label={copied ? 'Link copied' : 'Copy link'} onClick={copyLink}>
-            <img src={`${ICON_DIR}/share-link.svg`} alt="" width={16} height={16} aria-hidden="true" />
+            <img src={`${ICON_DIR}/share-link.png`} alt="" width={28} height={28} aria-hidden="true" />
           </button>
+          {renderLink(mailLink)}
         </div>
       </div>
     </aside>

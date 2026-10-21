@@ -21,38 +21,41 @@ export const customerQualityIndex: CapabilityPageData = {
   heroImageAspectRatio: '2409 / 2544',
   heroImageUnoptimized: true,
   heroMockup: true,
+  // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {
     eyebrow: 'What it does',
     title:
       'A survey score describes a moment for the few who answered. The Customer Quality Index describes a lifecycle for everyone.',
     titleHighlight: ['a lifecycle for everyone'],
-    titleMaxWidth: 774,
-    cards: [
+    steps: [
       {
-        title: 'Built from events, not answers',
+        label: 'Built from\nevents,\nnot answers',
         description:
           'Bookings, deliveries, delays, billing, calls, visits and the silent signals in between all move the score. No response rate to manage.',
       },
       {
-        title: 'A state, not a number',
+        label: 'A state, not a number',
         description:
           'Healthy, friction, eroding, imminent, silent. Each state carries why (root cause), what (next action) and when (urgency).',
       },
       {
-        title: 'Real time',
+        label: 'Real time',
         description:
           'The colour updates the moment a signal occurs. Every event produces a new score, a new colour and a new action.',
       },
       {
-        title: 'Comparable across the base',
+        label: 'Comparable across the base',
         description:
           'The same index runs per customer, per journey and per cohort, so a board-level number and a worklist come from the same source.',
       },
     ],
-    image: {
-      src: '/images/product/capabilities/customer-quality-index/what-it-does.png',
-      inset: { top: 98, left: 0, width: 587, height: 354 },
-    },
+  },
+  screens: {
+    images: [
+      { src: '/images/product/capabilities/customer-quality-index/screen-center.png', alt: 'CQI Customers screen with the customer directory and channel integrity scores' },
+      { src: '/images/product/capabilities/customer-quality-index/screen-right.png', alt: 'CQI interactions screen with signal distributions and resolution by reason and subreason' },
+      { src: '/images/product/capabilities/customer-quality-index/screen-left.png', alt: 'CQI interactions table grouped by reason and subreason' },
+    ],
   },
   howItWorks: {
     eyebrow: 'How it works',

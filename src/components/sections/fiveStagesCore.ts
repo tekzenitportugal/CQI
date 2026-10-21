@@ -16,7 +16,25 @@
  *                                                     viewModel(p, config, loop)
  */
 
-export const CONFIG = {
+/** Geometry and timing of one dome diagram. The homepage uses CONFIG; other sections pass their own. */
+export type DomeConfig = {
+  count: number;
+  stepDeg: number;
+  stepDurationMs: number;
+  center: { x: number; y: number };
+  dome: { r: number };
+  arc: { r: number };
+  line: { gap: number; length: number };
+  zone: { full: number; start: number };
+  fade: { start: number; end: number };
+  content: { full: number; end: number; shift: number };
+  dot: {
+    inactive: { outer: number; inner: number; fill: string; font: number; dash: number };
+    active: { outer: number; inner: number; fill: string; font: number; dash: number };
+  };
+};
+
+export const CONFIG: DomeConfig = {
   count: 5,
   stepDeg: 40,
   stepDurationMs: 700,
@@ -31,7 +49,7 @@ export const CONFIG = {
     inactive: { outer: 38, inner: 16, fill: '#888888', font: 9, dash: 4.47 },
     active: { outer: 51, inner: 27, fill: '#0044FF', font: 16, dash: 0 },
   },
-} as const;
+};
 
 const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v));
 const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -48,7 +66,7 @@ function mixHex(a: string, b: string, t: number): string {
 }
 
 /** Radius of the active dot centre: dome + gap + line + gap + half the white sphere. */
-export function activeRadius(cfg: typeof CONFIG): number {
+export function activeRadius(cfg: DomeConfig): number {
   return cfg.dome.r + 2 * cfg.line.gap + cfg.line.length + cfg.dot.active.outer / 2;
 }
 
@@ -67,12 +85,12 @@ function offsetOf(i: number, p: number, count: number, loop: boolean): number {
 }
 
 /** Point on a circle around the shared centre. theta 0 = top, + = clockwise. */
-function polar(cfg: typeof CONFIG, r: number, theta: number) {
+function polar(cfg: DomeConfig, r: number, theta: number) {
   return { x: cfg.center.x + r * Math.sin(theta), y: cfg.center.y - r * Math.cos(theta) };
 }
 
 /** Selection line: grows out of the dome during the second half of the activation. */
-function lineModel(theta: number, active: number, cfg: typeof CONFIG) {
+function lineModel(theta: number, active: number, cfg: DomeConfig) {
   const t = smoothstep(0.5, 1, active);
   const r0 = cfg.dome.r + cfg.line.gap;
   return { from: polar(cfg, r0, theta), to: polar(cfg, r0 + cfg.line.length * t, theta), opacity: t };
@@ -81,7 +99,7 @@ function lineModel(theta: number, active: number, cfg: typeof CONFIG) {
 export type DotModel = ReturnType<typeof dotModel>;
 
 /** Everything needed to draw dot i at progress p. */
-function dotModel(i: number, p: number, cfg: typeof CONFIG, loop: boolean) {
+function dotModel(i: number, p: number, cfg: DomeConfig, loop: boolean) {
   const d = offsetOf(i, p, cfg.count, loop);
   const active = 1 - smoothstep(cfg.zone.full, cfg.zone.start, Math.abs(d));
   const theta = (d * cfg.stepDeg * Math.PI) / 180;
@@ -103,7 +121,7 @@ function dotModel(i: number, p: number, cfg: typeof CONFIG, loop: boolean) {
 export type ContentModel = ReturnType<typeof contentModel>;
 
 /** Cross-fade and vertical drift (design px) of the content of stage i. */
-function contentModel(i: number, p: number, cfg: typeof CONFIG) {
+function contentModel(i: number, p: number, cfg: DomeConfig) {
   const d = p - i;
   return { opacity: 1 - smoothstep(cfg.content.full, cfg.content.end, Math.abs(d)), shift: -d * cfg.content.shift };
 }
@@ -111,7 +129,7 @@ function contentModel(i: number, p: number, cfg: typeof CONFIG) {
 export type ViewModel = ReturnType<typeof viewModel>;
 
 /** The whole frame as plain data. */
-export function viewModel(p: number, cfg: typeof CONFIG, loop: boolean) {
+export function viewModel(p: number, cfg: DomeConfig, loop: boolean) {
   const idx = Array.from({ length: cfg.count }, (_, i) => i);
   return {
     p,

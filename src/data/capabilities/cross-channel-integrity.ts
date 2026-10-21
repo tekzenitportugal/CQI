@@ -20,38 +20,41 @@ export const crossChannelIntegrity: CapabilityPageData = {
   heroImage: '/images/product/capabilities/cross-channel-integrity/hero.webp',
   heroImageMobile: '/images/product/capabilities/cross-channel-integrity/hero-mobile.webp',
   heroImageAspectRatio: '1520 / 849',
+  // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {
     eyebrow: 'What it does',
     title:
       'Cross-channel journeys do not break in a channel. They break in the gap between two of them.',
     titleHighlight: ['the gap between two of them'],
-    titleMaxWidth: 774,
-    cards: [
+    steps: [
       {
-        title: 'The commitment ledger',
+        label: 'The commitment ledger',
         description:
           'Every promise made to a customer (by an agent or by policy) tracked through to kept or broken, spanning every channel it touches.',
       },
       {
-        title: 'Strictly met versus met but late',
+        label: 'Strictly met versus met but late',
         description:
           'A commitment delivered outside the promised window counts as met in most reporting. The customer experienced a failure. CQI keeps them apart.',
       },
       {
-        title: 'Promise versus SLA',
+        label: 'Promise versus SLA',
         description:
           'Agent promise and company SLA are separated, with time-to-SLA-remaining as the operative field, so a missed window can be caught in the hours that are left.',
       },
       {
-        title: 'The conflict, not the score',
+        label: 'The conflict, not the score',
         description:
           'An integrity score decomposes into the actual conflicts behind it, each scored on containment, continuity and repetition friction.',
       },
     ],
-    image: {
-      src: '/images/product/capabilities/cross-channel-integrity/commitment-ledger.png',
-      inset: { top: 98, left: 0, width: 587, height: 354 },
-    },
+  },
+  screens: {
+    images: [
+      { src: '/images/product/capabilities/cross-channel-integrity/screen-center.png', alt: 'CQI customer journey screen with the promise timeline for one customer' },
+      { src: '/images/product/capabilities/cross-channel-integrity/screen-right.png', alt: 'CQI Customer Health screen with the health trend and distribution' },
+      { src: '/images/product/capabilities/cross-channel-integrity/screen-left.png', alt: 'CQI customer directory with channel integrity scores' },
+    ],
   },
   howItWorks: {
     eyebrow: 'How it works',

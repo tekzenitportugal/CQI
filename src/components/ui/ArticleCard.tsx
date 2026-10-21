@@ -29,7 +29,7 @@ export function ArticleCard({
   const cardClass = [styles.card, layout === 'horizontal' && styles.horizontal].filter(Boolean).join(' ');
 
   return (
-    <Link href={href} className={cardClass}>
+    <div className={cardClass}>
       <div className={`${styles.media} ${image ? '' : styles.mediaEmpty}`.trim()}>
         <FpoImage
           src={image}
@@ -60,12 +60,12 @@ export function ArticleCard({
 
         <div className={styles.footer}>
           <span className={styles.readTime}>{readTime}</span>
-          <span className={styles.readLink}>
+          <Link href={href} className={styles.readLink}>
             Read
             <img src="/images/shared/common/arrow-right-blue.svg" alt="" width={16} height={16} aria-hidden="true" />
-          </span>
+          </Link>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

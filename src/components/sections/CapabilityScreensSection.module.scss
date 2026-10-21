@@ -1,0 +1,146 @@
+@use '@/styles/mixins' as *;
+
+// Owl-style slide: a short, even ease-out.
+$slide: cubic-bezier(0.25, 0.8, 0.25, 1);
+
+// Figma 6733:63942 is laid out on a 1536px frame. From lg up, lengths are written as `N * var(--u)`,
+// where --u is 1px at 1536 and wider and shrinks with the viewport below that.
+.section {
+  --u: min(1px, calc(100vw / 1536));
+
+  overflow: clip;
+  padding: 100px var(--container-padding) 100px;
+
+  @media (min-width: 1024px) {
+    // 200px after the animation; 300px (incl. the dots) before "How it works".
+    padding: 200px 0 calc(300 * var(--u) - 33px);
+  }
+}
+
+// Every item is the side-screen size (587 × 340). The centre one is scaled up to 828 × 478, and the
+// pitch between item centres is 727.5, so a centre item and its neighbour end up 20px apart as in Figma.
+.stage {
+  --item-width: 100cqw;
+  --item-height: auto;
+  --pitch: calc(100cqw + 20px);
+  --scale: 1;
+
+  position: relative;
+  container-type: inline-size;
+  width: 100%;
+  aspect-ratio: 828 / 478;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  @media (min-width: 1024px) {
+    --item-width: calc(587 * var(--u));
+    --item-height: calc(340 * var(--u));
+    --pitch: calc(727.5 * var(--u));
+    --scale: 1.4106; // 828 / 587
+
+    aspect-ratio: auto;
+    height: calc(478 * var(--u));
+  }
+}
+
+.track {
+  position: absolute;
+  top: 50%;
+  // The first item's centre sits in the middle of the stage; --slot items to its left are pushed off.
+  left: calc(50% - var(--item-width) / 2);
+  display: flex;
+  align-items: center;
+  transform: translate(calc(var(--slot) * var(--pitch) * -1 + var(--drag, 0px)), -50%);
+  transition: transform 0.6s $slide;
+  will-change: transform;
+
+  &.still {
+    transition: none;
+  }
+}
+
+.item {
+  flex: none;
+  width: var(--item-width);
+  height: var(--item-height);
+  margin-right: calc(var(--pitch) - var(--item-width));
+  aspect-ratio: 828 / 478;
+  cursor: pointer;
+  transition: transform 0.6s $slide;
+
+  @media (min-width: 1024px) {
+    aspect-ratio: auto;
+  }
+}
+
+.center {
+  cursor: grab;
+
+  @media (min-width: 1024px) {
+    transform: scale(var(--scale));
+  }
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  border: 0.5px solid var(--color-antracite-75);
+  border-radius: 12px;
+  background: var(--color-white);
+  box-shadow: 1px 1px 16px 0 rgb(0 0 0 / 0.15);
+  // The screenshots are taller than their frames; Figma crops them from the top.
+  object-fit: cover;
+  object-position: top;
+  pointer-events: none;
+
+  @media (min-width: 1024px) {
+    border-radius: calc(8 * var(--u));
+  }
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 27px;
+}
+
+// A 10 × 16 hit area around each 6px dot (dots sit 10px apart in Figma).
+.dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 16px;
+  margin-block: -5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-light-blue-75);
+    transition: background 0.3s ease;
+  }
+}
+
+.dotActive::before {
+  background: var(--color-blue-200);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track,
+  .item {
+    transition: none;
+  }
+}

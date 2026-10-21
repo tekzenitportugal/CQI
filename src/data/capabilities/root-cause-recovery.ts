@@ -19,38 +19,41 @@ export const rootCauseRecovery: CapabilityPageData = {
   heroImage: '/images/product/capabilities/root-cause-recovery/hero.png',
   heroImageMobile: '/images/product/capabilities/root-cause-recovery/hero-mobile.png',
   heroImageAspectRatio: '1520 / 849',
+  // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {
     eyebrow: 'What it does',
     title:
-      'A dashboard that shows a spike\nwithout a cause creates a meeting. \nA cause with an owner creates a fix.',
+      'A dashboard that shows a spike without a cause creates a meeting. A cause with an owner creates a fix.',
     titleHighlight: ['A cause with an owner creates a fix.'],
-    titleMaxWidth: 774,
-    cards: [
+    steps: [
       {
-        title: 'Three causes, three owners',
+        label: 'Three causes, three owners',
         description:
           'Friction resolves to workforce, process or data. Each has an owner and a fix, which is the point of naming it.',
       },
       {
-        title: 'Evidence travels with the case',
+        label: 'Evidence travels with the case',
         description:
           'The customer’s own words, the exact promise and who made it, the SLA clock, the system record, the AI-assigned cause and the churn correlation.',
       },
       {
-        title: 'Routed, not reported',
+        label: 'Routed, not reported',
         description:
           'Cases route to a named owner inside existing workflows rather than accumulating in a report nobody owns.',
       },
       {
-        title: 'Closed on proof',
+        label: 'Closed on proof',
         description:
           'A case closes when the source system evidences the promised action. Action without verification is hope.',
       },
     ],
-    image: {
-      src: '/images/product/capabilities/root-cause-recovery/what-it-does.png',
-      inset: { top: 98, left: 0, width: 587, height: 354 },
-    },
+  },
+  screens: {
+    images: [
+      { src: '/images/product/capabilities/root-cause-recovery/screen-center.png', alt: 'CQI Recovery screen with one case expanded to show its evidence' },
+      { src: '/images/product/capabilities/root-cause-recovery/screen-right.png', alt: 'CQI AI Alerts screen with alert rules and recommendations' },
+      { src: '/images/product/capabilities/root-cause-recovery/screen-left.png', alt: 'CQI recovery workflow screen' },
+    ],
   },
   howItWorks: {
     eyebrow: 'How it works',

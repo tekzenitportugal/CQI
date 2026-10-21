@@ -1,4 +1,6 @@
 import type { CapabilityFeaturesData } from '@/components/sections/CapabilityFeaturesSection';
+import type { CapabilityFlowData } from '@/components/sections/CapabilityFlowSection';
+import type { CapabilityScreensData } from '@/components/sections/CapabilityScreensSection';
 import type { CapabilityPagerData } from '@/components/sections/CapabilityPagerSection';
 import type { FaqSectionData } from '@/components/sections/FaqSection';
 import type { RuledRowsSectionData } from '@/components/sections/RuledRowsSection';
@@ -27,7 +29,10 @@ export type CapabilityPageData = {
   heroImageCentered?: boolean;
   /** Set for pages still using the right-anchored product mockup cutout over the plain gradient, instead of a full-bleed photo. */
   heroMockup?: boolean;
-  features: CapabilityFeaturesData;
+  /** Cards + screenshot layout, or the animated half-disc diagram (`steps`). */
+  features: CapabilityFeaturesData | CapabilityFlowData;
+  /** Optional row of product screenshots shown straight after "What it does". */
+  screens?: CapabilityScreensData;
   howItWorks: RuledRowsSectionData & { descriptionOffset?: number };
   /**
    * Figma places each section at a fixed y (1064 / 1997 / 2765), so the gaps after

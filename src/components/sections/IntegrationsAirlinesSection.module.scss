@@ -1,0 +1,238 @@
+@use '@/styles/mixins' as *;
+
+$ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+// Figma: the partner content ends at y = 1910 and this heading starts at y = 2210. The partners section
+// already leaves 200px below it, so 100px more here makes the 300px; 200px below, before the soft-blue band.
+.section {
+  padding: 100px 0 200px;
+
+  @media (max-width: 1023.98px) {
+    padding: 0 0 200px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  // Figma: 1194px of content (the container padding sits on top of it).
+  max-width: calc(1194px + 2 * var(--container-padding));
+  margin-inline: auto;
+
+  // Figma phones: 32px between the heading and the cards.
+  @media (max-width: 767.98px) {
+    gap: 32px;
+  }
+}
+
+.title {
+  margin: 0;
+  @include heading-h3;
+  text-align: center;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Figma "AIRLINES - …": L50 card, 20px radius, 32px padding.
+.card {
+  position: relative;
+  padding: 32px;
+  border-radius: 20px;
+  background: var(--color-light-blue-50);
+
+  @media (max-width: 767.98px) {
+    padding: 24px;
+  }
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  // Keeps the text clear of the toggle.
+  padding-right: 48px;
+
+  // Phones: the description uses the full card width; only the title keeps clear of the toggle.
+  @media (max-width: 767.98px) {
+    padding-right: 0;
+  }
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-transform: uppercase;
+  color: var(--color-blue-100);
+
+  @media (max-width: 767.98px) {
+    padding-right: 40px;
+    line-height: 16px;
+  }
+}
+
+.description {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 31px;
+  color: var(--color-antracite-300);
+
+  // Figma phones: 20px copy on 27px lines.
+  @media (max-width: 767.98px) {
+    font-size: 20px;
+    line-height: 27px;
+  }
+}
+
+// Figma "ICON BUTTON": 40px, 21px in from the top-right corner.
+.toggle {
+  position: absolute;
+  top: 21px;
+  right: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 12px;
+  background: none;
+  color: var(--color-antracite-400);
+  cursor: pointer;
+
+  @media (max-width: 767.98px) {
+    top: 12px;
+    right: 12px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-blue-200);
+    outline-offset: 2px;
+  }
+}
+
+// The vertical bar turns the "+" into the "−" when the card is open.
+.bar {
+  transform-origin: 12px 12px;
+  transition:
+    transform 0.4s $ease,
+    opacity 0.3s ease;
+
+  .open & {
+    transform: rotate(90deg);
+    opacity: 0;
+  }
+}
+
+// Expand / collapse: height animates 0fr → 1fr (exact content height) while the logos fade in.
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s $ease;
+
+  .open & {
+    grid-template-rows: 1fr;
+  }
+}
+
+.panelInner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.systems {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 24px 60px;
+  margin: 0;
+  padding: 40px 0 0;
+  list-style: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  .open & {
+    opacity: 1;
+    transition: opacity 0.4s ease 0.15s;
+  }
+
+  // Figma phones: 32px between logo rows and columns.
+  @media (max-width: 767.98px) {
+    gap: 32px;
+    padding-top: 40px;
+  }
+}
+
+.system {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+// The logo files are exports of Figma's logo areas (empty space above the mark included), shown at the size in
+// their width/height attributes. The multiply blend lets their white backdrop take the card's colour.
+.logo {
+  display: block;
+  max-width: none;
+  mix-blend-mode: multiply;
+}
+
+// Rows whose logos have no captions line up on their bottom edge.
+.alignEnd {
+  align-items: flex-end;
+}
+
+// Where a system has no logo in Figma only its name is shown, on the baseline of the logos beside it.
+.textOnly {
+  justify-content: flex-end;
+}
+
+.slot30 {
+  height: 30px;
+}
+
+.slot32 {
+  height: 32px;
+}
+
+.slot50 {
+  height: 50px;
+}
+
+// Figma wraps a few long names over two lines at a fixed width.
+@each $width in (109, 113, 194, 226, 279) {
+  .systemName.nameW#{$width} {
+    max-width: #{$width}px;
+    white-space: normal;
+  }
+}
+
+.systemName {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--color-antracite-200);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar,
+  .panel,
+  .systems {
+    transition: none;
+  }
+}

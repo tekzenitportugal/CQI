@@ -42,7 +42,7 @@ export const contactData = {
       {
         title: 'Security',
         description: 'Questionnaires, evidence packs and infosec review.',
-        email: 'marketing@cqisense.com',
+        email: 'security@cqisense.com',
         link: { label: 'Security & Trust', href: '/products/security-trust' },
       },
       {

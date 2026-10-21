@@ -58,8 +58,8 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   color: var(--color-antracite-300);
 }
 
-// Figma "Five layers, one platform" (6689:69713): 480px cards, 20px gap, one expanded at a
-// time. The open card is 465px vs 223px collapsed (≈2.085×), so widths animate via flex-grow.
+// Figma "Five layers, one platform" (6733:66169): 242px-tall cards, 20px gap, one expanded at a
+// time. The open card is 587px vs 191.75px collapsed (≈3.061×), so widths animate via flex-grow.
 // Mobile (Figma 6688:69575): all five cards are stacked, 20px apart, each fully expanded.
 .stack {
   container-type: inline-size;
@@ -70,7 +70,7 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
   @include respond-to(lg) {
     flex-direction: row;
-    height: 480px;
+    min-height: 242px;
   }
 }
 
@@ -93,7 +93,8 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 @include respond-to(lg) {
   .open {
-    flex-grow: 2.085;
+    // Cards have 64px of side padding on top of a 0 flex-basis: (587 - 64) / (191.75 - 64).
+    flex-grow: 4.094;
   }
 }
 
@@ -132,7 +133,17 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 @include respond-to(lg) {
+  // Open card: title pinned to the top, description + tags at the bottom (Figma justify-between).
+  // flex-grow animates, so the title glides up/down with the card instead of jumping.
+  .trigger {
+    display: flex;
+    align-items: flex-start; // buttons centre their content vertically by default
+    flex: 0 0 auto;
+    transition: flex-grow 0.6s $ease;
+  }
+
   .open .trigger {
+    flex-grow: 1;
     cursor: default;
 
     &::after {
@@ -190,14 +201,14 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
       transform 0.2s ease,
       padding-top 0.6s $ease,
       visibility 0s linear 0.6s;
-    // Open card width: 2.085/6.085 of the row (minus 4 gaps) less its 32px side padding.
-    width: calc((100cqw - 80px) * 0.3427 - 64px);
+    // Open card width: 587/1434 of the row (minus 4 gaps), less its 32px side padding.
+    width: calc((100cqw - 80px) * 0.4335 - 64px);
   }
 }
 
 @include respond-to(lg) {
   .open .panelInner {
-    padding-top: 32px;
+    padding-top: 40px;
     opacity: 1;
     visibility: visible;
     transform: none;

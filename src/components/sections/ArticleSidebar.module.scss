@@ -60,16 +60,18 @@
   gap: 8px;
 }
 
+// Each icon image already includes its grey tile (Figma export), so the image is the whole 28px button.
 .icon {
   display: inline-flex;
-  align-items: center;
-  padding: 6px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
   border: 0;
-  border-radius: 6px;
-  background: var(--color-antracite-400);
+  background: none;
   cursor: pointer;
 
-  &:hover {
-    background: var(--color-blue-200);
+  img {
+    width: 28px;
+    height: 28px; // global `img { height: auto }` must not resize it
   }
 }

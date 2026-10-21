@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import { integrationsData } from '@/data/integrations';
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
 import { FaqSection } from '@/components/sections/FaqSection';
+import { IntegrationsAirlinesSection } from '@/components/sections/IntegrationsAirlinesSection';
 import { IntegrationsConnectionSection } from '@/components/sections/IntegrationsConnectionSection';
 import { IntegrationsPartnersSection } from '@/components/sections/IntegrationsPartnersSection';
 import { PageHeroBanner } from '@/components/sections/PageHeroBanner';
-import { ExpandableBandList } from '@/components/ui/ExpandableBandList';
 
 export const metadata: Metadata = {
   title: 'Integrations — CQI',
@@ -18,8 +18,8 @@ export default function IntegrationsPage() {
     <>
       <PageHeroBanner data={integrationsData.hero} />
       <IntegrationsPartnersSection data={integrationsData.partners} />
+      <IntegrationsAirlinesSection data={integrationsData.airlines} />
       <IntegrationsConnectionSection data={integrationsData.connection} />
-      <ExpandableBandList items={integrationsData.waysBands} colors={integrationsData.bandColors} scrollDriven />
       <FaqSection data={integrationsData.faq} />
       <CtaBannerSection data={integrationsData.cta} />
     </>

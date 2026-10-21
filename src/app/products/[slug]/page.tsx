@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { capabilityPages, getCapabilityPage } from '@/data/capabilities';
 import { CapabilityFeaturesSection } from '@/components/sections/CapabilityFeaturesSection';
+import { CapabilityFlowSection } from '@/components/sections/CapabilityFlowSection';
+import { CapabilityScreensSection } from '@/components/sections/CapabilityScreensSection';
 import { CapabilityPagerSection } from '@/components/sections/CapabilityPagerSection';
 import { CtaBannerSection } from '@/components/sections/CtaBannerSection';
 import { FaqSection } from '@/components/sections/FaqSection';
@@ -45,7 +47,12 @@ export default async function CapabilityPage({ params }: CapabilityPageProps) {
           <PageHeroBanner data={{ ...page.hero, image: page.heroImage, mobileImage: page.heroImageMobile }} />
         )
       )}
-      <CapabilityFeaturesSection data={page.features} spaceTop={200} spaceBottom={page.spacing.afterFeatures} />
+      {'steps' in page.features ? (
+        <CapabilityFlowSection data={page.features} />
+      ) : (
+        <CapabilityFeaturesSection data={page.features} spaceTop={200} spaceBottom={page.spacing.afterFeatures} />
+      )}
+      {page.screens && <CapabilityScreensSection data={page.screens} />}
       <RuledRowsSection
         data={page.howItWorks}
         spaceBottom={page.spacing.afterHowItWorks}

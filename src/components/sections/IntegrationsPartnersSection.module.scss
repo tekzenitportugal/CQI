@@ -19,7 +19,9 @@
   // Figma: 32px between the intro line, the card grid and the footnote — the tab bar sits
   // 64px above the intro, via .tabs' own margin-bottom below.
   gap: fluid-space(32px);
-  max-width: 1072px;
+  // Figma: the card grid is 1194px wide (three 384.67px cards, 20px apart).
+  // Figma: 1194px of content (the container padding sits on top of it).
+  max-width: calc(1194px + 2 * var(--container-padding));
   margin-inline: auto;
 
   // Figma mobile: 24px intro → cards (32px before the footnote with its own margin).

@@ -1,0 +1,254 @@
+@use '@/styles/mixins' as *;
+
+$ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+// Figma 6733:63861 is laid out on a 1536px frame. From lg up, every length below is written as
+// `N * var(--u)`, where --u is 1px at 1536 and wider and shrinks with the viewport below that,
+// so the diagram scales down as one piece instead of reflowing.
+// Desktop: the section is a 400vh track and .pin sticks to the viewport inside it; the component maps
+// scroll progress through the track to the four states (each state gets 100vh of scrolling).
+.section {
+  overflow: clip;
+  padding-top: 200px;
+
+  @media (min-width: 1024px) {
+    height: 400vh;
+    padding-top: 0;
+  }
+}
+
+.pin {
+  @media (min-width: 1024px) {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+  }
+}
+
+.inner {
+  // Shrinks with the viewport width, and with its height so the 755px diagram always fits the pinned frame.
+  --u: min(1px, calc(100vw / 1536), calc(100vh / 820));
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+
+  // Mobile: heading, then the four states as a stacked list.
+  @media (max-width: 1023.98px) {
+    padding-inline: var(--container-padding);
+  }
+
+  @media (min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: calc(108 * var(--u));
+    max-width: 1536px;
+    margin-inline: auto;
+    width: 100%;
+    padding-right: calc(50 * var(--u));
+  }
+}
+
+// ── Desktop diagram ───────────────────────────────────────────────
+
+.diagram {
+  display: none;
+
+  @media (min-width: 1024px) {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: calc(32 * var(--u));
+  }
+}
+
+.stage {
+  position: relative;
+  flex: none;
+  width: calc(415 * var(--u));
+  height: calc(755 * var(--u));
+}
+
+.art {
+  display: block;
+  overflow: visible; // lets the blue node's pulse ring spread past the 415px frame
+  width: 100%;
+  height: 100%;
+}
+
+// Soft ring that radiates from the blue node.
+.pulse {
+  fill: none;
+  stroke: #0044ff;
+  stroke-width: 1;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: node-pulse 2.4s ease-out infinite;
+}
+
+.labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.label {
+  position: absolute;
+  left: calc(51 * var(--u));
+  top: calc(376 * var(--u));
+  // Figma's label box is 204 wide; longer labels wrap inside it (explicit \n in the data still wins).
+  width: calc(204 * var(--u));
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: max(13px, calc(20 * var(--u)));
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  white-space: pre-line;
+  color: var(--color-antracite-400);
+  opacity: 0;
+  transform: translateY(calc(-50% + 10px));
+  transition:
+    opacity 0.4s ease,
+    transform 0.6s $ease;
+
+  &.current {
+    opacity: 1;
+    transform: translateY(-50%);
+    transition-delay: 0.2s;
+  }
+}
+
+// Figma "CARDS": 344px wide, 24px padding, 20px radius. All four texts share one grid cell, so the
+// card keeps the height of the longest and nothing jumps when the text changes.
+.card {
+  display: grid;
+  flex: none;
+  width: calc(344 * var(--u));
+  padding: calc(24 * var(--u));
+  border: 1px solid var(--color-antracite-75);
+  border-radius: calc(20 * var(--u));
+  background: var(--color-antracite-50);
+}
+
+.cardText {
+  grid-area: 1 / 1;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: max(12px, calc(17.5 * var(--u)));
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-400);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease,
+    visibility 0s linear 0.35s;
+
+  &.current {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.5s ease 0.3s,
+      transform 0.6s $ease 0.3s,
+      visibility 0s;
+  }
+}
+
+// Figma "Skip": bottom-right of the pinned frame, 50px from the right edge, 20px above the diagram's bottom.
+// (.inner .skip: has to outrank GhostLink's own display rule whichever stylesheet loads first.)
+.inner .skip {
+  display: none;
+
+  @media (min-width: 1024px) {
+    position: absolute;
+    right: calc(50 * var(--u));
+    bottom: calc(20 * var(--u));
+    display: inline-flex;
+    z-index: 1;
+  }
+}
+
+// ── Heading ───────────────────────────────────────────────────────
+
+.heading {
+  --section-heading-title-max-width: 100%;
+
+  @media (min-width: 1024px) {
+    flex: none;
+    width: calc(587 * var(--u));
+  }
+}
+
+// ── Mobile list ───────────────────────────────────────────────────
+
+.list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 1024px) {
+    display: none;
+  }
+}
+
+.listCard {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--color-antracite-75);
+  border-radius: 20px;
+  background: var(--color-antracite-50);
+}
+
+.listTitle {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
+  text-transform: uppercase;
+  color: var(--color-antracite-400);
+}
+
+.listText {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-antracite-400);
+}
+
+@keyframes node-pulse {
+  0% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse {
+    display: none;
+  }
+
+  .label,
+  .cardText {
+    transition: none;
+  }
+}
