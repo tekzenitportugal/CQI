@@ -31,7 +31,7 @@ function renderBlock(block: ArticleBlock, index: number) {
         </blockquote>
       );
     case 'link':
-      return <GhostLink key={index} label={block.label} href={block.href} className={styles.link} />;
+      return <GhostLink key={index} label={block.label} href={block.href} newTab={block.newTab} className={styles.link} />;
   }
 }
 

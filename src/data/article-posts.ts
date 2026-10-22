@@ -5,7 +5,7 @@ export type ArticleBlock =
   | { type: 'paragraph'; text: string; highlight?: string[] }
   | { type: 'image'; src: string; alt: string }
   | { type: 'quote'; text: string; highlight?: string[] }
-  | { type: 'link'; label: string; href: string };
+  | { type: 'link'; label: string; href: string; newTab?: boolean };
 
 export type ArticleSection = {
   /** Anchor id; also what the sidebar contents list scrolls to. */
@@ -91,7 +91,7 @@ export const articlePosts: ArticlePost[] = [
             type: 'paragraph',
             text: 'For CQI this is an “opportunity to understand what they are going through”.',
           },
-          { type: 'link', label: 'View the full content here', href: '#' },
+          { type: 'link', label: 'View the full content here', href: '/documents/resources/articles/CQI-WAF2026talk-Public.pdf', newTab: true },
         ],
       },
       {
