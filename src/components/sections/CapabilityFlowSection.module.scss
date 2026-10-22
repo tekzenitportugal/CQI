@@ -158,10 +158,24 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 }
 
-// Figma "CARDS": 344px wide, 24px padding, 20px radius. All four texts share one grid cell, so the
-// card keeps the height of the longest and nothing jumps when the text changes.
+// Holds the card's place. Desktop: the card sits centred beside the blue node, so its height can change
+// freely. Mobile: the slot keeps the height of the longest text, with the card resting on its bottom edge,
+// so the diagram and heading below/above never move when the card grows or shrinks.
+.cardSlot {
+  display: flex;
+  flex: none;
+  align-items: center;
+
+  @media (max-width: 1023.98px) {
+    align-items: flex-end;
+    justify-content: center;
+    min-height: calc(var(--card-slot-text-h, 0px) + 42px); // + 20px padding each side + 1px borders
+  }
+}
+
+// Figma "CARDS": 344px wide, 24px padding, 20px radius. The card fits the current text: its height is
+// measured in JS (--card-body-h) and eased between steps, so short texts leave no empty space below.
 .card {
-  display: grid;
   flex: none;
   width: calc(344 * var(--u));
   padding: calc(24 * var(--u));
@@ -179,8 +193,18 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 }
 
+.cardBody {
+  position: relative;
+  height: var(--card-body-h, auto);
+  transition: height 0.45s $ease;
+}
+
+// Only the current text is in the flow; the others lie on top of it (top-aligned) while they fade out.
 .cardText {
-  grid-area: 1 / 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   margin: 0;
   font-family: var(--font-body);
   font-size: max(12px, calc(17.5 * var(--u)));
@@ -201,6 +225,7 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     visibility 0s linear 0.35s;
 
   &.current {
+    position: relative;
     opacity: 1;
     visibility: visible;
     transform: none;
@@ -260,6 +285,7 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   }
 
   .label,
+  .cardBody,
   .cardText {
     transition: none;
   }

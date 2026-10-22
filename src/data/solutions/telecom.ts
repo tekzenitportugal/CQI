@@ -32,9 +32,10 @@ export const telecomSolutionData = {
     description:
       'It starts with provisioning delays, SLA gaps, roaming inconsistencies, billing discrepancies and fragmented field operations. These issues compound silently across systems and touchpoints, long before NPS drops or customers escalate. By the time it becomes visible, loyalty has already eroded.',
     image: '/images/solutions/telecom/18_TELECOM_IMG2.png',
-    imageAspect: '587 / 341',
+    // Screenshot has its own frame and shadow; the box follows its ratio so nothing is cropped.
+    imageAspect: '2476 / 1484',
     imageOverlay: 0,
-    imageFramed: true,
+    imageOwnFrame: true,
     tagGroups: [
       {
         label: 'What stays invisible',

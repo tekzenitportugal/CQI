@@ -27,6 +27,8 @@ type FpoImageProps = {
   sizes?: string;
   /** Figma default is 12px; pick another design radius (class-based, so CSS can still override it). */
   borderRadius?: 8 | 14;
+  /** Serve the file untouched (no Next resize/recompress), e.g. product screenshots. */
+  unoptimized?: boolean;
 };
 
 export function FpoImage({
@@ -45,6 +47,7 @@ export function FpoImage({
   fillContainer = false,
   sizes = '(max-width: 768px) 100vw, 50vw',
   borderRadius,
+  unoptimized = false,
 }: FpoImageProps) {
   const dim = overlay === true ? 0.5 : overlay === false ? 0 : overlay;
 
@@ -94,6 +97,7 @@ export function FpoImage({
           }}
           sizes={sizes}
           priority={priority}
+          unoptimized={unoptimized}
         />
       </div>
       {dim > 0 && (

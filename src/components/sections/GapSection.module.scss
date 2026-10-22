@@ -33,13 +33,11 @@
   }
 }
 
-// Figma mobile (6543:39248): 5px corners, a 0.5px A75 hairline and a soft drop shadow, so the
-// screenshot's own pale card reads as a crisp frame instead of a heavily rounded clip.
+// Figma mobile (6543:39248): 5px corners. The screenshot carries its own window frame and shadow,
+// so no CSS border/shadow here.
 .image {
   @media (max-width: 1023.98px) {
     border-radius: 5px;
-    border: 0.5px solid var(--color-antracite-75);
-    box-shadow: 1px 1px 15.9px 0 rgba(0, 0, 0, 0.15);
   }
 }
 

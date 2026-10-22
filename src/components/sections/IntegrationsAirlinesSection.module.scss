@@ -161,6 +161,10 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   margin: 0;
   padding: 40px 0 0;
   list-style: none;
+  // While the opacity fades, this list is blended as its own layer, so the logos' multiply blend
+  // (see .logo) only sees what is inside it. Painting the card colour here keeps their white backdrop
+  // hidden during the fade, instead of flashing white until the fade ends.
+  background: var(--color-light-blue-50);
   opacity: 0;
   transition: opacity 0.2s ease;
 

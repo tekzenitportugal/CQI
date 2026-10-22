@@ -53,9 +53,10 @@ export const insuranceSolutionData = {
         tags: ['Claims process optimisation', 'Predictive recontact & churn'],
       },
     ],
-    imageAspect: '587 / 341',
+    // Screenshot has its own frame and shadow; the box follows its ratio so nothing is cropped.
+    imageAspect: '2476 / 1484',
     imageOverlay: 0,
-    imageFramed: true,
+    imageOwnFrame: true,
   }, '/images/solutions/insurance/21_INSURANCE_IMG1.png'),
   threeThings: mapThreeThings({
     roomyFirstStep: true,

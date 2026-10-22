@@ -451,7 +451,6 @@ export const integrationsData = {
         description: 'Plans and confirms special meals and onboard services.',
         systems: [
           { logo: '/images/product/integrations/logos/airline/catering-zafire.png', logoAlt: 'Zafire', logoWidth: 99, logoHeight: 50 },
-          { logo: '/images/product/integrations/logos/airline/catering-lufthansa.png', logoAlt: 'Lufthansa Systems', logoWidth: 151, logoHeight: 50 },
         ],
       },
       {
@@ -459,9 +458,7 @@ export const integrationsData = {
         description: 'Tracks flights in real time, including delays, cancellations and diversions.',
         systems: [
           { logo: '/images/product/integrations/logos/airline/ops-amadeus.png', logoAlt: 'Amadeus', logoWidth: 141, logoHeight: 50, name: 'Amadeus Altéa Flight Management', nameWidth: 113 },
-          { logo: '/images/product/integrations/logos/airline/ops-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 50, name: 'Sabre AirCentre' },
-          { logo: '/images/product/integrations/logos/airline/ops-lufthansa.png', logoAlt: 'Lufthansa Systems', logoWidth: 151, logoHeight: 50, name: 'Lufthansa Systems NetLine/Ops ++', nameWidth: 109 },
-          { logo: '/images/product/integrations/logos/airline/ops-hitit.png', logoAlt: 'Hitit', logoWidth: 81, logoHeight: 50, name: 'Hitit Crane OPS' },
+          { logo: '/images/product/integrations/logos/airline/ops-sabre.png', logoAlt: 'Sabre', logoWidth: 115, logoHeight: 50, name: 'Sabre AirCentre' },          { logo: '/images/product/integrations/logos/airline/ops-hitit.png', logoAlt: 'Hitit', logoWidth: 81, logoHeight: 50, name: 'Hitit Crane OPS' },
           { text: 'OAG/Cirium', slotHeight: 50 },
           { text: 'ACARS/OOOI feeds', slotHeight: 50 },
         ],

@@ -22,9 +22,10 @@ export const fixBeforeFailureData = {
     eyebrow: 'CONTEXT',
     description:
       'The moment delivery drifts from commitment (explicit or implicit) churn is already in motion. It begins in provisioning, underwriting, claims, billing, field operations and handoffs, and it compounds quietly across systems until only the damage is visible.',
-    image: '/images/product/fix-before-failure-happens/friction-customer-lifecycle.png',
-    imageWidth: 587,
-    imageHeight: 341,
+    image: '/images/product/fix-before-failure-happens/10_FIX_BEFORE_FAILURE_HAPPENS_IMG1.png',
+    // Frame follows the screenshot's own ratio so nothing is cropped.
+    imageWidth: 2476,
+    imageHeight: 1484,
     sentimentStages: [
       {
         label: 'HEALTHY',

@@ -96,18 +96,36 @@ $slide: cubic-bezier(0.25, 0.8, 0.25, 1);
   width: 100%;
   height: 100%;
   max-width: none;
-  border: 0.5px solid var(--color-antracite-75);
-  border-radius: calc(8 * var(--k));
-  background: var(--color-white);
-  box-shadow: var(--k) var(--k) calc(16 * var(--k)) 0 rgb(0 0 0 / 0.15);
-  // The screenshots are taller than their frames; Figma crops them from the top.
-  object-fit: cover;
-  object-position: top;
+  // The screenshots carry their own window frame and shadow, so no CSS border/shadow, and they are
+  // fitted whole (never cropped) so that built-in shadow isn't cut off.
+  object-fit: contain;
   pointer-events: none;
+}
 
-  @media (min-width: 1024px) {
-    border-radius: calc(8 * var(--u));
-  }
+// A bare app window (no shadow margin) is laid out as if it were one of the 2476 × 1484 framed PNGs:
+// the canvas is that size, fitted like .shot, and the window sits 60px in from the top/left and 68px
+// from the right/bottom, with a CSS shadow matching the baked-in one (~4px offset, ~60px soft blur,
+// 30px window corners). 1cqw is 24.76 PNG pixels.
+.shotCanvas {
+  position: relative;
+  display: block;
+  height: 100%;
+  aspect-ratio: 2476 / 1484;
+  margin-inline: auto;
+  container-type: inline-size;
+  pointer-events: none;
+}
+
+.shotWindow {
+  position: absolute;
+  top: calc(100% * 60 / 1484);
+  left: calc(100% * 60 / 2476);
+  // Explicit size: an absolutely positioned <img> would otherwise keep its natural pixel size.
+  width: calc(100% * 2348 / 2476);
+  height: calc(100% * 1356 / 1484);
+  max-width: none;
+  border-radius: calc(100cqw * 30 / 2476);
+  box-shadow: calc(100cqw * 4 / 2476) calc(100cqw * 4 / 2476) calc(100cqw * 60 / 2476) 0 rgb(0 0 0 / 0.12);
 }
 
 // Figma: the dots sit right-aligned under the centre screen, 21px below it on mobile (its right edge)

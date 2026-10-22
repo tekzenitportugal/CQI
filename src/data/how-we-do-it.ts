@@ -135,8 +135,9 @@ export const howWeDoItData = {
     featuresFootnote:
       'Next actions run your own playbook first: predefined marketing and customer-success guidance.\nAI recommendations layer on top once the platform has learned what works.',
     image: '/images/product/how-we-do-it/11_HOW_WE_DO_IT_IMG1.png',
-    imageWidth: 587,
-    imageHeight: 341,
+    // Frame follows the screenshot's own ratio so its built-in shadow is never cropped.
+    imageWidth: 2476,
+    imageHeight: 1484,
   },
 
   riskEngine: {

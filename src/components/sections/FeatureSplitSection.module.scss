@@ -79,11 +79,8 @@
   }
 }
 
-// Figma: border + drop shadow on the screenshot frame itself (node 6225:41743).
+// The screenshot carries its own window frame and shadow, so no CSS border/shadow here.
 .mediaFrame {
-  border: 0.5px solid var(--color-antracite-75);
-  box-shadow: -7px 1px 15.9px 0 rgba(0, 0, 0, 0.15);
-
   // Mobile/tablet frame radius is 5px (desktop keeps FpoImage's 8px).
   @media (max-width: 1023.98px) {
     border-radius: 5px;

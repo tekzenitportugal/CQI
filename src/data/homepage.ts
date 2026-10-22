@@ -30,8 +30,9 @@ export const homepageData = {
     description:
       'Nothing in the CX stack is looking at that gap.\nIt is where churn starts.',
     image: '/images/shared/home/1_HOMEPAGE_IMG2.png',
-    imageWidth: 587,
-    imageHeight: 341,
+    // Frame follows the screenshot's own ratio so its built-in shadow is never cropped.
+    imageWidth: 2476,
+    imageHeight: 1484,
   },
 
   stats: {

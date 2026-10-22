@@ -14,6 +14,7 @@ export function FrictionTrustSection({ data }: FrictionTrustSectionProps) {
       <Container className={styles.inner}>
         <FpoImage
           src={data.image}
+          unoptimized
           alt={data.title}
           width={data.imageWidth}
           height={data.imageHeight}

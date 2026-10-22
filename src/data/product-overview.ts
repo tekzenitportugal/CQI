@@ -125,13 +125,10 @@ export const productOverviewData = {
       { title: 'Repetition', description: 'How many times did the customer have to come back?' },
     ],
     image: {
-      src: '/images/product/capabilities/journey-health.webp',
-      width: 587,
-      height: 340,
-      // Figma node 6225:41743: raw 1920x2722 dashboard screenshot, shown top-cropped
-      // at 100% width / ~245% height inside the 587x340 frame; border + shadow are
-      // applied separately in CSS (FeatureSplitSection.module.scss .mediaFrame).
-      inset: { top: 0, left: 0, width: 587, height: 832 },
+      src: '/images/product/capabilities-overview/2_PRODUCT_OVERVIEW_IMG2.png',
+      // Frame follows the screenshot's own ratio (2476 × 1484) so the whole dashboard is visible.
+      width: 2476,
+      height: 1484,
     },
   } satisfies FeatureSplitSectionData,
 

@@ -116,6 +116,10 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   /** Below lg only: title→intro and eyebrow→description gaps (px) when Figma differs from the default 60/20. */
   mobileTextGap?: number;
   mobileIntroGap?: number;
+  /** Below lg only (dedicated mobile image): CSS background-position of the cover crop, e.g. '70% center'. */
+  mobileImagePosition?: string;
+  /** lg+ (dedicated image, no frame): Figma's radial wash from the left edge instead of the flat linear one. */
+  radialWash?: boolean;
   /** Below lg only (dedicated mobile image): shifts the photo up by this many px (Figma crops it taller than the card). */
   mobileImageShift?: number;
   /** Tall (796×1760) transparent-top mobile banner: bottom-anchored, banner grows with width above 430px. */
@@ -224,6 +228,8 @@ export type IndustryFrictionData = {
   imagePosition?: string;
   /** Bordered product screenshot (Figma: 8px radius, hairline border, soft shadow). */
   imageFramed?: boolean;
+  /** Screenshot that carries its own window frame and shadow: no CSS frame, backdrop or crop around it. */
+  imageOwnFrame?: boolean;
 };
 
 export type IndustryThreeThingsItem = {

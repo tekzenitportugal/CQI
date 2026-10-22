@@ -53,9 +53,10 @@ export const bankingSolutionData = {
         tags: ['Contact centre optimisation', 'Predictive recontact & churn'],
       },
     ],
-    imageAspect: '587 / 341',
+    // Screenshot has its own frame and shadow; the box follows its ratio so nothing is cropped.
+    imageAspect: '2476 / 1484',
     imageOverlay: 0,
-    imageFramed: true,
+    imageOwnFrame: true,
   }, '/images/solutions/banking/20_BANKING_IMG1.png'),
   threeThings: mapThreeThings({
     roomyFirstStep: true,

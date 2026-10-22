@@ -101,6 +101,13 @@
   }
 }
 
+// Screenshot with its own window frame and shadow baked in: no black backdrop or rounded clip
+// behind its transparent shadow edge.
+.mediaOwnFrame {
+  border-radius: 0;
+  background: none;
+}
+
 // Figma product screenshot: 587×341, 8px radius, hairline border, soft shadow. No dim.
 .mediaFramed {
   border-radius: 8px;

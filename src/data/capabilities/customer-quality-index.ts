@@ -56,7 +56,7 @@ export const customerQualityIndex: CapabilityPageData = {
     images: [
       { src: '/images/product/capabilities/customer-quality-index/4_CUSTOMER_QUALITY_INDEX_IMG2.png', alt: 'CQI interactions table grouped by reason and subreason' },
       { src: '/images/product/capabilities/customer-quality-index/4_CUSTOMER_QUALITY_INDEX_IMG3.png', alt: 'CQI Customers screen with the customer directory and channel integrity scores' },
-      { src: '/images/product/capabilities/customer-quality-index/4_CUSTOMER_QUALITY_INDEX_IMG4.png', alt: 'CQI interactions screen with signal distributions and resolution by reason and subreason' },
+      { src: '/images/product/capabilities/customer-quality-index/4_CUSTOMER_QUALITY_INDEX_IMG4.png', alt: 'CQI interactions screen with signal distributions and resolution by reason and subreason', framed: true },
     ],
   },
   howItWorks: {

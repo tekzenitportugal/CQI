@@ -61,6 +61,11 @@
 // Dedicated mobile crop: flat full-bleed photo; optionally shifted up (Figma crops it taller than the card).
 .photoDedicated::before {
   inset: calc(-1 * var(--hero-mobile-img-shift, 0px)) 0 0;
+
+  // Below lg: which part of a wide photo the cover crop keeps (e.g. the subject sits right of centre).
+  @media (max-width: 1023.98px) {
+    background-position: var(--hero-mobile-img-pos, center);
+  }
 }
 
 // Photo placed at Figma's exact offset/size inside the box (not full-bleed); the wash covers the exposed edge.
@@ -113,6 +118,13 @@
   // Framed heroes (Figma 6342:27253): radial wash centred on the left edge (Figma 6362:28751), 1316×2652 radii in a 1520×848 box.
   .washFramed::after {
     background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(131.56 0 0 265.15 0.41 432.23)'><stop stop-color='rgba(204,218,255,1)' offset='0.3662'/><stop stop-color='rgba(237,242,255,0.5)' offset='0.74256'/><stop stop-color='rgba(237,242,255,0)' offset='1'/></radialGradient></defs></svg>")
+      center / 100% 100% no-repeat;
+  }
+
+  // Full-bleed photo with Figma's radial wash (Cross-channel integrity, 6733:64247): centred on the left
+  // edge, 1344×2709 radii in the 1520×848 box. Figma draws it inside a flipped layer at cx=1520; un-flipped here.
+  .washRadial::after {
+    background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 1520 848.46' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'><rect width='100%' height='100%' fill='url(%23g)'/><defs><radialGradient id='g' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='10' gradientTransform='matrix(134.4 0 0 270.87 0 432.23)'><stop stop-color='rgba(204,218,255,1)' offset='0.3662'/><stop stop-color='rgba(237,242,255,0.5)' offset='0.74256'/><stop stop-color='rgba(237,242,255,0)' offset='1'/></radialGradient></defs></svg>")
       center / 100% 100% no-repeat;
   }
 

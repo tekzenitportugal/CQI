@@ -38,6 +38,7 @@ export function DeliveryStageCard({ stage, className, priority }: DeliveryStageC
             alt=""
             fill
             priority={priority}
+            unoptimized
             className={styles.photo}
             sizes="(max-width: 1023px) 100vw, 708px"
           />

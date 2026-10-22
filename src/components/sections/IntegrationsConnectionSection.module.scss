@@ -153,7 +153,10 @@ $pin-top-space: clamp(96px, calc((100svh - #{$pinned-content-height}) / 2), 250p
   inset: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  // The dome runs past the frame's bottom and must stay clipped there, but the active dot's white circle
+  // reaches ~2 units above the top edge (centre y 24, radius 25.5), so the clip leaves room above it.
+  overflow: visible;
+  clip-path: inset(-12px 0 0 0);
 }
 
 .arc {

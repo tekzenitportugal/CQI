@@ -14,7 +14,7 @@ export type FeatureSplitSectionData = {
     src: string;
     width: number;
     height: number;
-    inset: { top: number; left: number; width: number; height: number };
+    inset?: { top: number; left: number; width: number; height: number };
   };
 };
 
@@ -41,6 +41,7 @@ export function FeatureSplitSection({ data }: FeatureSplitSectionProps) {
         <div className={styles.media}>
           <FpoImage
             src={data.image.src}
+            unoptimized
             alt={data.title}
             width={data.image.width}
             height={data.image.height}

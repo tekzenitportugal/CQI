@@ -35,11 +35,8 @@
   }
 }
 
-// Figma 6225:38959: 0.5px border, 8px radius, 1px 1px 16px shadow.
+// The screenshot carries its own window frame and shadow, so no CSS border/shadow here.
 .mediaFrame {
-  border: 0.5px solid var(--color-antracite-75);
-  box-shadow: 1px 1px 16px 0 rgba(0, 0, 0, 0.15);
-
   @media (max-width: 767.98px) {
     border-radius: 5px;
   }

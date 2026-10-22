@@ -44,11 +44,12 @@ export function IndustryFrictionSection({ data }: IndustryFrictionSectionProps) 
             </div>
           </div>
           <div
-            className={`${styles.media} ${data.imageFramed ? styles.mediaFramed : ''}`.trim()}
+            className={`${styles.media} ${data.imageFramed ? styles.mediaFramed : ''} ${data.imageOwnFrame ? styles.mediaOwnFrame : ''}`.trim()}
             style={data.imageAspect ? { aspectRatio: data.imageAspect } : undefined}
           >
             <FpoImage
               src={data.image}
+              unoptimized
               alt={data.title}
               width={587}
               height={341}

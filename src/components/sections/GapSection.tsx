@@ -15,6 +15,7 @@ export function GapSection({ data }: GapSectionProps) {
         <div className={styles.media}>
           <FpoImage
             src={data.image}
+            unoptimized
             alt={data.title}
             width={data.imageWidth}
             height={data.imageHeight}

@@ -17,9 +17,14 @@ export const crossChannelIntegrity: CapabilityPageData = {
       'A commitment ledger spanning channels, with containment, continuity and repetition scored separately.',
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
-  heroImage: '/images/product/capabilities/cross-channel-integrity/hero.webp',
-  heroImageMobile: '/images/product/capabilities/cross-channel-integrity/hero-mobile.webp',
+  heroImage: '/images/product/capabilities/cross-channel-integrity/CROSS_CHANNEL_INTEGRITY_BANNER.png',
+  // No separate mobile crop yet: mobile shows the same banner, cover-cropped around the handshake.
+  heroImageMobile: '/images/product/capabilities/cross-channel-integrity/CROSS_CHANNEL_INTEGRITY_BANNER.png',
+  heroImageMobilePosition: '70% center',
   heroImageAspectRatio: '1520 / 849',
+  heroImageUnoptimized: true,
+  // Figma 6733:64247: soft radial wash from the left edge over the banner.
+  heroRadialWash: true,
   // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {
     eyebrow: 'What it does',

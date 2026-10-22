@@ -5,7 +5,12 @@ import styles from './CapabilityScreensSection.module.scss';
 
 export type CapabilityScreensData = {
   /** Screenshots in carousel order. The first one starts in the middle. */
-  images: { src: string; alt: string }[];
+  images: {
+    src: string;
+    alt: string;
+    /** Bare app window (2348 × 1356) without the transparent shadow margin the others have: add it in CSS. */
+    framed?: boolean;
+  }[];
 };
 
 type CapabilityScreensSectionProps = {
@@ -100,7 +105,13 @@ export function CapabilityScreensSection({ data }: CapabilityScreensSectionProps
           if (offset !== 0 && !pointer.current?.moved) setPosition(virtual);
         }}
       >
-        <img src={image.src} alt={image.alt} draggable={false} className={styles.shot} />
+        {image.framed ? (
+          <span className={styles.shotCanvas}>
+            <img src={image.src} alt={image.alt} draggable={false} className={styles.shotWindow} />
+          </span>
+        ) : (
+          <img src={image.src} alt={image.alt} draggable={false} className={styles.shot} />
+        )}
       </div>,
     );
   }

@@ -73,7 +73,7 @@ export const verifiedCxAnalytics: CapabilityPageData = {
   // Figma 6733:63942
   screens: {
     images: [
-      { src: '/images/product/capabilities/verified-cx-analytics/3_VERIFIED_CX_ANALYTICS_IMG2.png', alt: 'CQI interactions table, grouped by reason and subreason' },
+      { src: '/images/product/capabilities/verified-cx-analytics/3_VERIFIED_CX_ANALYTICS_IMG2.png', alt: 'CQI interactions table, grouped by reason and subreason', framed: true },
       { src: '/images/product/capabilities/verified-cx-analytics/3_VERIFIED_CX_ANALYTICS_IMG3.png', alt: 'CQI Prevent CX Frictions screen listing customers at risk with their promise, SLA and verification status' },
       { src: '/images/product/capabilities/verified-cx-analytics/3_VERIFIED_CX_ANALYTICS_IMG4.png', alt: 'CQI Prevent CX Frictions screen with one customer expanded to show the detail' },
     ],

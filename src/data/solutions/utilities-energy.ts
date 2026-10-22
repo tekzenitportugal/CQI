@@ -54,9 +54,10 @@ export const utilitiesEnergySolutionData = {
         tags: ['Contact centre optimisation', 'Predictive recontact & churn'],
       },
     ],
-    imageAspect: '587 / 341',
+    // Screenshot has its own frame and shadow; the box follows its ratio so nothing is cropped.
+    imageAspect: '2476 / 1484',
     imageOverlay: 0,
-    imageFramed: true,
+    imageOwnFrame: true,
   }, '/images/solutions/utilities-energy/22_UTILITIES_ENERGY_IMG1.png'),
   threeThings: mapThreeThings({
     roomyFirstStep: true,

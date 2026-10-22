@@ -17,6 +17,10 @@ export type CapabilityPageData = {
   heroImage?: string;
   /** Dedicated mobile crop of `heroImage`, used when it's a full-bleed photo. */
   heroImageMobile?: string;
+  /** Below lg: which part of `heroImageMobile` the cover crop keeps (CSS background-position). */
+  heroImageMobilePosition?: string;
+  /** lg+: Figma's radial wash from the left edge over the hero photo (see PageHeroBanner `radialWash`). */
+  heroRadialWash?: boolean;
   /** Figma desktop mockup placed inside the hero card (inset hero); see GradientHero `desktopFigure`. */
   heroDesktopFigure?: { src: string; width: number; height: number; top: number; right: number; displayWidth: number };
   /** Figma mobile mockup placed inside the hero card (inset hero); see GradientHero `mobileFigure`. */

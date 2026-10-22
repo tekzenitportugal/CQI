@@ -44,6 +44,7 @@ export function CustomerPulseHowSection({ data }: CustomerPulseHowSectionProps) 
 
           <FpoImage
             src={data.image}
+            unoptimized
             alt={data.title}
             width={data.imageWidth}
             height={data.imageHeight}

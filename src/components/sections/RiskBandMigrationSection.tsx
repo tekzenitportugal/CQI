@@ -16,6 +16,7 @@ export function RiskBandMigrationSection({ data }: RiskBandMigrationSectionProps
           <div className={styles.media}>
             <FpoImage
               src={data.image}
+              unoptimized
               alt={data.title}
               // Frame follows the screenshot's own ratio (2476 × 1484) so the whole
               // dashboard is visible, nothing cropped.

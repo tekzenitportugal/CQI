@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { GhostButton } from '@/components/ui/GhostButton';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { clamp01, easeInOut, usePinnedSteps } from '@/utils/usePinnedSteps';
@@ -75,6 +75,22 @@ export function CapabilityFlowSection({ data }: CapabilityFlowSectionProps) {
     return () => query.removeEventListener('change', update);
   }, []);
   const node = compact ? NODE_COMPACT : NODE;
+
+  // The card fits the current text (no empty space under short ones), so each text's height is measured
+  // and the card eases between them. Re-measured whenever the texts reflow (resize, font load).
+  const textRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+  const [textHeights, setTextHeights] = useState<{ byStep: number[]; max: number } | null>(null);
+  useEffect(() => {
+    const texts = textRefs.current.filter((el): el is HTMLParagraphElement => !!el);
+    const measure = () => {
+      const byStep = textRefs.current.map((el) => el?.offsetHeight ?? 0);
+      setTextHeights({ byStep, max: Math.max(...byStep) });
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    texts.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [data.steps]);
 
   return (
     <section ref={trackRef} className={styles.section}>
@@ -156,16 +172,31 @@ export function CapabilityFlowSection({ data }: CapabilityFlowSectionProps) {
               </div>
             </div>
 
-            <div className={styles.card} aria-live="off">
-              {data.steps.map((step, index) => (
-                <p
-                  key={step.label}
-                  className={`${styles.cardText} ${index === active ? styles.current : ''}`.trim()}
-                  aria-hidden={index !== active}
+            <div
+              className={styles.cardSlot}
+              style={textHeights ? ({ '--card-slot-text-h': `${textHeights.max}px` } as CSSProperties) : undefined}
+            >
+              <div className={styles.card} aria-live="off">
+                <div
+                  className={styles.cardBody}
+                  style={
+                    textHeights ? ({ '--card-body-h': `${textHeights.byStep[active]}px` } as CSSProperties) : undefined
+                  }
                 >
-                  {step.description}
-                </p>
-              ))}
+                  {data.steps.map((step, index) => (
+                    <p
+                      key={step.label}
+                      ref={(el) => {
+                        textRefs.current[index] = el;
+                      }}
+                      className={`${styles.cardText} ${index === active ? styles.current : ''}`.trim()}
+                      aria-hidden={index !== active}
+                    >
+                      {step.description}
+                    </p>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
 
