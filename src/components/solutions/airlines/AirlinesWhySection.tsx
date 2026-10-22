@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Container } from '@/components/ui/Container';
 import { highlightText } from '@/utils/highlightText';
@@ -11,15 +11,33 @@ type AirlinesWhySectionProps = {
   data: typeof airlinesPageData.why;
 };
 
-/** "The flight is tracked. The feeling is missed." — dashboard carousel left, copy right. */
+const AUTOPLAY_MS = 5000;
+
+/** "The flight is tracked. The feeling is missed." — dashboard carousel left (autoplays), copy right. */
 export function AirlinesWhySection({ data }: AirlinesWhySectionProps) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const count = data.slides.length;
+
+  // Advance every few seconds; picking a dot changes `index`, which restarts the wait. Paused while the
+  // pointer or keyboard focus is on the carousel, and off for people who prefer reduced motion.
+  useEffect(() => {
+    if (paused || count < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const timer = window.setTimeout(() => setIndex((current) => (current + 1) % count), AUTOPLAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [index, paused, count]);
 
   return (
     <section className={styles.section}>
       <Container>
         <div className={styles.layout}>
-          <div className={styles.mediaColumn}>
+          <div
+            className={styles.mediaColumn}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocus={() => setPaused(true)}
+            onBlur={() => setPaused(false)}
+          >
             <div className={styles.media}>
               {data.slides.map((slide, slideIndex) => (
                 <Image

@@ -85,12 +85,10 @@
   border-radius: 12px;
 }
 
-// Figma mobile FAQ: 24px chevron in the 40px button.
+// 24px chevron (all breakpoints) in the 40px button.
 .iconButton img {
-  @media (max-width: 1023.98px) {
-    width: 24px;
-    height: 24px;
-  }
+  width: 24px;
+  height: 24px;
 }
 
 .iconClosed {

@@ -45,8 +45,8 @@ export function Accordion({ items, defaultOpen = 0, className }: AccordionProps)
                     <img
                       src="/images/shared/common/chevron-up-lg.svg"
                       alt=""
-                      width={32}
-                      height={32}
+                      width={24}
+                      height={24}
                       className={isOpen ? undefined : styles.iconClosed}
                     />
                   </span>

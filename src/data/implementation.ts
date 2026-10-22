@@ -283,14 +283,6 @@ export const implementationData = {
         label: 'Security & compliance review',
         description: 'CQI: C · Client: R — client-led, with CQI supplying evidence',
       },
-      {
-        label: 'UAT & sign-off',
-        description: 'CQI: C · Client: R — the client owns acceptance',
-      },
-      {
-        label: 'Training & adoption',
-        description: 'CQI: R · Client: C — CQI delivers, client champions roll it out',
-      },
     ] satisfies RaciRow[],
   },
 
