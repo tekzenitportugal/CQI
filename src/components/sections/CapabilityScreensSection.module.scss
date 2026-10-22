@@ -9,26 +9,34 @@ $slide: cubic-bezier(0.25, 0.8, 0.25, 1);
   --u: min(1px, calc(100vw / 1536));
 
   overflow: clip;
-  padding: 100px var(--container-padding) 100px;
+  // Mobile (Figma 6759:38627): full-bleed, 200px after the animation (the pinned frame centres its ~736px of
+  // content, so the space it already leaves under Skip is taken off) and 200px before "How it works"
+  // (which brings its own).
+  padding: max(0px, calc(200px - (100vh - 736px) / 2)) 0 0;
 
   @media (min-width: 1024px) {
-    // 200px after the animation; 300px (incl. the dots) before "How it works".
-    padding: 200px 0 calc(300 * var(--u) - 33px);
+    // 200px after the animation (less the space the pinned 755 × --u frame leaves under it), and 300px
+    // from the dots to "How it works" (Figma 6733:63947 → 6733:63890).
+    padding: max(0px, calc(200px - (100vh - 755 * min(1px, calc(100vw / 1536), calc(100vh / 820))) / 2)) 0
+      calc(300 * var(--u));
   }
 }
 
 // Every item is the side-screen size (587 × 340). The centre one is scaled up to 828 × 478, and the
 // pitch between item centres is 727.5, so a centre item and its neighbour end up 20px apart as in Figma.
+// Mobile is laid out on a 414px frame: side screens 231.2 wide, the centre one scaled to 326 (× 1.4106),
+// 286.4 between centres; `--k` is the size of one desktop pixel at that scale.
 .stage {
-  --item-width: 100cqw;
+  --item-width: calc(100cqw * 231.2 / 414);
   --item-height: auto;
-  --pitch: calc(100cqw + 20px);
-  --scale: 1;
+  --pitch: calc(100cqw * 286.4 / 414);
+  --scale: 1.4106; // 828 / 587
+  --k: calc(0.09513cqw);
 
   position: relative;
   container-type: inline-size;
   width: 100%;
-  aspect-ratio: 828 / 478;
+  aspect-ratio: 414 / 188.2;
   touch-action: pan-y;
   cursor: grab;
   user-select: none;
@@ -41,7 +49,7 @@ $slide: cubic-bezier(0.25, 0.8, 0.25, 1);
     --item-width: calc(587 * var(--u));
     --item-height: calc(340 * var(--u));
     --pitch: calc(727.5 * var(--u));
-    --scale: 1.4106; // 828 / 587
+    --k: 1px;
 
     aspect-ratio: auto;
     height: calc(478 * var(--u));
@@ -69,7 +77,7 @@ $slide: cubic-bezier(0.25, 0.8, 0.25, 1);
   width: var(--item-width);
   height: var(--item-height);
   margin-right: calc(var(--pitch) - var(--item-width));
-  aspect-ratio: 828 / 478;
+  aspect-ratio: 587 / 340;
   cursor: pointer;
   transition: transform 0.6s $slide;
 
@@ -80,10 +88,7 @@ $slide: cubic-bezier(0.25, 0.8, 0.25, 1);
 
 .center {
   cursor: grab;
-
-  @media (min-width: 1024px) {
-    transform: scale(var(--scale));
-  }
+  transform: scale(var(--scale));
 }
 
 .shot {
@@ -92,9 +97,9 @@ $slide: cubic-bezier(0.25, 0.8, 0.25, 1);
   height: 100%;
   max-width: none;
   border: 0.5px solid var(--color-antracite-75);
-  border-radius: 12px;
+  border-radius: calc(8 * var(--k));
   background: var(--color-white);
-  box-shadow: 1px 1px 16px 0 rgb(0 0 0 / 0.15);
+  box-shadow: var(--k) var(--k) calc(16 * var(--k)) 0 rgb(0 0 0 / 0.15);
   // The screenshots are taller than their frames; Figma crops them from the top.
   object-fit: cover;
   object-position: top;
@@ -105,10 +110,18 @@ $slide: cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 }
 
+// Figma: the dots sit right-aligned under the centre screen, 21px below it on mobile (its right edge)
+// and 27px on desktop (7px in from its right edge). The -2px accounts for each dot's 2px hit-area inset.
 .dots {
   display: flex;
-  justify-content: center;
-  margin-top: 27px;
+  justify-content: flex-end;
+  margin-top: 21px;
+  padding-right: calc(100% * 44 / 414 - 2px);
+
+  @media (min-width: 1024px) {
+    margin-top: 27px;
+    padding-right: calc(50% - 407 * var(--u) - 2px);
+  }
 }
 
 // A 10 × 16 hit area around each 6px dot (dots sit 10px apart in Figma).

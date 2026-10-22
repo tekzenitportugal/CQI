@@ -14,9 +14,33 @@ export const verifiedCxAnalytics: CapabilityPageData = {
     description:
       'Connects what customer say with operational events to produce a single, trusted read on CX health, continuously, not monthly.',
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
+    // No cutout image, so the copy keeps Figma's 587px column below 1600px too.
+    copyFitWidth: 587,
+    // Figma mobile 6759:38635: 10px between the eyebrow and the description.
+    mobileIntroGap: 10,
   },
-  // Figma 6733:63861: text-only hero on the gradient card (no banner image).
+  // Figma 6733:63861 + 6759:38626: gradient card with the iMac mockup on the right.
   heroMockup: true,
+  // Figma 6759:38626: 619px-wide iMac, 210px below the card top and 108px in from its right edge.
+  heroDesktopFigure: {
+    src: '/images/product/capabilities/verified-cx-analytics/hero.png',
+    width: 2848,
+    height: 2301,
+    top: 210,
+    right: 108,
+    displayWidth: 619,
+  },
+  // Figma 6759:38630: 309px-wide iMac, 28px in from the card's left edge and 596px down; the copy starts 108px
+  // below the card top (6759:38631).
+  heroMobileFigure: {
+    src: '/images/product/capabilities/verified-cx-analytics/hero.png',
+    width: 2848,
+    height: 2301,
+    top: 596,
+    left: 28,
+    displayWidth: 309,
+    copyTop: 108,
+  },
   features: {
     eyebrow: 'What it does',
     title:
@@ -55,6 +79,8 @@ export const verifiedCxAnalytics: CapabilityPageData = {
     ],
   },
   howItWorks: {
+    // Figma 6733:63898: descriptions are Noto Sans Medium.
+    descriptionWeight: 500,
     eyebrow: 'How it works',
     title: 'Inside the capability',
     rows: [
@@ -85,7 +111,8 @@ export const verifiedCxAnalytics: CapabilityPageData = {
       },
     ],
   },
-  spacing: { afterFeatures: 200, afterHowItWorks: 200 },
+  // Figma: 100px between "How it works" and the grey pager band, desktop and mobile.
+  spacing: { afterFeatures: 200, afterHowItWorks: 100, mobileAfterHowItWorks: 100 },
   pager: {
     links: capabilityPagerLinks,
     prev: { label: 'End-to-end orchestration', href: capabilityRoutes.endToEndOrchestration },

@@ -26,6 +26,16 @@ type GradientHeroProps = {
   mobileBackdrop?: string;
   /** Figma mobile cutout (inset variant): a wide mockup pinned to the bottom-left of the hero card, cropped by it. */
   mobileImage?: string;
+  /**
+   * Inset variant, below lg: a device mockup placed at Figma's spot in the card (px from the card's top-left,
+   * shown `displayWidth` wide at its natural proportions). The copy then starts `copyTop` px below the card top.
+   */
+  mobileFigure?: { src: string; width: number; height: number; top: number; left: number; displayWidth: number; copyTop: number };
+  /**
+   * Inset variant, lg+: a device mockup at Figma's spot in the 1520 × 848 card (px from the card's top and right
+   * edges, `displayWidth` wide at its natural proportions). It scales with the card and never grows past Figma's size.
+   */
+  desktopFigure?: { src: string; width: number; height: number; top: number; right: number; displayWidth: number };
   /** Inset variant, below lg: a full-width banner (any aspect) pinned flush to the bottom of the hero card. */
   mobileBanner?: { src: string; width: number; height: number };
   /** Inset variant, below lg: copy starts 20px from the screen edge (Figma 20px margin) instead of the default 28px. */
@@ -51,6 +61,8 @@ export function GradientHero({
   mobileBackdrop,
   mobileImage,
   mobileBanner,
+  mobileFigure,
+  desktopFigure,
   mobileCopyFlush,
   mobileCrop,
 }:GradientHeroProps) {
@@ -67,22 +79,43 @@ export function GradientHero({
   if (variant === 'inset') {
     return (
       <section
-        className={`${styles.insetBanner} ${mobileImage || mobileBanner ? styles.insetBannerCutout : ''} ${photo && mobileBackdrop ? styles.insetBannerBackdrop : ''}`.trim()}
+        className={`${styles.insetBanner} ${mobileImage || mobileBanner || mobileFigure ? styles.insetBannerCutout : ''} ${photo && mobileBackdrop ? styles.insetBannerBackdrop : ''}`.trim()}
         style={
           {
             ...(data.mobileMinHeight && { '--hero-min-height': `${data.mobileMinHeight}px` }),
             ...(data.mobilePaddingTop && { '--hero-mobile-pad-top': `${data.mobilePaddingTop}px` }),
+            ...(mobileFigure && { '--hero-figure-copy-top': `${mobileFigure.copyTop}px` }),
             ...photoVars,
           } as CSSProperties
         }
       >
         <div className={`${styles.heroBox} ${photo ? styles.photoBox : ''} ${imageBehindGradient ? styles.heroBoxFade : ''} ${imageBehindGradient === 'wide' ? styles.heroBoxFadeWide : ''}`.trim()} aria-hidden="true">
+          {desktopFigure && (
+            <Image
+              src={desktopFigure.src}
+              alt=""
+              width={desktopFigure.width}
+              height={desktopFigure.height}
+              priority
+              unoptimized
+              className={styles.heroBoxFigure}
+              style={
+                {
+                  '--figure-top': `${(desktopFigure.top / 848) * 100}%`,
+                  '--figure-right': `${(desktopFigure.right / 1520) * 100}%`,
+                  '--figure-right-max': `${desktopFigure.right}px`,
+                  '--figure-width': `${(desktopFigure.displayWidth / 1520) * 100}%`,
+                  '--figure-width-max': `${desktopFigure.displayWidth}px`,
+                } as CSSProperties
+              }
+            />
+          )}
           {image && !photo && (
             <Image src={image} alt="" fill priority unoptimized={imageUnoptimized} className={`${styles.heroBoxImage} ${imageCentered ? styles.heroBoxImageCentered : ""}`.trim()} sizes="100vw" />
           )}
         </div>
         <Container
-          className={`${styles.insetContentWrap} ${!image ? styles.insetContentWrapCentered : ''} ${mobileCopyFlush ? styles.insetContentWrapFlush : ''} ${photo ? styles.insetContentWrapWash : ''}`.trim()}
+          className={`${styles.insetContentWrap} ${!image ? styles.insetContentWrapCentered : ''} ${mobileFigure ? styles.insetContentWrapTop : ''} ${mobileCopyFlush ? styles.insetContentWrapFlush : ''} ${photo ? styles.insetContentWrapWash : ''}`.trim()}
         >
           <HeroCopy {...data} className={styles.insetContent} />
         </Container>
@@ -102,6 +135,29 @@ export function GradientHero({
             />
           </div>
         )}
+        {mobileFigure && (
+          <div
+            className={styles.insetMobileCutout}
+            style={
+              {
+                '--figure-top': `${mobileFigure.top}px`,
+                '--figure-left': `${mobileFigure.left}px`,
+                '--figure-width': `${mobileFigure.displayWidth}px`,
+              } as CSSProperties
+            }
+            aria-hidden="true"
+          >
+            <Image
+              src={mobileFigure.src}
+              alt=""
+              width={mobileFigure.width}
+              height={mobileFigure.height}
+              className={styles.insetMobileFigureImage}
+              unoptimized
+              priority
+            />
+          </div>
+        )}
         {mobileBanner && (
           <div className={styles.insetMobileBanner} aria-hidden="true">
             <Image
@@ -115,7 +171,7 @@ export function GradientHero({
             />
           </div>
         )}
-        {image && !mobileImage && !mobileBanner && !photo && (
+        {image && !mobileImage && !mobileBanner && !mobileFigure && !photo && (
           <Container className={`${styles.insetMobileGraphicWrap} ${mobileFill ? styles.insetMobileGraphicWrapFill : ""}`.trim()}>
             <div
               className={styles.insetMobileGraphicBox}

@@ -41,6 +41,8 @@ export default async function CapabilityPage({ params }: CapabilityPageProps) {
           mobileFill={page.heroMobileFill}
           imageCentered={page.heroImageCentered}
           mobileBackdrop={page.heroImageMobile}
+          mobileFigure={page.heroMobileFigure}
+          desktopFigure={page.heroDesktopFigure}
         />
       ) : (
         page.heroImage && (
@@ -56,7 +58,9 @@ export default async function CapabilityPage({ params }: CapabilityPageProps) {
       <RuledRowsSection
         data={page.howItWorks}
         spaceBottom={page.spacing.afterHowItWorks}
+        mobileSpaceBottom={page.spacing.mobileAfterHowItWorks}
         descriptionOffset={page.howItWorks.descriptionOffset}
+        descriptionWeight={page.howItWorks.descriptionWeight}
       />
       <CapabilityPagerSection data={page.pager} />
       <FaqSection data={page.faq} />

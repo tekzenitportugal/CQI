@@ -17,6 +17,10 @@ export type CapabilityPageData = {
   heroImage?: string;
   /** Dedicated mobile crop of `heroImage`, used when it's a full-bleed photo. */
   heroImageMobile?: string;
+  /** Figma desktop mockup placed inside the hero card (inset hero); see GradientHero `desktopFigure`. */
+  heroDesktopFigure?: { src: string; width: number; height: number; top: number; right: number; displayWidth: number };
+  /** Figma mobile mockup placed inside the hero card (inset hero); see GradientHero `mobileFigure`. */
+  heroMobileFigure?: { src: string; width: number; height: number; top: number; left: number; displayWidth: number; copyTop: number };
   /** Natural aspect ratio ("w / h") of `heroImage`, used to size it when stacked below the copy on mobile. */
   heroImageAspectRatio?: string;
   /** Serve `heroImage` as-is, skipping Next's resize/recompress. */
@@ -33,12 +37,12 @@ export type CapabilityPageData = {
   features: CapabilityFeaturesData | CapabilityFlowData;
   /** Optional row of product screenshots shown straight after "What it does". */
   screens?: CapabilityScreensData;
-  howItWorks: RuledRowsSectionData & { descriptionOffset?: number };
+  howItWorks: RuledRowsSectionData & { descriptionOffset?: number; descriptionWeight?: number };
   /**
    * Figma places each section at a fixed y (1064 / 1997 / 2765), so the gaps after
    * "What it does" and "How it works" differ per page. Values in px at 1536.
    */
-  spacing: { afterFeatures: number; afterHowItWorks: number };
+  spacing: { afterFeatures: number; afterHowItWorks: number; mobileAfterHowItWorks?: number };
   pager: CapabilityPagerData;
   faq: FaqSectionData;
   cta: CtaBannerData;

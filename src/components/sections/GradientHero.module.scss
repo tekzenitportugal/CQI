@@ -196,6 +196,31 @@
   }
 }
 
+// Desktop figure (desktopFigure): placed at Figma's spot in the card, as a share of the card's size.
+.heroBoxFigure {
+  display: none;
+
+  @include respond-to(lg) {
+    position: absolute;
+    display: block;
+    top: var(--figure-top);
+    // Past 1536 the card keeps growing but the copy stays in the centred 1536 column; the image follows it.
+    right: calc(min(var(--figure-right), var(--figure-right-max)) + max(0px, (100% - 1520px) / 2));
+    width: min(var(--figure-width), var(--figure-width-max));
+    max-width: none;
+    height: auto;
+  }
+}
+
+.insetMobileFigureImage {
+  position: absolute;
+  top: var(--figure-top);
+  left: var(--figure-left);
+  width: var(--figure-width);
+  max-width: none;
+  height: auto;
+}
+
 .insetMobileCutoutImage {
   position: absolute;
   top: 564px;
@@ -220,7 +245,8 @@
     display: flex;
     align-items: center;
     padding-top: 0;
-    padding-inline: var(--container-padding);
+    // Figma: the copy lines up with the nav, --container-padding from the page edge; the card is already inset 8px.
+    padding-inline: calc(var(--container-padding) - 8px);
   }
 }
 
@@ -239,6 +265,15 @@
 
   @include respond-to(lg) {
     min-height: 0;
+  }
+}
+
+// Mobile figure heroes, below lg: the copy starts at a fixed Figma offset from the card top instead of centring.
+.insetBanner .insetContentWrapTop {
+  @media (max-width: 1023.98px) {
+    display: block;
+    min-height: 0;
+    padding-top: var(--hero-figure-copy-top);
   }
 }
 

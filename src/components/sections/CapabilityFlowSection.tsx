@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { GhostButton } from '@/components/ui/GhostButton';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { clamp01, easeInOut, usePinnedSteps } from '@/utils/usePinnedSteps';
@@ -20,6 +21,8 @@ type CapabilityFlowSectionProps = {
 // Ring geometry in the 415 × 755 diagram frame (from the Figma export).
 const RING = { cx: -59.4, cy: 377.6, r: 375 };
 const NODE = { x: 389.5, y: 376 }; // the blue node
+/** Mobile (Figma 6759:38709) is this same drawing turned a quarter, with the blue node nearer the ring. */
+const NODE_COMPACT = { x: 338.5, y: 376 };
 /** Angle between neighbouring dots on the ring (Figma rests two of them at ±39°). */
 const SPACING = 39;
 /** The dots circulate over this arc; a dot leaving one end re-enters at the other while invisible. */
@@ -31,7 +34,7 @@ const BLUE = [0, 68, 255];
 
 
 /** Where dot `index` sits on the ring when the ring has turned `rotation` dots. */
-function dotAt(index: number, rotation: number, count: number) {
+function dotAt(index: number, rotation: number, count: number, node: { x: number; y: number }) {
   const span = count * SPACING;
   let angle = (index - rotation) * SPACING;
   angle = ((((angle + WRAP) % span) + span) % span) - WRAP;
@@ -42,8 +45,8 @@ function dotAt(index: number, rotation: number, count: number) {
   const ringY = RING.cy + RING.r * Math.sin(radians);
   const mix = GREY.map((grey, i) => Math.round(grey + (BLUE[i] - grey) * arrival));
   return {
-    x: ringX + (NODE.x - ringX) * arrival,
-    y: ringY + (NODE.y - ringY) * arrival,
+    x: ringX + (node.x - ringX) * arrival,
+    y: ringY + (node.y - ringY) * arrival,
     // Fades out before it wraps round, so the jump from one end of the arc to the other is never seen.
     opacity: clamp01((WRAP - Math.abs(angle)) / 24),
     arrival,
@@ -57,11 +60,21 @@ function dotAt(index: number, rotation: number, count: number) {
  * pins to the viewport and each scroll step turns the ring on a timer: four grey dots circulate round it, and
  * the next one always travels all the way to the blue spot, where it turns blue while the disc label and card
  * text change to match. The page stays pinned until the fourth dot has been through.
- * Below lg the diagram is dropped and the four states are shown as a stacked list.
+ * Below lg the same diagram is turned a quarter so the arc runs along the bottom, with the card above it.
  */
 export function CapabilityFlowSection({ data }: CapabilityFlowSectionProps) {
   const count = data.steps.length;
   const { trackRef, rotation, active, skip } = usePinnedSteps(count);
+  // Below lg the diagram is turned to lie along the bottom of the card; only the blue node's spot differs.
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    const query = window.matchMedia('(max-width: 1023.98px)');
+    const update = () => setCompact(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, []);
+  const node = compact ? NODE_COMPACT : NODE;
 
   return (
     <section ref={trackRef} className={styles.section}>
@@ -98,7 +111,7 @@ export function CapabilityFlowSection({ data }: CapabilityFlowSectionProps) {
                 <line x1="357.5" y1="376" x2="274.5" y2="376" stroke="#AFAFAF" strokeLinecap="round" />
 
                 {data.steps.map((_, index) => {
-                  const dot = dotAt(index, rotation, count);
+                  const dot = dotAt(index, rotation, count, node);
                   return (
                     <g key={index} opacity={dot.opacity}>
                       {/* Dashed ring while on the ring, solid ring once it has become the node. */}
@@ -127,7 +140,7 @@ export function CapabilityFlowSection({ data }: CapabilityFlowSectionProps) {
                 })}
 
                 {/* Radiates from the blue node's spot; re-keyed on every arrival so it restarts. */}
-                <circle key={active} className={styles.pulse} cx={NODE.x} cy={NODE.y} r="25.5" />
+                <circle key={active} className={styles.pulse} cx={node.x} cy={node.y} r="25.5" />
               </svg>
 
               <div className={styles.labels}>
@@ -164,15 +177,6 @@ export function CapabilityFlowSection({ data }: CapabilityFlowSectionProps) {
             titleHighlight={data.titleHighlight}
             className={styles.heading}
           />
-
-          <ul className={styles.list}>
-            {data.steps.map((step) => (
-              <li key={step.label} className={styles.listCard}>
-                <h3 className={styles.listTitle}>{step.label.replace('\n', ' ')}</h3>
-                <p className={styles.listText}>{step.description}</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

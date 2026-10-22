@@ -68,6 +68,7 @@ export function CtaBannerSection({ data, variant = 'default' }: CtaBannerSection
                     label={button.label}
                     href={button.href}
                     variant={BANNER_VARIANT[button.variant ?? 'primary'] ?? button.variant}
+                    className={(BANNER_VARIANT[button.variant ?? 'primary'] ?? button.variant) === 'light' ? styles.lightAction : undefined}
                   />
                 ))}
               </div>

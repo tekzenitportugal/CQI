@@ -16,8 +16,12 @@ type RuledRowsSectionProps = {
   /** Figma spacing above/below the section, in px at 1536. */
   spaceTop?: number;
   spaceBottom?: number;
+  /** Space below the section below lg, in px (default 200). */
+  mobileSpaceBottom?: number;
   /** Some Figma lists nudge the description 3px below the label. */
   descriptionOffset?: number;
+  /** Description font weight (400 unless the Figma list uses Medium). */
+  descriptionWeight?: number;
   /** Eyebrow → title gap (10 on capability pages, 14 on Core functionalities). */
   headingGap?: number;
   /** 'grouped' when the next section shares this one's background (no mobile bottom gap). */
@@ -29,7 +33,9 @@ export function RuledRowsSection({
   data,
   spaceTop = 0,
   spaceBottom = 0,
+  mobileSpaceBottom,
   descriptionOffset = 0,
+  descriptionWeight,
   headingGap = 10,
   variant = 'default',
 }: RuledRowsSectionProps) {
@@ -42,6 +48,8 @@ export function RuledRowsSection({
           paddingBottom: fluidSpace(spaceBottom),
           '--ruled-description-offset': `${descriptionOffset}px`,
           '--ruled-heading-gap': `${headingGap}px`,
+          ...(mobileSpaceBottom !== undefined && { '--ruled-mobile-space-bottom': `${mobileSpaceBottom}px` }),
+          ...(descriptionWeight && { '--ruled-description-weight': descriptionWeight }),
         } as CSSProperties);
 
   return (

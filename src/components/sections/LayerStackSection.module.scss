@@ -59,7 +59,8 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 // Figma "Five layers, one platform" (6733:66169): 242px-tall cards, 20px gap, one expanded at a
-// time. The open card is 587px vs 191.75px collapsed (≈3.061×), so widths animate via flex-grow.
+// time. The open card is 587px and a collapsed one 191.75px (at 1536px); they only shrink, keeping that
+// ratio, when the row is narrower. Widths animate via flex-basis.
 // Mobile (Figma 6688:69575): all five cards are stacked, 20px apart, each fully expanded.
 .stack {
   container-type: inline-size;
@@ -85,16 +86,15 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   border-radius: 12px;
 
   @include respond-to(lg) {
-    flex: 1 1 0;
+    flex: 0 1 191.75px;
     padding: 32px;
-    transition: flex-grow 0.6s $ease;
+    transition: flex-basis 0.6s $ease;
   }
 }
 
 @include respond-to(lg) {
   .open {
-    // Cards have 64px of side padding on top of a 0 flex-basis: (587 - 64) / (191.75 - 64).
-    flex-grow: 4.094;
+    flex-basis: 587px;
   }
 }
 
@@ -201,8 +201,8 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
       transform 0.2s ease,
       padding-top 0.6s $ease,
       visibility 0s linear 0.6s;
-    // Open card width: 587/1434 of the row (minus 4 gaps), less its 32px side padding.
-    width: calc((100cqw - 80px) * 0.4335 - 64px);
+    // Open card width (587px, or its share of a narrower row), less its 32px side padding.
+    width: min(523px, calc((100cqw - 80px) * 0.4335 - 64px));
   }
 }
 

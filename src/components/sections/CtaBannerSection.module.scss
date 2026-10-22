@@ -169,6 +169,13 @@
   }
 }
 
+// Figma CTA mobile: the white button's label is Antracite/A500.
+.actions > .lightAction {
+  @media (max-width: 1023.98px) {
+    color: var(--color-antracite-500);
+  }
+}
+
 // Optional dedicated mobile photo (data.mobileImage): swaps with the desktop one at lg.
 .mobileMedia {
   @include respond-to(lg) {
