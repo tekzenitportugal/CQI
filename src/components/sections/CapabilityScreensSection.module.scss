@@ -128,17 +128,19 @@ $slide: cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: calc(100cqw * 4 / 2476) calc(100cqw * 4 / 2476) calc(100cqw * 60 / 2476) 0 rgb(0 0 0 / 0.12);
 }
 
-// Figma: the dots sit right-aligned under the centre screen, 21px below it on mobile (its right edge)
-// and 27px on desktop (7px in from its right edge). The -2px accounts for each dot's 2px hit-area inset.
+// The dots end flush with the right edge of the centre screen's visible window. The PNGs carry a transparent
+// shadow margin, so that edge is inside the item box: the centre canvas is 797.6 × --u wide on desktop
+// (315 of 414 on mobile) and the window ends 68/2476 of it short of the canvas edge, i.e. 377 × --u
+// (149 of 414) right of centre. The -2px accounts for each dot's 2px hit-area inset.
 .dots {
   display: flex;
   justify-content: flex-end;
   margin-top: 21px;
-  padding-right: calc(100% * 44 / 414 - 2px);
+  padding-right: calc(100% * 58 / 414 - 2px);
 
   @media (min-width: 1024px) {
     margin-top: 27px;
-    padding-right: calc(50% - 407 * var(--u) - 2px);
+    padding-right: calc(50% - 377 * var(--u) - 2px);
   }
 }
 

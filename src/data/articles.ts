@@ -24,7 +24,6 @@ export const articlesData = {
       image: post.card.image,
       title: post.hero.title.replace('\n', ' '),
       description: post.card.description,
-      readTime: post.card.readTime,
       href: articleHref(post.slug),
     })),
   } satisfies PublishedPiecesSectionData,

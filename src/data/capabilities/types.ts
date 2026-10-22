@@ -19,6 +19,8 @@ export type CapabilityPageData = {
   heroImageMobile?: string;
   /** Below lg: which part of `heroImageMobile` the cover crop keeps (CSS background-position). */
   heroImageMobilePosition?: string;
+  /** Below lg: show the whole mobile photo this tall (% of the hero box), bottom-anchored, instead of cover-cropping it. */
+  heroMobilePhotoHeight?: number;
   /** lg+: Figma's radial wash from the left edge over the hero photo (see PageHeroBanner `radialWash`). */
   heroRadialWash?: boolean;
   /** Figma desktop mockup placed inside the hero card (inset hero); see GradientHero `desktopFigure`. */

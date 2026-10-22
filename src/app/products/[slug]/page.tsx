@@ -47,7 +47,7 @@ export default async function CapabilityPage({ params }: CapabilityPageProps) {
         />
       ) : (
         page.heroImage && (
-          <PageHeroBanner data={{ ...page.hero, image: page.heroImage, mobileImage: page.heroImageMobile, mobileImagePosition: page.heroImageMobilePosition, radialWash: page.heroRadialWash, imageUnoptimized: page.heroImageUnoptimized }} />
+          <PageHeroBanner data={{ ...page.hero, image: page.heroImage, mobileImage: page.heroImageMobile, mobileImagePosition: page.heroImageMobilePosition, mobilePhotoHeight: page.heroMobilePhotoHeight, radialWash: page.heroRadialWash, imageUnoptimized: page.heroImageUnoptimized }} />
         )
       )}
       {'steps' in page.features ? (

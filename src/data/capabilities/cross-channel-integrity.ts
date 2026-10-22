@@ -18,9 +18,11 @@ export const crossChannelIntegrity: CapabilityPageData = {
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
   heroImage: '/images/product/capabilities/cross-channel-integrity/CROSS_CHANNEL_INTEGRITY_BANNER.png',
-  // No separate mobile crop yet: mobile shows the same banner, cover-cropped around the handshake.
+  // No separate mobile crop yet: mobile shows the same banner whole (42.6% of the card tall, as in the design),
+  // bottom-anchored and pushed right so the handshake sits mid-card.
   heroImageMobile: '/images/product/capabilities/cross-channel-integrity/CROSS_CHANNEL_INTEGRITY_BANNER.png',
-  heroImageMobilePosition: '70% center',
+  heroImageMobilePosition: '99% 100%',
+  heroMobilePhotoHeight: 42.6,
   heroImageAspectRatio: '1520 / 849',
   heroImageUnoptimized: true,
   // Figma 6733:64247: soft radial wash from the left edge over the banner.

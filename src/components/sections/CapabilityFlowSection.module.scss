@@ -130,6 +130,8 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   line-height: 1.35;
   text-transform: uppercase;
   white-space: pre-line;
+  // Spread the words evenly over the lines, so a long label never leaves one word alone on the last line.
+  text-wrap: balance;
   color: var(--color-antracite-400);
   opacity: 0;
   transform: translateY(calc(-50% + 10px));

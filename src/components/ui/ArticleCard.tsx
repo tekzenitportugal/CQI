@@ -7,7 +7,6 @@ export type ArticleCardData = {
   tags?: string[];
   title: string;
   description: string;
-  readTime: string;
   href: string;
 };
 
@@ -16,13 +15,12 @@ type ArticleCardProps = ArticleCardData & {
   layout?: 'vertical' | 'horizontal';
 };
 
-/** Figma "CARD ARTICLE": image + title/text, "N min read" / "Read →" footer. Tags (top-right of the image) are optional. */
+/** Figma "CARD ARTICLE": image + title/text, "Read →" footer. Tags (top-right of the image) are optional. */
 export function ArticleCard({
   image,
   tags = [],
   title,
   description,
-  readTime,
   href,
   layout = 'vertical',
 }: ArticleCardProps) {
@@ -59,7 +57,6 @@ export function ArticleCard({
         </div>
 
         <div className={styles.footer}>
-          <span className={styles.readTime}>{readTime}</span>
           <Link href={href} className={styles.readLink}>
             Read
             <img src="/images/shared/common/arrow-right-blue.svg" alt="" width={16} height={16} aria-hidden="true" />

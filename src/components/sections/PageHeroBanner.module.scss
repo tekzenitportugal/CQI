@@ -221,7 +221,7 @@
 @media (max-width: 1023.98px) {
   .photoZone.photoDedicated::before {
     background-size: auto var(--hero-mobile-photo-h);
-    background-position: 45% 100%;
+    background-position: var(--hero-mobile-img-pos, 45% 100%);
   }
 }
 

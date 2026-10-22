@@ -30,7 +30,6 @@ export type ArticlePost = {
   card: {
     image: string;
     description: string;
-    readTime: string;
   };
 };
 
@@ -84,8 +83,8 @@ export const articlePosts: ArticlePost[] = [
           { type: 'paragraph', text: 'In Max Blumberg’s words:' },
           {
             type: 'quote',
-            text: '85% off customers who suffer a problem during the flight or before the flight never complain. We called it “silent majority”. They don’t complain; they just leave!',
-            highlight: ['85% off customers', 'never complain.'],
+            text: '85% of customers who suffer a problem during the flight or before the flight never complain. We called it “silent majority”. They don’t complain; they just leave!',
+            highlight: ['85% of customers', 'never complain.'],
           },
           {
             type: 'paragraph',
@@ -102,8 +101,8 @@ export const articlePosts: ArticlePost[] = [
         blocks: [
           {
             type: 'paragraph',
-            text: 'CQI exhibited at stand 2-176 throughout World Aviation Festival 2026. Over the three days, the team held XXX meetings with airline and airport executives and press interviews. Best thing said at the stand, from those that visited us: "CQI is the only thing new at the event!".',
-            highlight: ['XXX'],
+            text: 'CQI exhibited at stand 2-176 throughout World Aviation Festival 2026. Over the three days, the team held high-value meetings with airline and airport executives and press interviews. Best thing said at the stand, from those that visited us: "CQI is the only thing new at the event!".',
+            highlight: ['high-value meetings'],
           },
         ],
       },
@@ -116,7 +115,6 @@ export const articlePosts: ArticlePost[] = [
       image: `${IMG}/waf-2026-recap.png`,
       description:
         'CQI, an AI platform that scores the live experience of 100% of passengers and tells every team whom to recover, why, and what to do, was exhibited at World Aviation Festival 2026 (13–15 October, FIL Lisbon).',
-      readTime: '7 min read',
     },
   },
 ];
