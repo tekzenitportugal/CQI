@@ -17,8 +17,10 @@ export const customerQualityIndex: CapabilityPageData = {
     descriptionMaxWidth: 510,
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
-  heroImage: '/images/product/capabilities/customer-quality-index/hero.png',
-  heroImageAspectRatio: '2409 / 2544',
+  heroImage: '/images/product/capabilities/customer-quality-index/4_CUSTOMER_QUALITY_INDEX_IMG1.png',
+  heroImageAspectRatio: '3212 / 3392',
+  // Mobile: the PNG has ~20% transparent margin under the laptop; trimmed so the 60px gap starts at the laptop.
+  heroMobileImageTrim: 20.3,
   heroImageUnoptimized: true,
   heroMockup: true,
   // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
@@ -52,9 +54,9 @@ export const customerQualityIndex: CapabilityPageData = {
   },
   screens: {
     images: [
-      { src: '/images/product/capabilities/customer-quality-index/screen-center.png', alt: 'CQI Customers screen with the customer directory and channel integrity scores' },
-      { src: '/images/product/capabilities/customer-quality-index/screen-right.png', alt: 'CQI interactions screen with signal distributions and resolution by reason and subreason' },
-      { src: '/images/product/capabilities/customer-quality-index/screen-left.png', alt: 'CQI interactions table grouped by reason and subreason' },
+      { src: '/images/product/capabilities/customer-quality-index/4_CUSTOMER_QUALITY_INDEX_IMG2.png', alt: 'CQI interactions table grouped by reason and subreason' },
+      { src: '/images/product/capabilities/customer-quality-index/4_CUSTOMER_QUALITY_INDEX_IMG3.png', alt: 'CQI Customers screen with the customer directory and channel integrity scores' },
+      { src: '/images/product/capabilities/customer-quality-index/4_CUSTOMER_QUALITY_INDEX_IMG4.png', alt: 'CQI interactions screen with signal distributions and resolution by reason and subreason' },
     ],
   },
   howItWorks: {

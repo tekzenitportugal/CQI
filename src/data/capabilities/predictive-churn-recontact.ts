@@ -50,9 +50,9 @@ export const predictiveChurnRecontact: CapabilityPageData = {
   },
   screens: {
     images: [
-      { src: '/images/product/capabilities/predictive-churn-recontact/screen-center.png', alt: 'CQI Interactions screen with the top 10 interaction types and calls by topic' },
-      { src: '/images/product/capabilities/predictive-churn-recontact/screen-right.png', alt: 'CQI friction interactions list' },
-      { src: '/images/product/capabilities/predictive-churn-recontact/screen-left.png', alt: 'CQI interactions table grouped by reason and subreason' },
+      { src: '/images/product/capabilities/predictive-churn-recontact/6_PREDICTIVE_CHURN_AND_RECONTACT_IMG1.png', alt: 'CQI interactions table grouped by reason and subreason' },
+      { src: '/images/product/capabilities/predictive-churn-recontact/6_PREDICTIVE_CHURN_AND_RECONTACT_IMG2.png', alt: 'CQI Interactions screen with the top 10 interaction types and calls by topic' },
+      { src: '/images/product/capabilities/predictive-churn-recontact/6_PREDICTIVE_CHURN_AND_RECONTACT_IMG3.png', alt: 'CQI friction interactions list' },
     ],
   },
   howItWorks: {

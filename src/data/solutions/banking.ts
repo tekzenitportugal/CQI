@@ -56,7 +56,7 @@ export const bankingSolutionData = {
     imageAspect: '587 / 341',
     imageOverlay: 0,
     imageFramed: true,
-  }),
+  }, '/images/solutions/banking/20_BANKING_IMG1.png'),
   threeThings: mapThreeThings({
     roomyFirstStep: true,
     title: 'Three things the verification layer adds in this sector.',

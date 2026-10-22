@@ -23,6 +23,8 @@ export type CapabilityPageData = {
   heroMobileFigure?: { src: string; width: number; height: number; top: number; left: number; displayWidth: number; copyTop: number };
   /** Natural aspect ratio ("w / h") of `heroImage`, used to size it when stacked below the copy on mobile. */
   heroImageAspectRatio?: string;
+  /** Below lg: transparent margin under the device in `heroImage`, as % of its width; see GradientHero `mobileImageTrim`. */
+  heroMobileImageTrim?: number;
   /** Serve `heroImage` as-is, skipping Next's resize/recompress. */
   heroImageUnoptimized?: boolean;
   /** Fade the hero gradient over the image's left edge so the image sits behind it and the copy stays readable. */

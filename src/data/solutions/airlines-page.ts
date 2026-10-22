@@ -75,12 +75,12 @@ export const airlinesPageData = {
       'A delay, a lounge refusal and failed Wi-Fi can look like separate incidents. To the passenger, they are one experience, and a reason to switch carriers.',
       'By the time they stop booking, the chance to recover their trust may already be gone.',
     ],
-    // Figma shows a 4-dot carousel. TODO: slides 2–4 are placeholders until the client supplies the screenshots.
+    // Four-dot carousel (Figma): Flight Journey, Flight 360, Voice of Customer, Action Center.
     slides: [
-      { image: '/images/solutions/airlines/flight-journey.png', alt: 'CQI Flight Journey dashboard' },
-      { image: '/images/solutions/airlines/flight-journey.png', alt: 'CQI Flight Journey dashboard' },
-      { image: '/images/solutions/airlines/flight-journey.png', alt: 'CQI Flight Journey dashboard' },
-      { image: '/images/solutions/airlines/flight-journey.png', alt: 'CQI Flight Journey dashboard' },
+      { image: '/images/solutions/airlines/19_AIRLINES_IMG1.png', alt: 'CQI Flight Journey dashboard' },
+      { image: '/images/solutions/airlines/19_AIRLINES_IMG2.png', alt: 'CQI Flight 360 dashboard' },
+      { image: '/images/solutions/airlines/19_AIRLINES_IMG3.png', alt: 'CQI Voice of Customer dashboard' },
+      { image: '/images/solutions/airlines/19_AIRLINES_IMG4.png', alt: 'CQI Action Center dashboard' },
     ],
   },
 

@@ -52,9 +52,9 @@ export const endToEndOrchestration: CapabilityPageData = {
   },
   screens: {
     images: [
-      { src: '/images/product/capabilities/end-to-end-orchestration/screen-center.png', alt: 'CQI Workforce screen with the agent performance table' },
-      { src: '/images/product/capabilities/end-to-end-orchestration/screen-right.png', alt: 'CQI Workforce detail screen with agent performance' },
-      { src: '/images/product/capabilities/end-to-end-orchestration/screen-left.png', alt: 'CQI workflow builder canvas' },
+      { src: '/images/product/capabilities/end-to-end-orchestration/8_END-TO-END_ORCHESTRATION_IMG1.png', alt: 'CQI workflow builder canvas' },
+      { src: '/images/product/capabilities/end-to-end-orchestration/8_END-TO-END_ORCHESTRATION_IMG2.png', alt: 'CQI Workforce screen with the agent performance table' },
+      { src: '/images/product/capabilities/end-to-end-orchestration/8_END-TO-END_ORCHESTRATION_IMG3.png', alt: 'CQI Workforce detail screen with agent performance' },
     ],
   },
   howItWorks: {

@@ -17,11 +17,10 @@ export function RiskBandMigrationSection({ data }: RiskBandMigrationSectionProps
             <FpoImage
               src={data.image}
               alt={data.title}
-              width={587}
-              height={341}
-              // Figma 6225:38959: image is 100.18% × 119.46%, anchored to the top,
-              // so the frame clips the bottom of the dashboard screenshot.
-              inset={{ top: 0, left: -0.53, width: 588.06, height: 407.36 }}
+              // Frame follows the screenshot's own ratio (2476 × 1484) so the whole
+              // dashboard is visible, nothing cropped.
+              width={2476}
+              height={1484}
               overlay={false}
               objectPosition="left top"
               borderRadius={8}

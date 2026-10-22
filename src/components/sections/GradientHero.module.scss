@@ -1,5 +1,8 @@
 @use '@/styles/mixins' as *;
 
+// Mobile: space between the bottom of a stacked hero image and the bottom of the card.
+$hero-mobile-image-gap: 60px;
+
 // Figma: copy is vertically centred between the header (ends at 75px) and the 864px band edge.
 .section {
   position: relative;
@@ -38,7 +41,7 @@
 // own flow — hidden once the desktop absolute cutout takes over.
 .mobileGraphicWrap {
   margin: 0;
-  padding: 0;
+  padding: 0 0 $hero-mobile-image-gap;
 
   @include respond-to(lg) {
     display: none;
@@ -63,6 +66,7 @@
   width: 100%;
   aspect-ratio: var(--crop-aspect);
   overflow: hidden;
+  margin-bottom: calc(-1 * var(--mobile-image-trim, 0%));
 }
 
 .mobileCropImage {
@@ -128,7 +132,7 @@
 .insetMobileGraphicWrap.insetMobileGraphicWrap {
   position: relative;
   padding-inline: 0;
-  padding-bottom: 32px;
+  padding-bottom: $hero-mobile-image-gap;
 
   @include respond-to(lg) {
     display: none;
@@ -139,6 +143,8 @@
   position: relative;
   width: 100%;
   aspect-ratio: var(--hero-mobile-aspect, 3 / 2);
+  // Pulls up over the PNG's transparent bottom margin so the gap is measured from the device itself.
+  margin-bottom: calc(-1 * var(--mobile-image-trim, 0%));
 }
 
 .insetMobileGraphicImage {
@@ -150,7 +156,8 @@
 // and the 588px mockup sits 564px down, 5px in from the left, cropped by the card.
 .insetBannerCutout {
   @media (max-width: 1023.98px) {
-    min-height: 888px;
+    // Figure heroes set their own height so the figure ends 60px above the card bottom.
+    min-height: var(--hero-figure-min-height, 888px);
 
     .insetContentWrap {
       padding-top: 118px;

@@ -18,9 +18,9 @@ export const homepageData = {
     description:
       "Know what your customer is trying to do. And what's stopping them. Most CX platforms report how customers felt. CQI shows what they were trying to do, what you promised them, where that promise broke down, and the action that closes the gap.",
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'text' as const },
-    image: '/images/shared/home/hero-banner.png',
-    imageWidth: 2352,
-    imageHeight: 2544,
+    image: '/images/shared/home/1_HOMEPAGE_IMG1.png',
+    imageWidth: 3136,
+    imageHeight: 3392,
   },
 
   gap: {
@@ -29,7 +29,7 @@ export const homepageData = {
     eyebrow: 'The gap',
     description:
       'Nothing in the CX stack is looking at that gap.\nIt is where churn starts.',
-    image: '/images/shared/home/gap-cqi-sense-recovery.png',
+    image: '/images/shared/home/1_HOMEPAGE_IMG2.png',
     imageWidth: 587,
     imageHeight: 341,
   },

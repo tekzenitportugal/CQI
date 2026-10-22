@@ -51,9 +51,9 @@ export const crossChannelIntegrity: CapabilityPageData = {
   },
   screens: {
     images: [
-      { src: '/images/product/capabilities/cross-channel-integrity/screen-center.png', alt: 'CQI customer journey screen with the promise timeline for one customer' },
-      { src: '/images/product/capabilities/cross-channel-integrity/screen-right.png', alt: 'CQI Customer Health screen with the health trend and distribution' },
-      { src: '/images/product/capabilities/cross-channel-integrity/screen-left.png', alt: 'CQI customer directory with channel integrity scores' },
+      { src: '/images/product/capabilities/cross-channel-integrity/7_CROSS-CHANNEL_INTEGRITY_IMG1.png', alt: 'CQI customer directory with channel integrity scores' },
+      { src: '/images/product/capabilities/cross-channel-integrity/7_CROSS-CHANNEL_INTEGRITY_IMG2.png', alt: 'CQI customer journey screen with the promise timeline for one customer' },
+      { src: '/images/product/capabilities/cross-channel-integrity/7_CROSS-CHANNEL_INTEGRITY_IMG3.png', alt: 'CQI Customer Health screen with the health trend and distribution' },
     ],
   },
   howItWorks: {

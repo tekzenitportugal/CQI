@@ -50,9 +50,9 @@ export const rootCauseRecovery: CapabilityPageData = {
   },
   screens: {
     images: [
-      { src: '/images/product/capabilities/root-cause-recovery/screen-center.png', alt: 'CQI Recovery screen with one case expanded to show its evidence' },
-      { src: '/images/product/capabilities/root-cause-recovery/screen-right.png', alt: 'CQI AI Alerts screen with alert rules and recommendations' },
-      { src: '/images/product/capabilities/root-cause-recovery/screen-left.png', alt: 'CQI recovery workflow screen' },
+      { src: '/images/product/capabilities/root-cause-recovery/5_ROOT_CAUSE_AND_RECOVERY_IMG1.png', alt: 'CQI recovery workflow screen' },
+      { src: '/images/product/capabilities/root-cause-recovery/5_ROOT_CAUSE_AND_RECOVERY_IMG2.png', alt: 'CQI Recovery screen with one case expanded to show its evidence' },
+      { src: '/images/product/capabilities/root-cause-recovery/5_ROOT_CAUSE_AND_RECOVERY_IMG3.png', alt: 'CQI AI Alerts screen with alert rules and recommendations' },
     ],
   },
   howItWorks: {

@@ -57,7 +57,7 @@ export const consumerElectronicsSolutionData = {
     imageAspect: '587 / 341',
     imageOverlay: 0,
     imageFramed: true,
-  }, '/images/solutions/consumer-electronics/dashboard.png'),
+  }, '/images/solutions/consumer-electronics/23_CONSUMER_ELECTRONICS_IMG1.png'),
   threeThings: mapThreeThings({
     roomyFirstStep: true,
     title: 'Three things the verification layer adds in this sector.',

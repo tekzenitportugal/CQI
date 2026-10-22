@@ -57,7 +57,7 @@ export const utilitiesEnergySolutionData = {
     imageAspect: '587 / 341',
     imageOverlay: 0,
     imageFramed: true,
-  }, '/images/solutions/utilities-energy/prevent-cx-frictions.png'),
+  }, '/images/solutions/utilities-energy/22_UTILITIES_ENERGY_IMG1.png'),
   threeThings: mapThreeThings({
     roomyFirstStep: true,
     title: 'Three things the verification layer adds in this sector.',

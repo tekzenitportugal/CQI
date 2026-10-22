@@ -46,7 +46,19 @@ type GradientHeroProps = {
    * percentages of the box, so the image keeps its proportions and scales with it.
    */
   mobileCrop?: { aspect: string; width: number; left: number; top: number; imageWidth: number; imageHeight: number };
+  /**
+   * Below lg: transparent space under the device in the stacked image, as a % of the image box's width.
+   * The box is pulled up by that much so the 60px gap to the card bottom is measured from the device itself.
+   */
+  mobileImageTrim?: number;
 };
+
+/**
+ * Mobile figure heroes: card tall enough that the figure ends 60px above its bottom (+8px card inset,
+ * −3px for the faint shadow at the bottom of the mockup PNG).
+ */
+const figureMinHeight = (f: NonNullable<GradientHeroProps['mobileFigure']>) =>
+  `${Math.round(8 + f.top + (f.displayWidth * f.height) / f.width + 60 - 3)}px`;
 
 /** Text-only hero on the 864px gradient band; copy is centred in the space below the header. */
 export function GradientHero({
@@ -65,7 +77,9 @@ export function GradientHero({
   desktopFigure,
   mobileCopyFlush,
   mobileCrop,
+  mobileImageTrim,
 }:GradientHeroProps) {
+  const trimVar = mobileImageTrim ? { '--mobile-image-trim': `${mobileImageTrim}%` } : undefined;
   // Photo hero (image sits behind the gradient wash): the photo is the box's ::before background and the
   // wash its ::after / the copy's ::before — no <img>, breakpoints only swap CSS. Transparent cutouts keep <Image>.
   const photo = Boolean(image && imageBehindGradient);
@@ -84,7 +98,10 @@ export function GradientHero({
           {
             ...(data.mobileMinHeight && { '--hero-min-height': `${data.mobileMinHeight}px` }),
             ...(data.mobilePaddingTop && { '--hero-mobile-pad-top': `${data.mobilePaddingTop}px` }),
-            ...(mobileFigure && { '--hero-figure-copy-top': `${mobileFigure.copyTop}px` }),
+            ...(mobileFigure && {
+              '--hero-figure-copy-top': `${mobileFigure.copyTop}px`,
+              '--hero-figure-min-height': figureMinHeight(mobileFigure),
+            }),
             ...photoVars,
           } as CSSProperties
         }
@@ -175,7 +192,11 @@ export function GradientHero({
           <Container className={`${styles.insetMobileGraphicWrap} ${mobileFill ? styles.insetMobileGraphicWrapFill : ""}`.trim()}>
             <div
               className={styles.insetMobileGraphicBox}
-              style={imageAspectRatio ? ({ '--hero-mobile-aspect': imageAspectRatio } as CSSProperties) : undefined}
+              style={
+                imageAspectRatio || trimVar
+                  ? ({ ...(imageAspectRatio && { '--hero-mobile-aspect': imageAspectRatio }), ...trimVar } as CSSProperties)
+                  : undefined
+              }
               aria-hidden="true"
             >
               <Image src={image} alt="" fill unoptimized={imageUnoptimized} className={styles.insetMobileGraphicImage} sizes="100vw" />
@@ -219,6 +240,7 @@ export function GradientHero({
                   '--crop-width': `${mobileCrop.width}%`,
                   '--crop-left': `${mobileCrop.left}%`,
                   '--crop-top': `${mobileCrop.top}%`,
+                  ...trimVar,
                 } as CSSProperties
               }
               aria-hidden="true"

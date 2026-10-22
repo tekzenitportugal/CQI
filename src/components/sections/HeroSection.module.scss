@@ -3,7 +3,8 @@
 .section {
   position: relative;
   padding-top: 100px;
-  padding-bottom: 50px;
+  // Mobile: 60px from the bottom of the art to the card edge (the PNG adds ~2px of its own).
+  padding-bottom: 58px;
 
   // Desktop: fill the banner's height (grow past it if the copy needs more)
   // and vertically centre the copy in the space below the floating nav, so
