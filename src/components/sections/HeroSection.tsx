@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { preload } from 'react-dom';
 import type { homepageData } from '@/data/homepage';
 import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
@@ -9,7 +10,13 @@ type HeroSectionProps = {
   data: typeof homepageData.hero;
 };
 
+const MOBILE_HERO_IMAGE = '/images/shared/home/hero-banner-mobile.png';
+
 export function HeroSection({ data }: HeroSectionProps) {
+  // Only the hero image for the current viewport is preloaded; the other stays lazy and is never fetched (display: none).
+  preload(data.image, { as: 'image', media: '(min-width: 1024px)', fetchPriority: 'high' });
+  preload(MOBILE_HERO_IMAGE, { as: 'image', media: '(max-width: 1023.98px)', fetchPriority: 'high' });
+
   return (
     <section className={styles.section} id="see-it-live">
       <div className={styles.graphic} aria-hidden="true">
@@ -19,7 +26,6 @@ export function HeroSection({ data }: HeroSectionProps) {
           fill
           className={styles.graphicImage}
           sizes="(min-width: 1536px) 779px, 60vw"
-          priority
           unoptimized
         />
       </div>
@@ -54,7 +60,7 @@ export function HeroSection({ data }: HeroSectionProps) {
         <div className={styles.mobileMedia} aria-hidden="true">
           <div className={styles.mobileImageBox}>
             <Image
-              src="/images/shared/home/hero-banner-mobile.png"
+              src={MOBILE_HERO_IMAGE}
               alt=""
               fill
               className={styles.mobileImage}
