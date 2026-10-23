@@ -19,7 +19,7 @@
 
   @include respond-to(lg) {
     grid-template-columns: minmax(0, 587px) minmax(0, 587px);
-    gap: 141px;
+    gap: tablet-space(141px);
   }
 }
 
@@ -81,7 +81,7 @@
   @include respond-to(lg) {
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 32px;
+    gap: tablet-space(32px);
   }
 }
 

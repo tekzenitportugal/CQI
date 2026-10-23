@@ -128,6 +128,8 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   mobilePhotoFit?: boolean;
   /** Below lg (dedicated mobile image): photo shown at this % of the box height (full height, sides cropped), bottom-anchored; the copy's wash covers its top. */
   mobilePhotoHeight?: number;
+  /** Tablet only (768–1023px, dedicated mobile image): CSS background-position of the photo (e.g. 'center bottom'), and for `mobilePhotoHeight` heroes it is sized to the box width, so the wider box doesn't crop away the subject. */
+  tabletPhotoPosition?: string;
   /** With `mobilePortraitCrop`: scales the bottom-anchored photo up (1 = box width) so its hard top edge sits inside the faded-out zone. */
   mobileImageScale?: number;
   /** lg+ only (dedicated mobile image): Figma placement of the photo inside the hero box, as % of the box. Omit for full-bleed cover. */

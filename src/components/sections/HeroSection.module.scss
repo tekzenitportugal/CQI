@@ -170,3 +170,11 @@
     line-height: 1.4;
   }
 }
+
+// 1024–1279px: the description would run into the front screen of the cutout (the shared rule above is
+// overridden by `.body`'s own width), so the text block narrows to stay left of it. 587px from ~1180px up.
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .content .body {
+    max-width: clamp(430px, calc(100vw - 590px), 587px);
+  }
+}

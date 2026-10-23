@@ -16,8 +16,13 @@ export const predictiveChurnRecontact: CapabilityPageData = {
       'Real-time customer risk assessment across every customer, including the ones who never complain.',
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
-  heroImage: '/images/product/capabilities/predictive-churn-recontact/hero.webp',
+  // Figma 6342:26630: the original photo cropped as the design frames it (2884×1610, 2× the 1520 frame). Served
+  // untouched: through Next's image endpoint it was resized and recompressed (q75) on top of the old 1520px file.
+  heroImage: '/images/product/capabilities/predictive-churn-recontact/hero-hd.webp',
+  heroImageUnoptimized: true,
   heroImageMobile: '/images/product/capabilities/predictive-churn-recontact/hero-mobile.png',
+  // Tablet: anchored 80% down (not the bottom) so the man on the stairs sits below the copy's solid wash at every tablet width.
+  heroTabletPhotoPosition: 'center 80%',
   heroImageAspectRatio: '1520 / 849',
   // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {

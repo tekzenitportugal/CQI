@@ -101,6 +101,27 @@
   }
 }
 
+// Dark photo (or box background) under the blue wash leaves a thin dark line along the rounded top corners:
+// each layer is cut by the corner's anti-aliasing separately, so a trace of the dark one survives under the wash.
+// Below lg the copy's wash is solid over the top of the card, so the photo just isn't painted there.
+@media (max-width: 1023.98px) {
+  .photoLegacy,
+  .photoDedicated {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, transparent 40px, #000 100px);
+    mask-image: linear-gradient(180deg, transparent 0, transparent 40px, #000 100px);
+  }
+}
+
+// lg+, framed photo on a dark box (See it live): the wash is not solid at the left corners, so clip the
+// finished box once with a mask instead of each layer separately (overflow clip would cut them one by one).
+@include respond-to(lg) {
+  .photoFramed {
+    overflow: visible;
+    -webkit-mask-image: linear-gradient(#000, #000);
+    mask-image: linear-gradient(#000, #000);
+  }
+}
+
 // lg+: each variant swaps in its own wash (below lg the wash is on .contentWrap instead).
 @include respond-to(lg) {
   // Flat CSS wash above the photo (never baked into the image), strongest over the copy (left).
@@ -113,6 +134,14 @@
       rgba(223, 232, 254, 0.3) 60%,
       rgba(223, 232, 254, 0) 70%
     );
+  }
+
+  // The flat wash is solid over the left of the photo, but the card's rounded corners are anti-aliased, so a
+  // thin dark line of the photo showed along the left curves. The photo isn't visible there anyway (the wash is
+  // ≥98% opaque up to 35%), so fade it out over the left 30% and the line goes away.
+  .washFlat::before {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, transparent 15%, #000 30%);
+    mask-image: linear-gradient(90deg, transparent 0, transparent 15%, #000 30%);
   }
 
   // Framed heroes (Figma 6342:27253): radial wash centred on the left edge (Figma 6362:28751), 1316×2652 radii in a 1520×848 box.
@@ -222,6 +251,20 @@
   .photoZone.photoDedicated::before {
     background-size: auto var(--hero-mobile-photo-h);
     background-position: var(--hero-mobile-img-pos, 45% 100%);
+  }
+}
+
+// Opt-in (`tabletPhotoPosition`), tablet only (768–1023px): the dedicated mobile photo is cut for a ~398px-wide
+// phone card, so in the wider card a centred crop drops the subject (it sits at the bottom). The page picks
+// where to anchor it; a `mobilePhotoHeight` banner is also sized to the box width so it isn't left short of
+// the sides. Phones (<768px) and lg+ are untouched.
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .photoTabletPosition.photoDedicated::before {
+    background-position: var(--hero-tablet-img-pos);
+  }
+
+  .photoTabletPosition.photoZone.photoDedicated::before {
+    background-size: 100% auto;
   }
 }
 

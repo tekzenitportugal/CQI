@@ -140,3 +140,15 @@
   line-height: 1.4;
   color: var(--color-antracite-200);
 }
+
+// Narrow desktop / landscape tablet: a 772px photo leaves the copy only ~130px, so the two halves share
+// the card evenly and the copy's side padding eases.
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .copy {
+    padding: 0 32px;
+  }
+}

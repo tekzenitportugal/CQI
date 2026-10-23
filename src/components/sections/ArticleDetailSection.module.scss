@@ -19,7 +19,7 @@
 
   @include respond-to(lg) {
     grid-template-columns: minmax(0, 951fr) 344px;
-    gap: 141px;
+    gap: tablet-space(141px);
     align-items: start;
   }
 

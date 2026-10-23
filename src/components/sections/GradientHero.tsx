@@ -51,6 +51,8 @@ type GradientHeroProps = {
    * The box is pulled up by that much so the 60px gap to the card bottom is measured from the device itself.
    */
   mobileImageTrim?: number;
+  /** Inset variant, 768–1023px: show the stacked `image` at this share of the card width (right-anchored) instead of full width. */
+  tabletImageScale?: number;
 };
 
 /**
@@ -78,8 +80,15 @@ export function GradientHero({
   mobileCopyFlush,
   mobileCrop,
   mobileImageTrim,
+  tabletImageScale,
 }:GradientHeroProps) {
-  const trimVar = mobileImageTrim ? { '--mobile-image-trim': `${mobileImageTrim}%` } : undefined;
+  const trimVar =
+    mobileImageTrim || tabletImageScale
+      ? {
+          ...(mobileImageTrim && { '--mobile-image-trim': `${mobileImageTrim}%` }),
+          ...(tabletImageScale && { '--hero-tablet-scale': String(tabletImageScale) }),
+        }
+      : undefined;
   // Photo hero (image sits behind the gradient wash): the photo is the box's ::before background and the
   // wash its ::after / the copy's ::before — no <img>, breakpoints only swap CSS. Transparent cutouts keep <Image>.
   const photo = Boolean(image && imageBehindGradient);
@@ -93,7 +102,7 @@ export function GradientHero({
   if (variant === 'inset') {
     return (
       <section
-        className={`${styles.insetBanner} ${mobileImage || mobileBanner || mobileFigure ? styles.insetBannerCutout : ''} ${photo && mobileBackdrop ? styles.insetBannerBackdrop : ''}`.trim()}
+        className={`${styles.insetBanner} ${mobileImage || mobileBanner || mobileFigure ? styles.insetBannerCutout : ''} ${mobileFigure ? styles.insetBannerFigure : ''} ${photo && mobileBackdrop ? styles.insetBannerBackdrop : ''}`.trim()}
         style={
           {
             ...(data.mobileMinHeight && { '--hero-min-height': `${data.mobileMinHeight}px` }),

@@ -92,3 +92,11 @@
     margin-top: 7px;
   }
 }
+
+// Narrow desktop / landscape tablet: four 344px cards squeezed to ~215px each cut their labels off, so the
+// four-up row becomes two by two until there is room (the three-up row keeps its layout).
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .metrics:not(.metricsCols3) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

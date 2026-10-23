@@ -147,6 +147,16 @@ $hero-mobile-image-gap: 60px;
   margin-bottom: calc(-1 * var(--mobile-image-trim, 0%));
 }
 
+// Opt-in (`tabletImageScale`), 768–1023px: a full-width tall mockup is far too big in a tablet-wide card, so
+// it takes a share of the width, pinned right. The % trim margin is relative to the wrap, so it scales too.
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .insetMobileGraphicBox {
+    width: calc(100% * var(--hero-tablet-scale, 1));
+    margin-left: auto;
+    margin-bottom: calc(-1 * var(--mobile-image-trim, 0%) * var(--hero-tablet-scale, 1));
+  }
+}
+
 .insetMobileGraphicImage {
   object-fit: contain;
   object-position: center bottom;
@@ -226,6 +236,22 @@ $hero-mobile-image-gap: 60px;
   width: var(--figure-width);
   max-width: none;
   height: auto;
+}
+
+// Tablet (768–1023px): the Figma mobile spot (a 309px figure at the left) leaves the figure tiny in a wide
+// card, so centre it, scale it with the screen (capped) and tuck it 440px down, under the copy.
+// Mobile (<768px) and lg+ are untouched. 0.808 = the figure PNG's height / width.
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .insetBannerFigure {
+    min-height: calc(8px + 440px + min(68vw, 560px) * 0.808 + 57px);
+
+    .insetMobileFigureImage {
+      top: 440px;
+      left: 50%;
+      width: min(68vw, 560px);
+      transform: translateX(-50%);
+    }
+  }
 }
 
 .insetMobileCutoutImage {
@@ -368,6 +394,15 @@ $hero-mobile-image-gap: 60px;
   }
 }
 
+// Below lg the copy's solid wash covers the top of the card, so don't paint the photo there: otherwise a thin
+// dark line of it shows along the rounded top corners (each layer is anti-aliased at the corner separately).
+.photoBox {
+  @media (max-width: 1023.98px) {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, transparent 40px, #000 100px);
+    mask-image: linear-gradient(180deg, transparent 0, transparent 40px, #000 100px);
+  }
+}
+
 // Photo hero: the photo is the box's ::before (the wash is ::after on lg+, the copy's ::before below).
 // Mobile: full-card cover, bottom-anchored. lg+: right-anchored, never stretched.
 .photoBox::before {
@@ -376,6 +411,13 @@ $hero-mobile-image-gap: 60px;
   inset: 0;
   pointer-events: none;
   background: var(--hero-image-mobile) center bottom / cover no-repeat;
+
+  // 768–1023px: the mobile photo has rounded corners baked in for a ~380px-wide card (~20px radius). In a
+  // tablet-wide card it scales up and so do they (~38px), leaving a pale wedge of the card's background in the
+  // bottom corners. Widen the photo layer 4% each side (cropped back by the card) so those corners fall outside.
+  @media (min-width: 768px) and (max-width: 1023.98px) {
+    inset: 0 -4%;
+  }
 
   @include respond-to(lg) {
     background: var(--hero-image) right bottom / contain no-repeat;

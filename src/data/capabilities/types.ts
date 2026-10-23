@@ -21,6 +21,8 @@ export type CapabilityPageData = {
   heroImageMobilePosition?: string;
   /** Below lg: show the whole mobile photo this tall (% of the hero box), bottom-anchored, instead of cover-cropping it. */
   heroMobilePhotoHeight?: number;
+  /** Tablet (768–1023px): CSS background-position of the mobile photo (and full box width), so the subject isn't cropped away. */
+  heroTabletPhotoPosition?: string;
   /** lg+: Figma's radial wash from the left edge over the hero photo (see PageHeroBanner `radialWash`). */
   heroRadialWash?: boolean;
   /** Figma desktop mockup placed inside the hero card (inset hero); see GradientHero `desktopFigure`. */
@@ -31,6 +33,8 @@ export type CapabilityPageData = {
   heroImageAspectRatio?: string;
   /** Below lg: transparent margin under the device in `heroImage`, as % of its width; see GradientHero `mobileImageTrim`. */
   heroMobileImageTrim?: number;
+  /** Tablet (768–1023px): share of the card width the stacked hero image takes; see GradientHero `tabletImageScale`. */
+  heroTabletImageScale?: number;
   /** Serve `heroImage` as-is, skipping Next's resize/recompress. */
   heroImageUnoptimized?: boolean;
   /** Fade the hero gradient over the image's left edge so the image sits behind it and the copy stays readable. */

@@ -16,7 +16,7 @@
   padding-block: 50px;
 
   @include respond-to(lg) {
-    gap: 140px;
+    gap: tablet-space(140px);
   }
 }
 

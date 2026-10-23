@@ -27,7 +27,9 @@
   grid-template-columns: minmax(0, 1fr);
   gap: 20px;
 
-  @include respond-to(lg) {
+  // Three across only from 1280px: at 1024–1279px each card is ~300px, and the value box leaves the
+  // label ~115px (one word per line), so tablet keeps the single-column rows.
+  @media (min-width: 1280px) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }

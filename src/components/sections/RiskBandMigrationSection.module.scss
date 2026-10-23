@@ -23,7 +23,7 @@
 
   @include respond-to(lg) {
     grid-template-columns: minmax(0, 587px) minmax(0, 587px);
-    gap: 107px;
+    gap: tablet-space(107px);
   }
 }
 

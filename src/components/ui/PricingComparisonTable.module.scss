@@ -17,7 +17,7 @@
 
   @include respond-to(md) {
     display: grid;
-    grid-template-columns: minmax(0, 290px) minmax(0, 363px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 290fr) minmax(0, 363fr) minmax(0, 381fr);
     column-gap: 48px;
   }
 }
@@ -68,7 +68,7 @@
 
   @include respond-to(md) {
     display: grid;
-    grid-template-columns: minmax(0, 290px) minmax(0, 363px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 290fr) minmax(0, 363fr) minmax(0, 381fr);
     align-items: start;
     column-gap: 48px;
     padding: 0 16px;
@@ -212,5 +212,14 @@
   .question,
   .withCqi {
     line-height: 20px;
+  }
+}
+
+// Below the full 1194px width the three columns share the row in the same proportions (290 : 363 : 381
+// at full size) instead of squeezing "With CQI" into what is left; a smaller gap leaves more for the text.
+@media (min-width: 768px) and (max-width: 1279.98px) {
+  .headerRow,
+  .row {
+    column-gap: 24px;
   }
 }

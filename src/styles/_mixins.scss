@@ -64,6 +64,13 @@ $hero-radius: 20px;
   @return clamp(#{$value * 0.4}, #{math.div(math.div($value, 1px), 1536) * 100}vw, #{$value});
 }
 
+// Horizontal gaps between two-up columns (lg and up). Exact from 1280px, easing down to 40% at 1024px so
+// narrow-desktop / landscape-tablet columns keep their width. Desktop (1280px and up) is unchanged.
+@function tablet-space($value) {
+  $px: math.div($value, 1px);
+  @return clamp(#{$px * 0.4}px, calc(#{$px * 0.4}px + (100vw - 1024px) * #{math.div($px * 0.6, 256)}), #{$value});
+}
+
 @mixin section-space($top, $bottom: 0) {
   padding-top: $top;
   padding-bottom: $bottom;
@@ -131,7 +138,8 @@ $hero-radius: 20px;
       left: 0;
       right: 0;
       height: calc(#{$solid-end} + 200px);
-      border-radius: $hero-radius $hero-radius 0 0;
+      // All four corners: when the wash reaches the card's bottom, square corners poke out around the photo's rounded ones.
+      border-radius: $hero-radius;
       pointer-events: none;
       background: linear-gradient(
         180deg,

@@ -84,3 +84,14 @@
   color: var(--color-blue-200);
   text-decoration: none;
 }
+
+// Narrow desktop / landscape tablet: a slimmer label column and gap leave the description more room.
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .item {
+    gap: 24px;
+  }
+
+  .label {
+    width: min(var(--ruled-label-width, 202px), 150px);
+  }
+}

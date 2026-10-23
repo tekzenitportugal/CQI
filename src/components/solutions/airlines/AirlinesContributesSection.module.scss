@@ -16,9 +16,10 @@
   gap: 26px;
 
   @include respond-to(lg) {
-    grid-template-columns: 591px 587px;
-    column-gap: 256px;
-    justify-content: start;
+    // 591 + 256 + 587 at full size; the columns give way (the gap keeps at least 40px) in narrower containers.
+    grid-template-columns: minmax(0, 591px) minmax(0, 587px);
+    column-gap: 40px;
+    justify-content: space-between;
     align-items: start;
   }
 }

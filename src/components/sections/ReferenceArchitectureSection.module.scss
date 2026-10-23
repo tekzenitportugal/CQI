@@ -273,3 +273,19 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   margin-top: 32px;
   @include footnote;
 }
+
+// Narrow desktop / landscape tablet: a collapsed card is only ~125–190px wide, so the 32px padding and
+// 20px title would cut words like "Presentation" off. Tighter padding and a smaller title keep them whole.
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .tierCard {
+    padding: 20px;
+  }
+
+  .tierTitle {
+    font-size: 16px;
+  }
+
+  .panelInner {
+    width: min(278px, calc((100cqw - 100px) * 0.2562 - 40px));
+  }
+}

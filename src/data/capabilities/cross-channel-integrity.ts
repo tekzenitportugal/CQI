@@ -23,6 +23,7 @@ export const crossChannelIntegrity: CapabilityPageData = {
   heroImageMobile: '/images/product/capabilities/cross-channel-integrity/CROSS_CHANNEL_INTEGRITY_BANNER.png',
   heroImageMobilePosition: '99% 100%',
   heroMobilePhotoHeight: 42.6,
+  heroTabletPhotoPosition: 'center bottom',
   heroImageAspectRatio: '1520 / 849',
   heroImageUnoptimized: true,
   // Figma 6733:64247: soft radial wash from the left edge over the banner.

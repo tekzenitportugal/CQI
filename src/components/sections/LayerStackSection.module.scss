@@ -283,3 +283,19 @@ $ease: cubic-bezier(0.22, 0.61, 0.36, 1);
     color: var(--color-antracite-300);
   }
 }
+
+// Narrow desktop / landscape tablet: a collapsed layer is only ~130–190px wide, so the 32px padding and
+// 20px title would cut words off. Tighter padding and a smaller title keep them whole.
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .layer {
+    padding: 20px;
+  }
+
+  .layerTitle {
+    font-size: 16px;
+  }
+
+  .panelInner {
+    width: min(523px, calc((100cqw - 80px) * 0.4335 - 40px));
+  }
+}

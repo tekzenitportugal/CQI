@@ -37,6 +37,7 @@ export default async function CapabilityPage({ params }: CapabilityPageProps) {
           image={page.heroImage}
           imageAspectRatio={page.heroImageAspectRatio}
           mobileImageTrim={page.heroMobileImageTrim}
+          tabletImageScale={page.heroTabletImageScale}
           imageUnoptimized={page.heroImageUnoptimized}
           imageBehindGradient={page.heroImageBehindGradient}
           mobileFill={page.heroMobileFill}
@@ -47,7 +48,7 @@ export default async function CapabilityPage({ params }: CapabilityPageProps) {
         />
       ) : (
         page.heroImage && (
-          <PageHeroBanner data={{ ...page.hero, image: page.heroImage, mobileImage: page.heroImageMobile, mobileImagePosition: page.heroImageMobilePosition, mobilePhotoHeight: page.heroMobilePhotoHeight, radialWash: page.heroRadialWash, imageUnoptimized: page.heroImageUnoptimized }} />
+          <PageHeroBanner data={{ ...page.hero, image: page.heroImage, mobileImage: page.heroImageMobile, mobileImagePosition: page.heroImageMobilePosition, mobilePhotoHeight: page.heroMobilePhotoHeight, tabletPhotoPosition: page.heroTabletPhotoPosition, radialWash: page.heroRadialWash, imageUnoptimized: page.heroImageUnoptimized }} />
         )
       )}
       {'steps' in page.features ? (

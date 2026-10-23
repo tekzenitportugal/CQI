@@ -18,7 +18,7 @@
 
   @include respond-to(lg) {
     grid-template-columns: 587px 1fr;
-    gap: 141px;
+    gap: tablet-space(141px);
     align-items: center;
   }
 

@@ -20,6 +20,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     ...(data.mobileImageScale ? { '--hero-mobile-img-scale': String(data.mobileImageScale) } : {}),
     ...(data.mobilePhotoHeight ? { '--hero-mobile-photo-h': `${data.mobilePhotoHeight}%` } : {}),
     ...(data.mobileImagePosition ? { '--hero-mobile-img-pos': data.mobileImagePosition } : {}),
+    ...(data.tabletPhotoPosition ? { '--hero-tablet-img-pos': data.tabletPhotoPosition } : {}),
   } as CSSProperties;
   const frame = data.desktopImageFrame;
   const desktopFrameVars = frame
@@ -50,6 +51,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
     data.mobilePortraitCrop && styles.photoPortrait,
     data.mobilePhotoFit && styles.photoFit,
     data.mobilePhotoHeight && styles.photoZone,
+    data.tabletPhotoPosition && styles.photoTabletPosition,
     data.image && (hasDedicatedMobile ? (frame ? styles.washFramed : data.radialWash ? styles.washRadial : styles.washFlat) : mirror ? styles.washLegacy : styles.washLegacyUnmirrored),
   ]
     .filter(Boolean)

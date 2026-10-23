@@ -74,7 +74,7 @@
 
   @include respond-to(lg) {
     grid-template-columns: repeat(3, minmax(0, 344px));
-    gap: 151px;
+    gap: tablet-space(151px);
     padding: 0 50px;
     justify-content: start;
   }

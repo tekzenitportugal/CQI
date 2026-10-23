@@ -205,6 +205,24 @@
   }
 }
 
+// 1024–1279px: the circles are a % of the diagram, so they shrink (237px at 1024) while the copy stays at its
+// desktop size and spills out of them. Scale the copy with the screen; each value lands exactly on its
+// desktop size at 1280px (24px title, 17.5px description, 32px/40px padding), so desktop is unchanged.
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .nodeContent {
+    gap: 0.78vw;
+    padding: 2.5vw 3.125vw;
+  }
+
+  .nodeTitle {
+    font-size: 1.875vw;
+  }
+
+  .nodeDescription {
+    font-size: 1.367vw;
+  }
+}
+
 // Figma Group 440: the dashed connector line + dot markers threading the circles.
 // Desktop only; mobile uses the per-node vertical connectors above.
 .connectors {

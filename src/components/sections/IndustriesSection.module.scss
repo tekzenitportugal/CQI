@@ -32,7 +32,7 @@
   width: 100%;
 
   @include respond-to(lg) {
-    gap: 114px;
+    gap: tablet-space(114px);
     width: 465px;
     min-width: 320px;
     flex-shrink: 1;

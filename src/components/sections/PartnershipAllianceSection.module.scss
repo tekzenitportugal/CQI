@@ -34,8 +34,10 @@
   gap: 60px;
   max-width: 587px;
 
+  // 587px at full size; the pair shrinks together when the container is narrower than 1194px.
   @include respond-to(lg) {
-    flex: 0 0 587px;
+    flex: 0 1 587px;
+    min-width: 0;
   }
 }
 
@@ -76,7 +78,9 @@
   overflow: hidden;
 
   @include respond-to(lg) {
-    width: 587px;
+    width: auto;
+    flex: 0 1 587px;
+    min-width: 0;
     height: 450px;
   }
 }

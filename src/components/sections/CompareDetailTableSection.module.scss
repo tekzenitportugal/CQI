@@ -1,6 +1,6 @@
 @use '@/styles/mixins' as *;
 
-$columns: 314px 1fr 1fr;
+$columns: clamp(200px, 26vw, 314px) 1fr 1fr; // 314px from ~1210px wide, narrower below so the CQI column keeps room
 // Width of the highlighted CQI column: (table inner width − dimension column − two 16px gaps) / 2.
 $cqi-width: calc((100% - 346px) / 2);
 

@@ -18,6 +18,7 @@ export const rootCauseRecovery: CapabilityPageData = {
   },
   heroImage: '/images/product/capabilities/root-cause-recovery/hero.png',
   heroImageMobile: '/images/product/capabilities/root-cause-recovery/hero-mobile.png',
+  heroTabletPhotoPosition: 'center bottom',
   heroImageAspectRatio: '1520 / 849',
   // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {

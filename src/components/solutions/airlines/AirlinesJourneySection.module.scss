@@ -64,7 +64,8 @@
   @include respond-to(lg) {
     grid-template-columns: minmax(0, 1fr) 51px minmax(0, 1fr);
     grid-template-areas: 'copy marker media';
-    column-gap: 106px;
+    // 106px at full size; tighter below ~1250px so the art columns keep room.
+    column-gap: clamp(32px, calc(32px + (100vw - 1024px) * 0.4), 106px);
     // Row height = the step art's frame (the export adds 16px of shadow on every side).
     min-height: calc(var(--art-height) * 1px - 32px);
   }
@@ -375,7 +376,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: calc(var(--art-width) * 1px);
+    // Full export size, but never wider than its column (+ the 32px of shadow the export adds).
+    width: min(calc(var(--art-width) * 1px), calc(100% + 32px));
     max-width: none;
     height: auto;
     transform: translate(-50%, -50%);

@@ -21,6 +21,8 @@ export const customerQualityIndex: CapabilityPageData = {
   heroImageAspectRatio: '3212 / 3392',
   // Mobile: the PNG has ~20% transparent margin under the laptop; trimmed so the 60px gap starts at the laptop.
   heroMobileImageTrim: 20.3,
+  // Tablet: the portrait PNG at full card width is huge (1000px+ tall at 1023px), so it takes 65% of the width, right-anchored.
+  heroTabletImageScale: 0.65,
   heroImageUnoptimized: true,
   heroMockup: true,
   // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
