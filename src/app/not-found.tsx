@@ -3,6 +3,7 @@ import { NotFoundSection } from '@/components/sections/NotFoundSection';
 
 export const metadata: Metadata = {
   title: 'Page not found — CQI',
+  alternates: { canonical: null },
   robots: { index: false, follow: true },
 };
 
