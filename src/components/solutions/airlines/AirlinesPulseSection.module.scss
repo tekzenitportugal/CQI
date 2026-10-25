@@ -1,7 +1,7 @@
 @use '@/styles/mixins' as *;
 @use './scale' as *;
 
-// Figma Customer Pulse (6544:38038): heading 243px under the band top, plane graphic 90px under it,
+// Figma Customer Pulse (6544:38038): heading 243px under the band top, plane graphic 49.82px under the band top,
 // legend + state card 614px below the heading.
 .section {
   position: relative;
@@ -56,6 +56,12 @@
 .heading {
   --section-heading-title-max-width: 947px;
   --section-heading-description-weight: 500;
+  // Figma breaks the intro after the first sentence on desktop (947px measure).
+  --section-heading-description-max-width: 947px;
+
+  :global(p) {
+    white-space: pre-line;
+  }
 
   // Figma mobile: 26px from the title to the intro (24px on desktop).
   @media (max-width: 1023.98px) {
@@ -63,13 +69,13 @@
   }
 }
 
-// ── Plane + seats (1350 × 1435 artwork, centred) ────────────────────────────
+// ── Plane + seats (1331 × 1501 artwork, centred) ────────────────────────────
 .plane {
   position: absolute;
-  top: 90px;
+  top: 49.82px;
   left: 50%;
-  width: u(1350);
-  height: u(1434.68);
+  width: u(1331.25);
+  height: u(1500.9);
   z-index: 0;
   transform: translateX(-50%);
   pointer-events: none;
@@ -89,12 +95,12 @@
 
 .seatBlock {
   position: absolute;
-  top: calc(var(--seat-top) / 1434.68 * 100%);
-  left: calc(var(--seat-left) / 1350 * 100%);
+  top: calc(var(--seat-top) / 1500.9 * 100%);
+  left: calc(var(--seat-left) / 1331.25 * 100%);
   display: grid;
-  grid-template-columns: repeat(11, u(20.89));
-  grid-auto-rows: u(20.89);
-  gap: u(3.01) u(8.99);
+  grid-template-columns: repeat(11, u(21.77));
+  grid-auto-rows: u(21.77);
+  gap: u(3.14) u(7.29);
 }
 
 .seat {

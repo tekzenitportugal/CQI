@@ -15,6 +15,7 @@ export const endToEndOrchestration: CapabilityPageData = {
       'Configurable workflows connected to queue, route, IVR, chat and comms, with control groups and A/B testing built in.',
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
+  heroMobileSoftFade: true,
   heroImage: '/images/product/capabilities/end-to-end-orchestration/hero-banner.png',
   heroImageAspectRatio: '1520 / 849',
   heroImageUnoptimized: true,

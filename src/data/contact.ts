@@ -10,6 +10,7 @@ export type ContactChannel = {
 /** Figma "GET IN TOUCH" (6079:30515). */
 export const contactData = {
   hero: {
+    mobileSoftFade: true,
     title: 'Talk to our team',
     titleHighlight: ['Talk'],
     eyebrow: 'Get in touch',

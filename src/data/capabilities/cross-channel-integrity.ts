@@ -28,6 +28,7 @@ export const crossChannelIntegrity: CapabilityPageData = {
   heroImageUnoptimized: true,
   // Figma 6733:64247: soft radial wash from the left edge over the banner.
   heroRadialWash: true,
+  heroMobileSoftFade: true,
   // Animated "What it does" (steps) + screenshot carousel (screens), Figma 6733:63976 – 6733:64334.
   features: {
     eyebrow: 'What it does',

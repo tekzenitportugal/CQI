@@ -6,7 +6,7 @@ import { airlinesSolutionData } from '@/data/solutions/airlines';
 export type SeatState = 'H' | 'F' | 'E' | 'R' | 'S';
 
 export type AirlinesSeatBlock = {
-  /** Design-px position inside the 1350 × 1435 plane graphic. */
+  /** Design-px position inside the 1331 × 1501 plane graphic. */
   left: number;
   top: number;
   /** Number of the block's first column (seats are numbered 1–22 along the cabin). */
@@ -41,7 +41,7 @@ export const airlinesPageData = {
     eyebrow: 'airlines',
     description:
       'A delay. A broken promise. Another reason to fly elsewhere. CQI helps you see trust eroding and act while you can still keep the passenger.',
-    cta: { label: 'Model the range', href: '#outcome-range', variant: 'secondary' },
+    mobileSoftFade: true,
     titleMaxWidth: 587,
     descriptionMaxWidth: 653,
     copyMaxWidth: 587,
@@ -88,7 +88,7 @@ export const airlinesPageData = {
     eyebrow: 'Customer Pulse',
     title: 'Every seat has a story.\nNow your team can see it.',
     description:
-      'A color for each passenger, built from their journey and updated as new signals arrive. See whose trust needs attention before the next booking is lost.',
+      'A color for each passenger, built from their journey and updated as new signals arrive.\nSee whose trust needs attention before the next booking is lost.',
     legend: [
       { state: 'H', label: 'Healthy' },
       { state: 'F', label: 'Friction' },
@@ -99,10 +99,10 @@ export const airlinesPageData = {
     legendNote: 'Each state carries the context and next action, not just a color.',
     // Four blocks of 3 rows × 11 seats; each seat's status comes from its card in airlines-seat-cards.ts.
     seatBlocks: [
-      { left: 335.86, top: 621.98, firstCol: 1, letters: ['F', 'E', 'D'] },
-      { left: 680.88, top: 621.98, firstCol: 12, letters: ['F', 'E', 'D'] },
-      { left: 335.86, top: 743.998, firstCol: 1, letters: ['C', 'B', 'A'] },
-      { left: 680.88, top: 743.998, firstCol: 12, letters: ['C', 'B', 'A'] },
+      { left: 293.51, top: 660.8, firstCol: 1, letters: ['F', 'E', 'D'] },
+      { left: 632.25, top: 660.8, firstCol: 12, letters: ['F', 'E', 'D'] },
+      { left: 293.51, top: 766.66, firstCol: 1, letters: ['C', 'B', 'A'] },
+      { left: 632.25, top: 766.66, firstCol: 12, letters: ['C', 'B', 'A'] },
     ] satisfies AirlinesSeatBlock[],
     /** Mobile shows a 6 × 3 close-up of the cabin instead of the plane (Figma mobile 6561:39363). */
     mobileSeats: ['RHEHHH', 'HFHERH', 'RFHSHH'],

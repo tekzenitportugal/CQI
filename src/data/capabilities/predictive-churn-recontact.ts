@@ -18,6 +18,7 @@ export const predictiveChurnRecontact: CapabilityPageData = {
   },
   // Figma 6342:26630: the original photo cropped as the design frames it (2884×1610, 2× the 1520 frame). Served
   // untouched: through Next's image endpoint it was resized and recompressed (q75) on top of the old 1520px file.
+  heroMobileSoftFade: true,
   heroImage: '/images/product/capabilities/predictive-churn-recontact/hero-hd.webp',
   heroImageUnoptimized: true,
   heroImageMobile: '/images/product/capabilities/predictive-churn-recontact/hero-mobile.png',

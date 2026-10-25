@@ -199,6 +199,28 @@
   @include hero-mobile-copy-wash(calc(100% - 200px));
 }
 
+// Opt-in (`mobileSoftFade`): the default wash fades linearly between two different blues, which leaves a faint
+// edge where it meets the photo (most visible over dark photos). Fade a single colour instead, with an eased
+// alpha curve (smoothstep) over the 200px under the copy.
+@media (max-width: 1023.98px) {
+  .hasPhoto.softFade .contentWrap::before {
+    background: linear-gradient(
+      180deg,
+      rgb(204, 218, 255) calc(100% - 200px),
+      rgba(204, 218, 255, 0.97) calc(100% - 180px),
+      rgba(204, 218, 255, 0.9) calc(100% - 160px),
+      rgba(204, 218, 255, 0.78) calc(100% - 140px),
+      rgba(204, 218, 255, 0.65) calc(100% - 120px),
+      rgba(204, 218, 255, 0.5) calc(100% - 100px),
+      rgba(204, 218, 255, 0.35) calc(100% - 80px),
+      rgba(204, 218, 255, 0.22) calc(100% - 60px),
+      rgba(204, 218, 255, 0.1) calc(100% - 40px),
+      rgba(204, 218, 255, 0.03) calc(100% - 20px),
+      rgba(204, 218, 255, 0) 100%
+    );
+  }
+}
+
 .content {
   padding-top: var(--hero-mobile-pad-top, calc(var(--header-offset-top) + var(--header-height) + 32px));
   // Below lg the box height just tracks the copy, so this is also the only thing

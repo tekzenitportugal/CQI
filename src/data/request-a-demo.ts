@@ -7,6 +7,7 @@ export const requestADemoData = {
   metaDescription:
     'A 45-minute session on your operation: where friction is likely hiding, what verification would expose, and how a two-week non-intrusive proof of value would run.',
   hero: {
+    mobileSoftFade: true,
     title: 'See friction before your customers do',
     titleHighlight: ['See friction before'],
     eyebrow: 'Request a demo',

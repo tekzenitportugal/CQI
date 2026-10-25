@@ -25,6 +25,8 @@ export type CapabilityPageData = {
   heroTabletPhotoPosition?: string;
   /** lg+: Figma's radial wash from the left edge over the hero photo (see PageHeroBanner `radialWash`). */
   heroRadialWash?: boolean;
+  /** Below lg: ease the hero copy wash into the photo (see PageHeroData.mobileSoftFade). */
+  heroMobileSoftFade?: boolean;
   /** Figma desktop mockup placed inside the hero card (inset hero); see GradientHero `desktopFigure`. */
   heroDesktopFigure?: { src: string; width: number; height: number; top: number; right: number; displayWidth: number };
   /** Figma mobile mockup placed inside the hero card (inset hero); see GradientHero `mobileFigure`. */

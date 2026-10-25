@@ -20,6 +20,7 @@ export default function NotListedPage() {
             ...notListedPageData.hero,
             image: notListedPageData.heroImage,
             mobileImage: notListedPageData.heroImageMobile,
+            mobileSoftFade: true,
           }}
         />
       ) : (

@@ -16,6 +16,7 @@ export const rootCauseRecovery: CapabilityPageData = {
       'Shows what is broken, who is responsible and how to fix it (people, process or data) with a UI to track, measure and close.',
     cta: { label: 'See it live', href: '/resources/see-it-live', variant: 'secondary' },
   },
+  heroMobileSoftFade: true,
   heroImage: '/images/product/capabilities/root-cause-recovery/hero.png',
   heroImageMobile: '/images/product/capabilities/root-cause-recovery/hero-mobile.png',
   heroTabletPhotoPosition: 'center bottom',

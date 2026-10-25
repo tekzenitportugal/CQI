@@ -59,7 +59,7 @@ export function PageHeroBanner({ data, mirror = true }: PageHeroBannerProps) {
 
   return (
     <section
-      className={`${styles.banner} ${data.image ? styles.hasPhoto : ''}`.trim()}
+      className={`${styles.banner} ${data.image ? styles.hasPhoto : ''} ${data.mobileSoftFade ? styles.softFade : ''}`.trim()}
       style={{ ...mobileVars, ...imageVars, ...desktopFrameVars }}
     >
       {/* Photo = ::before and wash = ::after of this one box; breakpoints only swap CSS. */}

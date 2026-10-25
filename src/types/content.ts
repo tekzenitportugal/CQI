@@ -107,6 +107,8 @@ export type PageHeroData = import('@/components/ui/HeroCopy').HeroCopyData & {
   image?: string;
   /** Dedicated portrait crop for below lg; falls back to `image` (CSS-cropped) when omitted. */
   mobileImage?: string;
+  /** Below lg only: ease the copy wash into the photo (no visible edge over dark photos). */
+  mobileSoftFade?: boolean;
   /** Serve `image` untouched (no Next resize/recompress). */
   imageUnoptimized?: boolean;
   imageWidth?: number;
