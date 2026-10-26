@@ -238,9 +238,9 @@ $pin-top-space: clamp(96px, calc((100svh - #{$pinned-content-height}) / 2), 250p
   line-height: 1.35;
   letter-spacing: 0.02em;
 
-  // Figma phones: label and copy are both 12px, not scaled with the dome.
+  // Figma phones: label and copy are both 15px, not scaled with the dome.
   @media (max-width: 767.98px) {
-    font-size: 12px;
+    font-size: 15px;
   }
   text-transform: uppercase;
   color: var(--color-antracite-400);
@@ -264,7 +264,7 @@ $pin-top-space: clamp(96px, calc((100svh - #{$pinned-content-height}) / 2), 250p
   @media (max-width: 767.98px) {
     top: 128px;
     max-width: 62.6cqw;
-    font-size: 12px;
+    font-size: 15px;
   }
 }
 

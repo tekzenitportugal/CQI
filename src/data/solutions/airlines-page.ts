@@ -105,7 +105,7 @@ export const airlinesPageData = {
       { left: 632.25, top: 766.66, firstCol: 12, letters: ['C', 'B', 'A'] },
     ] satisfies AirlinesSeatBlock[],
     /** Mobile shows a 6 × 3 close-up of the cabin instead of the plane (Figma mobile 6561:39363). */
-    mobileSeats: ['RHEHHH', 'HFHERH', 'RFHSHH'],
+    mobileSeats: ['RHEHHHHS', 'HFHERHFR', 'RFHSHHEH'],
     mobileSelectedSeat: { row: 1, col: 4 },
     mobileNote: 'This is a representation of the airplane seating layout.',
     /** The seat selected on load: the featured passenger, described by `card` below. */

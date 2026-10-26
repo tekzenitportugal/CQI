@@ -21,6 +21,30 @@ export type DotNodes = {
   hit: SVGCircleElement | null;
 };
 
+// Phones: the grey (inactive) dot core is 12 × 12px on screen and the blue (active) one 16 × 16px, easing
+// between the two as a dot is selected; the canvas is scaled down so the design-unit radii alone would draw
+// them at ~7px and ~12px.
+const PHONE_CORE_RADIUS_PX = { inactive: 6, active: 8 };
+
+function coreRadius(core: SVGCircleElement, innerR: number, active: number) {
+  if (window.innerWidth > 767.98) return innerR;
+  const scale = core.getScreenCTM()?.a;
+  if (!scale) return innerR;
+  const { inactive, active: activePx } = PHONE_CORE_RADIUS_PX;
+  return Math.max(innerR, (inactive + (activePx - inactive) * active) / scale);
+}
+
+// Phones: the stage number is 10px in the grey dot and 12px in the blue one, easing between the two.
+const PHONE_NUM_FONT_PX = { inactive: 10, active: 12 };
+
+function numFontSize(num: SVGTextElement, font: number, active: number) {
+  if (window.innerWidth > 767.98) return font;
+  const scale = num.getScreenCTM()?.a;
+  if (!scale) return font;
+  const { inactive, active: activePx } = PHONE_NUM_FONT_PX;
+  return (inactive + (activePx - inactive) * active) / scale;
+}
+
 function renderDot(node: DotNodes | undefined, m: DotModel) {
   if (!node?.ring || !node.core || !node.num || !node.line) return;
   const { x, y } = m.center;
@@ -33,11 +57,11 @@ function renderDot(node: DotNodes | undefined, m: DotModel) {
   node.ring.setAttribute('stroke-dasharray', `${m.dash.toFixed(2)} ${m.dash.toFixed(2)}`);
   node.core.setAttribute('cx', x.toFixed(2));
   node.core.setAttribute('cy', y.toFixed(2));
-  node.core.setAttribute('r', m.innerR.toFixed(2));
+  node.core.setAttribute('r', coreRadius(node.core, m.innerR, m.active).toFixed(2));
   node.core.setAttribute('fill', m.fill);
   node.num.setAttribute('x', x.toFixed(2));
   node.num.setAttribute('y', y.toFixed(2));
-  node.num.setAttribute('font-size', m.font.toFixed(2));
+  node.num.setAttribute('font-size', numFontSize(node.num, m.font, m.active).toFixed(2));
   node.num.textContent = m.label;
   if (node.hit) {
     node.hit.setAttribute('cx', x.toFixed(2));
