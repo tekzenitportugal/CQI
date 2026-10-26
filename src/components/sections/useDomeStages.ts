@@ -21,10 +21,9 @@ export type DotNodes = {
   hit: SVGCircleElement | null;
 };
 
-// Phones: the grey (inactive) dot core is 12 × 12px on screen and the blue (active) one 16 × 16px, easing
-// between the two as a dot is selected; the canvas is scaled down so the design-unit radii alone would draw
-// them at ~7px and ~12px.
-const PHONE_CORE_RADIUS_PX = { inactive: 6, active: 8 };
+// Phones: the grey (inactive) and blue (active) dot cores are both 16 × 16px on screen. The canvas is scaled
+// down, so the design-unit radii alone would draw them at ~7px and ~12px.
+const PHONE_CORE_RADIUS_PX = { inactive: 8, active: 8 };
 
 function coreRadius(core: SVGCircleElement, innerR: number, active: number) {
   if (window.innerWidth > 767.98) return innerR;
