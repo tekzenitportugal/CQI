@@ -104,20 +104,26 @@ export function AirlinesPulseSection({ data }: AirlinesPulseSectionProps) {
         />
 
         <div className={styles.mobileSeats}>
-          <div className={styles.mobileGrid} aria-hidden="true">
-            {data.mobileSeats.map((row, rowIndex) =>
-              row.split('').map((state, colIndex) => {
-                const isSelected = data.mobileSelectedSeat.row === rowIndex && data.mobileSelectedSeat.col === colIndex;
-                return (
-                  <span
-                    key={`${rowIndex}-${colIndex}`}
-                    className={`${styles.mobileSeat} ${isSelected ? styles.mobileSeatSelected : ''}`.trim()}
-                  >
-                    <Sentiment state={state as SeatState} className={styles.mobileSeatFace} />
-                  </span>
-                );
-              }),
-            )}
+          <div className={styles.mobileFrame}>
+            <div className={styles.mobilePlaneBox} aria-hidden="true">
+              <img src="/images/solutions/airlines/plane-mobile.svg" alt="" className={styles.mobilePlane} />
+            </div>
+            <div className={styles.mobileGrid} aria-hidden="true">
+              {data.mobileSeats.map((row, rowIndex) =>
+                row.split('').map((state, colIndex) => {
+                  const isSelected =
+                    data.mobileSelectedSeat.row === rowIndex && data.mobileSelectedSeat.col === colIndex;
+                  return (
+                    <span
+                      key={`${rowIndex}-${colIndex}`}
+                      className={`${styles.mobileSeat} ${isSelected ? styles.mobileSeatSelected : ''}`.trim()}
+                    >
+                      <Sentiment state={state as SeatState} className={styles.mobileSeatFace} />
+                    </span>
+                  );
+                }),
+              )}
+            </div>
           </div>
           <p className={styles.mobileNote}>{data.mobileNote}</p>
         </div>

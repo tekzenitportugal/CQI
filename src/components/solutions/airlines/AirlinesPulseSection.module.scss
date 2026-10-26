@@ -63,8 +63,13 @@
     white-space: pre-line;
   }
 
-  // Figma mobile: 26px from the title to the intro (24px on desktop).
+  // Figma mobile: 26px from the title to the intro (24px on desktop), and the intro flows on one paragraph
+  // (the desktop break after the first sentence is dropped).
   @media (max-width: 1023.98px) {
+    :global(p:last-child) {
+      white-space: normal;
+    }
+
     --section-heading-description-margin-top: 16px;
   }
 }
@@ -436,26 +441,63 @@
 
 .mobileSeats {
   width: 100%;
-  margin-top: 100px;
+  // Figma: 142px from the intro to the first seat row.
+  margin-top: 142px;
 
   @include respond-to(lg) {
     display: none;
   }
 }
 
+// Figma 6814:65830 (414 wide): an 8 × 3 cabin of 30px seats over a pale plane that runs off both sides.
+// The plane is a backdrop only: its wings fade out above and below the seat rows (Figma Rectangles 559/560),
+// so just the fuselage and the roots of the wings show. --m scales the 414px design up to the screen (capped at 414).
+.mobileFrame {
+  --m: calc(min(100vw, 414px) / 414);
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
+
+.mobilePlaneBox {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: calc(400 * var(--m));
+  transform: translateY(-50%);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 40%, #000 62%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 40%, #000 62%, transparent 100%);
+}
+
+// The artwork is drawn 791 × 701 and turned a quarter-turn, so it spans 701 × 791 in the design.
+.mobilePlane {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(791 * var(--m));
+  height: calc(701 * var(--m));
+  max-width: none;
+  transform: translate(calc(-50% + 12.5 * var(--m)), -50%) rotate(-90deg);
+}
+
 .mobileGrid {
+  position: relative;
+  width: calc(331.5 * var(--m));
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(6, 12.57%);
+  grid-template-columns: repeat(8, 9.07%);
   justify-content: space-between;
-  row-gap: 5px;
+  row-gap: calc(4 * var(--m));
 }
 
 .mobileSeat {
   position: relative;
   display: block;
   aspect-ratio: 1;
-  border: 2px solid #dfdfdf;
-  border-radius: 10px;
+  border: 1px solid #dfdfdf;
+  border-radius: 6px;
   background: var(--color-white);
 }
 
@@ -482,7 +524,8 @@
 }
 
 .mobileNote {
-  margin-top: 24px;
+  // Figma: the note sits 128px under the seat rows, over the lower wings.
+  margin-top: 128px;
   @include footnote;
 }
 
@@ -490,18 +533,20 @@
   .bottom {
     gap: 26px;
     min-height: 0;
-    margin-top: 64px;
+    // Figma: 24px from the note to the state card.
+    margin-top: 24px;
   }
 
   .card {
     order: -1;
     min-height: 0;
-    padding: 21px;
+    // Figma 6814:66507 state card (374 wide): 20px padding, 32px header → rows, 32px label → text.
+    padding: 20px;
     gap: 24px;
   }
 
   .cardBody {
-    gap: 28px;
+    gap: 32px;
   }
 
   .cardSeatNumber {
@@ -517,10 +562,10 @@
   }
 
   .cardRow {
-    gap: 24px;
+    gap: 32px;
 
     dt {
-      flex-basis: 123px;
+      flex-basis: 115px;
       font-size: 17.5px;
     }
 
