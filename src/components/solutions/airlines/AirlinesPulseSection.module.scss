@@ -495,10 +495,19 @@
 .mobileSeat {
   position: relative;
   display: block;
+  padding: 0;
+  cursor: pointer;
+  // The section's content wrapper lets clicks through to the desktop seats; the phone seats take them.
+  pointer-events: auto;
   aspect-ratio: 1;
   border: 1px solid #dfdfdf;
   border-radius: 6px;
   background: var(--color-white);
+}
+
+.mobileSeat:focus-visible {
+  outline: 2px solid var(--color-blue-200);
+  outline-offset: 2px;
 }
 
 .mobileSeatSelected {

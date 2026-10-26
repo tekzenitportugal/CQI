@@ -157,3 +157,36 @@ export const seatCards: Record<string, SeatCard> = {
   "21A": { status: "friction", signals: "Seat reassigned on the last flight", action: "Secure the preferred seat when the next ticket is ordered" },
   "22A": { status: "healthy", signals: "Smooth check-in and boarding this season", action: "Keep the experience consistent" },
 };
+
+/**
+ * Mobile Customer Pulse cards (Figma 6814:66507 — 24 "STATE CARD" frames, one per seat of the 8 × 3 cabin).
+ * Listed in cabin order: left to right along the top row, then the middle row, then the bottom row, so the
+ * card for mobile seat (row, col) is MOBILE_SEAT_CARDS[row * 8 + col]. The featured passenger (5B) has its
+ * card in airlines-page.ts; its entry here only carries the seat label and status.
+ */
+export const MOBILE_SEAT_CARDS: { seat: string; card: SeatCard }[] = [
+  { seat: "1C", card: { status: "risk", signals: "Delay, lounge refusal and failed Wi-Fi on one journey", action: "Priority boarding with the gate team briefed; crew gets the full context" } },
+  { seat: "2C", card: { status: "healthy", signals: "On-time arrivals on recent trips, chosen seat honoured", action: "Recognise the loyalty; no intervention needed" } },
+  { seat: "3C", card: { status: "eroding", signals: "Bag delayed last week", action: "Acknowledge it at check-in and offer a lounge pass" } },
+  { seat: "1B", card: { status: "healthy", signals: "Smooth check-in and boarding this season", action: "Keep the experience consistent" } },
+  { seat: "1B", card: { status: "healthy", signals: "Smooth check-in and boarding this season", action: "Keep the experience consistent" } },
+  { seat: "1B", card: { status: "healthy", signals: "Smooth check-in and boarding this season", action: "Keep the experience consistent" } },
+  { seat: "1B", card: { status: "healthy", signals: "Smooth check-in and boarding this season", action: "Keep the experience consistent" } },
+  { seat: "3F", card: { status: "silent", signals: "Stopped engaging after a missed connection", action: "Flag for retention team review before the next booking is lost" } },
+  { seat: "1B", card: { status: "healthy", signals: "Smooth check-in and boarding this season", action: "Keep the experience consistent" } },
+  { seat: "2B", card: { status: "friction", signals: "Wi-Fi failed on the outbound leg", action: "Crew acknowledges it and offers an alternative onboard" } },
+  { seat: "2C", card: { status: "healthy", signals: "On-time arrivals on recent trips, chosen seat honoured", action: "Recognise the loyalty; no intervention needed" } },
+  { seat: "4B", card: { status: "eroding", signals: "Delay last month, then a lounge refusal", action: "Offer complimentary lounge access at check-in" } },
+  { seat: "5B", card: { status: "risk", signals: "Seat reassigned on her last flight · Bag delayed last week", action: "Lock her preferred seat at booking and acknowledge the delay at check-in" } },
+  { seat: "2C", card: { status: "healthy", signals: "On-time arrivals on recent trips, chosen seat honoured", action: "Recognise the loyalty; no intervention needed" } },
+  { seat: "2B", card: { status: "friction", signals: "Wi-Fi failed on the outbound leg", action: "Crew acknowledges it and offers an alternative onboard" } },
+  { seat: "1A", card: { status: "risk", signals: "Repeated disruptions, call center contact unresolved", action: "Repeated disruptions, call center contact unresolved" } },
+  { seat: "1A", card: { status: "risk", signals: "Repeated disruptions, call center contact unresolved", action: "Repeated disruptions, call center contact unresolved" } },
+  { seat: "2A", card: { status: "friction", signals: "Seat reassigned on the last flight", action: "Secure the preferred seat when the next ticket is ordered" } },
+  { seat: "1B", card: { status: "healthy", signals: "Smooth check-in and boarding this season", action: "Keep the experience consistent" } },
+  { seat: "4A", card: { status: "silent", signals: "Several disruptions, no complaint filed, fewer bookings", action: "Proactive outreach from your recovery playbook" } },
+  { seat: "2C", card: { status: "healthy", signals: "On-time arrivals on recent trips, chosen seat honoured", action: "Recognise the loyalty; no intervention needed" } },
+  { seat: "1B", card: { status: "healthy", signals: "Smooth check-in and boarding this season", action: "Keep the experience consistent" } },
+  { seat: "3C", card: { status: "eroding", signals: "Bag delayed last week", action: "Acknowledge it at check-in and offer a lounge pass" } },
+  { seat: "2C", card: { status: "healthy", signals: "On-time arrivals on recent trips, chosen seat honoured", action: "Recognise the loyalty; no intervention needed" } },
+];

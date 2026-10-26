@@ -5,7 +5,13 @@ import { Container } from '@/components/ui/Container';
 import { GhostLink } from '@/components/ui/GhostLink';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import type { airlinesPageData, SeatState } from '@/data/solutions/airlines-page';
-import { SEAT_NOTE, SEAT_STATUS_LABEL, seatCards, type SeatStatus } from '@/data/solutions/airlines-seat-cards';
+import {
+  MOBILE_SEAT_CARDS,
+  SEAT_NOTE,
+  SEAT_STATUS_LABEL,
+  seatCards,
+  type SeatStatus,
+} from '@/data/solutions/airlines-seat-cards';
 import styles from './AirlinesPulseSection.module.scss';
 
 type AirlinesPulseSectionProps = {
@@ -44,11 +50,55 @@ const TAG_TONE: Record<SeatStatus, string> = {
   silent: styles.tagSilent,
 };
 
+const MOBILE_SEAT_COLS = 8;
+
 function Sentiment({ state, className }: { state: SeatState; className: string }) {
   return (
     <span className={`${className} ${TONE[state]}`}>
       <img src={`/images/solutions/airlines/${FACE[state]}.svg`} alt="" aria-hidden="true" />
     </span>
+  );
+}
+
+type StateCardProps = {
+  className: string;
+  seatLabel: string;
+  status: SeatStatus;
+  signals: string;
+  action: string;
+  /** The featured passenger's copy: its labels head every card; its name and link show only when `isFeatured`. */
+  featured: typeof airlinesPageData.pulse.card;
+  isFeatured: boolean;
+};
+
+function StateCard({ className, seatLabel, status, signals, action, featured, isFeatured }: StateCardProps) {
+  return (
+    <article className={`${styles.card} ${className}`} aria-live="polite">
+      <div className={styles.cardBody}>
+        <div className={styles.cardHeader}>
+          <p className={styles.cardSeat}>
+            <span className={styles.cardSeatNumber}>{seatLabel}</span>
+            {isFeatured && <span className={styles.cardPassenger}>{featured.passenger}</span>}
+          </p>
+          <span className={`${styles.cardTag} ${TAG_TONE[status]}`}>{SEAT_STATUS_LABEL[status]}</span>
+        </div>
+        <dl className={styles.cardRows}>
+          <div className={styles.cardRow}>
+            <dt>{featured.signalsLabel}</dt>
+            <dd>{signals}</dd>
+          </div>
+          <div className={styles.cardRow}>
+            <dt>{featured.actionLabel}</dt>
+            <dd>{action}</dd>
+          </div>
+        </dl>
+      </div>
+      {isFeatured ? (
+        <GhostLink label={featured.link.label} href={featured.link.href} className={styles.cardLink} />
+      ) : (
+        <p className={styles.cardNote}>{SEAT_NOTE}</p>
+      )}
+    </article>
   );
 }
 
@@ -61,6 +111,12 @@ export function AirlinesPulseSection({ data }: AirlinesPulseSectionProps) {
   const featured = data.card;
   const isFeatured = selected === data.defaultSeat;
   const seatCard = seatCards[selected];
+
+  // Mobile: the 8 × 3 close-up. Seat (row, col) shows MOBILE_SEAT_CARDS[row * 8 + col]; the featured one is selected on load.
+  const featuredMobileIndex = data.mobileSelectedSeat.row * MOBILE_SEAT_COLS + data.mobileSelectedSeat.col;
+  const [mobileSelected, setMobileSelected] = useState(featuredMobileIndex);
+  const mobileCard = MOBILE_SEAT_CARDS[mobileSelected];
+  const isMobileFeatured = mobileSelected === featuredMobileIndex;
 
   return (
     <section className={styles.section}>
@@ -108,18 +164,22 @@ export function AirlinesPulseSection({ data }: AirlinesPulseSectionProps) {
             <div className={styles.mobilePlaneBox} aria-hidden="true">
               <img src="/images/solutions/airlines/plane-mobile.svg" alt="" className={styles.mobilePlane} />
             </div>
-            <div className={styles.mobileGrid} aria-hidden="true">
+            <div className={styles.mobileGrid}>
               {data.mobileSeats.map((row, rowIndex) =>
                 row.split('').map((state, colIndex) => {
-                  const isSelected =
-                    data.mobileSelectedSeat.row === rowIndex && data.mobileSelectedSeat.col === colIndex;
+                  const index = rowIndex * MOBILE_SEAT_COLS + colIndex;
+                  const { seat, card } = MOBILE_SEAT_CARDS[index];
                   return (
-                    <span
-                      key={`${rowIndex}-${colIndex}`}
-                      className={`${styles.mobileSeat} ${isSelected ? styles.mobileSeatSelected : ''}`.trim()}
+                    <button
+                      key={index}
+                      type="button"
+                      className={`${styles.mobileSeat} ${mobileSelected === index ? styles.mobileSeatSelected : ''}`.trim()}
+                      aria-label={`Seat ${seat}, ${SEAT_STATUS_LABEL[card.status]}`}
+                      aria-pressed={mobileSelected === index}
+                      onClick={() => setMobileSelected(index)}
                     >
                       <Sentiment state={state as SeatState} className={styles.mobileSeatFace} />
-                    </span>
+                    </button>
                   );
                 }),
               )}
@@ -143,43 +203,24 @@ export function AirlinesPulseSection({ data }: AirlinesPulseSectionProps) {
             <p className={styles.legendNote}>{data.legendNote}</p>
           </div>
 
-          <article className={styles.card} aria-live="polite">
-            <div className={styles.cardBody}>
-              <div className={styles.cardHeader}>
-                <p className={styles.cardSeat}>
-                  <span className={styles.cardSeatNumber}>
-                    {isFeatured ? (
-                      <>
-                        <span className={styles.desktopOnly}>{featured.seat}</span>
-                        <span className={styles.mobileOnly}>{featured.mobileSeat}</span>
-                      </>
-                    ) : (
-                      `Seat ${selected}`
-                    )}
-                  </span>
-                  {isFeatured && <span className={styles.cardPassenger}>{featured.passenger}</span>}
-                </p>
-                <span className={`${styles.cardTag} ${TAG_TONE[seatCard.status]}`}>
-                  {SEAT_STATUS_LABEL[seatCard.status]}
-                </span>
-              </div>
-              <dl className={styles.cardRows}>
-                <div className={styles.cardRow}>
-                  <dt>{featured.signalsLabel}</dt>
-                  <dd>{seatCard.signals}</dd>
-                </div>
-                <div className={styles.cardRow}>
-                  <dt>{featured.actionLabel}</dt>
-                  <dd>{seatCard.action}</dd>
-                </div>
-              </dl>
-            </div>
-            {isFeatured ? (
-              <GhostLink label={featured.link.label} href={featured.link.href} className={styles.cardLink} />
-            ) : (
-              <p className={styles.cardNote}>{SEAT_NOTE}</p>
-            )}
-          </article>
+          <StateCard
+            className={styles.desktopOnly}
+            seatLabel={isFeatured ? featured.seat : `Seat ${selected}`}
+            status={seatCard.status}
+            signals={seatCard.signals}
+            action={seatCard.action}
+            featured={featured}
+            isFeatured={isFeatured}
+          />
+          <StateCard
+            className={styles.mobileOnly}
+            seatLabel={`Seat ${mobileCard.seat}`}
+            status={mobileCard.card.status}
+            signals={mobileCard.card.signals}
+            action={mobileCard.card.action}
+            featured={featured}
+            isFeatured={isMobileFeatured}
+          />
         </div>
       </Container>
     </section>
