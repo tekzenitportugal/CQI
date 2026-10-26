@@ -31,7 +31,7 @@ export function Footer({ data }: FooterProps) {
             {data.email}
           </a>
           <div className={styles.social}>
-            <a href="https://www.linkedin.com/company/cqi-sense/posts/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/company/cqi-sense/home/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
               <Image src="/images/shared/common/linkedin.png" alt="" width={16} height={16} className={styles.linkedin} />
             </a>
           </div>
