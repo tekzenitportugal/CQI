@@ -33,6 +33,16 @@ function coreRadius(core: SVGCircleElement, innerR: number, active: number) {
   return Math.max(innerR, (inactive + (activePx - inactive) * active) / scale);
 }
 
+// Phones: every dot is the same size, whether grey or blue: a 16px core inside a 32px outer ring (8px of space
+// around the core). Only the colour and the ring's outline (dashed grey / solid) tell them apart.
+const PHONE_RING_RADIUS_PX = 16;
+
+function ringRadius(ring: SVGCircleElement, outerR: number) {
+  if (window.innerWidth > 767.98) return outerR;
+  const scale = ring.getScreenCTM()?.a;
+  return scale ? PHONE_RING_RADIUS_PX / scale : outerR;
+}
+
 // Phones: the stage number is 10px in the grey dot and 12px in the blue one, easing between the two.
 const PHONE_NUM_FONT_PX = { inactive: 10, active: 12 };
 
@@ -44,6 +54,9 @@ function numFontSize(num: SVGTextElement, font: number, active: number) {
   return (inactive + (activePx - inactive) * active) / scale;
 }
 
+// Tap target radius (design units); on phones it grows to cover the whole ring.
+const HIT_RADIUS = 22;
+
 function renderDot(node: DotNodes | undefined, m: DotModel) {
   if (!node?.ring || !node.core || !node.num || !node.line) return;
   const { x, y } = m.center;
@@ -52,7 +65,7 @@ function renderDot(node: DotNodes | undefined, m: DotModel) {
   node.num.setAttribute('opacity', m.opacity.toFixed(3));
   node.ring.setAttribute('cx', x.toFixed(2));
   node.ring.setAttribute('cy', y.toFixed(2));
-  node.ring.setAttribute('r', m.outerR.toFixed(2));
+  node.ring.setAttribute('r', ringRadius(node.ring, m.outerR).toFixed(2));
   node.ring.setAttribute('stroke-dasharray', `${m.dash.toFixed(2)} ${m.dash.toFixed(2)}`);
   node.core.setAttribute('cx', x.toFixed(2));
   node.core.setAttribute('cy', y.toFixed(2));
@@ -65,6 +78,7 @@ function renderDot(node: DotNodes | undefined, m: DotModel) {
   if (node.hit) {
     node.hit.setAttribute('cx', x.toFixed(2));
     node.hit.setAttribute('cy', y.toFixed(2));
+    node.hit.setAttribute('r', Math.max(HIT_RADIUS, ringRadius(node.ring, 0)).toFixed(2));
     // Faded-out dots (and the active one) are not jump targets.
     node.hit.style.pointerEvents = m.opacity > 0.4 && m.active < 0.5 ? 'auto' : 'none';
   }
